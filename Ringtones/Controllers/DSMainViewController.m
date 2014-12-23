@@ -39,7 +39,7 @@
 
 - (void) getProructsFromServer {
     
-    [[DSServerManager sharedManager]getSongTopEngWithFilter:@"Eng" OnSuccess:^(NSArray *products)
+    [[DSServerManager sharedManager]getSongTopEngWithFilter:@"eng" OnSuccess:^(NSArray *products)
     {
         
     } onFailure:^(NSError *error, NSInteger statusCode) {

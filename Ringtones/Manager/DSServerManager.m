@@ -37,7 +37,7 @@
 {
     self = [super init];
     if (self) {
-        self.requestOperationManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:@"http://192.168.1.110:8085/"]];
+        self.requestOperationManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:@"http://195.138.68.2:8085/"]];
         
     }
     
@@ -60,7 +60,7 @@
          NSMutableArray* objectsArray = [NSMutableArray array];
          
          for (NSDictionary* dict in responseObject) {
-             DSSong* song = [[DSSong alloc] initWithDictionary:dict];
+             DSSong* song = [[DSSong alloc] initWithDictionary:[dict objectForKey:@"param"]];
              [objectsArray addObject:song];
          }
          

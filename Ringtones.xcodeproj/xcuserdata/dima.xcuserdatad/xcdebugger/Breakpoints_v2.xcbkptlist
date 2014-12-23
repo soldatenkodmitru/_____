@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ringtones/Manager/DSServerManager.m"
@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "-getSongTopEngOnSuccess:onFailure:"
+            landmarkName = "-getSongTopEngWithFilter:OnSuccess:onFailure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -40,13 +40,13 @@
                   continueAfterRunningActions = "No"
                   symbolName = "__45-[DSMainViewController getProructsFromServer]_block_invoke"
                   moduleName = "Ringtones"
-                  urlString = "file:///Users/dima/Desktop/Ringtones/Ringtones/Controllers/DSMainViewController.m"
-                  timestampString = "440958611.675425"
+                  urlString = "file:///Users/dima/Documents/Ringtones/Ringtones/Controllers/DSMainViewController.m"
+                  timestampString = "440974547.859509"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
                   endingLineNumber = "45"
-                  offsetFromSymbolStart = "38">
+                  offsetFromSymbolStart = "58">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -54,13 +54,13 @@
                   continueAfterRunningActions = "No"
                   symbolName = "__45-[DSMainViewController getProructsFromServer]_block_invoke_2"
                   moduleName = "Ringtones"
-                  urlString = "file:///Users/dima/Desktop/Ringtones/Ringtones/Controllers/DSMainViewController.m"
-                  timestampString = "440958611.675634"
+                  urlString = "file:///Users/dima/Documents/Ringtones/Ringtones/Controllers/DSMainViewController.m"
+                  timestampString = "440974547.85976"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
                   endingLineNumber = "45"
-                  offsetFromSymbolStart = "58">
+                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -68,7 +68,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Ringtones/Controllers/DSMainViewController.m"
@@ -79,6 +79,84 @@
             endingLineNumber = "46"
             landmarkName = "-getProructsFromServer"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ringtones/Manager/DSServerManager.m"
+            timestampString = "440974492.570481"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-getSongTopEngWithFilter:OnSuccess:onFailure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ringtones/Controllers/DSMainViewController.m"
+            timestampString = "440974512.874656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-getProructsFromServer"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ringtones/Controllers/DSMainViewController.m"
+            timestampString = "440974546.408482"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-getProructsFromServer"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45-[DSMainViewController getProructsFromServer]_block_invoke"
+                  moduleName = "Ringtones"
+                  urlString = "file:///Users/dima/Documents/Ringtones/Ringtones/Controllers/DSMainViewController.m"
+                  timestampString = "440980039.170566"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "58">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__45-[DSMainViewController getProructsFromServer]_block_invoke_2"
+                  moduleName = "Ringtones"
+                  urlString = "file:///Users/dima/Documents/Ringtones/Ringtones/Controllers/DSMainViewController.m"
+                  timestampString = "440980039.171006"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
