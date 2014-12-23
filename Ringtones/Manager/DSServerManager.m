@@ -9,6 +9,8 @@
 #import "DSSong.h"
 #import "DSServerManager.h"
 #import "AFNetworking.h"
+#import "AFHTTPRequestOperationLogger.h"
+
 
 
 @interface  DSServerManager()
@@ -44,23 +46,30 @@
     return self;
 }
 
-- (void) getSongTopEngWithFilter:(NSString*) filter OnSuccess:(void(^)(NSArray* songs)) success
+- (void) getSongWithFilter:(NSString*) filter OnSuccess:(void(^)(NSArray* songs)) success
                     onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {
-     self.requestOperationManager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+   
+   
+     self.requestOperationManager.requestSerializer = [AFJSONRequestSerializer serializer ];
+    
+    self.requestOperationManager.responseSerializer = [AFJSONResponseSerializer serializer];
+
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
                             @"GETSOUNDSLIST" , @"command",
                             [NSDictionary dictionaryWithObjectsAndKeys:filter, @"filter",nil],@"param", nil];
-   
+    
+      
+   //[[AFHTTPRequestOperationLogger sharedLogger] startLogging];
     [self.requestOperationManager
      POST:@""
      parameters:params
-     success:^(AFHTTPRequestOperation *operation, NSDictionary* responseObject) {
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
          NSLog(@"JSON: %@", responseObject);
-         
          NSMutableArray* objectsArray = [NSMutableArray array];
          
          for (NSDictionary* dict in responseObject) {
-             DSSong* song = [[DSSong alloc] initWithDictionary:[dict objectForKey:@"param"]];
+             DSSong* song = [[DSSong alloc] initWithDictionary:dict];
              [objectsArray addObject:song];
          }
          

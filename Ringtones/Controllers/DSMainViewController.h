@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DSMainViewController : UIViewController
+@interface DSMainViewController : UIViewController <UITableViewDataSource , UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

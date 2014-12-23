@@ -13,7 +13,7 @@
 
 + (DSServerManager *)sharedManager;
 
-- (void) getSongTopEngWithFilter:(NSString*) filter OnSuccess:(void(^)(NSArray* songs)) success
+- (void) getSongWithFilter:(NSString*) filter OnSuccess:(void(^)(NSArray* songs)) success
                       onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
 
 @end
