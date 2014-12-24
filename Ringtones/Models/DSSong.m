@@ -22,11 +22,11 @@
         self.albumLink = [responseObject objectForKey:@"album_link"];
         self.year = [[responseObject objectForKey:@"year"]integerValue];
         self.rating = [[responseObject objectForKey:@"rating"] floatValue];
-        self.cutLink =[[[responseObject objectForKey:@"files"] objectForKey:@"cut"] objectForKey:@"file_link"];
+        self.cutLink =[[[[responseObject objectForKey:@"files"] objectForKey:@"cut"] objectForKey:@"file_link"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.cutDuration = [[[responseObject objectForKey:@"files"] objectForKey:@"cut" ]objectForKey:@"duration"];
-        self.ringtonLink =[[[responseObject objectForKey:@"files"] objectForKey:@"rington"] objectForKey:@"file_link"];
+        self.ringtonLink =[[[[responseObject objectForKey:@"files"] objectForKey:@"rington"] objectForKey:@"file_link"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.ringtonDuration = [[[responseObject objectForKey:@"files"] objectForKey:@"rington"] objectForKey:@"duration"];
-        self.fileLink =[[[responseObject objectForKey:@"files"] objectForKey:@"full"] objectForKey:@"file_link"];
+        self.fileLink =[[[[responseObject objectForKey:@"files"] objectForKey:@"full"] objectForKey:@"file_link"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.fileDuration = [[[responseObject objectForKey:@"files"] objectForKey:@"full"] objectForKey:@"duration"];
       
     }

@@ -40,6 +40,21 @@
 		32CEA2FD1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA2FC1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m */; };
 		32CEA3001A498E48006AD7CC /* DSSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA2FF1A498E48006AD7CC /* DSSongViewController.m */; };
 		32CEA3051A49B8DA006AD7CC /* DSSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3041A49B8DA006AD7CC /* DSSoundManager.m */; };
+		32FA53B01A4ACD4C00413D1A /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AA1A4ACD4C00413D1A /* download.png */; };
+		32FA53B11A4ACD4C00413D1A /* favourite.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AB1A4ACD4C00413D1A /* favourite.png */; };
+		32FA53B21A4ACD4C00413D1A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AC1A4ACD4C00413D1A /* pause.png */; };
+		32FA53B31A4ACD4C00413D1A /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AD1A4ACD4C00413D1A /* play.png */; };
+		32FA53B41A4ACD4C00413D1A /* separate.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AE1A4ACD4C00413D1A /* separate.png */; };
+		32FA53B51A4ACD4C00413D1A /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AF1A4ACD4C00413D1A /* slider.png */; };
+		32FA53CE1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53BC1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m */; };
+		32FA53CF1A4B1BEC00413D1A /* STKAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53BE1A4B1BEC00413D1A /* STKAudioPlayer.m */; };
+		32FA53D01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m */; };
+		32FA53D11A4B1BEC00413D1A /* STKCoreFoundationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C21A4B1BEC00413D1A /* STKCoreFoundationDataSource.m */; };
+		32FA53D21A4B1BEC00413D1A /* STKDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C41A4B1BEC00413D1A /* STKDataSource.m */; };
+		32FA53D31A4B1BEC00413D1A /* STKDataSourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C61A4B1BEC00413D1A /* STKDataSourceWrapper.m */; };
+		32FA53D41A4B1BEC00413D1A /* STKHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C81A4B1BEC00413D1A /* STKHTTPDataSource.m */; };
+		32FA53D51A4B1BEC00413D1A /* STKLocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53CA1A4B1BEC00413D1A /* STKLocalFileDataSource.m */; };
+		32FA53D61A4B1BEC00413D1A /* STKQueueEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53CC1A4B1BEC00413D1A /* STKQueueEntry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +134,31 @@
 		32CEA2FF1A498E48006AD7CC /* DSSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSongViewController.m; path = Ringtones/Controllers/DSSongViewController.m; sourceTree = "<group>"; };
 		32CEA3031A49B8DA006AD7CC /* DSSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSSoundManager.h; path = Ringtones/Manager/DSSoundManager.h; sourceTree = "<group>"; };
 		32CEA3041A49B8DA006AD7CC /* DSSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSoundManager.m; path = Ringtones/Manager/DSSoundManager.m; sourceTree = "<group>"; };
+		32FA53AA1A4ACD4C00413D1A /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = download.png; path = Ringtones/images/download.png; sourceTree = "<group>"; };
+		32FA53AB1A4ACD4C00413D1A /* favourite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favourite.png; path = Ringtones/images/favourite.png; sourceTree = "<group>"; };
+		32FA53AC1A4ACD4C00413D1A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = Ringtones/images/pause.png; sourceTree = "<group>"; };
+		32FA53AD1A4ACD4C00413D1A /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Ringtones/images/play.png; sourceTree = "<group>"; };
+		32FA53AE1A4ACD4C00413D1A /* separate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = separate.png; path = Ringtones/images/separate.png; sourceTree = "<group>"; };
+		32FA53AF1A4ACD4C00413D1A /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slider.png; path = Ringtones/images/slider.png; sourceTree = "<group>"; };
+		32FA53BB1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+STKAudioPlayer.h"; sourceTree = "<group>"; };
+		32FA53BC1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+STKAudioPlayer.m"; sourceTree = "<group>"; };
+		32FA53BD1A4B1BEC00413D1A /* STKAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAudioPlayer.h; sourceTree = "<group>"; };
+		32FA53BE1A4B1BEC00413D1A /* STKAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAudioPlayer.m; sourceTree = "<group>"; };
+		32FA53BF1A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAutoRecoveringHTTPDataSource.h; sourceTree = "<group>"; };
+		32FA53C01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAutoRecoveringHTTPDataSource.m; sourceTree = "<group>"; };
+		32FA53C11A4B1BEC00413D1A /* STKCoreFoundationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKCoreFoundationDataSource.h; sourceTree = "<group>"; };
+		32FA53C21A4B1BEC00413D1A /* STKCoreFoundationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKCoreFoundationDataSource.m; sourceTree = "<group>"; };
+		32FA53C31A4B1BEC00413D1A /* STKDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSource.h; sourceTree = "<group>"; };
+		32FA53C41A4B1BEC00413D1A /* STKDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDataSource.m; sourceTree = "<group>"; };
+		32FA53C51A4B1BEC00413D1A /* STKDataSourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSourceWrapper.h; sourceTree = "<group>"; };
+		32FA53C61A4B1BEC00413D1A /* STKDataSourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDataSourceWrapper.m; sourceTree = "<group>"; };
+		32FA53C71A4B1BEC00413D1A /* STKHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKHTTPDataSource.h; sourceTree = "<group>"; };
+		32FA53C81A4B1BEC00413D1A /* STKHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKHTTPDataSource.m; sourceTree = "<group>"; };
+		32FA53C91A4B1BEC00413D1A /* STKLocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLocalFileDataSource.h; sourceTree = "<group>"; };
+		32FA53CA1A4B1BEC00413D1A /* STKLocalFileDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLocalFileDataSource.m; sourceTree = "<group>"; };
+		32FA53CB1A4B1BEC00413D1A /* STKQueueEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKQueueEntry.h; sourceTree = "<group>"; };
+		32FA53CC1A4B1BEC00413D1A /* STKQueueEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKQueueEntry.m; sourceTree = "<group>"; };
+		32FA53CD1A4B1BEC00413D1A /* StreamingKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StreamingKit-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +182,7 @@
 		32CE4E931A483BC20022AE0F = {
 			isa = PBXGroup;
 			children = (
+				32FA53A91A4ACC2700413D1A /* images */,
 				32CE4F801A485FA10022AE0F /* cells */,
 				32CE4F7F1A485F980022AE0F /* models */,
 				32CE4F3B1A484E010022AE0F /* controllers */,
@@ -207,6 +248,7 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				32FA53BA1A4B1BEC00413D1A /* StreamingKit */,
 				32CEA2FB1A49691A006AD7CC /* AFHTTPRequestOperationLogger.h */,
 				32CEA2FC1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m */,
 				32CE4F451A485F6A0022AE0F /* AFNetworking */,
@@ -309,6 +351,46 @@
 			name = cells;
 			sourceTree = "<group>";
 		};
+		32FA53A91A4ACC2700413D1A /* images */ = {
+			isa = PBXGroup;
+			children = (
+				32FA53AA1A4ACD4C00413D1A /* download.png */,
+				32FA53AB1A4ACD4C00413D1A /* favourite.png */,
+				32FA53AC1A4ACD4C00413D1A /* pause.png */,
+				32FA53AD1A4ACD4C00413D1A /* play.png */,
+				32FA53AE1A4ACD4C00413D1A /* separate.png */,
+				32FA53AF1A4ACD4C00413D1A /* slider.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		32FA53BA1A4B1BEC00413D1A /* StreamingKit */ = {
+			isa = PBXGroup;
+			children = (
+				32FA53BB1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.h */,
+				32FA53BC1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m */,
+				32FA53BD1A4B1BEC00413D1A /* STKAudioPlayer.h */,
+				32FA53BE1A4B1BEC00413D1A /* STKAudioPlayer.m */,
+				32FA53BF1A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.h */,
+				32FA53C01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m */,
+				32FA53C11A4B1BEC00413D1A /* STKCoreFoundationDataSource.h */,
+				32FA53C21A4B1BEC00413D1A /* STKCoreFoundationDataSource.m */,
+				32FA53C31A4B1BEC00413D1A /* STKDataSource.h */,
+				32FA53C41A4B1BEC00413D1A /* STKDataSource.m */,
+				32FA53C51A4B1BEC00413D1A /* STKDataSourceWrapper.h */,
+				32FA53C61A4B1BEC00413D1A /* STKDataSourceWrapper.m */,
+				32FA53C71A4B1BEC00413D1A /* STKHTTPDataSource.h */,
+				32FA53C81A4B1BEC00413D1A /* STKHTTPDataSource.m */,
+				32FA53C91A4B1BEC00413D1A /* STKLocalFileDataSource.h */,
+				32FA53CA1A4B1BEC00413D1A /* STKLocalFileDataSource.m */,
+				32FA53CB1A4B1BEC00413D1A /* STKQueueEntry.h */,
+				32FA53CC1A4B1BEC00413D1A /* STKQueueEntry.m */,
+				32FA53CD1A4B1BEC00413D1A /* StreamingKit-Prefix.pch */,
+			);
+			name = StreamingKit;
+			path = Ringtones/libs/StreamingKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -394,9 +476,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FA53B31A4ACD4C00413D1A /* play.png in Resources */,
 				32CE4EAE1A483BC20022AE0F /* Main.storyboard in Resources */,
 				32CE4EB31A483BC20022AE0F /* LaunchScreen.xib in Resources */,
+				32FA53B21A4ACD4C00413D1A /* pause.png in Resources */,
+				32FA53B41A4ACD4C00413D1A /* separate.png in Resources */,
 				32CE4EB01A483BC20022AE0F /* Images.xcassets in Resources */,
+				32FA53B11A4ACD4C00413D1A /* favourite.png in Resources */,
+				32FA53B51A4ACD4C00413D1A /* slider.png in Resources */,
+				32FA53B01A4ACD4C00413D1A /* download.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,19 +505,26 @@
 				32CE4F831A4860510022AE0F /* DSSong.m in Sources */,
 				32CE4F701A485F6B0022AE0F /* AFURLConnectionOperation.m in Sources */,
 				32CEA3051A49B8DA006AD7CC /* DSSoundManager.m in Sources */,
+				32FA53D41A4B1BEC00413D1A /* STKHTTPDataSource.m in Sources */,
 				32CE4F6B1A485F6B0022AE0F /* AFHTTPRequestOperation.m in Sources */,
+				32FA53CE1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				32CE4F771A485F6B0022AE0F /* UIButton+AFNetworking.m in Sources */,
 				32CE4F6E1A485F6B0022AE0F /* AFNetworkReachabilityManager.m in Sources */,
 				32CE4F791A485F6B0022AE0F /* UIProgressView+AFNetworking.m in Sources */,
+				32FA53D11A4B1BEC00413D1A /* STKCoreFoundationDataSource.m in Sources */,
 				32CEA3001A498E48006AD7CC /* DSSongViewController.m in Sources */,
+				32FA53D51A4B1BEC00413D1A /* STKLocalFileDataSource.m in Sources */,
+				32FA53CF1A4B1BEC00413D1A /* STKAudioPlayer.m in Sources */,
 				32CE4F731A485F6B0022AE0F /* AFURLSessionManager.m in Sources */,
 				32CE4F711A485F6B0022AE0F /* AFURLRequestSerialization.m in Sources */,
 				32CE4F441A485F560022AE0F /* DSMainViewController.m in Sources */,
 				32CE4F7A1A485F6B0022AE0F /* UIRefreshControl+AFNetworking.m in Sources */,
+				32FA53D31A4B1BEC00413D1A /* STKDataSourceWrapper.m in Sources */,
 				32CE4F721A485F6B0022AE0F /* AFURLResponseSerialization.m in Sources */,
 				32CE4F7E1A485F790022AE0F /* DSServerManager.m in Sources */,
 				32CE4EA51A483BC20022AE0F /* AppDelegate.m in Sources */,
 				32CE4F861A4860790022AE0F /* DSSongTableViewCell.m in Sources */,
+				32FA53D01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m in Sources */,
 				32CEA2FD1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m in Sources */,
 				32CE4F781A485F6B0022AE0F /* UIImageView+AFNetworking.m in Sources */,
 				32CE4F891A486F360022AE0F /* DSPeriodTableViewCell.m in Sources */,
@@ -440,7 +535,9 @@
 				32CE4F7B1A485F6B0022AE0F /* UIWebView+AFNetworking.m in Sources */,
 				32CE4EAB1A483BC20022AE0F /* ViewController.m in Sources */,
 				32CE4EA81A483BC20022AE0F /* Ringtones.xcdatamodeld in Sources */,
+				32FA53D61A4B1BEC00413D1A /* STKQueueEntry.m in Sources */,
 				32CE4F6D1A485F6B0022AE0F /* AFHTTPSessionManager.m in Sources */,
+				32FA53D21A4B1BEC00413D1A /* STKDataSource.m in Sources */,
 				32CE4F751A485F6B0022AE0F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				32CE4F741A485F6B0022AE0F /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
