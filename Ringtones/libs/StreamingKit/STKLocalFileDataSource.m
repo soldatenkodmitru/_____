@@ -73,6 +73,7 @@
             @"aifc": @(kAudioFileAIFCType),
             @"aiff": @(kAudioFileAIFFType),
             @"m4a": @(kAudioFileM4AType),
+            @"m4r": @(kAudioFileM4AType),
             @"mp4": @(kAudioFileMPEG4Type),
             @"caf": @(kAudioFileCAFType),
             @"aac": @(kAudioFileAAC_ADTSType),

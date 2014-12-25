@@ -42,10 +42,10 @@
                                 </constraints>
                                 <items>
                                     <tabBarItem tag="1" title="top rus" id="zgq-cK-XTX"/>
-                                    <tabBarItem tag="1" title="top eng" id="9c6-ff-n1k"/>
-                                    <tabBarItem title="new" id="cSE-sl-DCi"/>
-                                    <tabBarItem systemItem="favorites" id="J3H-bN-Qfv"/>
-                                    <tabBarItem title="playlist" id="XUr-KT-fmd"/>
+                                    <tabBarItem tag="2" title="top eng" id="9c6-ff-n1k"/>
+                                    <tabBarItem tag="3" title="new" id="cSE-sl-DCi"/>
+                                    <tabBarItem tag="4" systemItem="favorites" id="J3H-bN-Qfv"/>
+                                    <tabBarItem tag="5" title="playlist" id="XUr-KT-fmd"/>
                                 </items>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -53,8 +53,11 @@
                                         <exclude reference="lgh-zW-S8w"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="WcF-32-nqV" id="khE-i0-f8Y"/>
+                                </connections>
                             </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8yU-gc-UQK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8yU-gc-UQK">
                                 <rect key="frame" x="0.0" y="64" width="600" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -80,26 +83,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="4zM-6h-7kJ" kind="show" id="Krq-KH-RgF"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="period" id="8Ug-oj-8Ua" customClass="DSPeriodTableViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Ug-oj-8Ua" id="Qz4-u1-RJ9">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yad-CY-4tw">
-                                                    <rect key="frame" x="51" y="8" width="516" height="29"/>
-                                                    <segments>
-                                                        <segment title="Week"/>
-                                                        <segment title="2 Weeks"/>
-                                                        <segment title="Month"/>
-                                                    </segments>
-                                                </segmentedControl>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="segmentedControl" destination="yad-CY-4tw" id="Rky-dQ-eog"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

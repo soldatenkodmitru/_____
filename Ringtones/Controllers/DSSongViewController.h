@@ -29,6 +29,7 @@
 
 @property (weak, nonatomic) DSSong* song;
 @property (strong, nonatomic)STKAudioPlayer *audioPlayer;
+@property (strong, nonatomic)AVAudioPlayer *AVaudioPlayer;
 @property (strong, nonatomic)NSTimer* playTimer;
 @property (assign, nonatomic   ) BOOL isFavorite;
 @property (assign, nonatomic   ) BOOL isPlaying;

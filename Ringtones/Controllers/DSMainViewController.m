@@ -24,7 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self getSongsFromServerWithFilter:@"eng"];
+    [self getSongsFromServerWithFilter:@"rus"];
+    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,6 +49,18 @@
     
 }
 
+- (void) getSongsFromServerWithDays:(NSString*) days {
+    
+    [[DSServerManager sharedManager]getSongWithDays:days OnSuccess:^(NSArray *songs)
+     {
+         self.songsArray = [NSArray arrayWithArray:songs];
+         [self.tableView reloadData];
+         
+     } onFailure:^(NSError *error, NSInteger statusCode) {
+         NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
+     }];
+    
+}
 #pragma mark - UITableViewDataSource
 
 
@@ -98,6 +111,35 @@
     return indexPath;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (self.tabBar.selectedItem.tag == 3){
+        return 40;
+    }
+    else{
+        return 0;
+    }
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section == 0 && self.tabBar.selectedItem.tag == 3) {
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 44)]; // x,y,width,height
+        
+        NSArray *itemArray = [NSArray arrayWithObjects: @"Week", @"Two weeks", @"Month", nil];
+        UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:itemArray];
+        
+        [control setFrame:CGRectMake(20.0, 5.0, 280.0, 30.0)];
+        [control setSelectedSegmentIndex:0];
+        [control setEnabled:YES];
+        
+        [headerView addSubview:control];
+        [headerView bringSubviewToFront:control];
+        return headerView;
+        
+    }
+    else
+      return  nil;
+}
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -115,17 +157,17 @@
     {
         case 1:
             
-            [self getSongsFromServerWithFilter:@"eng"];
+            [self getSongsFromServerWithFilter:@"rus"];
             
             break;
         case 2:
             
-            [self getSongsFromServerWithFilter:@"rus"];
+            [self getSongsFromServerWithFilter:@"eng"];
        
             break;
         case 3:
             
-             [self getSongsFromServerWithFilter:@"new"];
+            [self getSongsFromServerWithDays: @"7"];
             
             break;
         case 4:

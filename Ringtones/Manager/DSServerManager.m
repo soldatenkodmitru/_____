@@ -87,4 +87,46 @@
     
 }
 
+- (void) getSongWithDays:(NSString*) days OnSuccess:(void(^)(NSArray* songs)) success
+               onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure{
+
+    
+    
+    self.requestOperationManager.requestSerializer = [AFJSONRequestSerializer serializer ];
+    
+    self.requestOperationManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"GETSOUNDSLIST" , @"command",
+                            [NSDictionary dictionaryWithObjectsAndKeys:@"new", @"filter",days,@"term",nil],@"param", nil];
+    
+    
+    //[[AFHTTPRequestOperationLogger sharedLogger] startLogging];
+    [self.requestOperationManager
+     POST:@""
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         NSLog(@"JSON: %@", responseObject);
+         NSMutableArray* objectsArray = [NSMutableArray array];
+         
+         for (NSDictionary* dict in responseObject) {
+             DSSong* song = [[DSSong alloc] initWithDictionary:dict];
+             [objectsArray addObject:song];
+         }
+         
+         if (success) {
+             success(objectsArray);
+         }
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+         
+         if (failure) {
+             failure(error, operation.response.statusCode);
+         }
+     }];
+    
+}
+
+
 @end
