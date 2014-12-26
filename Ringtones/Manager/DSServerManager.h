@@ -19,4 +19,7 @@
 - (void) getSongWithDays:(NSString*) days OnSuccess:(void(^)(NSArray* songs)) success
                  onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
 
+- (void) setSongRating:(NSString*) rating forSong:(NSString*) idSong OnSuccess:(void(^)(NSObject* result)) success
+               onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
+
 @end

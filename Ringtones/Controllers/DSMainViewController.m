@@ -8,6 +8,8 @@
 
 #import "DSMainViewController.h"
 #import "DSSongViewController.h"
+#import "DSSongTableViewCell.h"
+#import "DSRateView.h"
 #import "DSServerManager.h"
 #import "DSSong.h"
 #import "UIImageView+AFNetworking.h"
@@ -16,7 +18,7 @@
 
     @property (strong, nonatomic) NSArray* songsArray;
     @property (assign, nonatomic) NSInteger selectedItem;
-
+    @property (assign, nonatomic) NSInteger selectedPeriod;
 @end
 
 @implementation DSMainViewController
@@ -26,6 +28,7 @@
     // Do any additional setup after loading the view.
     [self getSongsFromServerWithFilter:@"rus"];
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
+    self.selectedPeriod = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,25 +78,33 @@
     
     static NSString* identifier = @"song";
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    DSSongTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];}
+        cell = [[DSSongTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];}
     
     DSSong* song = [self.songsArray objectAtIndex:indexPath.row ];
-    cell.textLabel.text = song.title;
-    cell.detailTextLabel.text = song.artist;
+    cell.titleLabel.text = song.title;
+    cell.artistLabel.text = song.artist;
+    
+    cell.rateView.editable = false;
+    cell.rateView.rating =  song.rating ;
+    cell.rateView.notSelectedImage = [UIImage imageNamed:@"star_empty.png"];
+    cell.rateView.halfSelectedImage = [UIImage imageNamed:@"star_half.png"];
+    cell.rateView.fullSelectedImage = [UIImage imageNamed:@"star_full.png"];
+    cell.rateView.maxRating = 5;
+
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
     
-    __weak UITableViewCell* weakCell = cell;
+    __weak DSSongTableViewCell* weakCell = cell;
     
-    cell.imageView.image = nil;
+    cell.image.image = nil;
     
-    [cell.imageView
+    [cell.image
      setImageWithURLRequest:request
      placeholderImage:nil
      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-         weakCell.imageView.image = image;
+         weakCell.image.image = image;
          [weakCell layoutSubviews];
      }
      failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
@@ -124,13 +135,14 @@
 {
     if(section == 0 && self.tabBar.selectedItem.tag == 3) {
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 44)]; // x,y,width,height
-        
+        headerView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:1.f];
         NSArray *itemArray = [NSArray arrayWithObjects: @"Week", @"Two weeks", @"Month", nil];
         UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:itemArray];
         
         [control setFrame:CGRectMake(20.0, 5.0, 280.0, 30.0)];
-        [control setSelectedSegmentIndex:0];
+        [control setSelectedSegmentIndex:self.selectedPeriod];
         [control setEnabled:YES];
+        [control addTarget:self action:@selector(touchPeriod:) forControlEvents: UIControlEventValueChanged ];
         
         [headerView addSubview:control];
         [headerView bringSubviewToFront:control];
@@ -139,6 +151,22 @@
     }
     else
       return  nil;
+}
+
+
+- (void) touchPeriod:(UIControl *)sender {
+   
+    UISegmentedControl* segment = (UISegmentedControl*)sender;
+    self.selectedPeriod = segment.selectedSegmentIndex;
+    switch(segment.selectedSegmentIndex) {
+        case 0:
+             [self getSongsFromServerWithDays: @"7"];
+        case 1:
+             [self getSongsFromServerWithDays: @"14"];
+        case 2:
+             [self getSongsFromServerWithDays: @"30"];
+    }
+    
 }
 #pragma mark - Navigation
 

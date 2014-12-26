@@ -90,8 +90,6 @@
 - (void) getSongWithDays:(NSString*) days OnSuccess:(void(^)(NSArray* songs)) success
                onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure{
 
-    
-    
     self.requestOperationManager.requestSerializer = [AFJSONRequestSerializer serializer ];
     
     self.requestOperationManager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -128,5 +126,35 @@
     
 }
 
+- (void) setSongRating:(NSString*) rating forSong:(NSString*) idSong OnSuccess:(void(^)(NSObject* result)) success
+             onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure{
+
+    self.requestOperationManager.requestSerializer = [AFJSONRequestSerializer serializer ];
+   
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"SETRATING" , @"command",
+                            [NSDictionary dictionaryWithObjectsAndKeys: idSong, @"id_sound",rating,@"rating",nil],@"param", nil];
+    
+    
+   // [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
+    [self.requestOperationManager
+     POST:@""
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         NSLog(@"JSON: %@", responseObject);
+         if (success) {
+             success(responseObject);
+         }
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+         
+         if (failure) {
+             failure(error, operation.response.statusCode);
+         }
+     }];
+    
+}
 
 @end

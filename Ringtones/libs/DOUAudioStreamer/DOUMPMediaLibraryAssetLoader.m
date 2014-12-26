@@ -14,7 +14,7 @@
  *
  */
 
-#if TARGET_OS_IPHONE
+
 
 #import "DOUMPMediaLibraryAssetLoader.h"
 #import <AVFoundation/AVFoundation.h>
@@ -149,4 +149,3 @@
 
 @end
 
-#endif /* TARGET_OS_IPHONE */

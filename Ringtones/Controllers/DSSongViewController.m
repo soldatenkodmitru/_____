@@ -7,8 +7,12 @@
 //
 
 #import "DSSongViewController.h"
+#import "DSServerManager.h"
 #import "AFNetworking.h"
 
+static void *kStatusKVOKey = &kStatusKVOKey;
+static void *kDurationKVOKey = &kDurationKVOKey;
+static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 @interface DSSongViewController ()
 
@@ -32,6 +36,14 @@
     self.progDownload.hidden = YES;
     self.sldPlay.hidden = NO;
 
+    self.rateView.editable = true;
+    self.rateView.rating = self.song.rating;
+    self.rateView.notSelectedImage = [UIImage imageNamed:@"star_empty.png"];
+    self.rateView.halfSelectedImage = [UIImage imageNamed:@"star_half.png"];
+    self.rateView.fullSelectedImage = [UIImage imageNamed:@"star_full.png"];
+    self.rateView.maxRating = 5;
+    self.rateView.delegate = self;
+
  
     
 }
@@ -41,6 +53,130 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self _resetStreamer];
+    
+    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
+   // [_volumeSlider setValue:[DOUAudioStreamer volume]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.playTimer invalidate];
+    [self.streamer stop];
+    [self _cancelStreamer];
+    
+    [super viewWillDisappear:animated];
+}
+
+- (void)_actionPlayPause:(id)sender
+{
+    if ([self.streamer status] == DOUAudioStreamerPaused ||
+        [self.streamer status] == DOUAudioStreamerIdle) {
+        [self.streamer play];
+    }
+    else {
+        [self.streamer pause];
+    }
+}
+
+- (void)_actionNext:(id)sender
+{
+  //  if (++_currentTrackIndex >= [_tracks count]) {
+   //     _currentTrackIndex = 0;
+  //  }
+    
+    [self _resetStreamer];
+}
+
+- (void)_actionStop:(id)sender
+{
+    [self.streamer stop];
+}
+
+- (void)_actionSliderProgress:(id)sender
+{
+    [self.streamer setCurrentTime:[self.streamer duration] * [self.sldPlay value]];
+}
+
+- (void)_actionSliderVolume:(id)sender
+{
+ //   [DOUAudioStreamer setVolume:[_volumeSlider value]];
+}
+
+- (void)_cancelStreamer
+{
+    if (_streamer != nil) {
+        [_streamer pause];
+        [_streamer removeObserver:self forKeyPath:@"status"];
+        [_streamer removeObserver:self forKeyPath:@"duration"];
+        [_streamer removeObserver:self forKeyPath:@"bufferingRatio"];
+        _streamer = nil;
+    }
+}
+
+- (void)_resetStreamer
+{
+    [self _cancelStreamer];
+    
+   // if (0 == [_tracks count])
+  //  {
+  //      [_miscLabel setText:@"(No tracks available)"];
+  //  }
+  //  else
+    {
+       
+      //  NSString *title = [NSString stringWithFormat:@"%@ - %@", track.artist, track.title];
+      //  [_titleLabel setText:title];
+        self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
+        _streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
+        [_streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
+        [_streamer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
+        [_streamer addObserver:self forKeyPath:@"bufferingRatio" options:NSKeyValueObservingOptionNew context:kBufferingRatioKVOKey];
+        
+        [_streamer play];
+        
+       // [self _updateBufferingStatus];
+      //  [self _setupHintForStreamer];
+    }
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == kStatusKVOKey) {
+        [self performSelector:@selector(updatePlayTime)
+                     onThread:[NSThread mainThread]
+                   withObject:nil
+                waitUntilDone:NO];
+    }
+    else if (context == kDurationKVOKey) {
+        [self performSelector:@selector(updatePlayTime)
+                     onThread:[NSThread mainThread]
+                   withObject:nil
+                waitUntilDone:NO];
+    }
+    else if (context == kBufferingRatioKVOKey) {
+        [self performSelector:@selector(updatePlayTime)
+                     onThread:[NSThread mainThread]
+                   withObject:nil
+                waitUntilDone:NO];
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+#pragma mark - DSRateViewDelegate
+- (void)rateView:(DSRateView *)rateView ratingDidChange:(float)rating{
+    NSLog(@"%f",rating);
+    [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%d", self.song.id_sound ] OnSuccess:^(NSObject *result) {
+        NSLog(@"Set Rating");
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+        NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
+    }];
+}
 /*
 #pragma mark - Navigation
 
@@ -53,7 +189,16 @@
 
 - (IBAction)playAction:(id)sender {
     
-    if (!self.isPlaying){
+    if ([self.streamer status] == DOUAudioStreamerPaused ||
+        [self.streamer status] == DOUAudioStreamerIdle) {
+        [self.streamer play];
+    }
+    else {
+        [self.streamer pause];
+    }
+
+    
+   /* if (!self.isPlaying){
      
         self.playTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
         
@@ -84,7 +229,7 @@
     
         [self.playBtn setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
         self.isPlaying=!self.isPlaying;
-    }
+    } */
 
 }
 

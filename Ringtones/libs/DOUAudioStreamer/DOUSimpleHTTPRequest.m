@@ -13,11 +13,12 @@
  *      Chongyu Zhu <i@lembacon.com>
  *
  */
-
+#import <UIKit/UIDevice.h>
 #import "DOUSimpleHTTPRequest.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #include <pthread.h>
+
 
 static struct {
   pthread_t thread;
