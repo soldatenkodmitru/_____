@@ -13,6 +13,8 @@
 #import "DSServerManager.h"
 #import "DSSong.h"
 #import "UIImageView+AFNetworking.h"
+#import "DSPlaylistItem.h"
+#import "DSDataManager.h"
 
 @interface DSMainViewController ()
 
@@ -38,6 +40,17 @@
 
 
 #pragma mark - API
+
+- (void) getFavoriteSongs{
+    
+   [[DSServerManager sharedManager] getSongWithPlaylist:@"1,2" OnSuccess:^(NSArray *songs) {
+       self.songsArray = [NSArray arrayWithArray:songs];
+       [self.tableView reloadData];
+   } onFailure:^(NSError *error, NSInteger statusCode) {
+        NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
+   }];
+    
+}
 
 - (void) getSongsFromServerWithFilter:(NSString*) filter {
     
@@ -158,13 +171,22 @@
    
     UISegmentedControl* segment = (UISegmentedControl*)sender;
     self.selectedPeriod = segment.selectedSegmentIndex;
-    switch(segment.selectedSegmentIndex) {
-        case 0:
-             [self getSongsFromServerWithDays: @"7"];
-        case 1:
-             [self getSongsFromServerWithDays: @"14"];
-        case 2:
-             [self getSongsFromServerWithDays: @"30"];
+    [self getPeriodSongs];
+
+    
+}
+
+-(void) getPeriodSongs{
+    switch(self.selectedPeriod) {
+    case 0:
+        [self getSongsFromServerWithDays: @"7"];
+        break;
+    case 1:
+        [self getSongsFromServerWithDays: @"14"];
+        break;
+    case 2:
+        [self getSongsFromServerWithDays: @"30"];
+        break;
     }
     
 }
@@ -184,21 +206,16 @@
     switch (item.tag)
     {
         case 1:
-            
             [self getSongsFromServerWithFilter:@"rus"];
-            
             break;
         case 2:
-            
             [self getSongsFromServerWithFilter:@"eng"];
-       
             break;
         case 3:
-            
-            [self getSongsFromServerWithDays: @"7"];
-            
+            [self getPeriodSongs];
             break;
         case 4:
+            [self getFavoriteSongs];
             break;
         case 5:
             

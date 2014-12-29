@@ -8,6 +8,7 @@
 
 #import "DSSongViewController.h"
 #import "DSServerManager.h"
+#import "DSDataManager.h"
 #import "AFNetworking.h"
 
 static void *kStatusKVOKey = &kStatusKVOKey;
@@ -36,7 +37,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.progDownload.hidden = YES;
     self.sldPlay.hidden = NO;
 
-    self.rateView.editable = true;
+    self.rateView.editable = ![[DSDataManager dataManager]existsLikeForSong:self.song.id_sound];
     self.rateView.rating = self.song.rating;
     self.rateView.notSelectedImage = [UIImage imageNamed:@"star_empty.png"];
     self.rateView.halfSelectedImage = [UIImage imageNamed:@"star_half.png"];
@@ -173,6 +174,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     NSLog(@"%f",rating);
     [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%d", self.song.id_sound ] OnSuccess:^(NSObject *result) {
         NSLog(@"Set Rating");
+        [[DSDataManager dataManager] addLikeForSong:self.song.id_sound];
+        self.rateView.editable = NO;
     } onFailure:^(NSError *error, NSInteger statusCode) {
         NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
     }];

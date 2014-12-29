@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A3F2691A4F608500FCC2A9 /* DSDataManager.m */; };
 		32A6F8E61A4D6DAE006CB6D8 /* DSRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F8E51A4D6DAE006CB6D8 /* DSRateView.m */; };
 		32A6F8EA1A4D769D006CB6D8 /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6F8E71A4D769D006CB6D8 /* star_empty.png */; };
 		32A6F8EB1A4D769D006CB6D8 /* star_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6F8E81A4D769D006CB6D8 /* star_full.png */; };
@@ -29,6 +30,9 @@
 		32A6F9261A4DA364006CB6D8 /* DOUSimpleHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9131A4DA364006CB6D8 /* DOUSimpleHTTPRequest.m */; };
 		32A6F9271A4DA364006CB6D8 /* NSData+DOUMappedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9151A4DA364006CB6D8 /* NSData+DOUMappedFile.m */; };
 		32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */; };
+		32B801381A509D950055E5AC /* DSPlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B801371A509D950055E5AC /* DSPlaylistItem.m */; };
+		32B8013B1A509D960055E5AC /* DSLikesSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8013A1A509D960055E5AC /* DSLikesSong.m */; };
+		32B8013E1A509D960055E5AC /* DSPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8013D1A509D960055E5AC /* DSPlaylist.m */; };
 		32CE4EA21A483BC20022AE0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CE4EA11A483BC20022AE0F /* main.m */; };
 		32CE4EA51A483BC20022AE0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CE4EA41A483BC20022AE0F /* AppDelegate.m */; };
 		32CE4EA81A483BC20022AE0F /* Ringtones.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32CE4EA61A483BC20022AE0F /* Ringtones.xcdatamodeld */; };
@@ -89,6 +93,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32A3F2681A4F608500FCC2A9 /* DSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSDataManager.h; path = Ringtones/Manager/DSDataManager.h; sourceTree = "<group>"; };
+		32A3F2691A4F608500FCC2A9 /* DSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSDataManager.m; path = Ringtones/Manager/DSDataManager.m; sourceTree = "<group>"; };
 		32A6F8E41A4D6DAE006CB6D8 /* DSRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSRateView.h; path = Ringtones/Views/DSRateView.h; sourceTree = "<group>"; };
 		32A6F8E51A4D6DAE006CB6D8 /* DSRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSRateView.m; path = Ringtones/Views/DSRateView.m; sourceTree = "<group>"; };
 		32A6F8E71A4D769D006CB6D8 /* star_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_empty.png; path = Ringtones/images/star_empty.png; sourceTree = "<group>"; };
@@ -134,6 +140,12 @@
 		32A6F9151A4DA364006CB6D8 /* NSData+DOUMappedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+DOUMappedFile.m"; sourceTree = "<group>"; };
 		32A6F9281A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOUMPMediaLibraryAssetLoader.h; sourceTree = "<group>"; };
 		32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOUMPMediaLibraryAssetLoader.m; sourceTree = "<group>"; };
+		32B801361A509D950055E5AC /* DSPlaylistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylistItem.h; path = Ringtones/CoreDataModel/DSPlaylistItem.h; sourceTree = "<group>"; };
+		32B801371A509D950055E5AC /* DSPlaylistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylistItem.m; path = Ringtones/CoreDataModel/DSPlaylistItem.m; sourceTree = "<group>"; };
+		32B801391A509D960055E5AC /* DSLikesSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSLikesSong.h; path = Ringtones/CoreDataModel/DSLikesSong.h; sourceTree = "<group>"; };
+		32B8013A1A509D960055E5AC /* DSLikesSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSLikesSong.m; path = Ringtones/CoreDataModel/DSLikesSong.m; sourceTree = "<group>"; };
+		32B8013C1A509D960055E5AC /* DSPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylist.h; path = Ringtones/CoreDataModel/DSPlaylist.h; sourceTree = "<group>"; };
+		32B8013D1A509D960055E5AC /* DSPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylist.m; path = Ringtones/CoreDataModel/DSPlaylist.m; sourceTree = "<group>"; };
 		32CE4E9C1A483BC20022AE0F /* Ringtones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ringtones.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CE4EA01A483BC20022AE0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32CE4EA11A483BC20022AE0F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -300,9 +312,23 @@
 			path = Ringtones/libs/DOUAudioStreamer;
 			sourceTree = "<group>";
 		};
+		32B801351A509C9C0055E5AC /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				32B8013C1A509D960055E5AC /* DSPlaylist.h */,
+				32B8013D1A509D960055E5AC /* DSPlaylist.m */,
+				32B801391A509D960055E5AC /* DSLikesSong.h */,
+				32B8013A1A509D960055E5AC /* DSLikesSong.m */,
+				32B801361A509D950055E5AC /* DSPlaylistItem.h */,
+				32B801371A509D950055E5AC /* DSPlaylistItem.m */,
+			);
+			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
 		32CE4E931A483BC20022AE0F = {
 			isa = PBXGroup;
 			children = (
+				32B801351A509C9C0055E5AC /* CoreDataModel */,
 				32A6F8E31A4D6CF9006CB6D8 /* view */,
 				32FA53A91A4ACC2700413D1A /* images */,
 				32CE4F801A485FA10022AE0F /* cells */,
@@ -387,6 +413,8 @@
 				32CE4F7D1A485F790022AE0F /* DSServerManager.m */,
 				32CEA3031A49B8DA006AD7CC /* DSSoundManager.h */,
 				32CEA3041A49B8DA006AD7CC /* DSSoundManager.m */,
+				32A3F2681A4F608500FCC2A9 /* DSDataManager.h */,
+				32A3F2691A4F608500FCC2A9 /* DSDataManager.m */,
 			);
 			name = manager;
 			sourceTree = "<group>";
@@ -654,7 +682,9 @@
 				32FA53CF1A4B1BEC00413D1A /* STKAudioPlayer.m in Sources */,
 				32CE4F731A485F6B0022AE0F /* AFURLSessionManager.m in Sources */,
 				32CE4F711A485F6B0022AE0F /* AFURLRequestSerialization.m in Sources */,
+				32B801381A509D950055E5AC /* DSPlaylistItem.m in Sources */,
 				32CE4F441A485F560022AE0F /* DSMainViewController.m in Sources */,
+				32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */,
 				32A6F9241A4DA364006CB6D8 /* DOUEAGLView.m in Sources */,
 				32CE4F7A1A485F6B0022AE0F /* UIRefreshControl+AFNetworking.m in Sources */,
 				32A6F9221A4DA364006CB6D8 /* DOUAudioStreamer.m in Sources */,
@@ -666,6 +696,7 @@
 				32CE4F861A4860790022AE0F /* DSSongTableViewCell.m in Sources */,
 				32FA53D01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m in Sources */,
 				32A6F9191A4DA364006CB6D8 /* DOUAudioEventLoop.m in Sources */,
+				32B8013B1A509D960055E5AC /* DSLikesSong.m in Sources */,
 				32CEA2FD1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m in Sources */,
 				32A6F91D1A4DA364006CB6D8 /* DOUAudioLPCM.m in Sources */,
 				32CE4F781A485F6B0022AE0F /* UIImageView+AFNetworking.m in Sources */,
@@ -678,6 +709,7 @@
 				32CE4F7B1A485F6B0022AE0F /* UIWebView+AFNetworking.m in Sources */,
 				32CE4EAB1A483BC20022AE0F /* ViewController.m in Sources */,
 				32A6F91E1A4DA364006CB6D8 /* DOUAudioPlaybackItem.m in Sources */,
+				32B8013E1A509D960055E5AC /* DSPlaylist.m in Sources */,
 				32CE4EA81A483BC20022AE0F /* Ringtones.xcdatamodeld in Sources */,
 				32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */,
 				32FA53D61A4B1BEC00413D1A /* STKQueueEntry.m in Sources */,

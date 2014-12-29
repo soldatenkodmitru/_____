@@ -143,7 +143,9 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *) event {
-    [self.delegate rateView:self ratingDidChange:self.rating];
+    if(_editable){
+        [self.delegate rateView:self ratingDidChange:self.rating];
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {

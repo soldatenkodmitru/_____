@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DSLikesSong" representedClassName="DSLikesSong" syncable="YES">
+        <attribute name="id_song" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="DSPlaylist" representedClassName="DSPlaylist" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="item" toMany="YES" deletionRule="Cascade" destinationEntity="DSPlaylistItem" inverseName="owner" inverseEntity="DSPlaylistItem" syncable="YES"/>
+    </entity>
+    <entity name="DSPlaylistItem" representedClassName="DSPlaylistItem" syncable="YES">
+        <attribute name="id_song" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="savefile_link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSPlaylist" inverseName="item" inverseEntity="DSPlaylist" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DSLikesSong" positionX="-1278" positionY="-445" width="128" height="58"/>
+        <element name="DSPlaylist" positionX="-1278" positionY="-322" width="126" height="73"/>
+        <element name="DSPlaylistItem" positionX="-1044" positionY="-352" width="128" height="103"/>
+    </elements>
 </model>
