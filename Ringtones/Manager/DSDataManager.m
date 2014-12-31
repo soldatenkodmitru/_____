@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 BestAppStudio. All rights reserved.
 //
 
+
 #import "DSDataManager.h"
-#import "DSPlaylist.h"
 #import "DSLikesSong.h"
-#import "DSPlaylistItem.h"
 
 
 @implementation DSDataManager
@@ -44,7 +43,7 @@
     
 }
 
-- (void) addPlaylistItem:(NSString*) playList idsong:(NSInteger) id_song version:(NSInteger) version fileLink:(NSString*) savefile_link {
+- (void) addPlaylistItem:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink{
     NSError* error = nil;
     
     DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
@@ -55,9 +54,12 @@
     
     if(curPlaylist!=nil){
         
-        curPlaylistItem.id_song =[NSNumber numberWithInteger: id_song];
+        curPlaylistItem.id_song = [NSNumber numberWithInteger: song.id_sound];
         curPlaylistItem.version = [NSNumber numberWithInteger: version];
         curPlaylistItem.savefile_link = savefile_link;
+        curPlaylistItem.image_savefile_link =imagelink;
+        curPlaylistItem.artist = song.artist;
+        curPlaylistItem.name = song.title;
     
         [curPlaylist addItemObject:curPlaylistItem];
         if (![self.managedObjectContext save:&error]) {
@@ -65,19 +67,7 @@
         };
     }
 }
-- (void) addLikeForSong:(NSInteger)id_song {
-    
-    NSError* error = nil;
-        
-    DSLikesSong* curSong = [NSEntityDescription insertNewObjectForEntityForName:@"DSLikesSong"
-                                      inManagedObjectContext:self.managedObjectContext];
-        
-    curSong.id_song = [NSNumber numberWithInteger:id_song];
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"%@", [error localizedDescription]);
-    };
-    
-}
+
 
 - (DSPlaylist*) findPlaylistWithName:(NSString*) name {
     
@@ -98,18 +88,39 @@
     if (requestError) {
         NSLog(@"%@", [requestError localizedDescription]);
     }
-    
-    return [resultArray objectAtIndex:0];
-    
-  
+    if ([resultArray count] != 0)
+        return [resultArray objectAtIndex:0];
+    else
+        return nil;
 }
 
 -(NSArray*) getSongsFromPalylistName:(NSString*) playList{
     
+    NSMutableArray* objectsArray = [NSMutableArray array];
+   
     DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
                                                             inManagedObjectContext:self.managedObjectContext];
     curPlaylist = [self findPlaylistWithName:playList];
-    return [curPlaylist.item allObjects];
+    NSArray* items = [curPlaylist.item allObjects];
+    for (DSPlaylistItem* item in items) {
+        DSSong* song = [[DSSong alloc] initWithDatabase:item];
+        [objectsArray addObject:song];
+    }
+    return objectsArray;
+}
+
+- (void) addLikeForSong:(NSInteger)id_song {
+    
+    NSError* error = nil;
+    
+    DSLikesSong* curSong = [NSEntityDescription insertNewObjectForEntityForName:@"DSLikesSong"
+                                                         inManagedObjectContext:self.managedObjectContext];
+    
+    curSong.id_song = [NSNumber numberWithInteger:id_song];
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"%@", [error localizedDescription]);
+    };
+    
 }
 
 - (bool) existsLikeForSong:(NSInteger) id_song {
@@ -168,6 +179,11 @@
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         // Report any error we got.
+        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+        
+        [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
+        
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
         dict[NSLocalizedFailureReasonErrorKey] = failureReason;

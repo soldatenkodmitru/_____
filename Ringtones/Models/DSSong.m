@@ -8,6 +8,7 @@
 
 #import "DSSong.h"
 
+
 @implementation DSSong
 
 - (instancetype)initWithDictionary:(NSDictionary *) responseObject {
@@ -29,6 +30,22 @@
         self.fileLink =[[[[responseObject objectForKey:@"files"] objectForKey:@"full"] objectForKey:@"file_link"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.fileDuration = [[[responseObject objectForKey:@"files"] objectForKey:@"full"] objectForKey:@"duration"];
       
+    }
+    return self;
+}
+
+- (instancetype)initWithDatabase:(DSPlaylistItem *) item {
+    
+    self = [super init];
+    if (self) {
+        
+       self.id_sound = [item.id_song integerValue];
+       self.saveFileLink= item.savefile_link;
+       self.version = item.version ;
+       self.title = item.name;
+       self.artist = item.artist;
+       self.saveImageLink = item.image_savefile_link;
+        
     }
     return self;
 }

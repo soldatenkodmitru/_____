@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		320AEB9D1A53191000CAAD08 /* album.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 320AEB9C1A53191000CAAD08 /* album.mp3 */; };
+		320AEB9F1A53249200CAAD08 /* album.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 320AEB9E1A53249200CAAD08 /* album.jpeg */; };
+		320AEBA21A5335CB00CAAD08 /* kreed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 320AEBA01A5335CB00CAAD08 /* kreed.mp3 */; };
+		320AEBA31A5335CB00CAAD08 /* potap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 320AEBA11A5335CB00CAAD08 /* potap.mp3 */; };
+		320AEBA61A53363300CAAD08 /* potap.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 320AEBA41A53363300CAAD08 /* potap.jpeg */; };
+		320AEBA71A53363300CAAD08 /* kreed.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 320AEBA51A53363300CAAD08 /* kreed.jpeg */; };
+		320AEBAA1A534B8E00CAAD08 /* DSPlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 320AEBA91A534B8E00CAAD08 /* DSPlaylistItem.m */; };
 		32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A3F2691A4F608500FCC2A9 /* DSDataManager.m */; };
 		32A6F8E61A4D6DAE006CB6D8 /* DSRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F8E51A4D6DAE006CB6D8 /* DSRateView.m */; };
 		32A6F8EA1A4D769D006CB6D8 /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6F8E71A4D769D006CB6D8 /* star_empty.png */; };
@@ -30,7 +37,6 @@
 		32A6F9261A4DA364006CB6D8 /* DOUSimpleHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9131A4DA364006CB6D8 /* DOUSimpleHTTPRequest.m */; };
 		32A6F9271A4DA364006CB6D8 /* NSData+DOUMappedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9151A4DA364006CB6D8 /* NSData+DOUMappedFile.m */; };
 		32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */; };
-		32B801381A509D950055E5AC /* DSPlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B801371A509D950055E5AC /* DSPlaylistItem.m */; };
 		32B8013B1A509D960055E5AC /* DSLikesSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8013A1A509D960055E5AC /* DSLikesSong.m */; };
 		32B8013E1A509D960055E5AC /* DSPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8013D1A509D960055E5AC /* DSPlaylist.m */; };
 		32CE4EA21A483BC20022AE0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CE4EA11A483BC20022AE0F /* main.m */; };
@@ -93,6 +99,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		320AEB9C1A53191000CAAD08 /* album.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = album.mp3; sourceTree = "<group>"; };
+		320AEB9E1A53249200CAAD08 /* album.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = album.jpeg; sourceTree = "<group>"; };
+		320AEBA01A5335CB00CAAD08 /* kreed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kreed.mp3; sourceTree = "<group>"; };
+		320AEBA11A5335CB00CAAD08 /* potap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = potap.mp3; sourceTree = "<group>"; };
+		320AEBA41A53363300CAAD08 /* potap.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = potap.jpeg; sourceTree = "<group>"; };
+		320AEBA51A53363300CAAD08 /* kreed.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kreed.jpeg; sourceTree = "<group>"; };
+		320AEBA81A534B8E00CAAD08 /* DSPlaylistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylistItem.h; path = Ringtones/CoreDataModel/DSPlaylistItem.h; sourceTree = "<group>"; };
+		320AEBA91A534B8E00CAAD08 /* DSPlaylistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylistItem.m; path = Ringtones/CoreDataModel/DSPlaylistItem.m; sourceTree = "<group>"; };
 		32A3F2681A4F608500FCC2A9 /* DSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSDataManager.h; path = Ringtones/Manager/DSDataManager.h; sourceTree = "<group>"; };
 		32A3F2691A4F608500FCC2A9 /* DSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSDataManager.m; path = Ringtones/Manager/DSDataManager.m; sourceTree = "<group>"; };
 		32A6F8E41A4D6DAE006CB6D8 /* DSRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSRateView.h; path = Ringtones/Views/DSRateView.h; sourceTree = "<group>"; };
@@ -140,8 +154,6 @@
 		32A6F9151A4DA364006CB6D8 /* NSData+DOUMappedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+DOUMappedFile.m"; sourceTree = "<group>"; };
 		32A6F9281A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOUMPMediaLibraryAssetLoader.h; sourceTree = "<group>"; };
 		32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOUMPMediaLibraryAssetLoader.m; sourceTree = "<group>"; };
-		32B801361A509D950055E5AC /* DSPlaylistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylistItem.h; path = Ringtones/CoreDataModel/DSPlaylistItem.h; sourceTree = "<group>"; };
-		32B801371A509D950055E5AC /* DSPlaylistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylistItem.m; path = Ringtones/CoreDataModel/DSPlaylistItem.m; sourceTree = "<group>"; };
 		32B801391A509D960055E5AC /* DSLikesSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSLikesSong.h; path = Ringtones/CoreDataModel/DSLikesSong.h; sourceTree = "<group>"; };
 		32B8013A1A509D960055E5AC /* DSLikesSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSLikesSong.m; path = Ringtones/CoreDataModel/DSLikesSong.m; sourceTree = "<group>"; };
 		32B8013C1A509D960055E5AC /* DSPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylist.h; path = Ringtones/CoreDataModel/DSPlaylist.h; sourceTree = "<group>"; };
@@ -255,6 +267,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320AEB9B1A5318D600CAAD08 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				320AEBA41A53363300CAAD08 /* potap.jpeg */,
+				320AEBA51A53363300CAAD08 /* kreed.jpeg */,
+				320AEBA01A5335CB00CAAD08 /* kreed.mp3 */,
+				320AEBA11A5335CB00CAAD08 /* potap.mp3 */,
+				320AEB9E1A53249200CAAD08 /* album.jpeg */,
+				320AEB9C1A53191000CAAD08 /* album.mp3 */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
 		32A6F8E31A4D6CF9006CB6D8 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,12 +340,12 @@
 		32B801351A509C9C0055E5AC /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				320AEBA81A534B8E00CAAD08 /* DSPlaylistItem.h */,
+				320AEBA91A534B8E00CAAD08 /* DSPlaylistItem.m */,
 				32B8013C1A509D960055E5AC /* DSPlaylist.h */,
 				32B8013D1A509D960055E5AC /* DSPlaylist.m */,
 				32B801391A509D960055E5AC /* DSLikesSong.h */,
 				32B8013A1A509D960055E5AC /* DSLikesSong.m */,
-				32B801361A509D950055E5AC /* DSPlaylistItem.h */,
-				32B801371A509D950055E5AC /* DSPlaylistItem.m */,
 			);
 			name = CoreDataModel;
 			sourceTree = "<group>";
@@ -328,6 +353,7 @@
 		32CE4E931A483BC20022AE0F = {
 			isa = PBXGroup;
 			children = (
+				320AEB9B1A5318D600CAAD08 /* resources */,
 				32B801351A509C9C0055E5AC /* CoreDataModel */,
 				32A6F8E31A4D6CF9006CB6D8 /* view */,
 				32FA53A91A4ACC2700413D1A /* images */,
@@ -628,17 +654,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320AEBA61A53363300CAAD08 /* potap.jpeg in Resources */,
 				32FA53B31A4ACD4C00413D1A /* play.png in Resources */,
 				32A6F8EA1A4D769D006CB6D8 /* star_empty.png in Resources */,
 				32A6F8EB1A4D769D006CB6D8 /* star_full.png in Resources */,
+				320AEBA31A5335CB00CAAD08 /* potap.mp3 in Resources */,
+				320AEBA21A5335CB00CAAD08 /* kreed.mp3 in Resources */,
 				32CE4EAE1A483BC20022AE0F /* Main.storyboard in Resources */,
 				32CE4EB31A483BC20022AE0F /* LaunchScreen.xib in Resources */,
+				320AEBA71A53363300CAAD08 /* kreed.jpeg in Resources */,
 				32FA53B21A4ACD4C00413D1A /* pause.png in Resources */,
+				320AEB9D1A53191000CAAD08 /* album.mp3 in Resources */,
 				32FA53B41A4ACD4C00413D1A /* separate.png in Resources */,
 				32CE4EB01A483BC20022AE0F /* Images.xcassets in Resources */,
 				32A6F8EC1A4D769D006CB6D8 /* star_half.png in Resources */,
 				32FA53B11A4ACD4C00413D1A /* favourite.png in Resources */,
 				32FA53B51A4ACD4C00413D1A /* slider.png in Resources */,
+				320AEB9F1A53249200CAAD08 /* album.jpeg in Resources */,
 				32FA53B01A4ACD4C00413D1A /* download.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -660,6 +692,7 @@
 				32A6F9201A4DA364006CB6D8 /* DOUAudioSpatialAnalyzer.m in Sources */,
 				32A6F9211A4DA364006CB6D8 /* DOUAudioStreamer+Options.m in Sources */,
 				32A6F91C1A4DA364006CB6D8 /* DOUAudioFrequencyAnalyzer.m in Sources */,
+				320AEBAA1A534B8E00CAAD08 /* DSPlaylistItem.m in Sources */,
 				32CE4F831A4860510022AE0F /* DSSong.m in Sources */,
 				32CE4F701A485F6B0022AE0F /* AFURLConnectionOperation.m in Sources */,
 				32CEA3051A49B8DA006AD7CC /* DSSoundManager.m in Sources */,
@@ -682,7 +715,6 @@
 				32FA53CF1A4B1BEC00413D1A /* STKAudioPlayer.m in Sources */,
 				32CE4F731A485F6B0022AE0F /* AFURLSessionManager.m in Sources */,
 				32CE4F711A485F6B0022AE0F /* AFURLRequestSerialization.m in Sources */,
-				32B801381A509D950055E5AC /* DSPlaylistItem.m in Sources */,
 				32CE4F441A485F560022AE0F /* DSMainViewController.m in Sources */,
 				32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */,
 				32A6F9241A4DA364006CB6D8 /* DOUEAGLView.m in Sources */,

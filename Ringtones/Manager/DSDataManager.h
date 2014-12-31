@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "DSSong.h"
+#import "DSPlaylist.h"
+#import "DSPlaylistItem.h"
 
 @interface DSDataManager : NSObject
 
@@ -19,6 +22,12 @@
 - (NSURL *)applicationDocumentsDirectory;
 - (void) addLikeForSong:(NSInteger)id_song;
 - (bool) existsLikeForSong:(NSInteger) id_song;
+
+- (void) addPlaylistwithName:(NSString*) name;
+- (DSPlaylist*) findPlaylistWithName:(NSString*) name;
+
+-(NSArray*) getSongsFromPalylistName:(NSString*) playList;
+- (void) addPlaylistItem:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink;
 
 + (DSDataManager*) dataManager;
 

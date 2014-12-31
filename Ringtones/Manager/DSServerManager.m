@@ -143,8 +143,10 @@
                             [NSDictionary dictionaryWithObjectsAndKeys:@"new", @"filter",days,@"term",nil],@"param", nil];
     
     
+   
+    success([self getsongs]);
     //[[AFHTTPRequestOperationLogger sharedLogger] startLogging];
-    [self.requestOperationManager
+   /* [self.requestOperationManager
      POST:@""
      parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -166,8 +168,41 @@
          if (failure) {
              failure(error, operation.response.statusCode);
          }
-     }];
+     }];*/
     
+}
+
+-(NSArray*) getsongs{
+ 
+    DSSong *song = [[DSSong alloc] init];
+    song.id_sound  = 1;
+    song.artist = @"Artist";
+    song.rating = 3.0;
+    song.title = @"song";
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"album" ofType:@"jpeg"];
+    song.albumLink = path;
+    NSString *path1 = [[NSBundle mainBundle] pathForResource:@"album" ofType:@"mp3"];
+    song.fileLink = path1;
+    DSSong *song1 = [[DSSong alloc] init];
+    song1.id_sound = 2;
+    song1.artist = @"Потап";
+    song1.rating = 2.0;
+    song1.title = @"каменяских";
+    path = [[NSBundle mainBundle] pathForResource:@"potap" ofType:@"jpeg"];
+    song1.albumLink = path;
+    path1 = [[NSBundle mainBundle] pathForResource:@"potap" ofType:@"mp3"];
+    song1.fileLink = path1;
+    DSSong *song2 = [[DSSong alloc] init];
+    song2.id_sound = 3;
+    song2.artist = @"крид";
+    song2.rating = 4.0;
+    song2.title = @"крид";
+    path = [[NSBundle mainBundle] pathForResource:@"kreed" ofType:@"jpeg"];
+    song2.albumLink = path;
+    path1 = [[NSBundle mainBundle] pathForResource:@"kreed" ofType:@"mp3"];
+    song2.fileLink = path1;
+    NSArray *array = [NSArray arrayWithObjects: song, song1, song2, nil];
+    return (array);
 }
 
 - (void) setSongRating:(NSString*) rating forSong:(NSString*) idSong OnSuccess:(void(^)(NSObject* result)) success
@@ -179,10 +214,12 @@
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
                             @"SETRATING" , @"command",
                             [NSDictionary dictionaryWithObjectsAndKeys: idSong, @"id_sound",rating,@"rating",nil],@"param", nil];
+    id obj ;
     
+    success(obj);
     
    // [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
-    [self.requestOperationManager
+   /* [self.requestOperationManager
      POST:@""
      parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -197,8 +234,11 @@
          if (failure) {
              failure(error, operation.response.statusCode);
          }
-     }];
+     }]; */
     
 }
+
+
+
 
 @end

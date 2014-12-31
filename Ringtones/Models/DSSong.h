@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "DOUAudioFile.h"
+#import "DSPlaylistItem.h"
+
+typedef enum {
+    sFull,
+    sCut,
+    sRignton
+} typeSong;
 
 @interface DSSong : NSObject <DOUAudioFile>
 
@@ -24,10 +31,14 @@
   @property (strong,nonatomic) NSString *ringtonDuration;
   @property (strong,nonatomic) NSString *fileLink;
   @property (strong,nonatomic) NSString *fileDuration;
-  @property (nonatomic, strong) NSURL *audioFileURL;
+  @property (strong,nonatomic) NSString *saveFileLink;
+  @property (strong,nonatomic) NSString *saveImageLink;
+  @property (strong,nonatomic) NSURL *audioFileURL;
+  @property (assign,nonatomic) BOOL isLocal;
+  @property (assign,nonatomic) typeSong version;
 
 - (instancetype)initWithDictionary:(NSDictionary *) responseObject;
-
+- (instancetype)initWithDatabase:(DSPlaylistItem *) item ;
 
 @end
 

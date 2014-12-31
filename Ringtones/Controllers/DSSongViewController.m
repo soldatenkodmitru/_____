@@ -132,7 +132,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
        
       //  NSString *title = [NSString stringWithFormat:@"%@ - %@", track.artist, track.title];
       //  [_titleLabel setText:title];
-        self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
+       // self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
+        self.song.audioFileURL = [NSURL fileURLWithPath:self.song.fileLink];
         _streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
         [_streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
         [_streamer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
@@ -172,7 +173,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 #pragma mark - DSRateViewDelegate
 - (void)rateView:(DSRateView *)rateView ratingDidChange:(float)rating{
     NSLog(@"%f",rating);
-    [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%d", self.song.id_sound ] OnSuccess:^(NSObject *result) {
+    [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%ld", self.song.id_sound ] OnSuccess:^(NSObject *result) {
         NSLog(@"Set Rating");
         [[DSDataManager dataManager] addLikeForSong:self.song.id_sound];
         self.rateView.editable = NO;
@@ -273,16 +274,27 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 {
     [self.audioPlayer seekToTime: self.sldPlay.value];
 }
+
+- (IBAction)favoriteAction:(id)sender {
+    
+    [[DSDataManager dataManager] addPlaylistItem:@"Избранное" song:self.song version:sFull fileLink:[self download] imagelink:@""];
+    
+}
 - (IBAction)downloadAction:(id)sender {
    
+    [self download];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.song.fileLink]];
-    
+
+}
+
+-(NSString*) download {
+   // NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.song.fileLink]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:self.song.fileLink]];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *fullPath = [ documentsDirectory stringByAppendingPathComponent:[self.song.fileLink lastPathComponent]];
-
+    
     //NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self.song.fileLink lastPathComponent]];
     
     [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:fullPath append:NO]];
@@ -293,7 +305,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog(@"RES: %@", [[[operation response] allHeaderFields] description]);
+      //  NSLog(@"RES: %@", [[[operation response] allHeaderFields] description]);
         
         NSError *error;
         NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:&error];
@@ -304,7 +316,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
             long long fileSize = [fileSizeNumber longLongValue];
             
-          //  [[_downloadFile titleLabel] setText:[NSString stringWithFormat:@"%lld", fileSize]];
+            //  [[_downloadFile titleLabel] setText:[NSString stringWithFormat:@"%lld", fileSize]];
+            //return fullPath;
             NSLog(@"%@, %@",fullPath,[NSString stringWithFormat:@"%lld", fileSize]);
         }
         
@@ -314,7 +327,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     }];
     
     [operation start];
-
+    return fullPath;
 }
 
 

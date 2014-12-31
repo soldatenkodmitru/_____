@@ -19,6 +19,7 @@
 @interface DSMainViewController ()
 
     @property (strong, nonatomic) NSArray* songsArray;
+    @property (strong, nonatomic) NSDictionary* songsDictionary;
     @property (assign, nonatomic) NSInteger selectedItem;
     @property (assign, nonatomic) NSInteger selectedPeriod;
 @end
@@ -31,6 +32,8 @@
     [self getSongsFromServerWithFilter:@"rus"];
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     self.selectedPeriod = 0;
+    [self setDefaultPlaylists];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,16 +42,28 @@
 }
 
 
+- (void)setDefaultPlaylists{
+    
+    if([[DSDataManager dataManager] findPlaylistWithName:@"Загрузки"]==nil)
+    {
+        [[DSDataManager dataManager] addPlaylistwithName:@"Загрузки"];
+        [[DSDataManager dataManager] addPlaylistwithName:@"Рингтоны"];
+        [[DSDataManager dataManager] addPlaylistwithName:@"Избранное"];
+    }
+}
+
 #pragma mark - API
 
 - (void) getFavoriteSongs{
     
-   [[DSServerManager sharedManager] getSongWithPlaylist:@"1,2" OnSuccess:^(NSArray *songs) {
+     self.songsArray = [[DSDataManager dataManager] getSongsFromPalylistName:@"Избранное"];
+    [self.tableView reloadData];
+   /*[[DSServerManager sharedManager] getSongWithPlaylist:@"1,2" OnSuccess:^(NSArray *songs) {
        self.songsArray = [NSArray arrayWithArray:songs];
        [self.tableView reloadData];
    } onFailure:^(NSError *error, NSInteger statusCode) {
         NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
-   }];
+   }];*/
     
 }
 
@@ -79,6 +94,9 @@
 }
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -107,13 +125,13 @@
     cell.rateView.fullSelectedImage = [UIImage imageNamed:@"star_full.png"];
     cell.rateView.maxRating = 5;
 
-    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
-    
+    //NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
+    //NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.albumLink]];
     __weak DSSongTableViewCell* weakCell = cell;
     
     cell.image.image = nil;
     
-    [cell.image
+   /* [cell.image
      setImageWithURLRequest:request
      placeholderImage:nil
      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -122,7 +140,7 @@
      }
      failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
          NSLog(@"error = %@", [error localizedDescription]);
-     }];
+     }];*/
     
     
     return cell;
