@@ -9,6 +9,7 @@
 
 #import "DSDataManager.h"
 #import "DSLikesSong.h"
+#import "DSPlaylistPlayer.h"
 
 
 @implementation DSDataManager
@@ -30,6 +31,29 @@
     return manager;
 }
 
+- (NSMutableArray*) allPlaylists {
+    
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"DSPlaylist"
+                inManagedObjectContext:self.managedObjectContext];
+    
+    [request setEntity:description];
+    
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+    NSMutableArray* playlists = [[NSMutableArray alloc] init];
+    for (DSPlaylist* list in resultArray) {
+        
+        DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] initWithDatabase:list];
+        [playlists addObject:playlist];
+    }
+    return playlists;
+}
 - (void) addPlaylistwithName:(NSString*) name{
     NSError* error = nil;
     
@@ -94,7 +118,7 @@
         return nil;
 }
 
--(NSArray*) getSongsFromPalylistName:(NSString*) playList{
+-(NSMutableArray*) getSongsFromPalylistName:(NSString*) playList{
     
     NSMutableArray* objectsArray = [NSMutableArray array];
    

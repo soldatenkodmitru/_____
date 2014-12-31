@@ -24,9 +24,10 @@
 - (bool) existsLikeForSong:(NSInteger) id_song;
 
 - (void) addPlaylistwithName:(NSString*) name;
+- (NSMutableArray*) allPlaylists;
 - (DSPlaylist*) findPlaylistWithName:(NSString*) name;
 
--(NSArray*) getSongsFromPalylistName:(NSString*) playList;
+-(NSMutableArray*) getSongsFromPalylistName:(NSString*) playList;
 - (void) addPlaylistItem:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink;
 
 + (DSDataManager*) dataManager;
