@@ -16,5 +16,6 @@
 @property (strong,nonatomic) NSArray *songsArray;
 
 - (instancetype)initWithDatabase:(DSPlaylist *) item ;
+- (id)copyWithZone:(NSZone *)zone;
 
 @end

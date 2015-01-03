@@ -10,6 +10,7 @@
 #import "DSSongViewController.h"
 #import "DSSongTableViewCell.h"
 #import "DSHeaderTableViewCell.h"
+#import "DSSegmentTableViewCell.h"
 #import "DSRateView.h"
 #import "DSServerManager.h"
 #import "DSPlaylistPlayer.h"
@@ -18,13 +19,22 @@
 #import "DSPlaylistItem.h"
 #import "DSDataManager.h"
 
+typedef enum {
+    DSSongSearch,
+    DSArtistSearch
+}DSSortType;
+
 @interface DSMainViewController ()
 
+    @property (weak,nonatomic) UISearchBar *searchBar;
     @property (strong, nonatomic) UIBarButtonItem* item;
-    @property (strong, nonatomic) NSMutableArray* playlistArray;
+    @property (strong, nonatomic) NSArray* baseArray;
+    @property (strong, nonatomic) NSArray* playlistArray;
     @property (assign, nonatomic) NSInteger selectedSection;
     @property (assign, nonatomic) NSInteger selectedItem;
     @property (assign, nonatomic) NSInteger selectedPeriod;
+    @property (assign, nonatomic) NSInteger selectedSearch;
+    @property (strong,nonatomic)  NSThread* thread;
 @end
 
 @implementation DSMainViewController
@@ -36,8 +46,13 @@
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     self.selectedPeriod = 0;
     [self setDefaultPlaylists];
-    self.playlistArray = [[NSMutableArray alloc] init];
+    self.baseArray = [[NSMutableArray alloc] init];
     self.item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPlaylist:)];
+    
+    self.selectedSearch = DSSongSearch;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchShow:)];
+    
+    self.navigationItem.leftBarButtonItem = item;
     
 }
 
@@ -60,18 +75,20 @@
 #pragma mark - API
 
 - (void) getPlaylistSongs{
-    [self.playlistArray removeAllObjects];
-    self.playlistArray = [[DSDataManager dataManager] allPlaylists];
+ 
+    self.baseArray = [[DSDataManager dataManager] allPlaylists];
+    self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
      [self.tableView reloadData];
 }
 
 - (void) getFavoriteSongs{
     
-    [self.playlistArray removeAllObjects];
+
     DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] init];
     playlist.name = @"Избранное";
     playlist.songsArray= [[DSDataManager dataManager] getSongsFromPalylistName:@"Избранное"];
-    [self.playlistArray addObject:playlist];
+    self.baseArray = [NSArray arrayWithObject:playlist];
+     self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
     [self.tableView reloadData];
    /*[[DSServerManager sharedManager] getSongWithPlaylist:@"1,2" OnSuccess:^(NSArray *songs) {
        self.songsArray = [NSArray arrayWithArray:songs];
@@ -84,12 +101,13 @@
 
 - (void) getSongsFromServerWithFilter:(NSString*) filter {
     
-    [self.playlistArray removeAllObjects];
     [[DSServerManager sharedManager]getSongWithFilter:filter OnSuccess:^(NSArray *songs)
     {
         DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] init];
         playlist.songsArray = [NSArray arrayWithArray:songs];
-         [self.playlistArray addObject:playlist ];
+        self.baseArray =  [NSArray arrayWithObject:playlist];
+     
+        self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
         [self.tableView reloadData];
         
     } onFailure:^(NSError *error, NSInteger statusCode) {
@@ -100,12 +118,12 @@
 
 - (void) getSongsFromServerWithDays:(NSString*) days {
     
-    [self.playlistArray removeAllObjects];
     [[DSServerManager sharedManager]getSongWithDays:days OnSuccess:^(NSArray *songs)
      {
          DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] init];
          playlist.songsArray = [NSArray arrayWithArray:songs];
-         [self.playlistArray addObject:playlist ];
+         self.baseArray = [NSArray arrayWithObject:playlist];
+            self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];;
          [self.tableView reloadData];
          
      } onFailure:^(NSError *error, NSInteger statusCode) {
@@ -167,6 +185,128 @@
     
     return cell;
 }
+
+#pragma mark - Methods
+
+- (void)searchShow:(UIBarButtonItem *)sender {
+    
+    
+    UIBarButtonSystemItem item = UIBarButtonSystemItemEdit;
+    
+    
+    if ([self.navigationItem.titleView isKindOfClass:[UISearchBar class]]) {
+        
+        item = UIBarButtonSystemItemSearch;
+        
+        UISegmentedControl *control = [[UISegmentedControl alloc]initWithItems:@[@"Композиция",@"Исполнитель"]];
+        [control addTarget:self action:@selector(searchSongsControl:) forControlEvents:UIControlEventValueChanged];
+        control.selectedSegmentIndex = self.selectedSearch;
+        self.navigationItem.titleView = control;
+        
+    } else {
+        
+        UISearchBar *searchBar = [[UISearchBar alloc]init];
+        self.searchBar = searchBar;
+        self.searchBar.delegate = self;
+        self.navigationItem.titleView = self.searchBar;
+        
+    }
+    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:item target:self action:@selector(searchShow:)];
+    
+    [self.navigationItem setLeftBarButtonItem:leftButton animated:YES];
+    
+}
+
+- (NSArray *)searchPlaylist:(NSArray *)array forType:(DSSortType)type withFilter:(NSString*)filter{
+   
+    NSArray *tmpArray = [[NSArray alloc] initWithArray:array copyItems:YES];
+    
+  /*  for(int i = 0; i<[array count] ;i++ ){
+        DSPlaylistPlayer* list= [array objectAtIndex:i];
+        NSArray* tmpSongs = [NSArray arrayWithArray: list.songsArray];
+        list = [tmpArray objectAtIndex:i];
+        list.songsArray = tmpSongs;
+    }*/
+  
+  
+    
+    
+    switch (type) {
+        
+        case DSSongSearch:
+        {
+            for (DSPlaylistPlayer* list in tmpArray) {
+                NSMutableArray* searchArray = [NSMutableArray array];
+                for(DSSong* song in list.songsArray) {
+                    if ([filter length] == 0 || [song.title rangeOfString:filter options:NSCaseInsensitiveSearch].location != NSNotFound) {
+                        [searchArray addObject:song];
+                    }
+                }
+                list.songsArray = [NSArray arrayWithArray:searchArray];
+            }
+            
+        }
+            break;
+        case DSArtistSearch:
+        {
+            
+            for (DSPlaylistPlayer* list in tmpArray) {
+                NSMutableArray* searchArray = [NSMutableArray array];
+                for(DSSong* song in list.songsArray) {
+                    if ([filter length] == 0 || [song.artist rangeOfString:filter options:NSCaseInsensitiveSearch].location != NSNotFound) {
+                        [searchArray addObject:song];
+                    }
+                }
+                list.songsArray = [NSArray arrayWithArray:searchArray];
+            }
+        }
+            break;
+        default:
+            break;
+    }
+    
+    return tmpArray;
+    
+}
+
+
+
+- (void)searchSongsControl:(UISegmentedControl *)sender {
+    
+    self.selectedSearch = sender.selectedSegmentIndex;
+    
+}
+- (void)searchInBackgroundWithFilter:(NSString*) filterString {
+    
+    if ([self.thread isExecuting]) {
+        [self.thread cancel];
+    }
+    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(searchThreadWithFilter:) object:filterString];
+    self.thread.name = @"search";
+    [self.thread start];
+}
+
+- (void)searchThreadWithFilter:(NSString*) filter {
+    
+    self.playlistArray = [self searchPlaylist:self.baseArray forType:(DSSortType)self.selectedSearch withFilter:filter ];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
+
+
+- (void) addPlaylist:(UIBarButtonItem *)sender {
+    
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"set playlist name" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView textFieldAtIndex:0].keyboardAppearance = UIKeyboardAppearanceDark;
+    [alertView textFieldAtIndex:0].delegate = self;
+    [alertView show];
+    
+}
+
 #pragma mark - UITableViewDelegate
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -189,25 +329,17 @@
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if(section == 0 && self.tabBar.selectedItem.tag == 3) {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 320, 44)]; // x,y,width,height
-        headerView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:1.f];
-        NSArray *itemArray = [NSArray arrayWithObjects: @"Week", @"Two weeks", @"Month", nil];
-        UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:itemArray];
-        
-        [control setFrame:CGRectMake(20.0, 5.0, 280.0, 30.0)];
-        [control setSelectedSegmentIndex:self.selectedPeriod];
-        [control setEnabled:YES];
-        [control addTarget:self action:@selector(touchPeriod:) forControlEvents: UIControlEventValueChanged ];
-        
-        [headerView addSubview:control];
-        [headerView bringSubviewToFront:control];
-        return headerView;
+        DSSegmentTableViewCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"segment"];
+       [headerCell.segmentPeriod setSelectedSegmentIndex:self.selectedPeriod];
+        [headerCell.segmentPeriod addTarget:self action:@selector(touchPeriod:) forControlEvents: UIControlEventValueChanged ];
+        return headerCell;
         
     }
     else if (self.tabBar.selectedItem.tag == 5 ){
      
         DSHeaderTableViewCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"header"];
-        headerCell.nameLabel.text = @"Custom header from cell";
+        DSPlaylistPlayer* list =  [self.playlistArray objectAtIndex:section];
+        headerCell.nameLabel.text = list.name;
         return headerCell;
         
     }
@@ -298,15 +430,23 @@
         [[DSDataManager dataManager]addPlaylistwithName:textfield.text];
     }
 }
-#pragma mark - Methods
 
-- (void) addPlaylist:(UIBarButtonItem *)sender {
 
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"set playlist name" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView textFieldAtIndex:0].keyboardAppearance = UIKeyboardAppearanceDark;
-    [alertView textFieldAtIndex:0].delegate = self;
-    [alertView show];
+#pragma mark - UISearchBarDelegate
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar {
+    
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    [self searchInBackgroundWithFilter:self.searchBar.text];
+    
 }
 @end

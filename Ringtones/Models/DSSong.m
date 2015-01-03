@@ -41,13 +41,38 @@
         
        self.id_sound = [item.id_song integerValue];
        self.saveFileLink= item.savefile_link;
-       self.version = item.version ;
+       self.versionAudio = item.version ;
        self.title = item.name;
        self.artist = item.artist;
        self.saveImageLink = item.image_savefile_link;
         
     }
     return self;
+}
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] allocWithZone:zone] init];
+    [copy setId_sound:[self id_sound]];
+    [copy setTitle:[self title]];
+    [copy setArtist:[self artist]];
+    [copy setAlbum:[self album]];
+    [copy setAlbumLink:[self albumLink]];
+    [copy setYear:[self year]];
+    [copy setRating:[self rating]];
+    [copy setCutLink:[self cutLink]];
+    [copy setCutDuration:[self cutDuration]];
+    [copy setRingtonLink:[self ringtonLink]];
+    [copy setRingtonDuration:[self ringtonDuration]];
+    [copy setFileLink:[self fileLink]];
+    [copy setFileDuration:[self fileDuration]];
+    [copy setSaveFileLink:[self saveFileLink]];
+    [copy setSaveImageLink:[self saveImageLink]];
+    [copy setAudioFileURL:[self audioFileURL]];
+    [copy setIsLocal:[self isLocal]];
+    [copy setVersionAudio:[self versionAudio]];
+ 
+    return copy;
 }
 
 @end

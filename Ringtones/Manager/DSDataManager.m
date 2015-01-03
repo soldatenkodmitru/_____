@@ -39,7 +39,10 @@
     [NSEntityDescription entityForName:@"DSPlaylist"
                 inManagedObjectContext:self.managedObjectContext];
     
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name != %@ ", @"Избранное"];
+    
     [request setEntity:description];
+    [request setPredicate:predicate];
     
     NSError* requestError = nil;
     NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];

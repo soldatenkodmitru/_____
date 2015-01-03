@@ -145,15 +145,15 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="15" y="8" width="42" height="21"/>
+                                                        <rect key="frame" x="15" y="9" width="293" height="21"/>
                                                     </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOH-Sy-cbq">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="Delete"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                        <rect key="frame" x="334" y="8" width="46" height="30"/>
+                                                        <rect key="frame" x="329" y="6" width="51" height="30"/>
                                                     </variation>
                                                 </button>
                                             </subviews>
@@ -173,6 +173,39 @@
                                         <connections>
                                             <outlet property="deleteButton" destination="MOH-Sy-cbq" id="yd7-cn-793"/>
                                             <outlet property="nameLabel" destination="Wvh-UT-NCu" id="kke-vc-5zT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="segment" id="y1G-yt-SSd" customClass="DSSegmentTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y1G-yt-SSd" id="JBg-n4-paB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cwm-nj-jR7">
+                                                    <rect key="frame" x="-61" y="-14" width="123" height="29"/>
+                                                    <segments>
+                                                        <segment title="неделя"/>
+                                                        <segment title="2 недели"/>
+                                                        <segment title="месяц"/>
+                                                    </segments>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="49" y="2" width="302" height="29"/>
+                                                    </variation>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="cwm-nj-jR7"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="cwm-nj-jR7"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="segmentPeriod" destination="cwm-nj-jR7" id="Wxp-7i-ajQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -215,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bx4-Hf-ZSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="859.5" y="426"/>
+            <point key="canvasLocation" x="859.5" y="421"/>
         </scene>
         <!--Song View Controller-->
         <scene sceneID="aRX-3u-ZlY">

@@ -22,6 +22,12 @@
     return self;
 }
 
-  
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] allocWithZone:zone] init];
+    [copy setName:[self name]];
+    [copy setSongsArray:[[NSArray alloc] initWithArray:self.songsArray copyItems:YES]] ;
+    return copy;
+}
 
 @end

@@ -16,6 +16,7 @@
 		320AEBAA1A534B8E00CAAD08 /* DSPlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 320AEBA91A534B8E00CAAD08 /* DSPlaylistItem.m */; };
 		321BBFAD1A544663006B125C /* DSPlaylistPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */; };
 		321BBFB01A545EDA006B125C /* DSHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAF1A545EDA006B125C /* DSHeaderTableViewCell.m */; };
+		3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */; };
 		32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A3F2691A4F608500FCC2A9 /* DSDataManager.m */; };
 		32A6F8E61A4D6DAE006CB6D8 /* DSRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F8E51A4D6DAE006CB6D8 /* DSRateView.m */; };
 		32A6F8EA1A4D769D006CB6D8 /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6F8E71A4D769D006CB6D8 /* star_empty.png */; };
@@ -113,6 +114,8 @@
 		321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylistPlayer.m; path = Ringtones/Models/DSPlaylistPlayer.m; sourceTree = "<group>"; };
 		321BBFAE1A545EDA006B125C /* DSHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSHeaderTableViewCell.h; path = Ringtones/Cells/DSHeaderTableViewCell.h; sourceTree = "<group>"; };
 		321BBFAF1A545EDA006B125C /* DSHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSHeaderTableViewCell.m; path = Ringtones/Cells/DSHeaderTableViewCell.m; sourceTree = "<group>"; };
+		3238F8861A5798EC00F6F9BE /* DSSegmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSSegmentTableViewCell.h; path = Ringtones/Cells/DSSegmentTableViewCell.h; sourceTree = "<group>"; };
+		3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSegmentTableViewCell.m; path = Ringtones/Cells/DSSegmentTableViewCell.m; sourceTree = "<group>"; };
 		32A3F2681A4F608500FCC2A9 /* DSDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSDataManager.h; path = Ringtones/Manager/DSDataManager.h; sourceTree = "<group>"; };
 		32A3F2691A4F608500FCC2A9 /* DSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSDataManager.m; path = Ringtones/Manager/DSDataManager.m; sourceTree = "<group>"; };
 		32A6F8E41A4D6DAE006CB6D8 /* DSRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSRateView.h; path = Ringtones/Views/DSRateView.h; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 				32CE4F851A4860790022AE0F /* DSSongTableViewCell.m */,
 				321BBFAE1A545EDA006B125C /* DSHeaderTableViewCell.h */,
 				321BBFAF1A545EDA006B125C /* DSHeaderTableViewCell.m */,
+				3238F8861A5798EC00F6F9BE /* DSSegmentTableViewCell.h */,
+				3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -716,6 +721,7 @@
 				32FA53CE1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				32CE4F771A485F6B0022AE0F /* UIButton+AFNetworking.m in Sources */,
 				32A6F9181A4DA364006CB6D8 /* DOUAudioDecoder.m in Sources */,
+				3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */,
 				32CE4F6E1A485F6B0022AE0F /* AFNetworkReachabilityManager.m in Sources */,
 				32CE4F791A485F6B0022AE0F /* UIProgressView+AFNetworking.m in Sources */,
 				32A6F91F1A4DA364006CB6D8 /* DOUAudioRenderer.m in Sources */,
