@@ -10,6 +10,7 @@
     </entity>
     <entity name="DSPlaylistItem" representedClassName="DSPlaylistItem" syncable="YES">
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="id_song" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="image_savefile_link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,6 +21,6 @@
     <elements>
         <element name="DSLikesSong" positionX="-1278" positionY="-445" width="128" height="58"/>
         <element name="DSPlaylist" positionX="-1278" positionY="-322" width="126" height="88"/>
-        <element name="DSPlaylistItem" positionX="-1044" positionY="-352" width="128" height="148"/>
+        <element name="DSPlaylistItem" positionX="-1044" positionY="-352" width="128" height="165"/>
     </elements>
 </model>
