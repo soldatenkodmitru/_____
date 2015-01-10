@@ -48,7 +48,7 @@ typedef enum {
     [self setDefaultPlaylists];
     self.baseArray = [[NSMutableArray alloc] init];
     self.item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPlaylist:)];
-    
+    self.tableView.separatorInset = UIEdgeInsetsZero;
     self.selectedSearch = DSSongSearch;
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchShow:)];
     
@@ -76,7 +76,7 @@ typedef enum {
 
 - (void) getPlaylistSongs{
  
-    self.baseArray = [[DSDataManager dataManager] allPlaylists];
+    self.baseArray = [NSArray arrayWithArray:[[DSDataManager dataManager] allPlaylists]];
     self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
      [self.tableView reloadData];
 }
@@ -143,7 +143,9 @@ typedef enum {
     return [playlist.songsArray count] ;
     
 }
-
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -155,6 +157,8 @@ typedef enum {
         cell = [[DSSongTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];}
     
     DSSong* song = [playlist.songsArray objectAtIndex:indexPath.row ];
+    UIGestureRecognizer * gesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [cell addGestureRecognizer:gesture];
     cell.titleLabel.text = song.title;
     cell.artistLabel.text = song.artist;
     
@@ -187,6 +191,11 @@ typedef enum {
 }
 
 #pragma mark - Methods
+
+-(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+    
+    self.tableView.editing = !self.tableView.editing;
+}
 
 - (void)searchShow:(UIBarButtonItem *)sender {
     
@@ -221,16 +230,6 @@ typedef enum {
 - (NSArray *)searchPlaylist:(NSArray *)array forType:(DSSortType)type withFilter:(NSString*)filter{
    
     NSArray *tmpArray = [[NSArray alloc] initWithArray:array copyItems:YES];
-    
-  /*  for(int i = 0; i<[array count] ;i++ ){
-        DSPlaylistPlayer* list= [array objectAtIndex:i];
-        NSArray* tmpSongs = [NSArray arrayWithArray: list.songsArray];
-        list = [tmpArray objectAtIndex:i];
-        list.songsArray = tmpSongs;
-    }*/
-  
-  
-    
     
     switch (type) {
         
@@ -307,7 +306,59 @@ typedef enum {
     
 }
 
+- (void) deletePlaylist:(UIButton *)sender {
+ 
+    DSPlaylistPlayer* list =[self.playlistArray objectAtIndex:sender.tag];
+    if([[DSDataManager dataManager] deletePlaylistWithId:list.listId ])
+       [self getPlaylistSongs];
+}
+
+- (void) touchPeriod:(UIControl *)sender {
+    
+    UISegmentedControl* segment = (UISegmentedControl*)sender;
+    self.selectedPeriod = segment.selectedSegmentIndex;
+    [self getPeriodSongs];
+    
+    
+}
+
+-(void) getPeriodSongs{
+    switch(self.selectedPeriod) {
+        case 0:
+            [self getSongsFromServerWithDays: @"7"];
+            break;
+        case 1:
+            [self getSongsFromServerWithDays: @"14"];
+            break;
+        case 2:
+            [self getSongsFromServerWithDays: @"30"];
+            break;
+    }
+    
+}
+
 #pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        DSPlaylistPlayer* list =[self.playlistArray  objectAtIndex:indexPath.section];
+        
+       NSMutableArray *songsArray = [NSMutableArray arrayWithArray:list.songsArray];
+        
+        DSSong *deleteSong = [songsArray objectAtIndex:indexPath.row ];
+        
+        [songsArray removeObject:deleteSong];
+        
+       list.songsArray = songsArray ;
+      
+        [[DSDataManager dataManager] deletePlaylistItemWithId:deleteSong.songId];
+         [self.tableView reloadData];
+        
+    }
+}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+}
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -328,19 +379,26 @@ typedef enum {
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     if(section == 0 && self.tabBar.selectedItem.tag == 3) {
         DSSegmentTableViewCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"segment"];
+        if (!headerCell) {
+            headerCell = [[DSSegmentTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"segment"];}
        [headerCell.segmentPeriod setSelectedSegmentIndex:self.selectedPeriod];
         [headerCell.segmentPeriod addTarget:self action:@selector(touchPeriod:) forControlEvents: UIControlEventValueChanged ];
-        return headerCell;
+        return [headerCell contentView];
         
     }
     else if (self.tabBar.selectedItem.tag == 5 ){
      
         DSHeaderTableViewCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"header"];
+        if (!headerCell) {
+            headerCell = [[DSHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"header"];}
+        headerCell.deleteButton.tag = section;
+        [headerCell.deleteButton addTarget:self action:@selector(deletePlaylist:) forControlEvents: UIControlEventTouchUpInside];
         DSPlaylistPlayer* list =  [self.playlistArray objectAtIndex:section];
         headerCell.nameLabel.text = list.name;
-        return headerCell;
+        return headerCell.backgroundView;
         
     }
         
@@ -348,29 +406,7 @@ typedef enum {
 }
 
 
-- (void) touchPeriod:(UIControl *)sender {
-   
-    UISegmentedControl* segment = (UISegmentedControl*)sender;
-    self.selectedPeriod = segment.selectedSegmentIndex;
-    [self getPeriodSongs];
 
-    
-}
-
--(void) getPeriodSongs{
-    switch(self.selectedPeriod) {
-    case 0:
-        [self getSongsFromServerWithDays: @"7"];
-        break;
-    case 1:
-        [self getSongsFromServerWithDays: @"14"];
-        break;
-    case 2:
-        [self getSongsFromServerWithDays: @"30"];
-        break;
-    }
-    
-}
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -427,7 +463,8 @@ typedef enum {
     if (buttonIndex == 1) {
         UITextField *textfield = [alertView textFieldAtIndex:0];
         
-        [[DSDataManager dataManager]addPlaylistwithName:textfield.text];
+       if ( [[DSDataManager dataManager]addPlaylistwithName:textfield.text] != nil)
+           [self getPlaylistSongs];
     }
 }
 

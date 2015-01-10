@@ -2,8 +2,8 @@
 //  DSPlaylist.h
 //  Ringtones
 //
-//  Created by Dima on 12/29/14.
-//  Copyright (c) 2014 BestAppStudio. All rights reserved.
+//  Created by Дима on 04.01.15.
+//  Copyright (c) 2015 BestAppStudio. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,6 +14,7 @@
 @interface DSPlaylist : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSSet *item;
 @end
 

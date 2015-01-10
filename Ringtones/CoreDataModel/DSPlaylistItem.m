@@ -2,8 +2,8 @@
 //  DSPlaylistItem.m
 //  Ringtones
 //
-//  Created by Дима on 30.12.14.
-//  Copyright (c) 2014 BestAppStudio. All rights reserved.
+//  Created by Дима on 04.01.15.
+//  Copyright (c) 2015 BestAppStudio. All rights reserved.
 //
 
 #import "DSPlaylistItem.h"
@@ -12,12 +12,13 @@
 
 @implementation DSPlaylistItem
 
+@dynamic artist;
 @dynamic id_song;
-@dynamic savefile_link;
-@dynamic version;
 @dynamic image_savefile_link;
 @dynamic name;
-@dynamic artist;
+@dynamic savefile_link;
+@dynamic version;
+@dynamic id;
 @dynamic owner;
 
 @end

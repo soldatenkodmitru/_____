@@ -23,13 +23,16 @@
 - (void) addLikeForSong:(NSInteger)id_song;
 - (bool) existsLikeForSong:(NSInteger) id_song;
 
-- (void) addPlaylistwithName:(NSString*) name;
+- (DSPlaylist*) addPlaylistwithName:(NSString*) name ;
 - (NSMutableArray*) allPlaylists;
 - (DSPlaylist*) findPlaylistWithName:(NSString*) name;
+- (DSPlaylist*) findPlaylistWithId:(double) listId;
+- (BOOL) deletePlaylistWithId:(double) ItemId;
 
 -(NSMutableArray*) getSongsFromPalylistName:(NSString*) playList;
 - (void) addPlaylistItem:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink;
-
+- (BOOL) deletePlaylistItemWithId:(double) ItemId;
+- (DSPlaylistItem*) findPlaylistItemWithId:(double) itemId;
 + (DSDataManager*) dataManager;
 
 @end

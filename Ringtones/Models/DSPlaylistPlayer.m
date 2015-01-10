@@ -16,6 +16,7 @@
     if (self) {
         
         self.name= item.name;
+        self.listId = [item.id doubleValue] ;
         self.songsArray  = [[DSDataManager dataManager] getSongsFromPalylistName:item.name];
         
     }
@@ -26,6 +27,7 @@
 {
     id copy = [[[self class] allocWithZone:zone] init];
     [copy setName:[self name]];
+    [copy setListId:[self listId]];
     [copy setSongsArray:[[NSArray alloc] initWithArray:self.songsArray copyItems:YES]] ;
     return copy;
 }

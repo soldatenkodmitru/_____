@@ -39,9 +39,10 @@
     self = [super init];
     if (self) {
         
+       self.songId = [item.id doubleValue];
        self.id_sound = [item.id_song integerValue];
        self.saveFileLink= item.savefile_link;
-       self.versionAudio = item.version ;
+       self.versionAudio = (typeSong) [item.version integerValue];
        self.title = item.name;
        self.artist = item.artist;
        self.saveImageLink = item.image_savefile_link;
@@ -53,6 +54,7 @@
 -(id)copyWithZone:(NSZone *)zone
 {
     id copy = [[[self class] allocWithZone:zone] init];
+    [copy setSongId:[self songId]];
     [copy setId_sound:[self id_sound]];
     [copy setTitle:[self title]];
     [copy setArtist:[self artist]];

@@ -18,6 +18,7 @@ typedef enum {
 
 @interface DSSong : NSObject <DOUAudioFile>
 
+  @property (assign,nonatomic)  double songId;
   @property (assign,nonatomic) NSInteger id_sound;
   @property (strong,nonatomic) NSString *title;
   @property (strong,nonatomic) NSString *artist;

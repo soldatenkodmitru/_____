@@ -12,6 +12,7 @@
 
 @interface DSPlaylistPlayer : NSObject
 
+@property (assign,nonatomic) double listId;
 @property (strong,nonatomic) NSString *name;
 @property (strong,nonatomic) NSArray *songsArray;
 

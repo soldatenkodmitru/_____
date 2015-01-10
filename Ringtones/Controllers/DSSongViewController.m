@@ -282,7 +282,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 - (IBAction)downloadAction:(id)sender {
    
-    [self download];
+     [[DSDataManager dataManager] addPlaylistItem:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:@""];
+ 
     
 
 }

@@ -40,6 +40,8 @@
                 inManagedObjectContext:self.managedObjectContext];
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name != %@ ", @"Избранное"];
+    NSSortDescriptor* idDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    [request setSortDescriptors:@[idDescriptor]];
     
     [request setEntity:description];
     [request setPredicate:predicate];
@@ -53,20 +55,28 @@
     for (DSPlaylist* list in resultArray) {
         
         DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] initWithDatabase:list];
-        [playlists addObject:playlist];
+        if (playlist.name != nil)
+            [playlists addObject:playlist];
     }
     return playlists;
 }
-- (void) addPlaylistwithName:(NSString*) name{
+- (DSPlaylist*) addPlaylistwithName:(NSString*) name{
     NSError* error = nil;
     
     DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
                                                          inManagedObjectContext:self.managedObjectContext];
-    
+    NSDate* date = [NSDate date];
+    curPlaylist.id =[NSNumber numberWithDouble:[date timeIntervalSince1970]];
     curPlaylist.name = name;
+
     if (![self.managedObjectContext save:&error]) {
-        NSLog(@"%@", [error localizedDescription]);
-    };
+        
+       NSLog(@"%@", [error localizedDescription]);
+       return nil;
+    }
+    else{
+       return curPlaylist;
+    }
     
 }
 
@@ -80,8 +90,11 @@
     curPlaylist = [self findPlaylistWithName:playList];
     
     if(curPlaylist!=nil){
-        
+        NSDate* date = [NSDate date];
+       
+    
         curPlaylistItem.id_song = [NSNumber numberWithInteger: song.id_sound];
+        curPlaylistItem.id =[NSNumber numberWithDouble:[date timeIntervalSince1970]];
         curPlaylistItem.version = [NSNumber numberWithInteger: version];
         curPlaylistItem.savefile_link = savefile_link;
         curPlaylistItem.image_savefile_link =imagelink;
@@ -95,7 +108,30 @@
     }
 }
 
-
+- (DSPlaylist*) findPlaylistWithId:(double) listId {
+    
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"DSPlaylist"
+                inManagedObjectContext:self.managedObjectContext];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"id == %@ ",[ NSNumber numberWithDouble:listId]];
+    
+    [request setEntity:description];
+    [request setPredicate:predicate];
+    
+    
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+    if ([resultArray count] != 0)
+        return [resultArray objectAtIndex:0];
+    else
+        return nil;
+}
 - (DSPlaylist*) findPlaylistWithName:(NSString*) name {
     
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
@@ -121,6 +157,58 @@
         return nil;
 }
 
+- (BOOL) deletePlaylistWithId:(double) ItemId{
+    NSError* error = nil;
+    DSPlaylist* item = [self findPlaylistWithId:ItemId];
+    
+    [self.managedObjectContext deleteObject:item];
+    if(![self.managedObjectContext save:&error]) {
+        NSLog(@"%@", [error localizedDescription]);
+        return NO;
+    }
+    else{
+        return YES;
+    }
+
+}
+- (BOOL) deletePlaylistItemWithId:(double) ItemId{
+    NSError* error = nil;
+    DSPlaylistItem* item = [self findPlaylistItemWithId:ItemId];
+    
+    [self.managedObjectContext deleteObject:item];
+    if(![self.managedObjectContext save:&error]) {
+        NSLog(@"%@", [error localizedDescription]);
+        return NO;
+    }
+    else{
+        return YES;
+    }
+    
+}
+- (DSPlaylistItem*) findPlaylistItemWithId:(double) itemId {
+    
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"DSPlaylistItem"
+                inManagedObjectContext:self.managedObjectContext];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"id == %@ ",[ NSNumber numberWithDouble:itemId]];
+    
+    [request setEntity:description];
+    [request setPredicate:predicate];
+    
+    
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+    if ([resultArray count] != 0)
+        return [resultArray objectAtIndex:0];
+    else
+        return nil;
+}
 -(NSMutableArray*) getSongsFromPalylistName:(NSString*) playList{
     
     NSMutableArray* objectsArray = [NSMutableArray array];
@@ -199,30 +287,21 @@
     }
     
     // Create the coordinator and store
+    NSURL *storeURL =  [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Ringtones.sqlite"];
     
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Ringtones.sqlite"];
+
+    NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption : @(YES),
+                               NSInferMappingModelAutomaticallyOption : @(YES) };
     NSError *error = nil;
-    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        // Report any error we got.
-        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
-        
-        [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
-        
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
-        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
-        dict[NSUnderlyingErrorKey] = error;
-        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        // Replace this with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
     return _persistentStoreCoordinator;
+
+    
 }
 
 
