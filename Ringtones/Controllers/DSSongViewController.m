@@ -277,12 +277,12 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (IBAction)favoriteAction:(id)sender {
     
-    [[DSDataManager dataManager] addPlaylistItem:@"Избранное" song:self.song version:sFull fileLink:[self download] imagelink:@""];
+    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:sFull fileLink:[self download] imagelink:@""];
     
 }
 - (IBAction)downloadAction:(id)sender {
    
-     [[DSDataManager dataManager] addPlaylistItem:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:@""];
+     [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:@""];
  
     
 

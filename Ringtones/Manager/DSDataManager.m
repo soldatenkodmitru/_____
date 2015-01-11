@@ -9,7 +9,7 @@
 
 #import "DSDataManager.h"
 #import "DSLikesSong.h"
-#import "DSPlaylistPlayer.h"
+
 
 
 @implementation DSDataManager
@@ -29,6 +29,23 @@
     });
     
     return manager;
+}
+- (BOOL) ordNoWithPlaylist: (NSArray*) playlist{
+    NSError* error = nil;
+    int i =0 ;
+    DSPlaylistItem* curPlaylistItem = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylistItem"
+                                                                    inManagedObjectContext:self.managedObjectContext];
+    for (DSSong* song in playlist){
+         
+        curPlaylistItem = [self findPlaylistItemWithId:song.songId];
+        curPlaylistItem.ord_no = [NSNumber numberWithInt:i];
+        i++;
+    }
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"%@", [error localizedDescription]);
+        return NO;
+    };
+    return YES;
 }
 
 - (NSMutableArray*) allPlaylists {
@@ -80,7 +97,37 @@
     
 }
 
-- (void) addPlaylistItem:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink{
+- (double)  addPlaylistItemForIdList:(double) itemId song:(DSSong*)  song {
+    NSError* error = nil;
+    DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
+                                                            inManagedObjectContext:self.managedObjectContext];
+    DSPlaylistItem* curPlaylistItem = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylistItem"
+                                                                    inManagedObjectContext:self.managedObjectContext];
+    curPlaylist = [self findPlaylistWithId:itemId];
+    
+    if(curPlaylist!=nil){
+        NSDate* date = [NSDate date];
+        
+        double id_song = [date timeIntervalSince1970];
+        curPlaylistItem.id_song = [NSNumber numberWithInteger: song.id_sound];
+        curPlaylistItem.id = [NSNumber numberWithDouble:id_song];
+        curPlaylistItem.version = [NSNumber numberWithInteger: song.versionAudio];
+        curPlaylistItem.savefile_link = song.saveFileLink;
+        curPlaylistItem.image_savefile_link = song.saveImageLink;
+        curPlaylistItem.artist = song.artist;
+        curPlaylistItem.name = song.title;
+        
+        [curPlaylist addItemObject:curPlaylistItem];
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"%@", [error localizedDescription]);
+        };
+        return id_song;
+    }
+
+    return 0;
+    
+}
+- (void) addPlaylistItemForNameList:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink{
     NSError* error = nil;
     
     DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
@@ -209,19 +256,45 @@
     else
         return nil;
 }
--(NSMutableArray*) getSongsFromPalylistName:(NSString*) playList{
+
+-(NSMutableArray*) getSongsFromPalylistName:(NSString*) name{
     
     NSMutableArray* objectsArray = [NSMutableArray array];
-   
+    
     DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
                                                             inManagedObjectContext:self.managedObjectContext];
-    curPlaylist = [self findPlaylistWithName:playList];
+    curPlaylist = [self findPlaylistWithName:name];
     NSArray* items = [curPlaylist.item allObjects];
+    items = [self sortingSongs:items];
     for (DSPlaylistItem* item in items) {
         DSSong* song = [[DSSong alloc] initWithDatabase:item];
         [objectsArray addObject:song];
     }
     return objectsArray;
+}
+
+-(NSMutableArray*) getSongsFromPalylistID:(double) itemId{
+    
+    NSMutableArray* objectsArray = [NSMutableArray array];
+   
+    DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
+                                                            inManagedObjectContext:self.managedObjectContext];
+    curPlaylist = [self findPlaylistWithId:itemId];
+    NSArray* items = [curPlaylist.item allObjects];
+    items = [self sortingSongs:items];
+    for (DSPlaylistItem* item in items) {
+        DSSong* song = [[DSSong alloc] initWithDatabase:item];
+        [objectsArray addObject:song];
+    }
+    return objectsArray;
+}
+
+- (NSArray *)sortingSongs:(NSArray *)unsortedArray {
+    NSArray* sortedArray;
+    NSSortDescriptor *primary = [NSSortDescriptor sortDescriptorWithKey:@"ord_no" ascending:YES];
+    NSSortDescriptor *secondary = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES ];
+    sortedArray = [NSArray arrayWithArray:[unsortedArray sortedArrayUsingDescriptors:@[primary, secondary]]];
+    return sortedArray;
 }
 
 - (void) addLikeForSong:(NSInteger)id_song {

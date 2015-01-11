@@ -14,6 +14,7 @@
 
 @dynamic artist;
 @dynamic id_song;
+@dynamic ord_no;
 @dynamic image_savefile_link;
 @dynamic name;
 @dynamic savefile_link;

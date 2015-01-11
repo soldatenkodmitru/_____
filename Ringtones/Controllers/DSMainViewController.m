@@ -358,6 +358,30 @@ typedef enum {
     }
 }
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    DSPlaylistPlayer* sourceList =[self.playlistArray  objectAtIndex:sourceIndexPath.section];
+    DSPlaylistPlayer* destList =[self.playlistArray  objectAtIndex:destinationIndexPath.section];
+    NSMutableArray *sourceSongsArray = [NSMutableArray arrayWithArray:sourceList.songsArray];
+    NSMutableArray *destSongsArray = [NSMutableArray arrayWithArray:destList.songsArray];
+    DSSong *moveSong = [sourceSongsArray objectAtIndex:sourceIndexPath.row];
+    [sourceSongsArray removeObject:moveSong];
+    if (sourceIndexPath.section == destinationIndexPath.section) {
+        
+       
+        [sourceSongsArray insertObject:moveSong atIndex:destinationIndexPath.row];
+        [[DSDataManager dataManager] ordNoWithPlaylist:sourceSongsArray];
+    }
+    else{
+      
+        [[DSDataManager dataManager] deletePlaylistItemWithId:moveSong.songId];
+        moveSong.songId = [[DSDataManager dataManager] addPlaylistItemForIdList:destList.listId song:moveSong ];
+        [destSongsArray insertObject:moveSong atIndex:destinationIndexPath.row];
+        [[DSDataManager dataManager] ordNoWithPlaylist:destSongsArray];
+   
+        
+    }
+    
+    
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -386,7 +410,7 @@ typedef enum {
             headerCell = [[DSSegmentTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"segment"];}
        [headerCell.segmentPeriod setSelectedSegmentIndex:self.selectedPeriod];
         [headerCell.segmentPeriod addTarget:self action:@selector(touchPeriod:) forControlEvents: UIControlEventValueChanged ];
-        return [headerCell contentView];
+        return headerCell;
         
     }
     else if (self.tabBar.selectedItem.tag == 5 ){
@@ -398,7 +422,7 @@ typedef enum {
         [headerCell.deleteButton addTarget:self action:@selector(deletePlaylist:) forControlEvents: UIControlEventTouchUpInside];
         DSPlaylistPlayer* list =  [self.playlistArray objectAtIndex:section];
         headerCell.nameLabel.text = list.name;
-        return headerCell.backgroundView;
+        return headerCell;
         
     }
         

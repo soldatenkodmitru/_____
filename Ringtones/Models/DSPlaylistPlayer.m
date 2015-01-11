@@ -17,7 +17,7 @@
         
         self.name= item.name;
         self.listId = [item.id doubleValue] ;
-        self.songsArray  = [[DSDataManager dataManager] getSongsFromPalylistName:item.name];
+        self.songsArray  = [[DSDataManager dataManager] getSongsFromPalylistID:[item.id doubleValue]];
         
     }
     return self;
