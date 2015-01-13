@@ -143,9 +143,9 @@ typedef enum {
     return [playlist.songsArray count] ;
     
 }
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
+//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return NO;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -162,29 +162,27 @@ typedef enum {
     cell.titleLabel.text = song.title;
     cell.artistLabel.text = song.artist;
     
-    cell.rateView.editable = false;
-    cell.rateView.rating =  song.rating ;
-    cell.rateView.notSelectedImage = [UIImage imageNamed:@"star_empty.png"];
-    cell.rateView.halfSelectedImage = [UIImage imageNamed:@"star_half.png"];
-    cell.rateView.fullSelectedImage = [UIImage imageNamed:@"star_full.png"];
-    cell.rateView.maxRating = 5;
+  
 
-    //NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
     //NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.albumLink]];
     __weak DSSongTableViewCell* weakCell = cell;
     
     cell.image.image = nil;
     
-   /* [cell.image
+   [cell.image
      setImageWithURLRequest:request
      placeholderImage:nil
      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
          weakCell.image.image = image;
-         [weakCell layoutSubviews];
+         CALayer *imageLayer = weakCell.image.layer;
+         [imageLayer setCornerRadius:32.5f];
+         [imageLayer setMasksToBounds:YES];
+        // [weakCell layoutSubviews];
      }
      failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
          NSLog(@"error = %@", [error localizedDescription]);
-     }];*/
+     }];
     
     
     return cell;
@@ -389,6 +387,12 @@ typedef enum {
     self.selectedItem = indexPath.row;
     self.selectedSection = indexPath.section;
     return indexPath;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 65;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

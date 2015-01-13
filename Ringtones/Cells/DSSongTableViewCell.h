@@ -11,7 +11,6 @@
 
 @interface DSSongTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet DSRateView *rateView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *image;

@@ -144,9 +144,9 @@
     
     
    
-    success([self getsongs]);
+   // success([self getsongs]);
     //[[AFHTTPRequestOperationLogger sharedLogger] startLogging];
-   /* [self.requestOperationManager
+    [self.requestOperationManager
      POST:@""
      parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -168,7 +168,7 @@
          if (failure) {
              failure(error, operation.response.statusCode);
          }
-     }];*/
+     }];
     
 }
 
@@ -214,12 +214,12 @@
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
                             @"SETRATING" , @"command",
                             [NSDictionary dictionaryWithObjectsAndKeys: idSong, @"id_sound",rating,@"rating",nil],@"param", nil];
-    id obj ;
+    //id obj ;
     
-    success(obj);
+   // success(obj);
     
    // [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
-   /* [self.requestOperationManager
+   [self.requestOperationManager
      POST:@""
      parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -234,7 +234,7 @@
          if (failure) {
              failure(error, operation.response.statusCode);
          }
-     }]; */
+     }]; 
     
 }
 

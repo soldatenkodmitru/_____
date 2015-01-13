@@ -173,7 +173,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 #pragma mark - DSRateViewDelegate
 - (void)rateView:(DSRateView *)rateView ratingDidChange:(float)rating{
     NSLog(@"%f",rating);
-    [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%ld", self.song.id_sound ] OnSuccess:^(NSObject *result) {
+    [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%ld", (long)self.song.id_sound ] OnSuccess:^(NSObject *result) {
         NSLog(@"Set Rating");
         [[DSDataManager dataManager] addLikeForSong:self.song.id_sound];
         self.rateView.editable = NO;
