@@ -162,6 +162,7 @@ typedef enum {
     cell.titleLabel.text = song.title;
     cell.artistLabel.text =song.artist;
     
+    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
   
 
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
@@ -176,7 +177,7 @@ typedef enum {
      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
          weakCell.image.image = image;
          CALayer *imageLayer = weakCell.image.layer;
-         [imageLayer setCornerRadius:32.5f];
+         [imageLayer setCornerRadius:27.5f];
          [imageLayer setMasksToBounds:YES];
         // [weakCell layoutSubviews];
      }

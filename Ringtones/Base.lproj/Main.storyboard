@@ -10,6 +10,9 @@
         <mutableArray key="Helv-2-ULight.ttf">
             <string>Helvetica-2-UltraLight</string>
         </mutableArray>
+        <mutableArray key="Helv-5-Normal.ttf">
+            <string>Helvetica-5-Normal</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
@@ -102,7 +105,7 @@
                                             <outlet property="segmentPeriod" destination="cwm-nj-jR7" id="Wxp-7i-ajQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="song" rowHeight="75" id="AO4-4d-XL4" customClass="DSSongTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="song" rowHeight="75" id="AO4-4d-XL4" customClass="DSSongTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AO4-4d-XL4" id="1iw-cC-lv6">
@@ -112,8 +115,12 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="TGR-vV-ZfE" secondAttribute="height" multiplier="1:1" id="8t6-cK-DaP"/>
-                                                        <constraint firstAttribute="height" constant="65" id="FQC-y1-ead"/>
-                                                        <constraint firstAttribute="width" constant="65" id="fWR-dh-wKD"/>
+                                                        <constraint firstAttribute="height" constant="65" id="FQC-y1-ead">
+                                                            <variation key="widthClass=compact" constant="55"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="width" constant="65" id="fWR-dh-wKD">
+                                                            <variation key="widthClass=compact" constant="55"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -130,34 +137,28 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dfd впавпа" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVO-7F-sgs">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work bitch!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVO-7F-sgs">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-2-UltraLight" family="Helvetica-2-UltraLight" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-2-UltraLight" family="Helvetica-2-UltraLight" pointSize="24"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="93" y="37" width="255" height="21"/>
+                                                        <rect key="frame" x="93" y="31" width="255" height="21"/>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKR-m9-THb">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Britney Spears" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKR-m9-THb">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Label">
-                                                            <attributes>
-                                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                    <fontDescription key="fontDescription" name="Helvetica-5-Normal" family="Helvetica-5-Normal" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <rect key="frame" x="93" y="8" width="255" height="21"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="TGR-vV-ZfE" firstAttribute="top" secondItem="1iw-cC-lv6" secondAttribute="top" id="QSJ-vu-5ZC"/>
+                                                <constraint firstItem="TGR-vV-ZfE" firstAttribute="top" secondItem="1iw-cC-lv6" secondAttribute="top" id="QSJ-vu-5ZC">
+                                                    <variation key="widthClass=compact" constant="5"/>
+                                                </constraint>
                                                 <constraint firstItem="TGR-vV-ZfE" firstAttribute="leading" secondItem="1iw-cC-lv6" secondAttribute="leadingMargin" constant="2" id="zgL-MO-n9b"/>
                                             </constraints>
                                             <variation key="default">
@@ -185,9 +186,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.89411764705882346" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="artistLabel" destination="CVO-7F-sgs" id="zfk-ek-6OG"/>
+                                            <outlet property="artistLabel" destination="BKR-m9-THb" id="dXx-Ya-hc7"/>
                                             <outlet property="image" destination="TGR-vV-ZfE" id="bvD-z4-Jve"/>
-                                            <outlet property="titleLabel" destination="BKR-m9-THb" id="odk-Nb-yj6"/>
+                                            <outlet property="titleLabel" destination="CVO-7F-sgs" id="a91-hw-GiR"/>
                                             <segue destination="4zM-6h-7kJ" kind="show" id="tbR-1K-gnZ"/>
                                         </connections>
                                     </tableViewCell>
