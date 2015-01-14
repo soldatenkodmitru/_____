@@ -159,11 +159,8 @@ typedef enum {
     DSSong* song = [playlist.songsArray objectAtIndex:indexPath.row ];
     UIGestureRecognizer * gesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
     [cell addGestureRecognizer:gesture];
-    UIFont *customFont = [UIFont fontWithName:@"Helv-2-ULight" size:35];
-    cell.titleLabel.font = customFont;
     cell.titleLabel.text = song.title;
-     cell.artistLabel.font = customFont;
-    cell.artistLabel.text = song.artist;
+    cell.artistLabel.text =song.artist;
     
   
 
