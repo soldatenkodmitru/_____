@@ -7,7 +7,7 @@
 //
 
 #import "DSMainViewController.h"
-#import "DSSongViewController.h"
+#import "DSPlayerViewController.h"
 #import "DSSongTableViewCell.h"
 #import "DSHeaderTableViewCell.h"
 #import "DSSegmentTableViewCell.h"
@@ -18,6 +18,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "DSPlaylistItem.h"
 #import "DSDataManager.h"
+
 
 typedef enum {
     DSSongSearch,
@@ -35,6 +36,8 @@ typedef enum {
     @property (assign, nonatomic) NSInteger selectedPeriod;
     @property (assign, nonatomic) NSInteger selectedSearch;
     @property (strong,nonatomic)  NSThread* thread;
+    @property (weak, nonatomic) UIImage* selectedImage;
+
 @end
 
 @implementation DSMainViewController
@@ -169,7 +172,7 @@ typedef enum {
     //NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.albumLink]];
     __weak DSSongTableViewCell* weakCell = cell;
     
-    cell.image.image = nil;
+    //cell.image.image = nil;
     
    [cell.image
      setImageWithURLRequest:request
@@ -387,6 +390,8 @@ typedef enum {
     
     self.selectedItem = indexPath.row;
     self.selectedSection = indexPath.section;
+    DSSongTableViewCell *curCell = (DSSongTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    self.selectedImage = curCell.image.image;
     return indexPath;
 }
 
@@ -440,9 +445,10 @@ typedef enum {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    DSSongViewController *dc = [segue destinationViewController];
+    DSPlayerViewController *dc = [segue destinationViewController];
     DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:self.selectedSection];
     dc.song = [playlist.songsArray objectAtIndex:self.selectedItem];
+    dc.pictureSong = self.selectedImage;
     
 }
 #pragma mark -  UITabBarDelegate

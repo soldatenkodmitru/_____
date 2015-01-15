@@ -27,9 +27,6 @@
 		32A2D1C71A67753B00C64A3F /* button_top_ru_tb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A2D1BD1A67753B00C64A3F /* button_top_ru_tb@3x.png */; };
 		32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A3F2691A4F608500FCC2A9 /* DSDataManager.m */; };
 		32A6F8E61A4D6DAE006CB6D8 /* DSRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F8E51A4D6DAE006CB6D8 /* DSRateView.m */; };
-		32A6F8EA1A4D769D006CB6D8 /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6F8E71A4D769D006CB6D8 /* star_empty.png */; };
-		32A6F8EB1A4D769D006CB6D8 /* star_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6F8E81A4D769D006CB6D8 /* star_full.png */; };
-		32A6F8EC1A4D769D006CB6D8 /* star_half.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A6F8E91A4D769D006CB6D8 /* star_half.png */; };
 		32A6F9161A4DA364006CB6D8 /* DOUAudioAnalyzer+Default.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F8EF1A4DA364006CB6D8 /* DOUAudioAnalyzer+Default.m */; };
 		32A6F9171A4DA364006CB6D8 /* DOUAudioAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F8F11A4DA364006CB6D8 /* DOUAudioAnalyzer.m */; };
 		32A6F9181A4DA364006CB6D8 /* DOUAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F8F51A4DA364006CB6D8 /* DOUAudioDecoder.m */; };
@@ -48,7 +45,9 @@
 		32A6F9261A4DA364006CB6D8 /* DOUSimpleHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9131A4DA364006CB6D8 /* DOUSimpleHTTPRequest.m */; };
 		32A6F9271A4DA364006CB6D8 /* NSData+DOUMappedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9151A4DA364006CB6D8 /* NSData+DOUMappedFile.m */; };
 		32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */; };
-		32B8013B1A509D960055E5AC /* DSLikesSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8013A1A509D960055E5AC /* DSLikesSong.m */; };
+		32C6A8AF1A67C50B0014651D /* DSPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C6A8AE1A67C50B0014651D /* DSPlayerViewController.m */; };
+		32C6A8B61A67CF120014651D /* DSLikesSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C6A8B51A67CF120014651D /* DSLikesSong.m */; };
+		32C6A8B81A67D4F50014651D /* justin-timberlake-20132.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32C6A8B71A67D4F50014651D /* justin-timberlake-20132.jpg */; };
 		32CB705A1A6677C900232DE3 /* button_favorites_tb_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CB70591A6677C900232DE3 /* button_favorites_tb_s@3x.png */; };
 		32CB705B1A66892A00232DE3 /* Helv-5-Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32A2D1B21A676E9C00C64A3F /* Helv-5-Normal.ttf */; };
 		32CB705C1A66892C00232DE3 /* Helv-4-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32A2D1B11A676E9C00C64A3F /* Helv-4-Light.ttf */; };
@@ -172,9 +171,6 @@
 		32A3F2691A4F608500FCC2A9 /* DSDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSDataManager.m; path = Ringtones/Manager/DSDataManager.m; sourceTree = "<group>"; };
 		32A6F8E41A4D6DAE006CB6D8 /* DSRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSRateView.h; path = Ringtones/Views/DSRateView.h; sourceTree = "<group>"; };
 		32A6F8E51A4D6DAE006CB6D8 /* DSRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSRateView.m; path = Ringtones/Views/DSRateView.m; sourceTree = "<group>"; };
-		32A6F8E71A4D769D006CB6D8 /* star_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_empty.png; path = Ringtones/images/star_empty.png; sourceTree = "<group>"; };
-		32A6F8E81A4D769D006CB6D8 /* star_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_full.png; path = Ringtones/images/star_full.png; sourceTree = "<group>"; };
-		32A6F8E91A4D769D006CB6D8 /* star_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_half.png; path = Ringtones/images/star_half.png; sourceTree = "<group>"; };
 		32A6F8EE1A4DA364006CB6D8 /* DOUAudioAnalyzer+Default.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DOUAudioAnalyzer+Default.h"; sourceTree = "<group>"; };
 		32A6F8EF1A4DA364006CB6D8 /* DOUAudioAnalyzer+Default.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DOUAudioAnalyzer+Default.m"; sourceTree = "<group>"; };
 		32A6F8F01A4DA364006CB6D8 /* DOUAudioAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOUAudioAnalyzer.h; sourceTree = "<group>"; };
@@ -215,8 +211,12 @@
 		32A6F9151A4DA364006CB6D8 /* NSData+DOUMappedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+DOUMappedFile.m"; sourceTree = "<group>"; };
 		32A6F9281A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOUMPMediaLibraryAssetLoader.h; sourceTree = "<group>"; };
 		32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOUMPMediaLibraryAssetLoader.m; sourceTree = "<group>"; };
-		32B801391A509D960055E5AC /* DSLikesSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSLikesSong.h; path = Ringtones/CoreDataModel/DSLikesSong.h; sourceTree = "<group>"; };
-		32B8013A1A509D960055E5AC /* DSLikesSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSLikesSong.m; path = Ringtones/CoreDataModel/DSLikesSong.m; sourceTree = "<group>"; };
+		32C6A8AD1A67C50B0014651D /* DSPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlayerViewController.h; path = Ringtones/Controllers/DSPlayerViewController.h; sourceTree = "<group>"; };
+		32C6A8AE1A67C50B0014651D /* DSPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlayerViewController.m; path = Ringtones/Controllers/DSPlayerViewController.m; sourceTree = "<group>"; };
+		32C6A8B01A67CE6F0014651D /* Ringtones 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ringtones 3.xcdatamodel"; sourceTree = "<group>"; };
+		32C6A8B41A67CF120014651D /* DSLikesSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSLikesSong.h; path = Ringtones/CoreDataModel/DSLikesSong.h; sourceTree = "<group>"; };
+		32C6A8B51A67CF120014651D /* DSLikesSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSLikesSong.m; path = Ringtones/CoreDataModel/DSLikesSong.m; sourceTree = "<group>"; };
+		32C6A8B71A67D4F50014651D /* justin-timberlake-20132.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "justin-timberlake-20132.jpg"; path = "Ringtones/images/justin-timberlake-20132.jpg"; sourceTree = "<group>"; };
 		32CB70591A6677C900232DE3 /* button_favorites_tb_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_favorites_tb_s@3x.png"; path = "Ringtones/images/tabbar/button_favorites_tb_s@3x.png"; sourceTree = "<group>"; };
 		32CB70611A66901500232DE3 /* ic_star_gray_empty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_star_gray_empty@3x.png"; path = "Ringtones/images/stars/ic_star_gray_empty@3x.png"; sourceTree = "<group>"; };
 		32CB70621A66901500232DE3 /* ic_star_gray_filled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_star_gray_filled@3x.png"; path = "Ringtones/images/stars/ic_star_gray_filled@3x.png"; sourceTree = "<group>"; };
@@ -462,12 +462,12 @@
 		32B801351A509C9C0055E5AC /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				32C6A8B41A67CF120014651D /* DSLikesSong.h */,
+				32C6A8B51A67CF120014651D /* DSLikesSong.m */,
 				32D51AB61A58B4BF00973B24 /* DSPlaylistItem.h */,
 				32D51AB71A58B4BF00973B24 /* DSPlaylistItem.m */,
 				32D51AB31A58A75000973B24 /* DSPlaylist.h */,
 				32D51AB41A58A75000973B24 /* DSPlaylist.m */,
-				32B801391A509D960055E5AC /* DSLikesSong.h */,
-				32B8013A1A509D960055E5AC /* DSLikesSong.m */,
 			);
 			name = CoreDataModel;
 			sourceTree = "<group>";
@@ -631,6 +631,8 @@
 				32CE4F431A485F560022AE0F /* DSMainViewController.m */,
 				32CEA2FE1A498E48006AD7CC /* DSSongViewController.h */,
 				32CEA2FF1A498E48006AD7CC /* DSSongViewController.m */,
+				32C6A8AD1A67C50B0014651D /* DSPlayerViewController.h */,
+				32C6A8AE1A67C50B0014651D /* DSPlayerViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -719,11 +721,9 @@
 				32CB705F1A668F5100232DE3 /* navbar */,
 				32CB705E1A668F4000232DE3 /* stars */,
 				32A2D1B31A67745200C64A3F /* tabbar */,
-				32A6F8E71A4D769D006CB6D8 /* star_empty.png */,
-				32A6F8E81A4D769D006CB6D8 /* star_full.png */,
-				32A6F8E91A4D769D006CB6D8 /* star_half.png */,
 				32FA53AA1A4ACD4C00413D1A /* download.png */,
 				32FA53AB1A4ACD4C00413D1A /* favourite.png */,
+				32C6A8B71A67D4F50014651D /* justin-timberlake-20132.jpg */,
 				32FA53AC1A4ACD4C00413D1A /* pause.png */,
 				32FA53AD1A4ACD4C00413D1A /* play.png */,
 				32FA53AE1A4ACD4C00413D1A /* separate.png */,
@@ -851,8 +851,6 @@
 				32CB706F1A66903000232DE3 /* button_set_up@2x.png in Resources */,
 				32CB708B1A66904B00232DE3 /* button_download_s@3x.png in Resources */,
 				32FA53B31A4ACD4C00413D1A /* play.png in Resources */,
-				32A6F8EA1A4D769D006CB6D8 /* star_empty.png in Resources */,
-				32A6F8EB1A4D769D006CB6D8 /* star_full.png in Resources */,
 				320AEBA31A5335CB00CAAD08 /* potap.mp3 in Resources */,
 				320AEBA21A5335CB00CAAD08 /* kreed.mp3 in Resources */,
 				32CB70681A66901500232DE3 /* ic_star_white_yellow_half@3x.png in Resources */,
@@ -866,6 +864,7 @@
 				32CB705A1A6677C900232DE3 /* button_favorites_tb_s@3x.png in Resources */,
 				32CB709B1A6690CE00232DE3 /* separator@3x.png in Resources */,
 				32A2D1C61A67753B00C64A3F /* button_top_ru_tb_s@3x.png in Resources */,
+				32C6A8B81A67D4F50014651D /* justin-timberlake-20132.jpg in Resources */,
 				32A2D1C11A67753B00C64A3F /* button_playlist_tb_s@3x.png in Resources */,
 				32CE4EB31A483BC20022AE0F /* LaunchScreen.xib in Resources */,
 				32CB705C1A66892C00232DE3 /* Helv-4-Light.ttf in Resources */,
@@ -893,7 +892,6 @@
 				32CB70861A66904B00232DE3 /* but_play@3x.png in Resources */,
 				32CB70701A66903000232DE3 /* button_set_up@3x.png in Resources */,
 				32CB705B1A66892A00232DE3 /* Helv-5-Normal.ttf in Resources */,
-				32A6F8EC1A4D769D006CB6D8 /* star_half.png in Resources */,
 				32FA53B11A4ACD4C00413D1A /* favourite.png in Resources */,
 				32FA53B51A4ACD4C00413D1A /* slider.png in Resources */,
 				32CB70991A6690CE00232DE3 /* ic_sound@3x.png in Resources */,
@@ -936,6 +934,7 @@
 				32A6F9161A4DA364006CB6D8 /* DOUAudioAnalyzer+Default.m in Sources */,
 				32D51AB81A58B4BF00973B24 /* DSPlaylistItem.m in Sources */,
 				32A6F9231A4DA364006CB6D8 /* DOUAudioVisualizer.m in Sources */,
+				32C6A8B61A67CF120014651D /* DSLikesSong.m in Sources */,
 				32FA53CE1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				32CE4F771A485F6B0022AE0F /* UIButton+AFNetworking.m in Sources */,
 				32A6F9181A4DA364006CB6D8 /* DOUAudioDecoder.m in Sources */,
@@ -965,7 +964,6 @@
 				32CE4F861A4860790022AE0F /* DSSongTableViewCell.m in Sources */,
 				32FA53D01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m in Sources */,
 				32A6F9191A4DA364006CB6D8 /* DOUAudioEventLoop.m in Sources */,
-				32B8013B1A509D960055E5AC /* DSLikesSong.m in Sources */,
 				32CEA2FD1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m in Sources */,
 				32A6F91D1A4DA364006CB6D8 /* DOUAudioLPCM.m in Sources */,
 				32CE4F781A485F6B0022AE0F /* UIImageView+AFNetworking.m in Sources */,
@@ -976,6 +974,7 @@
 				32CE4F6F1A485F6B0022AE0F /* AFSecurityPolicy.m in Sources */,
 				32A6F9271A4DA364006CB6D8 /* NSData+DOUMappedFile.m in Sources */,
 				32CE4F7B1A485F6B0022AE0F /* UIWebView+AFNetworking.m in Sources */,
+				32C6A8AF1A67C50B0014651D /* DSPlayerViewController.m in Sources */,
 				32CE4EAB1A483BC20022AE0F /* ViewController.m in Sources */,
 				32A6F91E1A4DA364006CB6D8 /* DOUAudioPlaybackItem.m in Sources */,
 				32CE4EA81A483BC20022AE0F /* Ringtones.xcdatamodeld in Sources */,
@@ -1198,10 +1197,11 @@
 		32CE4EA61A483BC20022AE0F /* Ringtones.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				32C6A8B01A67CE6F0014651D /* Ringtones 3.xcdatamodel */,
 				32D51AB91A58B8F400973B24 /* Ringtones 2.xcdatamodel */,
 				32CE4EA71A483BC20022AE0F /* Ringtones.xcdatamodel */,
 			);
-			currentVersion = 32D51AB91A58B8F400973B24 /* Ringtones 2.xcdatamodel */;
+			currentVersion = 32C6A8B01A67CE6F0014651D /* Ringtones 3.xcdatamodel */;
 			path = Ringtones.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

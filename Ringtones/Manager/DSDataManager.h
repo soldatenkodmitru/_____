@@ -21,8 +21,8 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-- (void) addLikeForSong:(NSInteger)id_song;
-- (bool) existsLikeForSong:(NSInteger) id_song;
+- (void) addLikeForSong:(NSInteger)id_song withRating:(float) rating;
+- (float) existsLikeForSong:(NSInteger) id_song;
 
 - (DSPlaylist*) addPlaylistwithName:(NSString*) name ;
 - (NSMutableArray*) allPlaylists;

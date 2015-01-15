@@ -2,8 +2,8 @@
 //  DSLikesSong.h
 //  Ringtones
 //
-//  Created by Dima on 12/29/14.
-//  Copyright (c) 2014 BestAppStudio. All rights reserved.
+//  Created by Dima on 15.01.15.
+//  Copyright (c) 2015 BestAppStudio. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,5 +13,6 @@
 @interface DSLikesSong : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * id_song;
+@property (nonatomic, retain) NSNumber * rating;
 
 @end

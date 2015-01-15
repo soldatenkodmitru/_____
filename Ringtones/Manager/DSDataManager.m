@@ -297,7 +297,7 @@
     return sortedArray;
 }
 
-- (void) addLikeForSong:(NSInteger)id_song {
+- (void) addLikeForSong:(NSInteger)id_song withRating:(float) rating{
     
     NSError* error = nil;
     
@@ -305,14 +305,18 @@
                                                          inManagedObjectContext:self.managedObjectContext];
     
     curSong.id_song = [NSNumber numberWithInteger:id_song];
+    curSong.rating = [NSNumber numberWithFloat:rating];
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"%@", [error localizedDescription]);
     };
     
 }
 
-- (bool) existsLikeForSong:(NSInteger) id_song {
+- (float) existsLikeForSong:(NSInteger) id_song {
     
+    DSLikesSong* curSong = [NSEntityDescription insertNewObjectForEntityForName:@"DSLikesSong"
+                                                         inManagedObjectContext:self.managedObjectContext];
+
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     
     NSEntityDescription* description =
@@ -331,10 +335,11 @@
         NSLog(@"%@", [requestError localizedDescription]);
     }
     if ([resultArray count] > 0){
-        return YES;
+        curSong = [resultArray objectAtIndex:0];
+        return [curSong.rating doubleValue] ;
     }
     else {
-        return NO;
+        return 0;
     }
 }
 
