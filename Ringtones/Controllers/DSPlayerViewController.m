@@ -60,9 +60,10 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     [super viewWillAppear:animated];
     
     [self resetStreamer];
-    [self.streamer pause];
+    [self.streamer play];
     
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
+    NSLog(@"%f", [DOUAudioStreamer volume]);
     self.volumeProgress.progress = [DOUAudioStreamer volume];
 }
 
@@ -77,25 +78,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 #pragma mark - Self Methods
 
-- (NSString*) changeTimetoFloat: (float) length
-{
-    int minutes = (int) floor(length / 60);
-    int seconds = (int) length - (minutes * 60);
-    
-    NSString* strMinutes = [NSString stringWithFormat: @"%d", minutes];
-    if (minutes < 10) {
-        strMinutes = [NSString stringWithFormat: @"0%@", strMinutes];
-    }
-    
-    NSString* strSeconds = [NSString stringWithFormat: @"%d", seconds];
-    if (seconds < 10) {
-        strSeconds = [NSString stringWithFormat: @"0%@", strSeconds];
-    }
-    
-    NSString *strTime = [NSString stringWithFormat: @"%@:%@", strMinutes, strSeconds];
-    
-    return strTime;
-}
 
 - (void) cancelStreamer
 {
@@ -146,20 +128,24 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     }
 }
 
+- (NSString*) timeToString:(double )timeInterval {
+    float min = floor(timeInterval/60);
+    float sec = round(timeInterval - min * 60);
+    NSString *time = [NSString stringWithFormat:@"%02d:%02d", (int)min, (int)sec];
+    return time;
+}
 
 #pragma mark - Timer
 - (void) updatePlayTime
 {
     
-    //    NSLog(@"current time = %f", audioPlayer.currentTime);
-    NSString* strPlayedTime = [self changeTimetoFloat: self.audioPlayer.progress];
     
-    float fRemainTime = self.audioPlayer.duration -self.audioPlayer.progress;
-    NSString* strRemainTime = [NSString stringWithFormat: @"%@", [self changeTimetoFloat: fRemainTime]];
-    
-    [self.sldPlay setValue: self.audioPlayer.progress animated:YES];
-    [self.lblStartTime setText: strPlayedTime];
-     self.endLbl.text = [NSString stringWithFormat: @"%@", self.audioPlayer.duration];
+    self.endLbl.text = [self timeToString:self.streamer.duration];
+    self.startLbl.text = [self timeToString:self.streamer.currentTime];
+    [self.playProgress setProgress: (float)(self.streamer.currentTime/self.streamer.duration)  animated:YES];
+   
+   
+   
 }
 
 #pragma mark - DSRateViewDelegate
