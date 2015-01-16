@@ -7,8 +7,10 @@
 //
 
 #import "DSPlayerViewController.h"
-
-
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <Foundation/Foundation.h>
 
 static void *kStatusKVOKey = &kStatusKVOKey;
 static void *kDurationKVOKey = &kDurationKVOKey;
@@ -44,8 +46,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.imageSong.image = self.pictureSong;
     self.startLbl.text = @"00:00";
     self.endLbl.text = @"00:00";
-   
-    
+    [self initVolume];
     
     
 }
@@ -63,8 +64,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     [self.streamer play];
     
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
-    NSLog(@"%f", [DOUAudioStreamer volume]);
-    self.volumeProgress.progress = [DOUAudioStreamer volume];
+  
+ 
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -77,7 +78,19 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 
 #pragma mark - Self Methods
+- (void) initVolume {
+    
+    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+    CGFloat systemVolume = musicPlayer.volume;
+    
+    self.volumeProgress.progress = [DOUAudioStreamer volume];
+    NSString *myExamplePath = [[NSBundle mainBundle] pathForResource:@"silence" ofType:@"mp3"];
+    AVAudioPlayer* p = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:myExamplePath] error:NULL];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
+    [p prepareToPlay];
+    [p stop];
 
+}
 
 - (void) cancelStreamer
 {
