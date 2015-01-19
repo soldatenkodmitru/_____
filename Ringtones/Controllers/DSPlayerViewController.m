@@ -159,4 +159,60 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
     }];
 }
+- (IBAction)favoriteAction:(id)sender {
+    
+    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:sFull fileLink:[self download] imagelink:@""];
+    
+}
+- (IBAction)downloadAction:(id)sender {
+    
+    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:@""];
+    
+    
+    
+}
+
+-(NSString*) download {
+    // NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.song.fileLink]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:self.song.fileLink]];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *fullPath = [ documentsDirectory stringByAppendingPathComponent:[self.song.fileLink lastPathComponent]];
+    
+    //NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self.song.fileLink lastPathComponent]];
+    
+    [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:fullPath append:NO]];
+    
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        NSLog(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //  NSLog(@"RES: %@", [[[operation response] allHeaderFields] description]);
+        
+        NSError *error;
+        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:&error];
+        
+        if (error) {
+            NSLog(@"ERR: %@", [error description]);
+        } else {
+            NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
+            long long fileSize = [fileSizeNumber longLongValue];
+            
+            //  [[_downloadFile titleLabel] setText:[NSString stringWithFormat:@"%lld", fileSize]];
+            //return fullPath;
+            NSLog(@"%@, %@",fullPath,[NSString stringWithFormat:@"%lld", fileSize]);
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"ERR: %@", [error description]);
+    }];
+    
+    [operation start];
+    return fullPath;
+}
+
 @end

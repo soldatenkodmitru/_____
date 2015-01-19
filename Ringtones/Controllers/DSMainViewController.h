@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MBProgressHUD.h"
 
-@interface DSMainViewController : UIViewController <UITableViewDataSource , UITableViewDelegate, UITabBarDelegate, UIAlertViewDelegate, UITextFieldDelegate,UISearchBarDelegate, MBProgressHUDDelegate>
+
+@interface DSMainViewController : UIViewController <UITableViewDataSource , UITableViewDelegate, UITabBarDelegate, UIAlertViewDelegate, UITextFieldDelegate,UISearchBarDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITabBar *tabBar;

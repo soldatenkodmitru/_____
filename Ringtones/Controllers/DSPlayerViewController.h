@@ -16,6 +16,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "AFNetworking.h"
 
 @interface DSPlayerViewController : ViewController <DSRateViewDelegate>
 

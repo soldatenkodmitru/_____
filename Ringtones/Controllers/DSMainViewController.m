@@ -18,6 +18,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "DSPlaylistItem.h"
 #import "DSDataManager.h"
+#import "GMDCircleLoader.h"
 
 
 typedef enum {
@@ -36,7 +37,7 @@ typedef enum {
     @property (assign, nonatomic) NSInteger selectedSearch;
     @property (strong,nonatomic)  NSThread* thread;
     @property (weak, nonatomic) UIImage* selectedImage;
-    @property (strong, nonatomic) MBProgressHUD* HUD;
+  
 @end
 
 @implementation DSMainViewController
@@ -111,14 +112,19 @@ typedef enum {
     
     [[DSServerManager sharedManager]getSongWithFilter:filter OnSuccess:^(NSArray *songs)
     {
+        
         DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] init];
         playlist.songsArray = [NSArray arrayWithArray:songs];
         self.baseArray =  [NSArray arrayWithObject:playlist];
-     
+        [GMDCircleLoader hideFromView:self.view animated:YES];
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
         [self.tableView reloadData];
         
     } onFailure:^(NSError *error, NSInteger statusCode) {
+        
+        [GMDCircleLoader hideFromView:self.view animated:YES];
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
     }];
     
@@ -128,6 +134,8 @@ typedef enum {
     
     [[DSServerManager sharedManager]getSongWithDays:days OnSuccess:^(NSArray *songs)
      {
+         [GMDCircleLoader hideFromView:self.view animated:YES];
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
          DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] init];
          playlist.songsArray = [NSArray arrayWithArray:songs];
          self.baseArray = [NSArray arrayWithObject:playlist];
@@ -135,6 +143,8 @@ typedef enum {
          [self.tableView reloadData];
          
      } onFailure:^(NSError *error, NSInteger statusCode) {
+         [GMDCircleLoader hideFromView:self.view animated:YES];
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
          NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
      }];
     
@@ -203,6 +213,8 @@ typedef enum {
     
     self.tableView.editing = !self.tableView.editing;
 }
+
+
 
 -(void)showPopUp{
 }
@@ -428,26 +440,24 @@ typedef enum {
 #pragma mark -  UITabBarDelegate
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-   self.HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:self.HUD];
-    
-    self.HUD.delegate = self;
-    self.HUD.labelText = @"Loading";
+
     switch (item.tag)
     {
         case 1:
+             [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             self.navigationItem.title = @"Топ Русский";
+            [GMDCircleLoader setOnView:self.view withTitle:@"" animated:YES];
             [self getSongsFromServerWithFilter:@"rus"];
             break;
         case 2:
+            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             self.navigationItem.title = @"Топ Английский";
-           
-           
-            
-            [self.HUD showWhileExecuting:@selector(getSongsFromServerWithFilter:) onTarget:self withObject:@"eng" animated:YES];
-            //[self getSongsFromServerWithFilter:@"eng"];
+           [GMDCircleLoader setOnView:self.view withTitle:@"" animated:YES];
+            [self getSongsFromServerWithFilter:@"eng"];
             break;
         case 3:
+            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+            [GMDCircleLoader setOnView:self.view withTitle:@"" animated:YES];
             self.navigationItem.title = @"Новые";
             [self getPeriodSongs];
             break;
@@ -487,13 +497,9 @@ typedef enum {
            [self getPlaylistSongs];
     }
 }
-#pragma mark - MBProgressHUDDelegate
 
-- (void)hudWasHidden:(MBProgressHUD *)hud {
-    // Remove HUD from screen when the HUD was hidded
-    [self.HUD removeFromSuperview];
-    self.HUD = nil;
-}
+
+
 
 
 #pragma mark - UISearchBarDelegate
