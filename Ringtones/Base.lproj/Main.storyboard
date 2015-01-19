@@ -15,6 +15,7 @@
             <string>Helvetica-4-Light</string>
             <string>Helvetica-4-Light</string>
             <string>Helvetica-4-Light</string>
+            <string>Helvetica-4-Light</string>
         </mutableArray>
         <mutableArray key="Helv-5-Normal.ttf">
             <string>Helvetica-5-Normal</string>
@@ -229,25 +230,42 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXU-CC-dH2">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-4-Light" family="Helvetica-4-Light" pointSize="24"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="0.0" y="13" width="40" height="38"/>
+                                                    </variation>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerX" secondItem="Jna-Ay-wwy" secondAttribute="centerX" constant="-17.5" id="EQp-ad-67b"/>
                                                 <constraint firstItem="TGR-vV-ZfE" firstAttribute="top" secondItem="1iw-cC-lv6" secondAttribute="top" id="QSJ-vu-5ZC">
                                                     <variation key="widthClass=compact" constant="5"/>
                                                 </constraint>
-                                                <constraint firstItem="CVO-7F-sgs" firstAttribute="leading" secondItem="TGR-vV-ZfE" secondAttribute="trailing" constant="28" id="Qro-ql-oXJ"/>
+                                                <constraint firstItem="CVO-7F-sgs" firstAttribute="leading" secondItem="TGR-vV-ZfE" secondAttribute="trailing" constant="28" id="Qro-ql-oXJ">
+                                                    <variation key="widthClass=compact" constant="6"/>
+                                                </constraint>
                                                 <constraint firstItem="BKR-m9-THb" firstAttribute="top" secondItem="1iw-cC-lv6" secondAttribute="topMargin" id="Zn2-DI-7MP"/>
-                                                <constraint firstItem="BKR-m9-THb" firstAttribute="leading" secondItem="TGR-vV-ZfE" secondAttribute="trailing" constant="28" id="aoJ-cx-bwI"/>
+                                                <constraint firstItem="BKR-m9-THb" firstAttribute="leading" secondItem="TGR-vV-ZfE" secondAttribute="trailing" constant="28" id="aoJ-cx-bwI">
+                                                    <variation key="widthClass=compact" constant="6"/>
+                                                </constraint>
                                                 <constraint firstItem="Jna-Ay-wwy" firstAttribute="top" secondItem="TGR-vV-ZfE" secondAttribute="bottom" constant="3" id="bgx-lK-Lg9"/>
                                                 <constraint firstAttribute="centerX" secondItem="BKR-m9-THb" secondAttribute="centerX" id="djg-gZ-jtO">
-                                                    <variation key="widthClass=compact" constant="-33"/>
+                                                    <variation key="widthClass=compact" constant="-41"/>
                                                 </constraint>
                                                 <constraint firstAttribute="trailingMargin" secondItem="BKR-m9-THb" secondAttribute="trailing" constant="19" id="nCR-1O-gps"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="CVO-7F-sgs" secondAttribute="trailing" constant="19" id="r5R-uk-003"/>
-                                                <constraint firstAttribute="centerX" secondItem="CVO-7F-sgs" secondAttribute="centerX" constant="-33" id="uK7-gc-Uvz"/>
+                                                <constraint firstAttribute="centerX" secondItem="CVO-7F-sgs" secondAttribute="centerX" constant="-33" id="uK7-gc-Uvz">
+                                                    <variation key="widthClass=compact" constant="-41"/>
+                                                </constraint>
                                                 <constraint firstItem="CVO-7F-sgs" firstAttribute="top" secondItem="BKR-m9-THb" secondAttribute="bottom" constant="2" id="vFx-cH-Oq8"/>
                                                 <constraint firstItem="Jna-Ay-wwy" firstAttribute="leading" secondItem="1iw-cC-lv6" secondAttribute="leadingMargin" constant="27" id="y64-Ia-E0B"/>
-                                                <constraint firstItem="TGR-vV-ZfE" firstAttribute="leading" secondItem="1iw-cC-lv6" secondAttribute="leadingMargin" constant="2" id="zgL-MO-n9b"/>
+                                                <constraint firstItem="TGR-vV-ZfE" firstAttribute="leading" secondItem="1iw-cC-lv6" secondAttribute="leadingMargin" constant="2" id="zgL-MO-n9b">
+                                                    <variation key="widthClass=compact" constant="32"/>
+                                                </constraint>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -255,6 +273,7 @@
                                                     <exclude reference="CVO-7F-sgs"/>
                                                     <exclude reference="BKR-m9-THb"/>
                                                     <exclude reference="Jna-Ay-wwy"/>
+                                                    <exclude reference="HXU-CC-dH2"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="Zn2-DI-7MP"/>
@@ -278,6 +297,7 @@
                                                     <include reference="CVO-7F-sgs"/>
                                                     <include reference="BKR-m9-THb"/>
                                                     <include reference="Jna-Ay-wwy"/>
+                                                    <include reference="HXU-CC-dH2"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="Zn2-DI-7MP"/>
@@ -300,6 +320,7 @@
                                         <connections>
                                             <outlet property="artistLabel" destination="BKR-m9-THb" id="dXx-Ya-hc7"/>
                                             <outlet property="image" destination="TGR-vV-ZfE" id="bvD-z4-Jve"/>
+                                            <outlet property="numberLabel" destination="HXU-CC-dH2" id="3ju-hR-fxA"/>
                                             <outlet property="titleLabel" destination="CVO-7F-sgs" id="a91-hw-GiR"/>
                                             <segue destination="TXZ-Bo-70P" kind="show" id="6jr-D0-ghm"/>
                                         </connections>

@@ -179,8 +179,8 @@ typedef enum {
     [cell addGestureRecognizer:gesture];
     cell.titleLabel.text = song.title;
     cell.artistLabel.text =song.artist;
-    
-    cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d.", indexPath.row+1];
+    //cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
   
 
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
