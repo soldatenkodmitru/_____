@@ -16,6 +16,7 @@
 		321BBFAD1A544663006B125C /* DSPlaylistPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */; };
 		321BBFB01A545EDA006B125C /* DSHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAF1A545EDA006B125C /* DSHeaderTableViewCell.m */; };
 		3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */; };
+		327885D11A6B31D000BFF3BC /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327885D01A6B31D000BFF3BC /* Entitlements.plist */; };
 		32A2D1BE1A67753B00C64A3F /* button_favorites_tb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A2D1B41A67753B00C64A3F /* button_favorites_tb@3x.png */; };
 		32A2D1BF1A67753B00C64A3F /* button_new_tb_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A2D1B51A67753B00C64A3F /* button_new_tb_s@3x.png */; };
 		32A2D1C01A67753B00C64A3F /* button_new_tb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A2D1B61A67753B00C64A3F /* button_new_tb@3x.png */; };
@@ -115,6 +116,11 @@
 		32CEA3051A49B8DA006AD7CC /* DSSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3041A49B8DA006AD7CC /* DSSoundManager.m */; };
 		32D51AB51A58A75000973B24 /* DSPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D51AB41A58A75000973B24 /* DSPlaylist.m */; };
 		32D51AB81A58B4BF00973B24 /* DSPlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D51AB71A58B4BF00973B24 /* DSPlaylistItem.m */; };
+		32EF409F1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EF409A1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m */; };
+		32EF40A01A6C65FE00A9E5B5 /* DaiVolume+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EF409C1A6C65FE00A9E5B5 /* DaiVolume+Invocation.m */; };
+		32EF40A11A6C65FE00A9E5B5 /* DaiVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EF409E1A6C65FE00A9E5B5 /* DaiVolume.m */; };
+		32EF40A41A6CA0A100A9E5B5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EF40A31A6CA0A100A9E5B5 /* MBProgressHUD.m */; };
+		32F056B61A6BF244001BBC9D /* file.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 32F056B51A6BF244001BBC9D /* file.mp3 */; };
 		32FA53B01A4ACD4C00413D1A /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AA1A4ACD4C00413D1A /* download.png */; };
 		32FA53B11A4ACD4C00413D1A /* favourite.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AB1A4ACD4C00413D1A /* favourite.png */; };
 		32FA53B21A4ACD4C00413D1A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 32FA53AC1A4ACD4C00413D1A /* pause.png */; };
@@ -155,6 +161,7 @@
 		321BBFAF1A545EDA006B125C /* DSHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSHeaderTableViewCell.m; path = Ringtones/Cells/DSHeaderTableViewCell.m; sourceTree = "<group>"; };
 		3238F8861A5798EC00F6F9BE /* DSSegmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSSegmentTableViewCell.h; path = Ringtones/Cells/DSSegmentTableViewCell.h; sourceTree = "<group>"; };
 		3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSegmentTableViewCell.m; path = Ringtones/Cells/DSSegmentTableViewCell.m; sourceTree = "<group>"; };
+		327885D01A6B31D000BFF3BC /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		32A2D1B01A676E9C00C64A3F /* Helv-2-ULight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Helv-2-ULight.ttf"; path = "Ringtones/fonts/Helv-2-ULight.ttf"; sourceTree = SOURCE_ROOT; };
 		32A2D1B11A676E9C00C64A3F /* Helv-4-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Helv-4-Light.ttf"; path = "Ringtones/fonts/Helv-4-Light.ttf"; sourceTree = SOURCE_ROOT; };
 		32A2D1B21A676E9C00C64A3F /* Helv-5-Normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Helv-5-Normal.ttf"; path = "Ringtones/fonts/Helv-5-Normal.ttf"; sourceTree = SOURCE_ROOT; };
@@ -316,6 +323,15 @@
 		32D51AB61A58B4BF00973B24 /* DSPlaylistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylistItem.h; path = Ringtones/CoreDataModel/DSPlaylistItem.h; sourceTree = "<group>"; };
 		32D51AB71A58B4BF00973B24 /* DSPlaylistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylistItem.m; path = Ringtones/CoreDataModel/DSPlaylistItem.m; sourceTree = "<group>"; };
 		32D51AB91A58B8F400973B24 /* Ringtones 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Ringtones 2.xcdatamodel"; sourceTree = "<group>"; };
+		32EF40991A6C65FE00A9E5B5 /* DaiVolume+AccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiVolume+AccessObject.h"; sourceTree = "<group>"; };
+		32EF409A1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiVolume+AccessObject.m"; sourceTree = "<group>"; };
+		32EF409B1A6C65FE00A9E5B5 /* DaiVolume+Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiVolume+Invocation.h"; sourceTree = "<group>"; };
+		32EF409C1A6C65FE00A9E5B5 /* DaiVolume+Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiVolume+Invocation.m"; sourceTree = "<group>"; };
+		32EF409D1A6C65FE00A9E5B5 /* DaiVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiVolume.h; sourceTree = "<group>"; };
+		32EF409E1A6C65FE00A9E5B5 /* DaiVolume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiVolume.m; sourceTree = "<group>"; };
+		32EF40A21A6CA0A100A9E5B5 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Ringtones/libs/MBProgressHUD.h; sourceTree = "<group>"; };
+		32EF40A31A6CA0A100A9E5B5 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Ringtones/libs/MBProgressHUD.m; sourceTree = "<group>"; };
+		32F056B51A6BF244001BBC9D /* file.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = file.mp3; path = Ringtones/resource/file.mp3; sourceTree = "<group>"; };
 		32FA53AA1A4ACD4C00413D1A /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = download.png; path = Ringtones/images/download.png; sourceTree = "<group>"; };
 		32FA53AB1A4ACD4C00413D1A /* favourite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favourite.png; path = Ringtones/images/favourite.png; sourceTree = "<group>"; };
 		32FA53AC1A4ACD4C00413D1A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = Ringtones/images/pause.png; sourceTree = "<group>"; };
@@ -364,6 +380,7 @@
 		320AEB9B1A5318D600CAAD08 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				32F056B51A6BF244001BBC9D /* file.mp3 */,
 				32A2D1AF1A676E7400C64A3F /* fonts */,
 				320AEBA41A53363300CAAD08 /* potap.jpeg */,
 				320AEBA51A53363300CAAD08 /* kreed.jpeg */,
@@ -532,6 +549,7 @@
 		32CE4E931A483BC20022AE0F = {
 			isa = PBXGroup;
 			children = (
+				327885D01A6B31D000BFF3BC /* Entitlements.plist */,
 				320AEB9B1A5318D600CAAD08 /* resources */,
 				32B801351A509C9C0055E5AC /* CoreDataModel */,
 				32A6F8E31A4D6CF9006CB6D8 /* view */,
@@ -601,6 +619,9 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				32EF40A21A6CA0A100A9E5B5 /* MBProgressHUD.h */,
+				32EF40A31A6CA0A100A9E5B5 /* MBProgressHUD.m */,
+				32EF40981A6C65FE00A9E5B5 /* DaiVolume */,
 				32A6F8ED1A4DA364006CB6D8 /* DOUAudioStreamer */,
 				32FA53BA1A4B1BEC00413D1A /* StreamingKit */,
 				32CEA2FB1A49691A006AD7CC /* AFHTTPRequestOperationLogger.h */,
@@ -711,6 +732,20 @@
 				3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */,
 			);
 			name = cells;
+			sourceTree = "<group>";
+		};
+		32EF40981A6C65FE00A9E5B5 /* DaiVolume */ = {
+			isa = PBXGroup;
+			children = (
+				32EF40991A6C65FE00A9E5B5 /* DaiVolume+AccessObject.h */,
+				32EF409A1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m */,
+				32EF409B1A6C65FE00A9E5B5 /* DaiVolume+Invocation.h */,
+				32EF409C1A6C65FE00A9E5B5 /* DaiVolume+Invocation.m */,
+				32EF409D1A6C65FE00A9E5B5 /* DaiVolume.h */,
+				32EF409E1A6C65FE00A9E5B5 /* DaiVolume.m */,
+			);
+			name = DaiVolume;
+			path = Ringtones/libs/DaiVolume;
 			sourceTree = "<group>";
 		};
 		32FA53A91A4ACC2700413D1A /* images */ = {
@@ -859,6 +894,7 @@
 				32CB70721A66903000232DE3 /* button_settings@3x.png in Resources */,
 				32CB70891A66904B00232DE3 /* button_back@2x.png in Resources */,
 				32CB708F1A66904B00232DE3 /* button_share_s@3x.png in Resources */,
+				327885D11A6B31D000BFF3BC /* Entitlements.plist in Resources */,
 				32CE4EAE1A483BC20022AE0F /* Main.storyboard in Resources */,
 				32CB709A1A6690CE00232DE3 /* separator_for_nb@3x.png in Resources */,
 				32CB705A1A6677C900232DE3 /* button_favorites_tb_s@3x.png in Resources */,
@@ -870,6 +906,7 @@
 				32CB705C1A66892C00232DE3 /* Helv-4-Light.ttf in Resources */,
 				32CB70971A6690CE00232DE3 /* cover_blank@3x.png in Resources */,
 				32CB708A1A66904B00232DE3 /* button_back@3x.png in Resources */,
+				32F056B61A6BF244001BBC9D /* file.mp3 in Resources */,
 				32A2D1C71A67753B00C64A3F /* button_top_ru_tb@3x.png in Resources */,
 				32A2D1C01A67753B00C64A3F /* button_new_tb@3x.png in Resources */,
 				32A2D1BF1A67753B00C64A3F /* button_new_tb_s@3x.png in Resources */,
@@ -927,6 +964,7 @@
 				32CE4F831A4860510022AE0F /* DSSong.m in Sources */,
 				32CE4F701A485F6B0022AE0F /* AFURLConnectionOperation.m in Sources */,
 				32CEA3051A49B8DA006AD7CC /* DSSoundManager.m in Sources */,
+				32EF40A41A6CA0A100A9E5B5 /* MBProgressHUD.m in Sources */,
 				32A6F91A1A4DA364006CB6D8 /* DOUAudioFilePreprocessor.m in Sources */,
 				32FA53D41A4B1BEC00413D1A /* STKHTTPDataSource.m in Sources */,
 				32CE4F6B1A485F6B0022AE0F /* AFHTTPRequestOperation.m in Sources */,
@@ -934,8 +972,11 @@
 				32A6F9161A4DA364006CB6D8 /* DOUAudioAnalyzer+Default.m in Sources */,
 				32D51AB81A58B4BF00973B24 /* DSPlaylistItem.m in Sources */,
 				32A6F9231A4DA364006CB6D8 /* DOUAudioVisualizer.m in Sources */,
+				32EF40A01A6C65FE00A9E5B5 /* DaiVolume+Invocation.m in Sources */,
 				32C6A8B61A67CF120014651D /* DSLikesSong.m in Sources */,
 				32FA53CE1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m in Sources */,
+				32EF409F1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m in Sources */,
+				32EF40A11A6C65FE00A9E5B5 /* DaiVolume.m in Sources */,
 				32CE4F771A485F6B0022AE0F /* UIButton+AFNetworking.m in Sources */,
 				32A6F9181A4DA364006CB6D8 /* DOUAudioDecoder.m in Sources */,
 				3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */,
@@ -1042,7 +1083,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1083,7 +1126,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1105,8 +1150,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				INFOPLIST_FILE = Ringtones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1118,8 +1163,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				INFOPLIST_FILE = Ringtones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

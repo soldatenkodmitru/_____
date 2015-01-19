@@ -27,7 +27,6 @@ typedef enum {
 
 @interface DSMainViewController ()
 
-    @property (weak,nonatomic) UISearchBar *searchBar;
     @property (strong, nonatomic) UIBarButtonItem* item;
     @property (strong, nonatomic) NSArray* baseArray;
     @property (strong, nonatomic) NSArray* playlistArray;
@@ -37,7 +36,7 @@ typedef enum {
     @property (assign, nonatomic) NSInteger selectedSearch;
     @property (strong,nonatomic)  NSThread* thread;
     @property (weak, nonatomic) UIImage* selectedImage;
-
+    @property (strong, nonatomic) MBProgressHUD* HUD;
 @end
 
 @implementation DSMainViewController
@@ -49,16 +48,22 @@ typedef enum {
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     self.selectedPeriod = 0;
     [self setDefaultPlaylists];
+
     self.baseArray = [[NSMutableArray alloc] init];
     self.item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPlaylist:)];
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.selectedSearch = DSSongSearch;
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchShow:)];
-    
-    self.navigationItem.leftBarButtonItem = item;
-    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"button_settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showPopUp)];
+    UIImage *blank = [UIImage imageNamed:@"ic_search.png"];
+    [self.searchBar setImage:blank forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    self.searchBar.layer.borderWidth = 1;
+    self.searchBar.layer.borderColor = self.searchBar.barTintColor.CGColor;
+    self.navigationItem.rightBarButtonItem = item;
+  [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor redColor], NSForegroundColorAttributeName,
+                                                
+                                                           [UIFont fontWithName:@"Helv-2-ULight" size:18.0], NSFontAttributeName, nil]];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -199,34 +204,7 @@ typedef enum {
     self.tableView.editing = !self.tableView.editing;
 }
 
-- (void)searchShow:(UIBarButtonItem *)sender {
-    
-    
-    UIBarButtonSystemItem item = UIBarButtonSystemItemEdit;
-    
-    
-    if ([self.navigationItem.titleView isKindOfClass:[UISearchBar class]]) {
-        
-        item = UIBarButtonSystemItemSearch;
-        
-        UISegmentedControl *control = [[UISegmentedControl alloc]initWithItems:@[@"Композиция",@"Исполнитель"]];
-        [control addTarget:self action:@selector(searchSongsControl:) forControlEvents:UIControlEventValueChanged];
-        control.selectedSegmentIndex = self.selectedSearch;
-        self.navigationItem.titleView = control;
-        
-    } else {
-        
-        UISearchBar *searchBar = [[UISearchBar alloc]init];
-        self.searchBar = searchBar;
-        self.searchBar.delegate = self;
-        self.navigationItem.titleView = self.searchBar;
-        
-    }
-    
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:item target:self action:@selector(searchShow:)];
-    
-    [self.navigationItem setLeftBarButtonItem:leftButton animated:YES];
-    
+-(void)showPopUp{
 }
 
 - (NSArray *)searchPlaylist:(NSArray *)array forType:(DSSortType)type withFilter:(NSString*)filter{
@@ -273,11 +251,7 @@ typedef enum {
 
 
 
-- (void)searchSongsControl:(UISegmentedControl *)sender {
-    
-    self.selectedSearch = sender.selectedSegmentIndex;
-    
-}
+
 - (void)searchInBackgroundWithFilter:(NSString*) filterString {
     
     if ([self.thread isExecuting]) {
@@ -454,24 +428,35 @@ typedef enum {
 #pragma mark -  UITabBarDelegate
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+   self.HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:self.HUD];
     
-    self.navigationItem.rightBarButtonItem = nil;
+    self.HUD.delegate = self;
+    self.HUD.labelText = @"Loading";
     switch (item.tag)
     {
         case 1:
+            self.navigationItem.title = @"Топ Русский";
             [self getSongsFromServerWithFilter:@"rus"];
             break;
         case 2:
-            [self getSongsFromServerWithFilter:@"eng"];
+            self.navigationItem.title = @"Топ Английский";
+           
+           
+            
+            [self.HUD showWhileExecuting:@selector(getSongsFromServerWithFilter:) onTarget:self withObject:@"eng" animated:YES];
+            //[self getSongsFromServerWithFilter:@"eng"];
             break;
         case 3:
+            self.navigationItem.title = @"Новые";
             [self getPeriodSongs];
             break;
         case 4:
+            self.navigationItem.title = @"Избранное";
             [self getFavoriteSongs];
             break;
         case 5:
-            self.navigationItem.rightBarButtonItem = self.item;
+            self.navigationItem.title = @"Плейлисты";
             [self getPlaylistSongs];
             break;
             
@@ -501,6 +486,13 @@ typedef enum {
        if ( [[DSDataManager dataManager]addPlaylistwithName:textfield.text] != nil)
            [self getPlaylistSongs];
     }
+}
+#pragma mark - MBProgressHUDDelegate
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [self.HUD removeFromSuperview];
+    self.HUD = nil;
 }
 
 

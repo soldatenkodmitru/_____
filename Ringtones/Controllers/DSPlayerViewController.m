@@ -7,10 +7,8 @@
 //
 
 #import "DSPlayerViewController.h"
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import <Foundation/Foundation.h>
+#import "DaiVolume.h"
+
 
 static void *kStatusKVOKey = &kStatusKVOKey;
 static void *kDurationKVOKey = &kDurationKVOKey;
@@ -46,7 +44,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.imageSong.image = self.pictureSong;
     self.startLbl.text = @"00:00";
     self.endLbl.text = @"00:00";
-    [self initVolume];
+ 
+    
     
     
 }
@@ -78,19 +77,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 
 #pragma mark - Self Methods
-- (void) initVolume {
-    
-    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
-    CGFloat systemVolume = musicPlayer.volume;
-    
-    self.volumeProgress.progress = [DOUAudioStreamer volume];
-    NSString *myExamplePath = [[NSBundle mainBundle] pathForResource:@"silence" ofType:@"mp3"];
-    AVAudioPlayer* p = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:myExamplePath] error:NULL];
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
-    [p prepareToPlay];
-    [p stop];
 
-}
 
 - (void) cancelStreamer
 {
@@ -152,7 +139,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void) updatePlayTime
 {
     
-    
+    self.volumeProgress.progress = [DaiVolume volume];
     self.endLbl.text = [self timeToString:self.streamer.duration];
     self.startLbl.text = [self timeToString:self.streamer.currentTime];
     [self.playProgress setProgress: (float)(self.streamer.currentTime/self.streamer.duration)  animated:YES];
