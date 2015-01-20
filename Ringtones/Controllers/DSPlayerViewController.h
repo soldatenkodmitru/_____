@@ -20,6 +20,12 @@
 
 @interface DSPlayerViewController : ViewController <DSRateViewDelegate>
 
+- (IBAction)playAction:(id)sender;
+- (IBAction)stopAction:(id)sender;
+- (IBAction)downloadAction:(id)sender;
+- (IBAction)favoriteAction:(id)sender;
+- (IBAction)shareAction:(id)sender;
+
 @property (strong, nonatomic) IBOutlet DSRateView* userRate;
 @property (strong, nonatomic) IBOutlet DSRateView* serverRate;
 @property (strong, nonatomic) IBOutlet UIImageView* imageSong;

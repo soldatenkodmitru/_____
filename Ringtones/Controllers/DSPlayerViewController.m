@@ -159,6 +159,22 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
     }];
 }
+#pragma mark - Actions
+- (IBAction)playAction:(id)sender{
+    
+}
+- (IBAction)stopAction:(id)sender{
+    
+}
+
+- (IBAction)shareAction:(id)sender{
+    UIImage *sendImage = self.pictureSong;
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
+                                                        initWithActivityItems:@[ sendImage] applicationActivities:nil];
+    activityViewController.excludedActivityTypes=@[UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll];
+    
+    [self presentViewController:activityViewController animated:YES completion:nil];
+}
 - (IBAction)favoriteAction:(id)sender {
     
     [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:sFull fileLink:[self download] imagelink:@""];
@@ -167,9 +183,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (IBAction)downloadAction:(id)sender {
     
     [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:@""];
-    
-    
-    
 }
 
 -(NSString*) download {
