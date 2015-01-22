@@ -20,6 +20,7 @@
         <mutableArray key="Helv-5-Normal.ttf">
             <string>Helvetica-5-Normal</string>
             <string>Helvetica-5-Normal</string>
+            <string>Helvetica-5-Normal</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -334,7 +335,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvh-UT-NCu">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-5-Normal" family="Helvetica-5-Normal" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

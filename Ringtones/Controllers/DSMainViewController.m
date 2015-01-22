@@ -161,6 +161,12 @@ typedef enum {
     return [playlist.songsArray count] ;
     
 }
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+     if(self.tabBar.selectedItem.tag == 5)
+        return YES;
+      else
+        return NO;
+}
 //- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
 //    return NO;
 //}
@@ -391,7 +397,7 @@ typedef enum {
     if (self.tabBar.selectedItem.tag == 3){
         return 40;
     }else if(self.tabBar.selectedItem.tag == 5){
-        return 50;
+        return 30;
     }else{
         return 0;
     }
@@ -411,14 +417,47 @@ typedef enum {
     }
     else if (self.tabBar.selectedItem.tag == 5 ){
      
-        DSHeaderTableViewCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"header"];
+      /*  DSHeaderTableViewCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"header"];
         if (!headerCell) {
             headerCell = [[DSHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"header"];}
         headerCell.deleteButton.tag = section;
         [headerCell.deleteButton addTarget:self action:@selector(deletePlaylist:) forControlEvents: UIControlEventTouchUpInside];
         DSPlaylistPlayer* list =  [self.playlistArray objectAtIndex:section];
         headerCell.nameLabel.text = list.name;
-        return headerCell;
+        
+        
+        while (headerCell.contentView.gestureRecognizers.count) {
+            [headerCell.contentView removeGestureRecognizer:[headerCell.contentView.gestureRecognizers objectAtIndex:0]];
+        }
+        
+        //return headerCell.contentView;
+        return headerCell; */
+        // 1. The view for the header
+        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width,30)];
+       
+        UILabel* headerLabel = [[UILabel alloc] init];
+        headerLabel.frame = CGRectMake(20, 5, tableView.frame.size.width - 100, 20);
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = [UIColor   blackColor];
+        headerLabel.font = [UIFont fontWithName:@"Helvetica-5-Normal" size:18];
+        DSPlaylistPlayer* list =  [self.playlistArray objectAtIndex:section];
+        headerLabel.text = list.name;;
+        headerLabel.textAlignment = NSTextAlignmentLeft;
+        
+        UIButton* headerButton = [[UIButton alloc] init];
+        headerButton.frame = CGRectMake(tableView.frame.size.width - 80, 5, 70 , 20);
+        headerButton.backgroundColor = [UIColor clearColor];
+        [headerButton setTitle:@"Удалить" forState:UIControlStateNormal];
+        headerButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-5-Normal" size:18];
+        [headerButton setTitleColor:[UIColor   blackColor]  forState:UIControlStateNormal];
+        headerButton.tag = section;
+        [headerButton addTarget:self action:@selector(deletePlaylist:) forControlEvents: UIControlEventTouchUpInside];
+    
+        [headerView addSubview:headerButton];
+        [headerView addSubview:headerLabel];
+        
+
+        return headerView;
         
     }
         
