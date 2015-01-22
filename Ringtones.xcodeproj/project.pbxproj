@@ -48,6 +48,9 @@
 		32A6F9271A4DA364006CB6D8 /* NSData+DOUMappedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9151A4DA364006CB6D8 /* NSData+DOUMappedFile.m */; };
 		32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */; };
 		32B90F791A702ED90025B4C0 /* button_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B90F781A702ED90025B4C0 /* button_settings@2x.png */; };
+		32B90F7C1A707F2A0025B4C0 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B90F7B1A707F2A0025B4C0 /* ActionSheetStringPicker.m */; };
+		32B90F7F1A70812F0025B4C0 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B90F7E1A70812F0025B4C0 /* AbstractActionSheetPicker.m */; };
+		32B90F821A7085290025B4C0 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B90F811A7085290025B4C0 /* SWActionSheet.m */; };
 		32C2F4831A6D15910094A92A /* GMDCircleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C2F4821A6D15910094A92A /* GMDCircleLoader.m */; };
 		32C6A8AF1A67C50B0014651D /* DSPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C6A8AE1A67C50B0014651D /* DSPlayerViewController.m */; };
 		32C6A8B61A67CF120014651D /* DSLikesSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C6A8B51A67CF120014651D /* DSLikesSong.m */; };
@@ -220,6 +223,12 @@
 		32A6F9281A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOUMPMediaLibraryAssetLoader.h; sourceTree = "<group>"; };
 		32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOUMPMediaLibraryAssetLoader.m; sourceTree = "<group>"; };
 		32B90F781A702ED90025B4C0 /* button_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_settings@2x.png"; path = "Ringtones/images/navbar/button_settings@2x.png"; sourceTree = "<group>"; };
+		32B90F7A1A707F2A0025B4C0 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetStringPicker.h; path = Ringtones/libs/ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		32B90F7B1A707F2A0025B4C0 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = Ringtones/libs/ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		32B90F7D1A70812F0025B4C0 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Ringtones/libs/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		32B90F7E1A70812F0025B4C0 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = Ringtones/libs/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		32B90F801A7085290025B4C0 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = Ringtones/libs/SWActionSheet.h; sourceTree = "<group>"; };
+		32B90F811A7085290025B4C0 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = Ringtones/libs/SWActionSheet.m; sourceTree = "<group>"; };
 		32C2F4811A6D15910094A92A /* GMDCircleLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDCircleLoader.h; sourceTree = "<group>"; };
 		32C2F4821A6D15910094A92A /* GMDCircleLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDCircleLoader.m; sourceTree = "<group>"; };
 		32C6A8AD1A67C50B0014651D /* DSPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlayerViewController.h; path = Ringtones/Controllers/DSPlayerViewController.h; sourceTree = "<group>"; };
@@ -629,6 +638,12 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				32B90F801A7085290025B4C0 /* SWActionSheet.h */,
+				32B90F811A7085290025B4C0 /* SWActionSheet.m */,
+				32B90F7D1A70812F0025B4C0 /* AbstractActionSheetPicker.h */,
+				32B90F7E1A70812F0025B4C0 /* AbstractActionSheetPicker.m */,
+				32B90F7A1A707F2A0025B4C0 /* ActionSheetStringPicker.h */,
+				32B90F7B1A707F2A0025B4C0 /* ActionSheetStringPicker.m */,
 				32C2F4801A6D15910094A92A /* GMDCircleLoader */,
 				32EF40981A6C65FE00A9E5B5 /* DaiVolume */,
 				32A6F8ED1A4DA364006CB6D8 /* DOUAudioStreamer */,
@@ -970,6 +985,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32A6F9201A4DA364006CB6D8 /* DOUAudioSpatialAnalyzer.m in Sources */,
+				32B90F7F1A70812F0025B4C0 /* AbstractActionSheetPicker.m in Sources */,
 				321BBFB01A545EDA006B125C /* DSHeaderTableViewCell.m in Sources */,
 				32A6F9211A4DA364006CB6D8 /* DOUAudioStreamer+Options.m in Sources */,
 				32A6F91C1A4DA364006CB6D8 /* DOUAudioFrequencyAnalyzer.m in Sources */,
@@ -1011,6 +1027,7 @@
 				32FA53D31A4B1BEC00413D1A /* STKDataSourceWrapper.m in Sources */,
 				32CE4F721A485F6B0022AE0F /* AFURLResponseSerialization.m in Sources */,
 				32CE4F7E1A485F790022AE0F /* DSServerManager.m in Sources */,
+				32B90F7C1A707F2A0025B4C0 /* ActionSheetStringPicker.m in Sources */,
 				32A6F9171A4DA364006CB6D8 /* DOUAudioAnalyzer.m in Sources */,
 				32CE4EA51A483BC20022AE0F /* AppDelegate.m in Sources */,
 				32CE4F861A4860790022AE0F /* DSSongTableViewCell.m in Sources */,
@@ -1019,6 +1036,7 @@
 				32CEA2FD1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m in Sources */,
 				32A6F91D1A4DA364006CB6D8 /* DOUAudioLPCM.m in Sources */,
 				32CE4F781A485F6B0022AE0F /* UIImageView+AFNetworking.m in Sources */,
+				32B90F821A7085290025B4C0 /* SWActionSheet.m in Sources */,
 				32CE4EA21A483BC20022AE0F /* main.m in Sources */,
 				32CE4F761A485F6B0022AE0F /* UIAlertView+AFNetworking.m in Sources */,
 				32A6F8E61A4D6DAE006CB6D8 /* DSRateView.m in Sources */,

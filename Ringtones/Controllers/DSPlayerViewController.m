@@ -7,6 +7,7 @@
 //
 
 #import "DSPlayerViewController.h"
+#import "ActionSheetStringPicker.h"
 #import "DaiVolume.h"
 
 
@@ -53,10 +54,12 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
     self.playBtn.selected = YES;
     self.stopBtn.selected = NO;
+   
     if ( [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song] >0 )
         self.favoriteBtn.selected = YES;
     else
         self.favoriteBtn.selected = NO;
+     [self setTitleVersion];
  
 }
 
@@ -141,6 +144,20 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     return time;
 }
 
+- (void) setTitleVersion {
+    switch (self.song.versionAudio){
+        case sFull:
+            self.versionBtn.titleLabel.text = @"   Полная версия";
+            break;
+        case sCut:
+            self.versionBtn.titleLabel.text = @"        Нарезка 1";
+            break;
+        case sRignton:
+            self.versionBtn.titleLabel.text = @"        Нарезка 2";
+            break;
+    }
+}
+
 #pragma mark - Timer
 - (void) updatePlayTime
 {
@@ -165,7 +182,24 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
     }];
 }
+#pragma mark - Implementation
+
+- (void)animalWasSelected:(NSNumber *)selectedIndex element:(id)element {
+     self.song.versionAudio = [selectedIndex intValue];
+    [self setTitleVersion];
+    
+}
+- (void)actionPickerCancelled:(id)sender {
+    NSLog(@"Delegate has been informed that ActionSheetPicker was cancelled");
+}
 #pragma mark - Actions
+- (IBAction)versionAction:(id)sender{
+    
+     [ActionSheetStringPicker showPickerWithTitle:@"Выберите версию" rows:[NSArray arrayWithObjects: @"Полная версия", @"Нарезка1",@"Нарезка2" , nil] initialSelection:self.song.versionAudio target:self successAction:@selector(animalWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+    
+}
+
+
 - (IBAction)playAction:(id)sender{
     if (self.playBtn.selected){
         [self.playProgress setProgress: 0 animated:NO];
