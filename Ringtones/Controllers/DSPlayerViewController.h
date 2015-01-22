@@ -25,10 +25,12 @@
 - (IBAction)downloadAction:(id)sender;
 - (IBAction)favoriteAction:(id)sender;
 - (IBAction)shareAction:(id)sender;
+- (IBAction)versionAction:(id)sender;
 
 @property (strong, nonatomic) IBOutlet DSRateView* userRate;
 @property (strong, nonatomic) IBOutlet DSRateView* serverRate;
 @property (strong, nonatomic) IBOutlet UIImageView* imageSong;
+@property (strong, nonatomic) IBOutlet UIButton *versionBtn;
 @property (strong, nonatomic) IBOutlet UIButton *playBtn;
 @property (strong, nonatomic) IBOutlet UIButton *favoriteBtn;
 @property (strong, nonatomic) IBOutlet UIButton *stopBtn;

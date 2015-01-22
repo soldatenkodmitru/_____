@@ -23,6 +23,7 @@
 - (NSURL *)applicationDocumentsDirectory;
 - (void) addLikeForSong:(NSInteger)id_song withRating:(float) rating;
 - (float) existsLikeForSong:(NSInteger) id_song;
+- (double) findSongForPlaylistName:(NSString*) name song:(DSSong*) song;
 
 - (DSPlaylist*) addPlaylistwithName:(NSString*) name ;
 - (NSMutableArray*) allPlaylists;
@@ -36,7 +37,6 @@
 - (void)  addPlaylistItemForNameList:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink;
 - (double)  addPlaylistItemForIdList:(double) itemId song:(DSSong*)  song;
 - (BOOL) deletePlaylistItemWithId:(double) ItemId;
-- (BOOL) movePlaylistItemWithId:(double) ItemId withListId:(double) listID;
 - (DSPlaylistItem*) findPlaylistItemWithId:(double) itemId;
 + (DSDataManager*) dataManager;
 

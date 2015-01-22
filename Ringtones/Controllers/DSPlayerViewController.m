@@ -21,8 +21,11 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [btn setBackgroundImage:[UIImage imageNamed:@"button_set_up.png"] forState:UIControlStateNormal];
+   // UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"button_set_up.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showInstruction)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
     self.userRate.rating = [[DSDataManager dataManager]existsLikeForSong:self.song.id_sound];
     if (self.userRate.rating > 0)
         self.userRate.editable = NO;
@@ -44,10 +47,17 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.imageSong.image = self.pictureSong;
     self.startLbl.text = @"00:00";
     self.endLbl.text = @"00:00";
+   
+    self.shareBtn.highlighted = NO;
+    self.downloadBtn.highlighted = NO;
+    
+    self.playBtn.selected = YES;
+    self.stopBtn.selected = NO;
+    if ( [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song] >0 )
+        self.favoriteBtn.selected = YES;
+    else
+        self.favoriteBtn.selected = NO;
  
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,12 +69,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 {
     [super viewWillAppear:animated];
     
-    [self resetStreamer];
-    [self.streamer play];
-    
-    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
-  
- 
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -77,7 +81,9 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 
 #pragma mark - Self Methods
-
+- (void) showInstruction {
+    
+}
 
 - (void) cancelStreamer
 {
@@ -142,10 +148,10 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.volumeProgress.progress = [DaiVolume volume];
     self.endLbl.text = [self timeToString:self.streamer.duration];
     self.startLbl.text = [self timeToString:self.streamer.currentTime];
-    [self.playProgress setProgress: (float)(self.streamer.currentTime/self.streamer.duration)  animated:YES];
-   
-   
-   
+    if (self.streamer.duration > 0)
+    {
+        [self.playProgress setProgress: (float)(self.streamer.currentTime/self.streamer.duration)  animated:YES];
+    }
 }
 
 #pragma mark - DSRateViewDelegate
@@ -161,39 +167,67 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 #pragma mark - Actions
 - (IBAction)playAction:(id)sender{
-    
+    if (self.playBtn.selected){
+        [self.playProgress setProgress: 0 animated:NO];
+        [self resetStreamer];
+        [self.streamer play];
+        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
+        self.stopBtn.selected = YES;
+        self.playBtn.selected = NO;
+        
+    }
 }
 - (IBAction)stopAction:(id)sender{
-    
+    if (self.stopBtn.selected){
+        [self.streamer stop];
+        self.playBtn.selected = YES;
+        self.stopBtn.selected = NO;
+        [self.playProgress setProgress: 0 animated:NO];
+    }
 }
 
 - (IBAction)shareAction:(id)sender{
     UIImage *sendImage = self.pictureSong;
+    self.shareBtn.highlighted = YES;
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
-                                                        initWithActivityItems:@[ sendImage] applicationActivities:nil];
+                                                        initWithActivityItems:@[@"Best rigtones http:\\google.com", sendImage] applicationActivities:nil];
     activityViewController.excludedActivityTypes=@[UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll];
     
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 - (IBAction)favoriteAction:(id)sender {
-    
-    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:sFull fileLink:[self download] imagelink:@""];
-    
+  
+    if (!self.favoriteBtn.selected){
+        [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:sFull fileLink:[self download] imagelink:[self saveImage]];
+    }
+    else{
+        double idItem = [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song];
+        [[DSDataManager dataManager] deletePlaylistItemWithId:idItem];
+        
+    }
+    self.favoriteBtn.selected = !self.favoriteBtn.selected;
 }
 - (IBAction)downloadAction:(id)sender {
     
-    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:@""];
+    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:[self saveImage]];
+}
+-(NSString*) saveImage{
+    
+    NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self.song.albumLink lastPathComponent]];
+    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.pictureSong)];
+    [data writeToFile:fullPath atomically:YES];
+    return fullPath;
+    
 }
 
 -(NSString*) download {
-    // NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.song.fileLink]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:self.song.fileLink]];
+ 
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.song.fileLink]];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *fullPath = [ documentsDirectory stringByAppendingPathComponent:[self.song.fileLink lastPathComponent]];
     
-    //NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self.song.fileLink lastPathComponent]];
     
     [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:fullPath append:NO]];
     

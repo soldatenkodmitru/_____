@@ -232,6 +232,32 @@
     }
     
 }
+- (double) findSongForPlaylistName:(NSString*) name song:(DSSong*) song{
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription* description =
+    [NSEntityDescription entityForName:@"DSPlaylistItem"
+                inManagedObjectContext:self.managedObjectContext];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"id_song == %@ AND version == %@",[ NSNumber numberWithInteger:song.id_sound], [NSNumber numberWithInteger:song.versionAudio]];
+    
+    [request setEntity:description];
+    [request setPredicate:predicate];
+    
+    NSError* requestError = nil;
+    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"%@", [requestError localizedDescription]);
+    }
+    for(DSPlaylistItem* item in resultArray){
+        if( [item.owner.name isEqualToString:name] ){
+            return [item.id doubleValue];
+        }
+        
+    }
+    return 0;
+}
+
 - (DSPlaylistItem*) findPlaylistItemWithId:(double) itemId {
     
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
