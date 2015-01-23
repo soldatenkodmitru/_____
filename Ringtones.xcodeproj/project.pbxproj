@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32059F161A71F90A009F2493 /* TSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F0C1A71F90A009F2493 /* TSActionSheet.m */; };
+		32059F171A71F90A009F2493 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F0E1A71F90A009F2493 /* TSPopoverController.m */; };
+		32059F181A71F90A009F2493 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F101A71F90A009F2493 /* TSPopoverPopoverView.m */; };
+		32059F191A71F90A009F2493 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F131A71F90A009F2493 /* TSPopoverTouchView.m */; };
 		320AEB9D1A53191000CAAD08 /* album.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 320AEB9C1A53191000CAAD08 /* album.mp3 */; };
 		320AEB9F1A53249200CAAD08 /* album.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 320AEB9E1A53249200CAAD08 /* album.jpeg */; };
 		320AEBA21A5335CB00CAAD08 /* kreed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 320AEBA01A5335CB00CAAD08 /* kreed.mp3 */; };
@@ -14,7 +18,7 @@
 		320AEBA61A53363300CAAD08 /* potap.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 320AEBA41A53363300CAAD08 /* potap.jpeg */; };
 		320AEBA71A53363300CAAD08 /* kreed.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 320AEBA51A53363300CAAD08 /* kreed.jpeg */; };
 		321BBFAD1A544663006B125C /* DSPlaylistPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */; };
-		321BBFB01A545EDA006B125C /* DSHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAF1A545EDA006B125C /* DSHeaderTableViewCell.m */; };
+		321BBFB01A545EDA006B125C /* DSAddPlaylistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAF1A545EDA006B125C /* DSAddPlaylistTableViewCell.m */; };
 		3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */; };
 		324CF12F1A6ED55A00E3FDE6 /* button_share_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324CF12E1A6ED55A00E3FDE6 /* button_share_s@3x.png */; };
 		327885D11A6B31D000BFF3BC /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327885D01A6B31D000BFF3BC /* Entitlements.plist */; };
@@ -152,6 +156,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32059F0B1A71F90A009F2493 /* TSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSActionSheet.h; sourceTree = "<group>"; };
+		32059F0C1A71F90A009F2493 /* TSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSActionSheet.m; sourceTree = "<group>"; };
+		32059F0D1A71F90A009F2493 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
+		32059F0E1A71F90A009F2493 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
+		32059F0F1A71F90A009F2493 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
+		32059F101A71F90A009F2493 /* TSPopoverPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverPopoverView.m; sourceTree = "<group>"; };
+		32059F111A71F90A009F2493 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
+		32059F121A71F90A009F2493 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
+		32059F131A71F90A009F2493 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
 		320AEB9C1A53191000CAAD08 /* album.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = album.mp3; sourceTree = "<group>"; };
 		320AEB9E1A53249200CAAD08 /* album.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = album.jpeg; sourceTree = "<group>"; };
 		320AEBA01A5335CB00CAAD08 /* kreed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kreed.mp3; sourceTree = "<group>"; };
@@ -160,8 +173,8 @@
 		320AEBA51A53363300CAAD08 /* kreed.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kreed.jpeg; sourceTree = "<group>"; };
 		321BBFAB1A544663006B125C /* DSPlaylistPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylistPlayer.h; path = Ringtones/Models/DSPlaylistPlayer.h; sourceTree = "<group>"; };
 		321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylistPlayer.m; path = Ringtones/Models/DSPlaylistPlayer.m; sourceTree = "<group>"; };
-		321BBFAE1A545EDA006B125C /* DSHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSHeaderTableViewCell.h; path = Ringtones/Cells/DSHeaderTableViewCell.h; sourceTree = "<group>"; };
-		321BBFAF1A545EDA006B125C /* DSHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSHeaderTableViewCell.m; path = Ringtones/Cells/DSHeaderTableViewCell.m; sourceTree = "<group>"; };
+		321BBFAE1A545EDA006B125C /* DSAddPlaylistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSAddPlaylistTableViewCell.h; path = Ringtones/Cells/DSAddPlaylistTableViewCell.h; sourceTree = "<group>"; };
+		321BBFAF1A545EDA006B125C /* DSAddPlaylistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSAddPlaylistTableViewCell.m; path = Ringtones/Cells/DSAddPlaylistTableViewCell.m; sourceTree = "<group>"; };
 		3238F8861A5798EC00F6F9BE /* DSSegmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSSegmentTableViewCell.h; path = Ringtones/Cells/DSSegmentTableViewCell.h; sourceTree = "<group>"; };
 		3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSegmentTableViewCell.m; path = Ringtones/Cells/DSSegmentTableViewCell.m; sourceTree = "<group>"; };
 		324CF12E1A6ED55A00E3FDE6 /* button_share_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_share_s@3x.png"; path = "Ringtones/images/buttons/button_share_s@3x.png"; sourceTree = "<group>"; };
@@ -386,6 +399,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32059F0A1A71F90A009F2493 /* TSPopover */ = {
+			isa = PBXGroup;
+			children = (
+				32059F0B1A71F90A009F2493 /* TSActionSheet.h */,
+				32059F0C1A71F90A009F2493 /* TSActionSheet.m */,
+				32059F0D1A71F90A009F2493 /* TSPopoverController.h */,
+				32059F0E1A71F90A009F2493 /* TSPopoverController.m */,
+				32059F0F1A71F90A009F2493 /* TSPopoverPopoverView.h */,
+				32059F101A71F90A009F2493 /* TSPopoverPopoverView.m */,
+				32059F111A71F90A009F2493 /* TSPopoverTouchesDelegate.h */,
+				32059F121A71F90A009F2493 /* TSPopoverTouchView.h */,
+				32059F131A71F90A009F2493 /* TSPopoverTouchView.m */,
+			);
+			name = TSPopover;
+			path = Ringtones/libs/TSPopover;
+			sourceTree = "<group>";
+		};
 		320AEB9B1A5318D600CAAD08 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +668,7 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				32059F0A1A71F90A009F2493 /* TSPopover */,
 				32B90F801A7085290025B4C0 /* SWActionSheet.h */,
 				32B90F811A7085290025B4C0 /* SWActionSheet.m */,
 				32B90F7D1A70812F0025B4C0 /* AbstractActionSheetPicker.h */,
@@ -750,8 +781,8 @@
 			children = (
 				32CE4F841A4860790022AE0F /* DSSongTableViewCell.h */,
 				32CE4F851A4860790022AE0F /* DSSongTableViewCell.m */,
-				321BBFAE1A545EDA006B125C /* DSHeaderTableViewCell.h */,
-				321BBFAF1A545EDA006B125C /* DSHeaderTableViewCell.m */,
+				321BBFAE1A545EDA006B125C /* DSAddPlaylistTableViewCell.h */,
+				321BBFAF1A545EDA006B125C /* DSAddPlaylistTableViewCell.m */,
 				3238F8861A5798EC00F6F9BE /* DSSegmentTableViewCell.h */,
 				3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */,
 			);
@@ -986,7 +1017,7 @@
 			files = (
 				32A6F9201A4DA364006CB6D8 /* DOUAudioSpatialAnalyzer.m in Sources */,
 				32B90F7F1A70812F0025B4C0 /* AbstractActionSheetPicker.m in Sources */,
-				321BBFB01A545EDA006B125C /* DSHeaderTableViewCell.m in Sources */,
+				321BBFB01A545EDA006B125C /* DSAddPlaylistTableViewCell.m in Sources */,
 				32A6F9211A4DA364006CB6D8 /* DOUAudioStreamer+Options.m in Sources */,
 				32A6F91C1A4DA364006CB6D8 /* DOUAudioFrequencyAnalyzer.m in Sources */,
 				32CE4F831A4860510022AE0F /* DSSong.m in Sources */,
@@ -1005,6 +1036,7 @@
 				32EF409F1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m in Sources */,
 				32EF40A11A6C65FE00A9E5B5 /* DaiVolume.m in Sources */,
 				32CE4F771A485F6B0022AE0F /* UIButton+AFNetworking.m in Sources */,
+				32059F181A71F90A009F2493 /* TSPopoverPopoverView.m in Sources */,
 				32A6F9181A4DA364006CB6D8 /* DOUAudioDecoder.m in Sources */,
 				3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */,
 				32CE4F6E1A485F6B0022AE0F /* AFNetworkReachabilityManager.m in Sources */,
@@ -1035,6 +1067,7 @@
 				32A6F9191A4DA364006CB6D8 /* DOUAudioEventLoop.m in Sources */,
 				32CEA2FD1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m in Sources */,
 				32A6F91D1A4DA364006CB6D8 /* DOUAudioLPCM.m in Sources */,
+				32059F171A71F90A009F2493 /* TSPopoverController.m in Sources */,
 				32CE4F781A485F6B0022AE0F /* UIImageView+AFNetworking.m in Sources */,
 				32B90F821A7085290025B4C0 /* SWActionSheet.m in Sources */,
 				32CE4EA21A483BC20022AE0F /* main.m in Sources */,
@@ -1048,11 +1081,13 @@
 				32CE4EAB1A483BC20022AE0F /* ViewController.m in Sources */,
 				32A6F91E1A4DA364006CB6D8 /* DOUAudioPlaybackItem.m in Sources */,
 				32CE4EA81A483BC20022AE0F /* Ringtones.xcdatamodeld in Sources */,
+				32059F161A71F90A009F2493 /* TSActionSheet.m in Sources */,
 				32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */,
 				32FA53D61A4B1BEC00413D1A /* STKQueueEntry.m in Sources */,
 				32CE4F6D1A485F6B0022AE0F /* AFHTTPSessionManager.m in Sources */,
 				32FA53D21A4B1BEC00413D1A /* STKDataSource.m in Sources */,
 				32C2F4831A6D15910094A92A /* GMDCircleLoader.m in Sources */,
+				32059F191A71F90A009F2493 /* TSPopoverTouchView.m in Sources */,
 				32CE4F751A485F6B0022AE0F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				32CE4F741A485F6B0022AE0F /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 BestAppStudio. All rights reserved.
 //
 
-#import "DSHeaderTableViewCell.h"
+#import "DSAddPlaylistTableViewCell.h"
 
-@implementation DSHeaderTableViewCell
+@implementation DSAddPlaylistTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code

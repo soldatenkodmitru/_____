@@ -9,7 +9,7 @@
 #import "DSMainViewController.h"
 #import "DSPlayerViewController.h"
 #import "DSSongTableViewCell.h"
-#import "DSHeaderTableViewCell.h"
+#import "DSAddPlaylistTableViewCell.h"
 #import "DSSegmentTableViewCell.h"
 #import "DSRateView.h"
 #import "DSServerManager.h"
@@ -19,6 +19,7 @@
 #import "DSPlaylistItem.h"
 #import "DSDataManager.h"
 #import "GMDCircleLoader.h"
+#import "TSActionSheet.h"
 
 
 typedef enum {
@@ -28,7 +29,7 @@ typedef enum {
 
 @interface DSMainViewController ()
 
-    @property (strong, nonatomic) UIBarButtonItem* item;
+    @property (strong, nonatomic) UIBarButtonItem* navBarItem;
     @property (strong, nonatomic) NSArray* baseArray;
     @property (strong, nonatomic) NSArray* playlistArray;
     @property (assign, nonatomic) NSInteger selectedSection;
@@ -51,10 +52,20 @@ typedef enum {
     [self setDefaultPlaylists];
 
     self.baseArray = [[NSMutableArray alloc] init];
-    self.item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPlaylist:)];
+
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.selectedSearch = DSSongSearch;
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"button_settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showPopUp)];
+    
+    UIImage *btnImg = [UIImage imageNamed:@"button_settings.png"];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0.f, 0.f, btnImg.size.width, btnImg.size.height);
+    [btn setImage:btnImg forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(showActionSheet:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    self.navBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemEdit target:self action:@selector(editMode)];
+    
     UIImage *blank = [UIImage imageNamed:@"ic_search.png"];
     [self.searchBar setImage:blank forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     self.searchBar.layer.borderWidth = 1;
@@ -158,11 +169,14 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:section];
-    return [playlist.songsArray count] ;
-    
+    if ( [self.playlistArray count ]   == section + 1  && self.tabBar.selectedItem.tag == 5)
+        return [playlist.songsArray count]  + 1 ;
+    else
+        return [playlist.songsArray count] ;
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-     if(self.tabBar.selectedItem.tag == 5)
+     DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:[indexPath section]];
+     if(self.tabBar.selectedItem.tag == 5 &&  [playlist.songsArray count] > [indexPath row])
         return YES;
       else
         return NO;
@@ -173,57 +187,111 @@ typedef enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString* identifier = @"song";
+    static NSString* identifierSong = @"song";
+    static NSString* identifierAdd = @"addPlaylist";
     DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:indexPath.section];
-    DSSongTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-    if (!cell) {
-        cell = [[DSSongTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];}
     
-    DSSong* song = [playlist.songsArray objectAtIndex:indexPath.row ];
-    UIGestureRecognizer * gesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
-    [cell addGestureRecognizer:gesture];
-    cell.titleLabel.text = song.title;
-    cell.artistLabel.text =song.artist;
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d.", indexPath.row+1];
-    //cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
+    if(self.tabBar.selectedItem.tag == 5 &&  indexPath.row+1 > [playlist.songsArray count] ){
+        
+        DSAddPlaylistTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifierAdd];
+        if (!cell) {
+            cell = [[DSAddPlaylistTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifierSong];}
+        [cell.addButton addTarget:self action:@selector(addPlaylist:) forControlEvents: UIControlEventTouchUpInside];
+        return cell;
+    }
+    else{
+        DSSongTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifierSong];
+        
+        if (!cell) {
+            cell = [[DSSongTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifierSong];}
+    
+        DSSong* song = [playlist.songsArray objectAtIndex:indexPath.row ];
+
+ 
+        cell.titleLabel.text = song.title;
+        cell.artistLabel.text =song.artist;
+        cell.numberLabel.text = [NSString stringWithFormat:@"%d.", indexPath.row+1];
+        //cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
   
 
-    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
-    //NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.albumLink]];
-    __weak DSSongTableViewCell* weakCell = cell;
+        NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
+        //NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.albumLink]];
+        __weak DSSongTableViewCell* weakCell = cell;
     
-    //cell.image.image = nil;
+        //cell.image.image = nil;
     
-   [cell.image
-     setImageWithURLRequest:request
-     placeholderImage:nil
-     success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        [cell.image
+         setImageWithURLRequest:request
+         placeholderImage:nil
+         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
          weakCell.image.image = image;
          CALayer *imageLayer = weakCell.image.layer;
          [imageLayer setCornerRadius:27.5f];
          [imageLayer setMasksToBounds:YES];
         // [weakCell layoutSubviews];
-     }
-     failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-         NSLog(@"error = %@", [error localizedDescription]);
-     }];
+         }
+         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+             NSLog(@"error = %@", [error localizedDescription]);
+         }];
     
-    
-    return cell;
+        return cell;
+    }
 }
 
 #pragma mark - Methods
 
--(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+-(void)editMode {
     
     self.tableView.editing = !self.tableView.editing;
 }
 
 
 
--(void)showPopUp{
-}
+
+-(void) showActionSheet:(id)sender  forEvent:(UIEvent*)event
+    {
+        TSActionSheet *actionSheet = [[TSActionSheet alloc] initWithTitle:@"Условие поиска"];
+        
+        switch (self.selectedSearch)
+        {
+            case DSSongSearch :
+            {
+                [actionSheet destructiveButtonWithTitle:@"название" block:^{
+                    self.selectedSearch = DSSongSearch;
+                    [self searchInBackgroundWithFilter:self.searchBar.text];
+                }];
+        
+                [actionSheet addButtonWithTitle:@"исполнитель" block:^{
+                    self.selectedSearch = DSArtistSearch;
+                    [self searchInBackgroundWithFilter:self.searchBar.text];
+                }];
+                break;
+            }
+            case DSArtistSearch:
+            {
+                [actionSheet addButtonWithTitle:@"название" block:^{
+                    self.selectedSearch = DSSongSearch;
+                    [self searchInBackgroundWithFilter:self.searchBar.text];
+                }];
+                
+                [actionSheet destructiveButtonWithTitle:@"исполнитель" block:^{
+                    self.selectedSearch = DSArtistSearch;
+                    [self searchInBackgroundWithFilter:self.searchBar.text];
+                }];
+                break;
+            }
+            default:
+                break;
+        }
+
+        //  [actionSheet cancelButtonWithTitle:@"Cancel" block:nil];
+        actionSheet.cornerRadius = 5;
+        
+        [actionSheet showWithTouch:event];
+    }
+
+
 
 - (NSArray *)searchPlaylist:(NSArray *)array forType:(DSSortType)type withFilter:(NSString*)filter{
    
@@ -290,9 +358,9 @@ typedef enum {
 
 
 
-- (void) addPlaylist:(UIBarButtonItem *)sender {
+- (void) addPlaylist:(UIButton*)sender {
     
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"set playlist name" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK",nil];
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Укажите название плейлиста" message:nil delegate:self cancelButtonTitle:@"Отмена" otherButtonTitles:@"Готово",nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView textFieldAtIndex:0].keyboardAppearance = UIKeyboardAppearanceDark;
     [alertView textFieldAtIndex:0].delegate = self;
@@ -388,8 +456,11 @@ typedef enum {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 65;
+    DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:indexPath.section];
+    if(self.tabBar.selectedItem.tag == 5 &&  indexPath.row+1 > [playlist.songsArray count] )
+        return 35;
+    else
+        return 65;
     
 }
 
@@ -480,6 +551,7 @@ typedef enum {
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
 
+    self.navigationItem.leftBarButtonItem = nil;
     switch (item.tag)
     {
         case 1:
@@ -505,6 +577,7 @@ typedef enum {
             [self getFavoriteSongs];
             break;
         case 5:
+            self.navigationItem.leftBarButtonItem  = self.navBarItem;
             self.navigationItem.title = @"Плейлисты";
             [self getPlaylistSongs];
             break;
@@ -516,7 +589,7 @@ typedef enum {
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ0123456789"] invertedSet];
+    NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ0123456789"] invertedSet];
     if ([string rangeOfCharacterFromSet:set].location != NSNotFound) {
         return NO;
     } else {
@@ -531,9 +604,10 @@ typedef enum {
     
     if (buttonIndex == 1) {
         UITextField *textfield = [alertView textFieldAtIndex:0];
-        
-       if ( [[DSDataManager dataManager]addPlaylistwithName:textfield.text] != nil)
-           [self getPlaylistSongs];
+        if( ![textfield.text isEqualToString:@""]){
+           if ( [[DSDataManager dataManager]addPlaylistwithName:textfield.text] != nil)
+            [self getPlaylistSongs];
+        }
     }
 }
 
