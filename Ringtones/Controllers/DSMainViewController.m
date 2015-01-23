@@ -71,10 +71,10 @@ typedef enum {
     self.searchBar.layer.borderWidth = 1;
     self.searchBar.layer.borderColor = self.searchBar.barTintColor.CGColor;
     self.navigationItem.rightBarButtonItem = item;
-  [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor redColor], NSForegroundColorAttributeName,
+  //[[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                  //         [UIColor redColor], NSForegroundColorAttributeName,
                                                 
-                                                           [UIFont fontWithName:@"Helv-2-ULight" size:18.0], NSFontAttributeName, nil]];
+                                                 //          [UIFont fontWithName:@"Helv-2-ULight" size:18.0], NSFontAttributeName, nil]];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

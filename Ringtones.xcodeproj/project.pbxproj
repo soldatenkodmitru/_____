@@ -20,6 +20,16 @@
 		321BBFAD1A544663006B125C /* DSPlaylistPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */; };
 		321BBFB01A545EDA006B125C /* DSAddPlaylistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAF1A545EDA006B125C /* DSAddPlaylistTableViewCell.m */; };
 		3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */; };
+		3244D9831A72FFAC00F9B600 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D97A1A72FFAC00F9B600 /* 1.png */; };
+		3244D9841A72FFAC00F9B600 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D97B1A72FFAC00F9B600 /* 2.png */; };
+		3244D9851A72FFAC00F9B600 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D97C1A72FFAC00F9B600 /* 3.png */; };
+		3244D9861A72FFAC00F9B600 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D97D1A72FFAC00F9B600 /* 4.png */; };
+		3244D9871A72FFAC00F9B600 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D97E1A72FFAC00F9B600 /* 5.png */; };
+		3244D9881A72FFAC00F9B600 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D97F1A72FFAC00F9B600 /* 6.png */; };
+		3244D9891A72FFAC00F9B600 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D9801A72FFAC00F9B600 /* 7.png */; };
+		3244D98A1A72FFAC00F9B600 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D9811A72FFAC00F9B600 /* 8.png */; };
+		3244D98B1A72FFAC00F9B600 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3244D9821A72FFAC00F9B600 /* 9.png */; };
+		3244D98F1A730ED300F9B600 /* NFXIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3244D98E1A730ED300F9B600 /* NFXIntroViewController.m */; };
 		324CF12F1A6ED55A00E3FDE6 /* button_share_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324CF12E1A6ED55A00E3FDE6 /* button_share_s@3x.png */; };
 		327885D11A6B31D000BFF3BC /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327885D01A6B31D000BFF3BC /* Entitlements.plist */; };
 		32A2D1BE1A67753B00C64A3F /* button_favorites_tb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A2D1B41A67753B00C64A3F /* button_favorites_tb@3x.png */; };
@@ -177,6 +187,17 @@
 		321BBFAF1A545EDA006B125C /* DSAddPlaylistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSAddPlaylistTableViewCell.m; path = Ringtones/Cells/DSAddPlaylistTableViewCell.m; sourceTree = "<group>"; };
 		3238F8861A5798EC00F6F9BE /* DSSegmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSSegmentTableViewCell.h; path = Ringtones/Cells/DSSegmentTableViewCell.h; sourceTree = "<group>"; };
 		3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSegmentTableViewCell.m; path = Ringtones/Cells/DSSegmentTableViewCell.m; sourceTree = "<group>"; };
+		3244D97A1A72FFAC00F9B600 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		3244D97B1A72FFAC00F9B600 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		3244D97C1A72FFAC00F9B600 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		3244D97D1A72FFAC00F9B600 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		3244D97E1A72FFAC00F9B600 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		3244D97F1A72FFAC00F9B600 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		3244D9801A72FFAC00F9B600 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		3244D9811A72FFAC00F9B600 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		3244D9821A72FFAC00F9B600 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		3244D98D1A730ED300F9B600 /* NFXIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NFXIntroViewController.h; sourceTree = "<group>"; };
+		3244D98E1A730ED300F9B600 /* NFXIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NFXIntroViewController.m; sourceTree = "<group>"; };
 		324CF12E1A6ED55A00E3FDE6 /* button_share_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_share_s@3x.png"; path = "Ringtones/images/buttons/button_share_s@3x.png"; sourceTree = "<group>"; };
 		327885D01A6B31D000BFF3BC /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		32A2D1B01A676E9C00C64A3F /* Helv-2-ULight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Helv-2-ULight.ttf"; path = "Ringtones/fonts/Helv-2-ULight.ttf"; sourceTree = SOURCE_ROOT; };
@@ -431,6 +452,33 @@
 			name = resources;
 			sourceTree = "<group>";
 		};
+		3244D9791A72FFAC00F9B600 /* instruction */ = {
+			isa = PBXGroup;
+			children = (
+				3244D97A1A72FFAC00F9B600 /* 1.png */,
+				3244D97B1A72FFAC00F9B600 /* 2.png */,
+				3244D97C1A72FFAC00F9B600 /* 3.png */,
+				3244D97D1A72FFAC00F9B600 /* 4.png */,
+				3244D97E1A72FFAC00F9B600 /* 5.png */,
+				3244D97F1A72FFAC00F9B600 /* 6.png */,
+				3244D9801A72FFAC00F9B600 /* 7.png */,
+				3244D9811A72FFAC00F9B600 /* 8.png */,
+				3244D9821A72FFAC00F9B600 /* 9.png */,
+			);
+			name = instruction;
+			path = Ringtones/images/instruction;
+			sourceTree = "<group>";
+		};
+		3244D98C1A730ED300F9B600 /* NFXTourViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3244D98D1A730ED300F9B600 /* NFXIntroViewController.h */,
+				3244D98E1A730ED300F9B600 /* NFXIntroViewController.m */,
+			);
+			name = NFXTourViewController;
+			path = Ringtones/libs/NFXTourViewController;
+			sourceTree = "<group>";
+		};
 		32A2D1AF1A676E7400C64A3F /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +716,7 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				3244D98C1A730ED300F9B600 /* NFXTourViewController */,
 				32059F0A1A71F90A009F2493 /* TSPopover */,
 				32B90F801A7085290025B4C0 /* SWActionSheet.h */,
 				32B90F811A7085290025B4C0 /* SWActionSheet.m */,
@@ -806,6 +855,7 @@
 		32FA53A91A4ACC2700413D1A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3244D9791A72FFAC00F9B600 /* instruction */,
 				32CB70911A66905900232DE3 /* other */,
 				32CB70601A668F5E00232DE3 /* buttons */,
 				32CB705F1A668F5100232DE3 /* navbar */,
@@ -938,6 +988,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3244D9881A72FFAC00F9B600 /* 6.png in Resources */,
 				32CB708E1A66904B00232DE3 /* button_selection@3x.png in Resources */,
 				320AEBA61A53363300CAAD08 /* potap.jpeg in Resources */,
 				32CB70871A66904B00232DE3 /* but_stop_s@3x.png in Resources */,
@@ -945,10 +996,14 @@
 				32CB708B1A66904B00232DE3 /* button_download_s@3x.png in Resources */,
 				32FA53B31A4ACD4C00413D1A /* play.png in Resources */,
 				320AEBA31A5335CB00CAAD08 /* potap.mp3 in Resources */,
+				3244D98A1A72FFAC00F9B600 /* 8.png in Resources */,
 				320AEBA21A5335CB00CAAD08 /* kreed.mp3 in Resources */,
+				3244D9841A72FFAC00F9B600 /* 2.png in Resources */,
 				32CB70681A66901500232DE3 /* ic_star_white_yellow_half@3x.png in Resources */,
 				32CB70881A66904B00232DE3 /* but_stop@3x.png in Resources */,
+				3244D9871A72FFAC00F9B600 /* 5.png in Resources */,
 				32CB708C1A66904B00232DE3 /* button_download@3x.png in Resources */,
+				3244D9851A72FFAC00F9B600 /* 3.png in Resources */,
 				32CB70721A66903000232DE3 /* button_settings@3x.png in Resources */,
 				32CB70891A66904B00232DE3 /* button_back@2x.png in Resources */,
 				327885D11A6B31D000BFF3BC /* Entitlements.plist in Resources */,
@@ -959,13 +1014,16 @@
 				32CB709B1A6690CE00232DE3 /* separator@3x.png in Resources */,
 				32B90F791A702ED90025B4C0 /* button_settings@2x.png in Resources */,
 				32A2D1C61A67753B00C64A3F /* button_top_ru_tb_s@3x.png in Resources */,
+				3244D9831A72FFAC00F9B600 /* 1.png in Resources */,
 				32C6A8B81A67D4F50014651D /* justin-timberlake-20132.jpg in Resources */,
 				32A2D1C11A67753B00C64A3F /* button_playlist_tb_s@3x.png in Resources */,
 				32CE4EB31A483BC20022AE0F /* LaunchScreen.xib in Resources */,
+				3244D98B1A72FFAC00F9B600 /* 9.png in Resources */,
 				32CB705C1A66892C00232DE3 /* Helv-4-Light.ttf in Resources */,
 				32CB70971A6690CE00232DE3 /* cover_blank@3x.png in Resources */,
 				32CB708A1A66904B00232DE3 /* button_back@3x.png in Resources */,
 				32F056B61A6BF244001BBC9D /* file.mp3 in Resources */,
+				3244D9891A72FFAC00F9B600 /* 7.png in Resources */,
 				32A2D1C71A67753B00C64A3F /* button_top_ru_tb@3x.png in Resources */,
 				32A2D1C01A67753B00C64A3F /* button_new_tb@3x.png in Resources */,
 				32A2D1BF1A67753B00C64A3F /* button_new_tb_s@3x.png in Resources */,
@@ -979,6 +1037,7 @@
 				32A2D1BE1A67753B00C64A3F /* button_favorites_tb@3x.png in Resources */,
 				32CB70821A66904B00232DE3 /* but_add_to_favorites_s@3x.png in Resources */,
 				320AEB9D1A53191000CAAD08 /* album.mp3 in Resources */,
+				3244D9861A72FFAC00F9B600 /* 4.png in Resources */,
 				32CB706A1A66901500232DE3 /* ic_star_white@3x.png in Resources */,
 				32CB70901A66904B00232DE3 /* button_share@3x.png in Resources */,
 				32A2D1C41A67753B00C64A3F /* button_top_en_tb_s@3x.png in Resources */,
@@ -1049,6 +1108,7 @@
 				32A6F9261A4DA364006CB6D8 /* DOUSimpleHTTPRequest.m in Sources */,
 				32FA53CF1A4B1BEC00413D1A /* STKAudioPlayer.m in Sources */,
 				32CE4F731A485F6B0022AE0F /* AFURLSessionManager.m in Sources */,
+				3244D98F1A730ED300F9B600 /* NFXIntroViewController.m in Sources */,
 				32CE4F711A485F6B0022AE0F /* AFURLRequestSerialization.m in Sources */,
 				32CE4F441A485F560022AE0F /* DSMainViewController.m in Sources */,
 				32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */,

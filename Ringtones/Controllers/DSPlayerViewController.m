@@ -8,6 +8,7 @@
 
 #import "DSPlayerViewController.h"
 #import "ActionSheetStringPicker.h"
+#import "NFXIntroViewController.h"
 #import "DaiVolume.h"
 
 
@@ -22,11 +23,15 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [btn setBackgroundImage:[UIImage imageNamed:@"button_set_up.png"] forState:UIControlStateNormal];
-   // UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"button_set_up.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showInstruction)];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    UIImage *btnImg = [UIImage imageNamed:@"button_set_up.png"];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0.f, 0.f, btnImg.size.width, btnImg.size.height);
+    [btn setImage:btnImg forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(showInstruction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
+    
+
     self.userRate.rating = [[DSDataManager dataManager]existsLikeForSong:self.song.id_sound];
     if (self.userRate.rating > 0)
         self.userRate.editable = NO;
@@ -85,6 +90,19 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 #pragma mark - Self Methods
 - (void) showInstruction {
+    
+    UIImage*i1 = [UIImage imageNamed:@"1.png"];
+    UIImage*i2 = [UIImage imageNamed:@"2.png"];
+    UIImage*i3 = [UIImage imageNamed:@"3.png"];
+    UIImage*i4 = [UIImage imageNamed:@"4.png"];
+    UIImage*i5 = [UIImage imageNamed:@"5.png"];
+    UIImage*i6 = [UIImage imageNamed:@"6.png"];
+    UIImage*i7 = [UIImage imageNamed:@"7.png"];
+    UIImage*i8 = [UIImage imageNamed:@"8.png"];
+    UIImage*i9 = [UIImage imageNamed:@"9.png"];
+    
+    NFXIntroViewController*vc = [[NFXIntroViewController alloc] initWithViews:@[i1,i2,i3,i4,i5,i2,i6,i7,i8,i9]];
+    [self presentViewController:vc animated:true completion:nil];
     
 }
 
