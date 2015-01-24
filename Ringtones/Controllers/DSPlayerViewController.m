@@ -65,7 +65,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     else
         self.favoriteBtn.selected = NO;
      [self setTitleVersion];
- 
+      self.volumeProgress.progress = [DaiVolume volume];
 }
 
 - (void)didReceiveMemoryWarning {

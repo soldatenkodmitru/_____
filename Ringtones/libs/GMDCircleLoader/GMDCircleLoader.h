@@ -48,7 +48,7 @@
 
 - (void)stop;
 
-+ (GMDCircleLoader *)setOnView:(UIView *)view withTitle:(NSString *)title animated:(BOOL)animated;
++ (GMDCircleLoader *)setOnView:(UIView *)view withRect: (CGRect) rect animated:(BOOL)animated;
 
 + (BOOL)hideFromView:(UIView *)view animated:(BOOL)animated;
 

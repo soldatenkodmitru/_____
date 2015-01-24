@@ -32,7 +32,7 @@
         /**
          *  setup viewcontroller
          */
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.view.backgroundColor = [UIColor colorWithRed:(228/255.0) green:(227/255.0) blue:(227/255.0) alpha:1];;
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         _images = images;
         
@@ -94,8 +94,8 @@
         [self.view addSubview:_scrollview];
         
         _pgcontrol = [[UIPageControl alloc] initWithFrame:CGRectZero];
-        _pgcontrol.pageIndicatorTintColor = [UIColor colorWithWhite:0.8 alpha:1];
-        _pgcontrol.currentPageIndicatorTintColor = [UIColor colorWithWhite:0.6 alpha:1];
+        _pgcontrol.pageIndicatorTintColor = [UIColor colorWithRed:(175/255.0) green:(175/255.0) blue:(175/255.0) alpha:1];
+        _pgcontrol.currentPageIndicatorTintColor = [UIColor colorWithRed:(67/255.0) green:(149/255.0) blue:(200/255.0) alpha:1];
         _pgcontrol.numberOfPages = _images.count;
         _pgcontrol.currentPage = 0;
         [_pgcontrol sizeToFit];

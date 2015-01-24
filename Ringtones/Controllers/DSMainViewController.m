@@ -557,18 +557,18 @@ typedef enum {
         case 1:
              [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             self.navigationItem.title = @"Топ Русский";
-            [GMDCircleLoader setOnView:self.view withTitle:@"" animated:YES];
+            [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
             [self getSongsFromServerWithFilter:@"rus"];
             break;
         case 2:
             [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             self.navigationItem.title = @"Топ Английский";
-           [GMDCircleLoader setOnView:self.view withTitle:@"" animated:YES];
+           [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
             [self getSongsFromServerWithFilter:@"eng"];
             break;
         case 3:
             [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-            [GMDCircleLoader setOnView:self.view withTitle:@"" animated:YES];
+            [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
             self.navigationItem.title = @"Новые";
             [self getPeriodSongs];
             break;
