@@ -38,7 +38,7 @@ typedef enum {
     @property (assign, nonatomic) NSInteger selectedSearch;
     @property (strong,nonatomic)  NSThread* thread;
     @property (weak, nonatomic) UIImage* selectedImage;
-  
+    @property (assign, nonatomic) bool noFirstLoad;
 @end
 
 @implementation DSMainViewController
@@ -46,6 +46,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     [self getSongsFromServerWithFilter:@"rus"];
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     self.selectedPeriod = 0;
@@ -76,6 +77,32 @@ typedef enum {
                                                 
                                                  //          [UIFont fontWithName:@"Helv-2-ULight" size:18.0], NSFontAttributeName, nil]];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.noFirstLoad){
+        switch (self.tabBar.selectedItem.tag) {
+        case 4:
+            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+            [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
+            [self getFavoriteSongs];
+            break;
+        case 5:
+            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+            [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
+            
+           [self getPlaylistSongs];
+            break;
+       }
+    }
+
+}
+- (void)viewDidAppear:(BOOL)animated {
+    if (!self.noFirstLoad){
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+        [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
+        self.noFirstLoad = YES;
+    }
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -99,6 +126,8 @@ typedef enum {
     self.baseArray = [NSArray arrayWithArray:[[DSDataManager dataManager] allPlaylists]];
     self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
      [self.tableView reloadData];
+    [GMDCircleLoader hideFromView:self.view animated:YES];
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
 }
 
 - (void) getFavoriteSongs{
@@ -110,6 +139,8 @@ typedef enum {
     self.baseArray = [NSArray arrayWithObject:playlist];
      self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
     [self.tableView reloadData];
+    [GMDCircleLoader hideFromView:self.view animated:YES];
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
    /*[[DSServerManager sharedManager] getSongWithPlaylist:@"1,2" OnSuccess:^(NSArray *songs) {
        self.songsArray = [NSArray arrayWithArray:songs];
        [self.tableView reloadData];
@@ -127,10 +158,10 @@ typedef enum {
         DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] init];
         playlist.songsArray = [NSArray arrayWithArray:songs];
         self.baseArray =  [NSArray arrayWithObject:playlist];
-        [GMDCircleLoader hideFromView:self.view animated:YES];
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
         [self.tableView reloadData];
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [GMDCircleLoader hideFromView:self.view animated:YES];
         
     } onFailure:^(NSError *error, NSInteger statusCode) {
         
@@ -145,13 +176,14 @@ typedef enum {
     
     [[DSServerManager sharedManager]getSongWithDays:days OnSuccess:^(NSArray *songs)
      {
-         [GMDCircleLoader hideFromView:self.view animated:YES];
-         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        
          DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] init];
          playlist.songsArray = [NSArray arrayWithArray:songs];
          self.baseArray = [NSArray arrayWithObject:playlist];
             self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];;
          [self.tableView reloadData];
+         [GMDCircleLoader hideFromView:self.view animated:YES];
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
          
      } onFailure:^(NSError *error, NSInteger statusCode) {
          [GMDCircleLoader hideFromView:self.view animated:YES];
@@ -186,7 +218,7 @@ typedef enum {
 //}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSURLRequest* request ;
     static NSString* identifierSong = @"song";
     static NSString* identifierAdd = @"addPlaylist";
     DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:indexPath.section];
@@ -215,12 +247,16 @@ typedef enum {
         //cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
   
 
-        NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
-        //NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.albumLink]];
+      
+       
         __weak DSSongTableViewCell* weakCell = cell;
     
         //cell.image.image = nil;
-    
+        if (song.isLocal)
+          request  =[NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.saveImageLink]];
+        else
+          request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
+        
         [cell.image
          setImageWithURLRequest:request
          placeholderImage:nil
@@ -385,6 +421,8 @@ typedef enum {
 }
 
 -(void) getPeriodSongs{
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
     switch(self.selectedPeriod) {
         case 0:
             [self getSongsFromServerWithDays: @"7"];
@@ -567,8 +605,6 @@ typedef enum {
             [self getSongsFromServerWithFilter:@"eng"];
             break;
         case 3:
-            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-            [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
             self.navigationItem.title = @"Новые";
             [self getPeriodSongs];
             break;

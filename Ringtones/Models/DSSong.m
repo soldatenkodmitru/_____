@@ -39,6 +39,7 @@
     self = [super init];
     if (self) {
         
+       self.isLocal = YES;
        self.songId = [item.id doubleValue];
        self.id_sound = [item.id_song integerValue];
        self.saveFileLink= item.savefile_link;
