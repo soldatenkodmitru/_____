@@ -24,4 +24,6 @@
 
 - (void) getSongWithPlaylist:(NSString*) list OnSuccess:(void(^)(NSArray* songs)) success
                    onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
+
+- (BOOL) reachability;
 @end

@@ -207,7 +207,10 @@
 - (BOOL) deletePlaylistWithId:(double) ItemId{
     NSError* error = nil;
     DSPlaylist* item = [self findPlaylistWithId:ItemId];
-    
+    NSArray *items = [item.item allObjects];
+    for(DSPlaylistItem* song in items){
+        [self deletePlaylistItemWithId:[song.id doubleValue]];
+    }
     [self.managedObjectContext deleteObject:item];
     if(![self.managedObjectContext save:&error]) {
         NSLog(@"%@", [error localizedDescription]);
@@ -228,9 +231,27 @@
         return NO;
     }
     else{
+        [self removeFile: item.savefile_link];
+        [self removeFile: item.image_savefile_link];
         return YES;
     }
     
+}
+
+
+- (void)removeFile:(NSString *) filePath
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    NSError *error;
+    BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+    if (success) {
+        NSLog(@"File deleted %@",filePath);
+    }
+    else
+    {
+        NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+    }
 }
 - (double) findSongForPlaylistName:(NSString*) name song:(DSSong*) song{
     NSFetchRequest* request = [[NSFetchRequest alloc] init];

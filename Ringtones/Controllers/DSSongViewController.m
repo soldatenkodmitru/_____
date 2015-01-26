@@ -123,16 +123,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 {
     [self _cancelStreamer];
     
-   // if (0 == [_tracks count])
-  //  {
-  //      [_miscLabel setText:@"(No tracks available)"];
-  //  }
-  //  else
-    {
-       
-      //  NSString *title = [NSString stringWithFormat:@"%@ - %@", track.artist, track.title];
-      //  [_titleLabel setText:title];
-       // self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
         self.song.audioFileURL = [NSURL fileURLWithPath:self.song.fileLink];
         _streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
         [_streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
@@ -141,9 +131,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         
         [_streamer play];
         
-       // [self _updateBufferingStatus];
-      //  [self _setupHintForStreamer];
-    }
+   
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -202,39 +190,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     }
 
     
-   /* if (!self.isPlaying){
-     
-        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
-        
-        if (self.audioPlayer == nil) {
-            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-            [[AVAudioSession sharedInstance] setActive:YES error:nil];
-            [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-         //   NSData *songData=[NSData dataWithContentsOfURL:[NSURL URLWithString:self.song.fileLink ]];
-            self.audioPlayer = [[STKAudioPlayer alloc] initWithOptions:(STKAudioPlayerOptions){ .flushQueueOnSeek = YES, .enableVolumeMixer = NO, .equalizerBandFrequencies = {50, 100, 200, 400, 800, 1600, 2600, 16000} }];
-            self.audioPlayer.meteringEnabled = YES;
-            self.audioPlayer.volume = 1;
-            self.audioPlayer.delegate = self;
-            [self.audioPlayer play:self.song.fileLink];
-            self.lblEndTime.text = [NSString stringWithFormat:@"-%@", [self changeTimetoFloat:self.audioPlayer.duration]];
-            [self.sldPlay setMaximumValue: self.audioPlayer.duration];
-        }
-        else
-        {
-            [self.audioPlayer resume];
-        }
-        
-        [self.playBtn setBackgroundImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
-        self.isPlaying=!self.isPlaying;
-    }
-    else{
-        [self.playTimer invalidate];
-        [self.audioPlayer pause];
-    
-        [self.playBtn setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-        self.isPlaying=!self.isPlaying;
-    } */
-
+   
 }
 
 - (void) updatePlayTime

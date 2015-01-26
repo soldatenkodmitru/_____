@@ -40,13 +40,16 @@
     self = [super init];
     if (self) {
         self.requestOperationManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:@"http://195.138.68.2:8085/"]];
-        
+        [self.requestOperationManager.reachabilityManager startMonitoring];
     }
     
     return self;
 }
 
 
+- (BOOL) reachability{
+   return self.requestOperationManager.reachabilityManager.reachable;
+}
 
 - (void) getSongWithPlaylist:(NSString*) list OnSuccess:(void(^)(NSArray* songs)) success
                  onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure {

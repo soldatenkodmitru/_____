@@ -165,9 +165,7 @@ typedef enum {
         
     } onFailure:^(NSError *error, NSInteger statusCode) {
         
-        [GMDCircleLoader hideFromView:self.view animated:YES];
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
+        [self errorLoading:error];
     }];
     
 }
@@ -186,11 +184,31 @@ typedef enum {
          [[UIApplication sharedApplication] endIgnoringInteractionEvents];
          
      } onFailure:^(NSError *error, NSInteger statusCode) {
-         [GMDCircleLoader hideFromView:self.view animated:YES];
-         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-         NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
+         [self errorLoading:error];
      }];
     
+}
+
+- (void) errorLoading:(NSError *)err {
+ 
+    NSString *errorMessage ;
+    if ([[DSServerManager sharedManager]reachability]){
+        errorMessage = @"Невозможно установить соединение с сервером, повторите попытку через несколько минут";
+    }else{
+        errorMessage = @"Проверьте интернет соединение";
+    }
+    [GMDCircleLoader hideFromView:self.view animated:YES];
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Ошибка"
+                                                        message:errorMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [self.tableView reloadData];
+     NSLog(@"error = %@, code = %ld", [err localizedDescription]);
+
 }
 #pragma mark - UITableViewDataSource
 
