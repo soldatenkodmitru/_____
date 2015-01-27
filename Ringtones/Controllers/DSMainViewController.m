@@ -207,7 +207,7 @@ typedef enum {
                                               otherButtonTitles:nil];
     [alertView show];
     [self.tableView reloadData];
-     NSLog(@"error = %@, code = %ld", [err localizedDescription]);
+     NSLog(@"error = %@, ", [err localizedDescription]);
 
 }
 #pragma mark - UITableViewDataSource
@@ -261,7 +261,7 @@ typedef enum {
  
         cell.titleLabel.text = song.title;
         cell.artistLabel.text =song.artist;
-        cell.numberLabel.text = [NSString stringWithFormat:@"%d.", indexPath.row+1];
+        cell.numberLabel.text = [NSString stringWithFormat:@"%ld.", indexPath.row+1];
         //cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
   
 
@@ -270,9 +270,13 @@ typedef enum {
         __weak DSSongTableViewCell* weakCell = cell;
     
         //cell.image.image = nil;
-        if (song.isLocal)
-          request  =[NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.saveImageLink]];
+        if (song.isLocal) {
+          //request  =[NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.saveImageLink]];
+          NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:song.saveImageLink]];
+          cell.image.image = [UIImage imageWithData:data];
+        }
         else
+        {
           request = [NSURLRequest requestWithURL:[NSURL URLWithString:song.albumLink]];
         
         [cell.image
@@ -288,7 +292,7 @@ typedef enum {
          failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
              NSLog(@"error = %@", [error localizedDescription]);
          }];
-    
+        }
         return cell;
     }
 }
@@ -416,6 +420,7 @@ typedef enum {
     
     UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Укажите название плейлиста" message:nil delegate:self cancelButtonTitle:@"Отмена" otherButtonTitles:@"Готово",nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alertView.tag = 1;
     [alertView textFieldAtIndex:0].keyboardAppearance = UIKeyboardAppearanceDark;
     [alertView textFieldAtIndex:0].delegate = self;
     [alertView show];
@@ -424,9 +429,17 @@ typedef enum {
 
 - (void) deletePlaylist:(UIButton *)sender {
  
-    DSPlaylistPlayer* list =[self.playlistArray objectAtIndex:sender.tag];
-    if([[DSDataManager dataManager] deletePlaylistWithId:list.listId ])
-       [self getPlaylistSongs];
+    
+    self.selectedSection = sender.tag;
+    DSPlaylistPlayer* list = [self.playlistArray objectAtIndex:sender.tag];
+    NSString* title = [NSString stringWithFormat:@"Удалить плейлист ""%@"" ? ", list.name];
+    
+    
+     UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Нет" otherButtonTitles:@"Да",nil];
+     alertView.tag = 2;
+    [alertView show];
+    
+  
 }
 
 - (void) touchPeriod:(UIControl *)sender {
@@ -475,6 +488,10 @@ typedef enum {
         
     }
 }
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return @"Удалить";
+}
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     
     DSPlaylistPlayer* sourceList =[self.playlistArray  objectAtIndex:sourceIndexPath.section];
@@ -485,8 +502,12 @@ typedef enum {
     [sourceSongsArray removeObject:moveSong];
     if (sourceIndexPath.section == destinationIndexPath.section) {
         
-       
+        
+       if (destinationIndexPath.row > [sourceSongsArray count] )
+         [sourceSongsArray insertObject:moveSong atIndex:destinationIndexPath.row-1];
+       else
         [sourceSongsArray insertObject:moveSong atIndex:destinationIndexPath.row];
+        
         if( [[DSDataManager dataManager] ordNoWithPlaylist:sourceSongsArray]){
            [self getPlaylistSongs];
            [self.tableView reloadData];
@@ -496,7 +517,11 @@ typedef enum {
       
         [[DSDataManager dataManager] deletePlaylistItemWithId:moveSong.songId];
         moveSong.songId = [[DSDataManager dataManager] addPlaylistItemForIdList:destList.listId song:moveSong ];
-        [destSongsArray insertObject:moveSong atIndex:destinationIndexPath.row];
+          if (destinationIndexPath.row > [destSongsArray count] )
+                [destSongsArray insertObject:moveSong atIndex:destinationIndexPath.row-1];
+          else
+              [destSongsArray insertObject:moveSong atIndex:destinationIndexPath.row];
+        
         if([[DSDataManager dataManager] ordNoWithPlaylist:destSongsArray]){
             [self getPlaylistSongs];
             [self.tableView reloadData];
@@ -558,25 +583,30 @@ typedef enum {
         DSPlaylistPlayer* list =  [self.playlistArray objectAtIndex:section];
         headerLabel.text = list.name;;
         headerLabel.textAlignment = NSTextAlignmentLeft;
+       
         
-        UILabel* headerCount = [[UILabel alloc] init];
-        headerCount.frame = CGRectMake(tableView.frame.size.width - 90, 5, 50, 20);
-        headerCount.backgroundColor = [UIColor clearColor];
-        headerCount.textColor = [UIColor  grayColor];
-        headerCount.font = [UIFont fontWithName:@"Helvetica-5-Normal" size:18];
-        headerCount.text = [NSString stringWithFormat:@"(%d)",[list.songsArray count] ];
-        headerCount.textAlignment = NSTextAlignmentCenter;
+       
+            UILabel* headerCount = [[UILabel alloc] init];
+            headerCount.frame = CGRectMake(tableView.frame.size.width - 90, 5, 50, 20);
+            headerCount.backgroundColor = [UIColor clearColor];
+            headerCount.textColor = [UIColor  grayColor];
+            headerCount.font = [UIFont fontWithName:@"Helvetica-5-Normal" size:18];
+            headerCount.text = [NSString stringWithFormat:@"(%d)",[list.songsArray count] ];
+            headerCount.textAlignment = NSTextAlignmentCenter;
+            [headerView addSubview:headerCount];
         
         
         
-        UIButton* headerButton = [[UIButton alloc] init];
-        UIImage *btnImg = [UIImage imageNamed:@"cancel_blue.png"];
-        headerButton.frame = CGRectMake(tableView.frame.size.width - 40, 5, btnImg.size.width, btnImg.size.height);
-        [headerButton setImage:btnImg forState:UIControlStateNormal];
-         headerButton.tag = section;
-        [headerButton addTarget:self action:@selector(deletePlaylist:) forControlEvents: UIControlEventTouchUpInside];
-    
+        if(section > 1){
         
+            UIButton* headerButton = [[UIButton alloc] init];
+            UIImage *btnImg = [UIImage imageNamed:@"cancel_blue.png"];
+            headerButton.frame = CGRectMake(tableView.frame.size.width - 40, 5, btnImg.size.width, btnImg.size.height);
+            [headerButton setImage:btnImg forState:UIControlStateNormal];
+            headerButton.tag = section;
+            [headerButton addTarget:self action:@selector(deletePlaylist:) forControlEvents: UIControlEventTouchUpInside];
+            [headerView addSubview:headerButton];
+        }
         
         UIImage *separatorImg = [UIImage imageNamed:@"separator.png"];
         UIImageView* separator = [[UIImageView alloc] initWithImage:separatorImg];
@@ -584,8 +614,8 @@ typedef enum {
         separator.frame = CGRectMake(33, 30, separatorImg.size.width, separatorImg.size.height);
 
         [headerView addSubview:separator];
-        [headerView addSubview:headerButton];
-        [headerView addSubview:headerCount];
+       
+    
         [headerView addSubview:headerLabel];
         
 
@@ -660,19 +690,28 @@ typedef enum {
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if (buttonIndex == 1) {
-        UITextField *textfield = [alertView textFieldAtIndex:0];
-        if( ![textfield.text isEqualToString:@""]){
-           if ( [[DSDataManager dataManager]addPlaylistwithName:textfield.text] != nil)
-            [self getPlaylistSongs];
-        }
+    switch (alertView.tag) {
+        case 1:
+            if (buttonIndex == 1) {
+                UITextField *textfield = [alertView textFieldAtIndex:0];
+                if( ![textfield.text isEqualToString:@""] && ![textfield.text isEqualToString:@"Загрузки"] && ![textfield.text isEqualToString:@"Рингтоны"] && ![textfield.text isEqualToString:@"Избранное"]){
+                    if ( [[DSDataManager dataManager]addPlaylistwithName:textfield.text] != nil)
+                        [self getPlaylistSongs];
+                }
+            }
+            break;
+            
+        case 2:
+          if (buttonIndex == 1) {
+              DSPlaylistPlayer* list =[self.playlistArray objectAtIndex:self.selectedSection];
+              if([[DSDataManager dataManager] deletePlaylistWithId:list.listId ])
+                [self getPlaylistSongs];
+            
+            }
+            break;
     }
+    
 }
-
-
-
-
 
 #pragma mark - UISearchBarDelegate
 
