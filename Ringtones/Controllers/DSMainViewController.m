@@ -47,8 +47,8 @@ typedef enum {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self getSongsFromServerWithFilter:@"rus"];
-    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
+   // [self getSongsFromServerWithFilter:@"rus"];
+   // [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     self.selectedPeriod = 0;
     [self setDefaultPlaylists];
 
@@ -97,8 +97,8 @@ typedef enum {
 }
 - (void)viewDidAppear:(BOOL)animated {
     if (!self.noFirstLoad){
-        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-        [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
+     //   [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+     //   [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
         self.noFirstLoad = YES;
     }
 
@@ -487,16 +487,20 @@ typedef enum {
         
        
         [sourceSongsArray insertObject:moveSong atIndex:destinationIndexPath.row];
-        [[DSDataManager dataManager] ordNoWithPlaylist:sourceSongsArray];
+        if( [[DSDataManager dataManager] ordNoWithPlaylist:sourceSongsArray]){
+           [self getPlaylistSongs];
+           [self.tableView reloadData];
+        }
     }
     else{
       
         [[DSDataManager dataManager] deletePlaylistItemWithId:moveSong.songId];
         moveSong.songId = [[DSDataManager dataManager] addPlaylistItemForIdList:destList.listId song:moveSong ];
         [destSongsArray insertObject:moveSong atIndex:destinationIndexPath.row];
-        [[DSDataManager dataManager] ordNoWithPlaylist:destSongsArray];
-   
-        
+        if([[DSDataManager dataManager] ordNoWithPlaylist:destSongsArray]){
+            [self getPlaylistSongs];
+            [self.tableView reloadData];
+        }
     }
     
     
@@ -544,26 +548,10 @@ typedef enum {
     }
     else if (self.tabBar.selectedItem.tag == 5 ){
      
-      /*  DSHeaderTableViewCell* headerCell = [tableView dequeueReusableCellWithIdentifier:@"header"];
-        if (!headerCell) {
-            headerCell = [[DSHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"header"];}
-        headerCell.deleteButton.tag = section;
-        [headerCell.deleteButton addTarget:self action:@selector(deletePlaylist:) forControlEvents: UIControlEventTouchUpInside];
-        DSPlaylistPlayer* list =  [self.playlistArray objectAtIndex:section];
-        headerCell.nameLabel.text = list.name;
-        
-        
-        while (headerCell.contentView.gestureRecognizers.count) {
-            [headerCell.contentView removeGestureRecognizer:[headerCell.contentView.gestureRecognizers objectAtIndex:0]];
-        }
-        
-        //return headerCell.contentView;
-        return headerCell; */
-        // 1. The view for the header
         UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width,30)];
        
         UILabel* headerLabel = [[UILabel alloc] init];
-        headerLabel.frame = CGRectMake(20, 5, tableView.frame.size.width - 100, 20);
+        headerLabel.frame = CGRectMake(20, 5, tableView.frame.size.width - 200, 20);
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor   blackColor];
         headerLabel.font = [UIFont fontWithName:@"Helvetica-5-Normal" size:18];
@@ -571,16 +559,33 @@ typedef enum {
         headerLabel.text = list.name;;
         headerLabel.textAlignment = NSTextAlignmentLeft;
         
+        UILabel* headerCount = [[UILabel alloc] init];
+        headerCount.frame = CGRectMake(tableView.frame.size.width - 90, 5, 50, 20);
+        headerCount.backgroundColor = [UIColor clearColor];
+        headerCount.textColor = [UIColor  grayColor];
+        headerCount.font = [UIFont fontWithName:@"Helvetica-5-Normal" size:18];
+        headerCount.text = [NSString stringWithFormat:@"(%d)",[list.songsArray count] ];
+        headerCount.textAlignment = NSTextAlignmentCenter;
+        
+        
+        
         UIButton* headerButton = [[UIButton alloc] init];
-        headerButton.frame = CGRectMake(tableView.frame.size.width - 80, 5, 70 , 20);
-        headerButton.backgroundColor = [UIColor clearColor];
-        [headerButton setTitle:@"Удалить" forState:UIControlStateNormal];
-        headerButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-5-Normal" size:18];
-        [headerButton setTitleColor:[UIColor   blackColor]  forState:UIControlStateNormal];
-        headerButton.tag = section;
+        UIImage *btnImg = [UIImage imageNamed:@"cancel_blue.png"];
+        headerButton.frame = CGRectMake(tableView.frame.size.width - 40, 5, btnImg.size.width, btnImg.size.height);
+        [headerButton setImage:btnImg forState:UIControlStateNormal];
+         headerButton.tag = section;
         [headerButton addTarget:self action:@selector(deletePlaylist:) forControlEvents: UIControlEventTouchUpInside];
     
+        
+        
+        UIImage *separatorImg = [UIImage imageNamed:@"separator.png"];
+        UIImageView* separator = [[UIImageView alloc] initWithImage:separatorImg];
+        
+        separator.frame = CGRectMake(33, 30, separatorImg.size.width, separatorImg.size.height);
+
+        [headerView addSubview:separator];
         [headerView addSubview:headerButton];
+        [headerView addSubview:headerCount];
         [headerView addSubview:headerLabel];
         
 

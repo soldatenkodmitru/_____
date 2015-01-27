@@ -86,9 +86,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (void)_actionNext:(id)sender
 {
-  //  if (++_currentTrackIndex >= [_tracks count]) {
-   //     _currentTrackIndex = 0;
-  //  }
+
     
     [self _resetStreamer];
 }

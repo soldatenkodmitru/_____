@@ -53,25 +53,29 @@
         pgconcenter_.x = self.view.center.x;
         pgconcenter_.y = svcenter_.y + (svrect_.size.height/2) + 20;
         
-        CGRect btnrect_ = CGRectZero;
-        btnrect_.size.width =  65;
-        btnrect_.size.height = 50;
+       // CGRect btnrect_ = CGRectZero;
+       // btnrect_.size.width =  65;
+       // btnrect_.size.height = 50;
         CGPoint btncenter_ = CGPointZero;
-        btncenter_.x = self.view.bounds.size.width -45;
-        btncenter_.y = self.view.bounds.size.height- 25;
+        btncenter_.x = self.view.bounds.size.width -30;
+        btncenter_.y = self.view.bounds.size.height- 30;
         
         
-        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+           _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *btnImg = [UIImage imageNamed:@"cancel_blue.png"];
+       
+        _button.frame = CGRectMake(0.f, 0.f, btnImg.size.width, btnImg.size.height);
+        [_button setImage:btnImg forState:UIControlStateNormal];
+     
         [_button addTarget:self action:@selector(clickOut:) forControlEvents:UIControlEventTouchDown];
-        [_button setTitleColor:[UIColor colorWithWhite:0.4 alpha:1] forState:UIControlStateNormal];
-        [_button setTitle:@"Выход" forState:UIControlStateNormal];
+      
         
         _button.clipsToBounds = true;
-        _button.frame = btnrect_;
+       // _button.frame = btnrect_;
         _button.center = btncenter_;
-        _button.layer.cornerRadius = 4;
-        _button.layer.borderWidth = 0.5f;
-        _button.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
+       // _button.layer.cornerRadius = 4;
+       // _button.layer.borderWidth = 0.5f;
+       // _button.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
         
         [self.view addSubview:_button];
         /*
