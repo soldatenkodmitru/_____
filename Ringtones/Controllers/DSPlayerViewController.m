@@ -108,6 +108,35 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
 }
 
+- (void) stop {
+    if (self.stopBtn.selected){
+        [self.streamer stop];
+        self.playBtn.selected = YES;
+        self.stopBtn.selected = NO;
+        [self.playProgress setProgress: 0 animated:NO];
+    }
+}
+
+- (void) playBackground{
+
+    [self play];
+
+}
+
+- (void) play{
+    
+    
+    if (self.playBtn.selected){
+        [self.playProgress setProgress: 0 animated:NO];
+        [self resetStreamer];
+        [self.streamer play];
+        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
+        self.stopBtn.selected = YES;
+        self.playBtn.selected = NO;
+        
+    }
+}
+
 - (void) cancelStreamer
 {
     if (self.streamer != nil) {
@@ -169,16 +198,16 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void) setTitleVersion {
     switch (self.song.versionAudio){
         case sFull:
-            self.versionBtn.titleLabel.text = @"Полная версия";
-            
-            break;
+            [self.versionBtn setTitle: @"Полная версия     " forState:UIControlStateNormal];
+             break;
         case sCut:
-            self.versionBtn.titleLabel.text = @"Нарезка 1";
+            [self.versionBtn setTitle: @"Нарезка 1     " forState:UIControlStateNormal];
             break;
         case sRignton:
-            self.versionBtn.titleLabel.text = @"Нарезка 2";
+            [self.versionBtn setTitle: @"Нарезка 2     " forState:UIControlStateNormal];
             break;
     }
+    
 }
 
 #pragma mark - Timer
@@ -221,6 +250,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             self.song.audioFileURL = [NSURL URLWithString:self.song.ringtonLink];
         break;}
     }
+    [self stop];
+    [self playBackground];
     [self setTitleVersion];
     
 }
@@ -236,23 +267,17 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 
 - (IBAction)playAction:(id)sender{
-    if (self.playBtn.selected){
-        [self.playProgress setProgress: 0 animated:NO];
-        [self resetStreamer];
-        [self.streamer play];
-        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
-        self.stopBtn.selected = YES;
-        self.playBtn.selected = NO;
-        
+    
+    if ([self.thread isExecuting]) {
+        [self.thread cancel];
     }
+    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(playBackground) object:nil];
+    self.thread.name = @"play";
+    [self.thread start];
+    
 }
 - (IBAction)stopAction:(id)sender{
-    if (self.stopBtn.selected){
-        [self.streamer stop];
-        self.playBtn.selected = YES;
-        self.stopBtn.selected = NO;
-        [self.playProgress setProgress: 0 animated:NO];
-    }
+    [self stop];
 }
 
 - (IBAction)shareAction:(id)sender{

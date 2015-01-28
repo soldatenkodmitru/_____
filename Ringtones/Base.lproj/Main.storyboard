@@ -800,7 +800,7 @@
                                         <variation key="widthClass=compact" constant="50"/>
                                     </constraint>
                                 </constraints>
-                                <state key="normal" title="Button" image="but_play@3x.png">
+                                <state key="normal" image="but_play@3x.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="but_play_s@3x.png"/>
@@ -830,7 +830,7 @@
                                         <variation key="widthClass=compact" constant="50"/>
                                     </constraint>
                                 </constraints>
-                                <state key="normal" title="Button" image="but_stop@3x.png">
+                                <state key="normal" image="but_stop@3x.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="but_stop_s@3x.png"/>
@@ -1001,7 +1001,7 @@
                                     </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-4-Light" family="Helvetica-4-Light" pointSize="18"/>
-                                <state key="normal" title="Полная версия " backgroundImage="button_selection@3x.png">
+                                <state key="normal" backgroundImage="button_selection@3x.png">
                                     <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
@@ -1493,12 +1493,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="but_add_to_favorites@3x.png" width="129" height="129"/>
-        <image name="but_add_to_favorites_s@3x.png" width="129" height="129"/>
-        <image name="but_play@3x.png" width="129" height="129"/>
-        <image name="but_play_s@3x.png" width="129" height="129"/>
-        <image name="but_stop@3x.png" width="129" height="129"/>
-        <image name="but_stop_s@3x.png" width="129" height="129"/>
+        <image name="but_add_to_favorites@3x.png" width="150" height="150"/>
+        <image name="but_add_to_favorites_s@3x.png" width="150" height="150"/>
+        <image name="but_play@3x.png" width="150" height="150"/>
+        <image name="but_play_s@3x.png" width="150" height="150"/>
+        <image name="but_stop@3x.png" width="150" height="150"/>
+        <image name="but_stop_s@3x.png" width="150" height="150"/>
         <image name="button_download@3x.png" width="370" height="127"/>
         <image name="button_download_s@3x.png" width="370" height="127"/>
         <image name="button_favorites_tb@3x.png" width="75" height="75"/>

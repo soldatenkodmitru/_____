@@ -44,21 +44,21 @@
         svrect_.size.width = self.view.bounds.size.width;
         CGPoint svcenter_ = CGPointZero;
         svcenter_.x = self.view.center.x;
-        svcenter_.y = self.view.center.y-50;
+        svcenter_.y = self.view.center.y;
         CGSize svconsize = CGSizeZero;
         svconsize.height = svrect_.size.height;
         svconsize.width = svrect_.size.width * images.count;
         
         CGPoint pgconcenter_ = CGPointZero;
         pgconcenter_.x = self.view.center.x;
-        pgconcenter_.y = svcenter_.y + (svrect_.size.height/2) + 20;
+        pgconcenter_.y = svcenter_.y + (svrect_.size.height/2) - 20;
         
        // CGRect btnrect_ = CGRectZero;
        // btnrect_.size.width =  65;
        // btnrect_.size.height = 50;
         CGPoint btncenter_ = CGPointZero;
         btncenter_.x = self.view.bounds.size.width -30;
-        btncenter_.y = self.view.bounds.size.height- 30;
+        btncenter_.y = self.view.bounds.size.height- 20;
         
         
            _button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -103,6 +103,7 @@
         _pgcontrol.numberOfPages = _images.count;
         _pgcontrol.currentPage = 0;
         [_pgcontrol sizeToFit];
+
         _pgcontrol.center = pgconcenter_;
          [_pgcontrol addTarget:self action:@selector(clickIndicators:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:_pgcontrol];
@@ -117,7 +118,7 @@
             CGRect ivrect_ = CGRectMake(_scrollview.bounds.size.width * index_,
                                         0,
                                         _scrollview.bounds.size.width,
-                                        _scrollview.bounds.size.height);
+                                        _scrollview.bounds.size.height - 40);
             UIImageView*iv_ = [[UIImageView alloc] initWithFrame:ivrect_];
             iv_.contentMode = UIViewContentModeScaleAspectFill;
             iv_.clipsToBounds = true;
