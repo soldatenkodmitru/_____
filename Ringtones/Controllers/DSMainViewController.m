@@ -47,8 +47,8 @@ typedef enum {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-   // [self getSongsFromServerWithFilter:@"rus"];
-   // [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
+    [self getSongsFromServerWithFilter:@"rus"];
+    [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     self.selectedPeriod = 0;
     [self setDefaultPlaylists];
 
@@ -97,8 +97,8 @@ typedef enum {
 }
 - (void)viewDidAppear:(BOOL)animated {
     if (!self.noFirstLoad){
-     //   [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-     //   [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+        [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
         self.noFirstLoad = YES;
     }
 

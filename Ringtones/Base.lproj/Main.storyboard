@@ -16,9 +16,9 @@
             <string>Helvetica-4-Light</string>
             <string>Helvetica-4-Light</string>
             <string>Helvetica-4-Light</string>
+            <string>Helvetica-4-Light</string>
         </mutableArray>
         <mutableArray key="Helv-5-Normal.ttf">
-            <string>Helvetica-5-Normal</string>
             <string>Helvetica-5-Normal</string>
             <string>Helvetica-5-Normal</string>
         </mutableArray>
@@ -552,7 +552,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="justin-timberlake-20132.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zLP-J3-Azg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="justin-timberlake-20132.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zLP-J3-Azg">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="226" id="8Sv-p8-md8"/>
@@ -794,10 +794,10 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="P7W-nk-JjQ">
-                                        <variation key="widthClass=compact" constant="45"/>
+                                        <variation key="widthClass=compact" constant="50"/>
                                     </constraint>
                                     <constraint firstAttribute="width" constant="30" id="cRG-fA-O7i">
-                                        <variation key="widthClass=compact" constant="45"/>
+                                        <variation key="widthClass=compact" constant="50"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Button" image="but_play@3x.png">
@@ -824,10 +824,10 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Sam-v2-qKI">
-                                        <variation key="widthClass=compact" constant="45"/>
+                                        <variation key="widthClass=compact" constant="50"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="40" id="aKc-R0-zAX">
-                                        <variation key="widthClass=compact" constant="45"/>
+                                        <variation key="widthClass=compact" constant="50"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Button" image="but_stop@3x.png">
@@ -940,10 +940,10 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="07o-6M-sZk">
-                                        <variation key="widthClass=compact" constant="45"/>
+                                        <variation key="widthClass=compact" constant="50"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="40" id="4pO-US-9dd">
-                                        <variation key="widthClass=compact" constant="45"/>
+                                        <variation key="widthClass=compact" constant="50"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" image="but_add_to_favorites@3x.png">
@@ -990,7 +990,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIP-PE-Jlz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RIP-PE-Jlz">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="LIG-s5-U4B">
@@ -1000,8 +1000,8 @@
                                         <variation key="widthClass=compact" constant="35"/>
                                     </constraint>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="   Полная версия" backgroundImage="button_selection@3x.png">
+                                <fontDescription key="fontDescription" name="Helvetica-4-Light" family="Helvetica-4-Light" pointSize="18"/>
+                                <state key="normal" title="Полная версия " backgroundImage="button_selection@3x.png">
                                     <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
@@ -1011,7 +1011,6 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
-                                    <fontDescription key="fontDescription" name="Helvetica-5-Normal" family="Helvetica-5-Normal" pointSize="17"/>
                                     <mask key="constraints">
                                         <include reference="LIG-s5-U4B"/>
                                         <include reference="ebq-mj-Hqa"/>
@@ -1121,7 +1120,7 @@
                                 <variation key="widthClass=compact" constant="66"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="ans-ZN-R9H" secondAttribute="centerX" constant="-2" id="5M6-BB-HIy">
-                                <variation key="widthClass=compact" constant="-2.5"/>
+                                <variation key="widthClass=compact" constant="-4"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="zbG-3q-hqA" secondAttribute="centerX" id="5Pf-Ne-mDK">
                                 <variation key="widthClass=compact" constant="6"/>
@@ -1142,7 +1141,7 @@
                             <constraint firstItem="A73-U0-0fP" firstAttribute="leading" secondItem="Yp8-yb-Kbk" secondAttribute="leadingMargin" constant="92" id="AHD-28-es0"/>
                             <constraint firstItem="W3t-aP-URF" firstAttribute="top" secondItem="zbG-3q-hqA" secondAttribute="bottom" constant="9" id="CQB-vj-gLf"/>
                             <constraint firstItem="ans-ZN-R9H" firstAttribute="top" secondItem="PGv-T0-rk9" secondAttribute="bottom" constant="33" id="DVU-XX-JeL">
-                                <variation key="widthClass=compact" constant="20"/>
+                                <variation key="widthClass=compact" constant="18"/>
                             </constraint>
                             <constraint firstItem="CDH-qX-Aqk" firstAttribute="top" secondItem="PGv-T0-rk9" secondAttribute="bottom" id="Dus-Se-bhn">
                                 <variation key="widthClass=compact" constant="0.0"/>
@@ -1155,7 +1154,7 @@
                                 <variation key="heightClass=compact-widthClass=compact" constant="68"/>
                             </constraint>
                             <constraint firstItem="rd6-ba-Lfy" firstAttribute="top" secondItem="PGv-T0-rk9" secondAttribute="bottom" constant="33" id="Hi0-cK-kDw">
-                                <variation key="widthClass=compact" constant="20"/>
+                                <variation key="widthClass=compact" constant="18"/>
                             </constraint>
                             <constraint firstItem="zbG-3q-hqA" firstAttribute="leading" secondItem="Yp8-yb-Kbk" secondAttribute="leadingMargin" priority="750" constant="97" id="JXk-3G-yjc"/>
                             <constraint firstItem="W3t-aP-URF" firstAttribute="top" secondItem="zbG-3q-hqA" secondAttribute="bottom" constant="9" id="Juw-SG-xmk"/>
@@ -1169,7 +1168,7 @@
                             <constraint firstAttribute="centerX" secondItem="CDH-qX-Aqk" secondAttribute="centerX" constant="1" id="MQn-oC-omj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="A73-U0-0fP" secondAttribute="trailing" priority="750" constant="104" id="RFL-Iu-ZDq"/>
                             <constraint firstItem="qlw-95-8cm" firstAttribute="top" secondItem="PGv-T0-rk9" secondAttribute="bottom" constant="33" id="RLh-1K-8U3">
-                                <variation key="widthClass=compact" constant="20"/>
+                                <variation key="widthClass=compact" constant="18"/>
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="W3t-aP-URF" secondAttribute="trailing" constant="-16" id="RtN-i3-OHw"/>
                             <constraint firstItem="Obf-G3-jPt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yTo-Ms-eLF" secondAttribute="bottom" constant="5" id="Soy-tP-SKr"/>
@@ -1256,7 +1255,7 @@
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="rd6-ba-Lfy" secondAttribute="centerX" constant="-48" id="xZr-Ug-QRr">
-                                <variation key="widthClass=compact" constant="-61.5"/>
+                                <variation key="widthClass=compact" constant="-67"/>
                             </constraint>
                             <constraint firstItem="Xpj-lW-zfZ" firstAttribute="leading" secondItem="yTo-Ms-eLF" secondAttribute="trailing" constant="23" id="yLk-Fk-kXb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zLP-J3-Azg" secondAttribute="trailing" constant="-16" id="zEm-UG-X3X"/>

@@ -64,6 +64,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         self.favoriteBtn.selected = YES;
     else
         self.favoriteBtn.selected = NO;
+    if (self.song.versionAudio == 0)
+        self.song.versionAudio = sFull;
      [self setTitleVersion];
       self.volumeProgress.progress = [DaiVolume volume];
 }
@@ -121,7 +123,9 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 {
     [self cancelStreamer];
     
+    if (self.song.audioFileURL == nil){
         self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
+    }
        // self.song.audioFileURL = [NSURL fileURLWithPath:self.song.fileLink];
         self.streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
         [self.streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
@@ -165,13 +169,14 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void) setTitleVersion {
     switch (self.song.versionAudio){
         case sFull:
-            self.versionBtn.titleLabel.text = @"   Полная версия";
+            self.versionBtn.titleLabel.text = @"Полная версия";
+            
             break;
         case sCut:
-            self.versionBtn.titleLabel.text = @"        Нарезка 1";
+            self.versionBtn.titleLabel.text = @"Нарезка 1";
             break;
         case sRignton:
-            self.versionBtn.titleLabel.text = @"        Нарезка 2";
+            self.versionBtn.titleLabel.text = @"Нарезка 2";
             break;
     }
 }
@@ -204,6 +209,18 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (void)animalWasSelected:(NSNumber *)selectedIndex element:(id)element {
      self.song.versionAudio = [selectedIndex intValue];
+    switch(self.song.versionAudio){
+        case sFull:{
+            self.song.audioFileURL = [NSURL URLWithString:self.song.fileLink];
+        break;}
+
+        case sCut:{
+            self.song.audioFileURL = [NSURL URLWithString:self.song.cutLink];
+        break;}
+        case sRignton:{
+            self.song.audioFileURL = [NSURL URLWithString:self.song.ringtonLink];
+        break;}
+    }
     [self setTitleVersion];
     
 }
@@ -261,8 +278,28 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 - (IBAction)downloadAction:(id)sender {
     
-    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:[self saveImage]];
-}
+    if ([[DSDataManager dataManager] findSongForPlaylistName:@"Загрузки" song:self.song] > 0 || [[DSDataManager dataManager] findSongForPlaylistName:@"Рингтоны" song:self.song] ){
+        switch (self.song.versionAudio) {
+            case sFull:{
+                [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:[self saveImage]];
+            break;
+            }
+            case sCut:{
+            
+                [[DSDataManager dataManager] addPlaylistItemForNameList:@"Рингтоны" song:self.song version:sCut fileLink:[self download] imagelink:[self saveImage]];
+            break;
+            }
+            case sRignton:{
+                    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Рингтоны" song:self.song version:sRignton fileLink:[self download] imagelink:[self saveImage]];
+            break;
+                }
+        }
+    }
+    else{
+        
+    }
+        
+  }
 -(NSString*) saveImage{
     
     NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self.song.albumLink lastPathComponent]];
@@ -274,7 +311,9 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 -(NSString*) download {
  
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.song.fileLink]];
+
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.song.audioFileURL];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
