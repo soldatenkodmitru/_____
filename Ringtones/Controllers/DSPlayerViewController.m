@@ -133,7 +133,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
         self.stopBtn.selected = YES;
         self.playBtn.selected = NO;
-        
+        [self.playTimer fire];
     }
 }
 
@@ -152,10 +152,19 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 {
     [self cancelStreamer];
     
+    NSData* data;
+    
+    if ( self.song.saveFileLink != nil)
+         data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.song.saveFileLink]];
+
+    
     if (self.song.audioFileURL == nil){
-        self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
+        if (data == nil)
+            self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
+        else
+            self.song.audioFileURL = [NSURL fileURLWithPath:self.song.saveFileLink];
     }
-       // self.song.audioFileURL = [NSURL fileURLWithPath:self.song.fileLink];
+   
         self.streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
         [self.streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
         [self.streamer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
@@ -217,6 +226,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.volumeProgress.progress = [DaiVolume volume];
     self.endLbl.text = [self timeToString:self.streamer.duration];
     self.startLbl.text = [self timeToString:self.streamer.currentTime];
+   // NSLog(@"%f   %f" ,self.streamer.currentTime, self.streamer.duration);
     if (self.streamer.duration > 0)
     {
         [self.playProgress setProgress: (float)(self.streamer.currentTime/self.streamer.duration)  animated:YES];
@@ -226,13 +236,15 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 #pragma mark - DSRateViewDelegate
 - (void)rateView:(DSRateView *)rateView ratingDidChange:(float)rating{
     NSLog(@"%f",rating);
-    [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%ld", (long)self.song.id_sound ] OnSuccess:^(NSObject *result) {
+    if (rating > 0){
+        [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%ld", (long)self.song.id_sound ] OnSuccess:^(NSObject *result) {
         NSLog(@"Set Rating");
         [[DSDataManager dataManager] addLikeForSong:self.song.id_sound withRating:rating];
         self.userRate.editable = NO;
-    } onFailure:^(NSError *error, NSInteger statusCode) {
-        NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
-    }];
+        } onFailure:^(NSError *error, NSInteger statusCode) {
+            NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
+        }];
+    }
 }
 #pragma mark - Implementation
 
@@ -303,26 +315,34 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 - (IBAction)downloadAction:(id)sender {
     
-    if ([[DSDataManager dataManager] findSongForPlaylistName:@"Загрузки" song:self.song] > 0 || [[DSDataManager dataManager] findSongForPlaylistName:@"Рингтоны" song:self.song] ){
-        switch (self.song.versionAudio) {
-            case sFull:{
-                [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:[self saveImage]];
+    
+    NSString* listName;
+    switch (self.song.versionAudio) {
+        case sFull:{
+            listName = @"Загрузки";
             break;
-            }
-            case sCut:{
-            
-                [[DSDataManager dataManager] addPlaylistItemForNameList:@"Рингтоны" song:self.song version:sCut fileLink:[self download] imagelink:[self saveImage]];
+        }
+        case sCut:{
+            listName = @"Рингтоны";
             break;
-            }
-            case sRignton:{
-                    [[DSDataManager dataManager] addPlaylistItemForNameList:@"Рингтоны" song:self.song version:sRignton fileLink:[self download] imagelink:[self saveImage]];
+        }
+        case sRignton:{
+            listName = @"Рингтоны";
             break;
-                }
         }
     }
-    else{
+
+    if ([[DSDataManager dataManager] findSongForPlaylistName:listName song:self.song] == 0 ) {
         
+         [[DSDataManager dataManager] addPlaylistItemForNameList:listName song:self.song version:self.song.versionAudio fileLink:[self download] imagelink:[self saveImage]];
     }
+    else {
+        
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Данный трек уже присутствует в списке загрузок" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ок",nil];
+   
+        [alertView show];
+    }
+
         
   }
 -(NSString*) saveImage{

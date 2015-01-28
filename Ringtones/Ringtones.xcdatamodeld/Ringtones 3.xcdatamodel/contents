@@ -16,6 +16,7 @@
         <attribute name="image_savefile_link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ord_no" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="rate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="savefile_link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DSPlaylist" inverseName="item" inverseEntity="DSPlaylist" syncable="YES"/>
@@ -23,6 +24,6 @@
     <elements>
         <element name="DSLikesSong" positionX="-1278" positionY="-445" width="128" height="75"/>
         <element name="DSPlaylist" positionX="-1278" positionY="-322" width="126" height="88"/>
-        <element name="DSPlaylistItem" positionX="-1044" positionY="-352" width="128" height="180"/>
+        <element name="DSPlaylistItem" positionX="-1044" positionY="-352" width="128" height="195"/>
     </elements>
 </model>

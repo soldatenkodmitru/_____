@@ -42,6 +42,7 @@
        self.isLocal = YES;
        self.songId = [item.id doubleValue];
        self.id_sound = [item.id_song integerValue];
+        self.rating = [item.rate doubleValue];
        self.saveFileLink= item.savefile_link;
        self.versionAudio = (typeSong) [item.version integerValue];
        self.title = item.name;

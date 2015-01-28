@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSNumber * ord_no;
 @property (nonatomic, retain) NSString * image_savefile_link;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * rate;
 @property (nonatomic, retain) NSString * savefile_link;
 @property (nonatomic, retain) NSNumber * version;
 @property (nonatomic, retain) NSNumber * id;

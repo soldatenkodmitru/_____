@@ -268,12 +268,13 @@ typedef enum {
       
        
         __weak DSSongTableViewCell* weakCell = cell;
-    
-        //cell.image.image = nil;
+
         if (song.isLocal) {
-          //request  =[NSURLRequest requestWithURL:[NSURL fileURLWithPath:song.saveImageLink]];
-          NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:song.saveImageLink]];
+          NSData * data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:song.saveImageLink]];
           cell.image.image = [UIImage imageWithData:data];
+          CALayer *imageLayer = cell.image.layer;
+            [imageLayer setCornerRadius:27.5f];
+            [imageLayer setMasksToBounds:YES];
         }
         else
         {

@@ -114,6 +114,7 @@
         curPlaylistItem.version = [NSNumber numberWithInteger: song.versionAudio];
         curPlaylistItem.savefile_link = song.saveFileLink;
         curPlaylistItem.image_savefile_link = song.saveImageLink;
+        curPlaylistItem.rate = [NSNumber numberWithFloat:song.rating];
         curPlaylistItem.artist = song.artist;
         curPlaylistItem.name = song.title;
         
