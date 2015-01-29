@@ -37,6 +37,7 @@ typedef enum {
   @property (strong,nonatomic) NSURL *audioFileURL;
   @property (assign,nonatomic) BOOL isLocal;
   @property (assign,nonatomic) typeSong versionAudio;
+  @property (strong,nonatomic) NSString *lang;
 
 - (instancetype)initWithDictionary:(NSDictionary *) responseObject;
 - (instancetype)initWithDatabase:(DSPlaylistItem *) item ;

@@ -60,14 +60,14 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.playBtn.selected = YES;
     self.stopBtn.selected = NO;
    
-    if ( [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song] >0 )
-        self.favoriteBtn.selected = YES;
-    else
-        self.favoriteBtn.selected = NO;
-    if (self.song.versionAudio == 0)
+    
+    if (self.song.versionAudio == 0){
         self.song.versionAudio = sFull;
+        self.song.audioFileURL = [NSURL URLWithString:self.song.fileLink];
+    }
      [self setTitleVersion];
       self.volumeProgress.progress = [DaiVolume volume];
+    self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,11 +86,11 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     [self.playTimer invalidate];
     [self.streamer stop];
     [self cancelStreamer];
-    
     [super viewWillDisappear:animated];
 }
 
 #pragma mark - Self Methods
+
 - (void) showInstruction {
     
     UIImage*i1 = [UIImage imageNamed:@"1.png"];
@@ -109,6 +109,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 
 - (void) stop {
+    
     if (self.stopBtn.selected){
         [self.streamer stop];
         self.playBtn.selected = YES;
@@ -119,21 +120,24 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (void) playBackground{
 
-    [self play];
+    if ([self.thread isExecuting]) {
+        [self.thread cancel];
+    }
+    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(play) object:nil];
+    self.thread.name = @"play";
+    [self.thread start];
 
 }
 
 - (void) play{
     
-    
     if (self.playBtn.selected){
         [self.playProgress setProgress: 0 animated:NO];
         [self resetStreamer];
         [self.streamer play];
-        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePlayTime) userInfo:nil repeats:YES];
         self.stopBtn.selected = YES;
         self.playBtn.selected = NO;
-        [self.playTimer fire];
+
     }
 }
 
@@ -157,7 +161,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     if ( self.song.saveFileLink != nil)
          data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.song.saveFileLink]];
 
-    
     if (self.song.audioFileURL == nil){
         if (data == nil)
             self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
@@ -165,11 +168,11 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             self.song.audioFileURL = [NSURL fileURLWithPath:self.song.saveFileLink];
     }
    
-        self.streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
-        [self.streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
-        [self.streamer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
-        [self.streamer addObserver:self forKeyPath:@"bufferingRatio" options:NSKeyValueObservingOptionNew context:kBufferingRatioKVOKey];
-    
+    self.streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
+    [self.streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
+    [self.streamer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
+    [self.streamer addObserver:self forKeyPath:@"bufferingRatio" options:NSKeyValueObservingOptionNew context:kBufferingRatioKVOKey];
+ 
     
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -216,13 +219,19 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             [self.versionBtn setTitle: @"Нарезка 2     " forState:UIControlStateNormal];
             break;
     }
-    
+    if ( [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song] >0 )
+        self.favoriteBtn.selected = YES;
+    else
+        self.favoriteBtn.selected = NO;
 }
 
 #pragma mark - Timer
+- (void) timerAction:(id)timer{
+    [self updatePlayTime];
+}
+
 - (void) updatePlayTime
 {
-    
     self.volumeProgress.progress = [DaiVolume volume];
     self.endLbl.text = [self timeToString:self.streamer.duration];
     self.startLbl.text = [self timeToString:self.streamer.currentTime];
@@ -246,10 +255,11 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         }];
     }
 }
-#pragma mark - Implementation
 
+#pragma mark - Implementation
 - (void)animalWasSelected:(NSNumber *)selectedIndex element:(id)element {
-     self.song.versionAudio = [selectedIndex intValue];
+    
+    self.song.versionAudio = [selectedIndex intValue];
     switch(self.song.versionAudio){
         case sFull:{
             self.song.audioFileURL = [NSURL URLWithString:self.song.fileLink];
@@ -262,6 +272,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             self.song.audioFileURL = [NSURL URLWithString:self.song.ringtonLink];
         break;}
     }
+  
     [self stop];
     [self playBackground];
     [self setTitleVersion];
@@ -270,25 +281,20 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void)actionPickerCancelled:(id)sender {
     NSLog(@"Delegate has been informed that ActionSheetPicker was cancelled");
 }
+
 #pragma mark - Actions
 - (IBAction)versionAction:(id)sender{
     
-     [ActionSheetStringPicker showPickerWithTitle:@"Выберите версию" rows:[NSArray arrayWithObjects: @"Полная версия", @"Нарезка1",@"Нарезка2" , nil] initialSelection:self.song.versionAudio target:self successAction:@selector(animalWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-    
+    [ActionSheetStringPicker showPickerWithTitle:@"Выберите версию" rows:[NSArray arrayWithObjects: @"Полная версия", @"Нарезка1",@"Нарезка2" , nil] initialSelection:self.song.versionAudio target:self successAction:@selector(animalWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
 }
-
 
 - (IBAction)playAction:(id)sender{
-    
-    if ([self.thread isExecuting]) {
-        [self.thread cancel];
-    }
-    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(playBackground) object:nil];
-    self.thread.name = @"play";
-    [self.thread start];
-    
+   
+    [self playBackground];
 }
+
 - (IBAction)stopAction:(id)sender{
+   
     [self stop];
 }
 
@@ -301,10 +307,11 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
+
 - (IBAction)favoriteAction:(id)sender {
   
     if (!self.favoriteBtn.selected){
-        [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:sFull fileLink:[self download] imagelink:[self saveImage]];
+        [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:sFull fileLink:[self download:@"Избранное"] imagelink:[self saveImage]];
     }
     else{
         double idItem = [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song];
@@ -313,8 +320,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     }
     self.favoriteBtn.selected = !self.favoriteBtn.selected;
 }
+
 - (IBAction)downloadAction:(id)sender {
-    
     
     NSString* listName;
     switch (self.song.versionAudio) {
@@ -333,18 +340,16 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     }
 
     if ([[DSDataManager dataManager] findSongForPlaylistName:listName song:self.song] == 0 ) {
-        
-         [[DSDataManager dataManager] addPlaylistItemForNameList:listName song:self.song version:self.song.versionAudio fileLink:[self download] imagelink:[self saveImage]];
+            [[DSDataManager dataManager] addPlaylistItemForNameList:listName song:self.song version:self.song.versionAudio fileLink:[self download:listName] imagelink:[self saveImage]];
     }
     else {
         
         UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Данный трек уже присутствует в списке загрузок" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ок",nil];
-   
         [alertView show];
     }
 
-        
-  }
+}
+
 -(NSString*) saveImage{
     
     NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self.song.albumLink lastPathComponent]];
@@ -354,21 +359,28 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
 }
 
--(NSString*) download {
+-(NSString*) download:(NSString*)folderName {
  
-
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:self.song.audioFileURL];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *fullPath = [ documentsDirectory stringByAppendingPathComponent:[self.song.fileLink lastPathComponent]];
     
+    documentsDirectory =[ documentsDirectory stringByAppendingPathComponent:folderName] ;
     
+    BOOL isDir;
+    NSFileManager *fileManager= [NSFileManager defaultManager];
+    if(![fileManager fileExistsAtPath:documentsDirectory isDirectory:&isDir])
+        if(![fileManager createDirectoryAtPath:documentsDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
+            NSLog(@"Error: Create folder failed %@", documentsDirectory);
+
+    
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[[self.song.audioFileURL lastPathComponent] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
+  
     [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:fullPath append:NO]];
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-        NSLog(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
+    //    NSLog(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
     }];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -386,7 +398,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             
             //  [[_downloadFile titleLabel] setText:[NSString stringWithFormat:@"%lld", fileSize]];
             //return fullPath;
-            NSLog(@"%@, %@",fullPath,[NSString stringWithFormat:@"%lld", fileSize]);
+          //  NSLog(@"%@, %@",fullPath,[NSString stringWithFormat:@"%lld", fileSize]);
         }
         
         

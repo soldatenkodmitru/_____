@@ -148,7 +148,8 @@
         curPlaylistItem.image_savefile_link =imagelink;
         curPlaylistItem.artist = song.artist;
         curPlaylistItem.name = song.title;
-    
+        curPlaylistItem.rate = [NSNumber numberWithFloat:song.rating];
+        
         [curPlaylist addItemObject:curPlaylistItem];
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"%@", [error localizedDescription]);

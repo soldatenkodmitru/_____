@@ -228,8 +228,12 @@ typedef enum {
      DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:[indexPath section]];
      if(self.tabBar.selectedItem.tag == 5 &&  [playlist.songsArray count] > [indexPath row])
         return YES;
-      else
-        return NO;
+     else{
+        if(self.tabBar.selectedItem.tag == 4)
+            return YES;
+        else
+            return NO;
+     }
 }
 //- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
 //    return NO;

@@ -22,6 +22,7 @@
         self.album = [responseObject objectForKey:@"album"];
         self.albumLink = [responseObject objectForKey:@"album_link"];
         self.year = [[responseObject objectForKey:@"year"]integerValue];
+        self.lang = [responseObject objectForKey:@"language"];
         self.rating = [[responseObject objectForKey:@"rating"] floatValue];
         self.cutLink =[[[[responseObject objectForKey:@"files"] objectForKey:@"cut"] objectForKey:@"file_link"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.cutDuration = [[[responseObject objectForKey:@"files"] objectForKey:@"cut" ]objectForKey:@"duration"];
@@ -42,7 +43,7 @@
        self.isLocal = YES;
        self.songId = [item.id doubleValue];
        self.id_sound = [item.id_song integerValue];
-        self.rating = [item.rate doubleValue];
+        self.rating = [item.rate floatValue];
        self.saveFileLink= item.savefile_link;
        self.versionAudio = (typeSong) [item.version integerValue];
        self.title = item.name;
@@ -75,6 +76,7 @@
     [copy setAudioFileURL:[self audioFileURL]];
     [copy setIsLocal:[self isLocal]];
     [copy setVersionAudio:[self versionAudio]];
+    [copy setLang:[self lang]];
  
     return copy;
 }

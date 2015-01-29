@@ -238,8 +238,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
    
      [[DSDataManager dataManager] addPlaylistItemForNameList:@"Загрузки" song:self.song version:sFull fileLink:[self download] imagelink:@""];
  
-    
-
 }
 
 -(NSString*) download {
