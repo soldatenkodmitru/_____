@@ -310,16 +310,17 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (IBAction)favoriteAction:(id)sender {
   
-    if (!self.favoriteBtn.selected){
-        [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:sFull fileLink:[self download:@"Избранное"] imagelink:[self saveImage]];
+    self.favoriteBtn.selected = !self.favoriteBtn.selected;
+  
+    if (self.favoriteBtn.selected){
+        [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:self.self.song.versionAudio fileLink:[self download:@"Избранное"] imagelink:[self saveImage]];
     }
     else{
         double idItem = [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song];
         [[DSDataManager dataManager] deletePlaylistItemWithId:idItem];
         
     }
-    self.favoriteBtn.selected = !self.favoriteBtn.selected;
-}
+    }
 
 - (IBAction)downloadAction:(id)sender {
     
