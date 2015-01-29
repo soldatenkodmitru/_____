@@ -257,7 +257,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 
 #pragma mark - Implementation
-- (void)animalWasSelected:(NSNumber *)selectedIndex element:(id)element {
+- (void)versionWasSelected:(NSNumber *)selectedIndex element:(id)element {
     
     self.song.versionAudio = [selectedIndex intValue];
     switch(self.song.versionAudio){
@@ -272,20 +272,21 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             self.song.audioFileURL = [NSURL URLWithString:self.song.ringtonLink];
         break;}
     }
-  
-    [self stop];
-    [self playBackground];
+    if (!self.playBtn.selected) {
+        [self stop];
+        [self playBackground];
+        
+    }
     [self setTitleVersion];
-    
 }
 - (void)actionPickerCancelled:(id)sender {
-    NSLog(@"Delegate has been informed that ActionSheetPicker was cancelled");
+   // NSLog(@"Delegate has been informed that ActionSheetPicker was cancelled");
 }
 
 #pragma mark - Actions
 - (IBAction)versionAction:(id)sender{
     
-    [ActionSheetStringPicker showPickerWithTitle:@"Выберите версию" rows:[NSArray arrayWithObjects: @"Полная версия", @"Нарезка1",@"Нарезка2" , nil] initialSelection:self.song.versionAudio target:self successAction:@selector(animalWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
+    [ActionSheetStringPicker showPickerWithTitle:@"Выберите версию" rows:[NSArray arrayWithObjects: @"Полная версия", @"Нарезка1",@"Нарезка2" , nil] initialSelection:self.song.versionAudio target:self successAction:@selector(versionWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
 }
 
 - (IBAction)playAction:(id)sender{
@@ -301,11 +302,18 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (IBAction)shareAction:(id)sender{
     UIImage *sendImage = self.pictureSong;
     self.shareBtn.highlighted = YES;
+    dispatch_queue_t queue = dispatch_queue_create("openActivityIndicatorQueue", NULL);
+    
+    // send initialization of UIActivityViewController in background
+    dispatch_async(queue, ^{
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
-                                                        initWithActivityItems:@[@"Best rigtones http:\\google.com", sendImage] applicationActivities:nil];
+                                                        initWithActivityItems:@[@"Best rigtones itunes.apple.com/ru/artist/bestapp-studio-ltd./id739061892?l=ru", sendImage] applicationActivities:nil];
     activityViewController.excludedActivityTypes=@[UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll];
     
-    [self presentViewController:activityViewController animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:activityViewController animated:YES completion:nil];
+    });
+    });
 }
 
 - (IBAction)favoriteAction:(id)sender {
@@ -376,7 +384,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             NSLog(@"Error: Create folder failed %@", documentsDirectory);
 
     
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[[self.song.audioFileURL lastPathComponent] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[[self.song.audioFileURL lastPathComponent] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
   
     [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:fullPath append:NO]];
     
