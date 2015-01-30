@@ -11,6 +11,9 @@
 		32059F171A71F90A009F2493 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F0E1A71F90A009F2493 /* TSPopoverController.m */; };
 		32059F181A71F90A009F2493 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F101A71F90A009F2493 /* TSPopoverPopoverView.m */; };
 		32059F191A71F90A009F2493 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F131A71F90A009F2493 /* TSPopoverTouchView.m */; };
+		320F86121A7B477500FD9548 /* InAppPurches.m in Sources */ = {isa = PBXBuildFile; fileRef = 320F860C1A7B477400FD9548 /* InAppPurches.m */; };
+		320F86131A7B477500FD9548 /* MKStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 320F860F1A7B477400FD9548 /* MKStoreManager.m */; };
+		320F86141A7B477500FD9548 /* MKStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 320F86111A7B477400FD9548 /* MKStoreObserver.m */; };
 		321BBFAD1A544663006B125C /* DSPlaylistPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */; };
 		321BBFB01A545EDA006B125C /* DSAddPlaylistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAF1A545EDA006B125C /* DSAddPlaylistTableViewCell.m */; };
 		3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */; };
@@ -196,6 +199,12 @@
 		32059F111A71F90A009F2493 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
 		32059F121A71F90A009F2493 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
 		32059F131A71F90A009F2493 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
+		320F860B1A7B477400FD9548 /* InAppPurches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurches.h; sourceTree = "<group>"; };
+		320F860C1A7B477400FD9548 /* InAppPurches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurches.m; sourceTree = "<group>"; };
+		320F860E1A7B477400FD9548 /* MKStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreManager.h; sourceTree = "<group>"; };
+		320F860F1A7B477400FD9548 /* MKStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreManager.m; sourceTree = "<group>"; };
+		320F86101A7B477400FD9548 /* MKStoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreObserver.h; sourceTree = "<group>"; };
+		320F86111A7B477400FD9548 /* MKStoreObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreObserver.m; sourceTree = "<group>"; };
 		321BBFAB1A544663006B125C /* DSPlaylistPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylistPlayer.h; path = Ringtones/Models/DSPlaylistPlayer.h; sourceTree = "<group>"; };
 		321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylistPlayer.m; path = Ringtones/Models/DSPlaylistPlayer.m; sourceTree = "<group>"; };
 		321BBFAE1A545EDA006B125C /* DSAddPlaylistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSAddPlaylistTableViewCell.h; path = Ringtones/Cells/DSAddPlaylistTableViewCell.h; sourceTree = "<group>"; };
@@ -485,6 +494,28 @@
 				32A2D1AF1A676E7400C64A3F /* fonts */,
 			);
 			name = resources;
+			sourceTree = "<group>";
+		};
+		320F860A1A7B477400FD9548 /* inapppurchases */ = {
+			isa = PBXGroup;
+			children = (
+				320F860B1A7B477400FD9548 /* InAppPurches.h */,
+				320F860C1A7B477400FD9548 /* InAppPurches.m */,
+				320F860D1A7B477400FD9548 /* MKStore */,
+			);
+			name = inapppurchases;
+			path = Ringtones/libs/inapppurchases;
+			sourceTree = "<group>";
+		};
+		320F860D1A7B477400FD9548 /* MKStore */ = {
+			isa = PBXGroup;
+			children = (
+				320F860E1A7B477400FD9548 /* MKStoreManager.h */,
+				320F860F1A7B477400FD9548 /* MKStoreManager.m */,
+				320F86101A7B477400FD9548 /* MKStoreObserver.h */,
+				320F86111A7B477400FD9548 /* MKStoreObserver.m */,
+			);
+			path = MKStore;
 			sourceTree = "<group>";
 		};
 		3244D9791A72FFAC00F9B600 /* instruction */ = {
@@ -801,6 +832,7 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				320F860A1A7B477400FD9548 /* inapppurchases */,
 				3244D98C1A730ED300F9B600 /* NFXTourViewController */,
 				32059F0A1A71F90A009F2493 /* TSPopover */,
 				32B90F801A7085290025B4C0 /* SWActionSheet.h */,
@@ -1203,6 +1235,7 @@
 				32CE4F6E1A485F6B0022AE0F /* AFNetworkReachabilityManager.m in Sources */,
 				32D51AB51A58A75000973B24 /* DSPlaylist.m in Sources */,
 				32CE4F791A485F6B0022AE0F /* UIProgressView+AFNetworking.m in Sources */,
+				320F86121A7B477500FD9548 /* InAppPurches.m in Sources */,
 				32A6F91F1A4DA364006CB6D8 /* DOUAudioRenderer.m in Sources */,
 				32FA53D11A4B1BEC00413D1A /* STKCoreFoundationDataSource.m in Sources */,
 				32CEA3001A498E48006AD7CC /* DSSongViewController.m in Sources */,
@@ -1212,6 +1245,7 @@
 				32CE4F731A485F6B0022AE0F /* AFURLSessionManager.m in Sources */,
 				3244D98F1A730ED300F9B600 /* NFXIntroViewController.m in Sources */,
 				32CE4F711A485F6B0022AE0F /* AFURLRequestSerialization.m in Sources */,
+				320F86131A7B477500FD9548 /* MKStoreManager.m in Sources */,
 				32CE4F441A485F560022AE0F /* DSMainViewController.m in Sources */,
 				32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */,
 				321BBFAD1A544663006B125C /* DSPlaylistPlayer.m in Sources */,
@@ -1224,6 +1258,7 @@
 				32B90F7C1A707F2A0025B4C0 /* ActionSheetStringPicker.m in Sources */,
 				32A6F9171A4DA364006CB6D8 /* DOUAudioAnalyzer.m in Sources */,
 				32CE4EA51A483BC20022AE0F /* AppDelegate.m in Sources */,
+				320F86141A7B477500FD9548 /* MKStoreObserver.m in Sources */,
 				32CE4F861A4860790022AE0F /* DSSongTableViewCell.m in Sources */,
 				32FA53D01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m in Sources */,
 				32A6F9191A4DA364006CB6D8 /* DOUAudioEventLoop.m in Sources */,

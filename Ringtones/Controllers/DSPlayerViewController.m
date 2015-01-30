@@ -303,15 +303,15 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     UIImage *sendImage = self.pictureSong;
     self.shareBtn.highlighted = YES;
     dispatch_queue_t queue = dispatch_queue_create("openActivityIndicatorQueue", NULL);
-    
     // send initialization of UIActivityViewController in background
     dispatch_async(queue, ^{
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
-                                                        initWithActivityItems:@[@"Best rigtones itunes.apple.com/ru/artist/bestapp-studio-ltd./id739061892?l=ru", sendImage] applicationActivities:nil];
+                                                        initWithActivityItems:@[[NSString stringWithFormat:@"Лучшие рингтоны! Скачай %@ - %@ на свой телефон! itunes.apple.com/ru/artist/bestapp-studio-ltd./id739061892?l=ru",self.song.artist,self.song.title], sendImage] applicationActivities:nil];
     activityViewController.excludedActivityTypes=@[UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:activityViewController animated:YES completion:nil];
+        
     });
     });
 }
@@ -385,11 +385,11 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
     
     NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[[self.song.audioFileURL lastPathComponent] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
-  
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:fullPath append:NO]];
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-    //    NSLog(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
+        NSLog(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
     }];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -401,6 +401,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         
         if (error) {
             NSLog(@"ERR: %@", [error description]);
+          
         } else {
             NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
             long long fileSize = [fileSizeNumber longLongValue];
@@ -409,14 +410,53 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             //return fullPath;
           //  NSLog(@"%@, %@",fullPath,[NSString stringWithFormat:@"%lld", fileSize]);
         }
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Загрузка прервана"
+                                                            message:@"Соединение с сервером потеряно! Попробуйте пожалуйста скачать еще раз!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Oк"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         NSLog(@"ERR: %@", [error description]);
     }];
     
     [operation start];
     return fullPath;
 }
+
+#pragma mark - Purchaise
+
+-(void)unlockFeatureForDate:(NSDate*) date {
+    
+   // [app showIndecator:NO withView:app.window];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"isPurchaise"];
+    [defaults removeObjectForKey:@"isPurchaiseTermin"];
+    [defaults removeObjectForKey:@"isPurchaiseDate"];
+    [defaults synchronize];
+    
+    NSDateFormatter *objDateFormatter = [[NSDateFormatter alloc] init];
+    [objDateFormatter setDateFormat:@"dd.MM.yyyy"];
+    NSString* dateStr = [objDateFormatter stringFromDate:date];
+    NSNumber* term = nil;
+    
+    [defaults setObject:dateStr forKey:@"isPurchaiseDate"];
+    [defaults setObject:term forKey:@"isPurchaiseTermin"];
+    [defaults setBool:YES forKey:@"isPurchaise"];
+    [defaults synchronize];
+    //app.isPurchaise = YES;
+    
+   // [self prepareView];
+    
+    //UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Сообщение" message:@"Ваши покупки успешно завершены" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    //[alert show];
+    
+}
+
 
 @end

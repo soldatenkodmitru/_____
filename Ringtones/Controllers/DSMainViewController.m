@@ -203,7 +203,7 @@ typedef enum {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Ошибка"
                                                         message:errorMessage
                                                        delegate:nil
-                                              cancelButtonTitle:@"Ok"
+                                              cancelButtonTitle:@"Oк"
                                               otherButtonTitles:nil];
     [alertView show];
     [self.tableView reloadData];
