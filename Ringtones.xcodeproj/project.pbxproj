@@ -11,9 +11,6 @@
 		32059F171A71F90A009F2493 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F0E1A71F90A009F2493 /* TSPopoverController.m */; };
 		32059F181A71F90A009F2493 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F101A71F90A009F2493 /* TSPopoverPopoverView.m */; };
 		32059F191A71F90A009F2493 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32059F131A71F90A009F2493 /* TSPopoverTouchView.m */; };
-		320F86121A7B477500FD9548 /* InAppPurches.m in Sources */ = {isa = PBXBuildFile; fileRef = 320F860C1A7B477400FD9548 /* InAppPurches.m */; };
-		320F86131A7B477500FD9548 /* MKStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 320F860F1A7B477400FD9548 /* MKStoreManager.m */; };
-		320F86141A7B477500FD9548 /* MKStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 320F86111A7B477400FD9548 /* MKStoreObserver.m */; };
 		321BBFAD1A544663006B125C /* DSPlaylistPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */; };
 		321BBFB01A545EDA006B125C /* DSAddPlaylistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 321BBFAF1A545EDA006B125C /* DSAddPlaylistTableViewCell.m */; };
 		3238F8881A5798EC00F6F9BE /* DSSegmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238F8871A5798EC00F6F9BE /* DSSegmentTableViewCell.m */; };
@@ -94,9 +91,6 @@
 		32A6F9271A4DA364006CB6D8 /* NSData+DOUMappedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9151A4DA364006CB6D8 /* NSData+DOUMappedFile.m */; };
 		32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */; };
 		32B90F791A702ED90025B4C0 /* button_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B90F781A702ED90025B4C0 /* button_settings@2x.png */; };
-		32B90F7C1A707F2A0025B4C0 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B90F7B1A707F2A0025B4C0 /* ActionSheetStringPicker.m */; };
-		32B90F7F1A70812F0025B4C0 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B90F7E1A70812F0025B4C0 /* AbstractActionSheetPicker.m */; };
-		32B90F821A7085290025B4C0 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B90F811A7085290025B4C0 /* SWActionSheet.m */; };
 		32C2F4831A6D15910094A92A /* GMDCircleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C2F4821A6D15910094A92A /* GMDCircleLoader.m */; };
 		32C6A8AF1A67C50B0014651D /* DSPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C6A8AE1A67C50B0014651D /* DSPlayerViewController.m */; };
 		32C6A8B61A67CF120014651D /* DSLikesSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C6A8B51A67CF120014651D /* DSLikesSong.m */; };
@@ -160,23 +154,16 @@
 		32CE4F7E1A485F790022AE0F /* DSServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CE4F7D1A485F790022AE0F /* DSServerManager.m */; };
 		32CE4F831A4860510022AE0F /* DSSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CE4F821A4860510022AE0F /* DSSong.m */; };
 		32CE4F861A4860790022AE0F /* DSSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CE4F851A4860790022AE0F /* DSSongTableViewCell.m */; };
-		32CEA2FD1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA2FC1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m */; };
-		32CEA3001A498E48006AD7CC /* DSSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA2FF1A498E48006AD7CC /* DSSongViewController.m */; };
 		32CEA3051A49B8DA006AD7CC /* DSSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CEA3041A49B8DA006AD7CC /* DSSoundManager.m */; };
 		32D51AB51A58A75000973B24 /* DSPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D51AB41A58A75000973B24 /* DSPlaylist.m */; };
 		32D51AB81A58B4BF00973B24 /* DSPlaylistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D51AB71A58B4BF00973B24 /* DSPlaylistItem.m */; };
 		32EF409F1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EF409A1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m */; };
 		32EF40A01A6C65FE00A9E5B5 /* DaiVolume+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EF409C1A6C65FE00A9E5B5 /* DaiVolume+Invocation.m */; };
 		32EF40A11A6C65FE00A9E5B5 /* DaiVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EF409E1A6C65FE00A9E5B5 /* DaiVolume.m */; };
-		32FA53CE1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53BC1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m */; };
-		32FA53CF1A4B1BEC00413D1A /* STKAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53BE1A4B1BEC00413D1A /* STKAudioPlayer.m */; };
-		32FA53D01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m */; };
-		32FA53D11A4B1BEC00413D1A /* STKCoreFoundationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C21A4B1BEC00413D1A /* STKCoreFoundationDataSource.m */; };
-		32FA53D21A4B1BEC00413D1A /* STKDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C41A4B1BEC00413D1A /* STKDataSource.m */; };
-		32FA53D31A4B1BEC00413D1A /* STKDataSourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C61A4B1BEC00413D1A /* STKDataSourceWrapper.m */; };
-		32FA53D41A4B1BEC00413D1A /* STKHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53C81A4B1BEC00413D1A /* STKHTTPDataSource.m */; };
-		32FA53D51A4B1BEC00413D1A /* STKLocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53CA1A4B1BEC00413D1A /* STKLocalFileDataSource.m */; };
-		32FA53D61A4B1BEC00413D1A /* STKQueueEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA53CC1A4B1BEC00413D1A /* STKQueueEntry.m */; };
+		BFC9DB051A7BA7B300C5D4D6 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB001A7BA7B300C5D4D6 /* AbstractActionSheetPicker.m */; };
+		BFC9DB061A7BA7B300C5D4D6 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB021A7BA7B300C5D4D6 /* ActionSheetStringPicker.m */; };
+		BFC9DB071A7BA7B300C5D4D6 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */; };
+		BFC9DB0A1A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,12 +186,6 @@
 		32059F111A71F90A009F2493 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
 		32059F121A71F90A009F2493 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
 		32059F131A71F90A009F2493 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
-		320F860B1A7B477400FD9548 /* InAppPurches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurches.h; sourceTree = "<group>"; };
-		320F860C1A7B477400FD9548 /* InAppPurches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurches.m; sourceTree = "<group>"; };
-		320F860E1A7B477400FD9548 /* MKStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreManager.h; sourceTree = "<group>"; };
-		320F860F1A7B477400FD9548 /* MKStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreManager.m; sourceTree = "<group>"; };
-		320F86101A7B477400FD9548 /* MKStoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreObserver.h; sourceTree = "<group>"; };
-		320F86111A7B477400FD9548 /* MKStoreObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreObserver.m; sourceTree = "<group>"; };
 		321BBFAB1A544663006B125C /* DSPlaylistPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylistPlayer.h; path = Ringtones/Models/DSPlaylistPlayer.h; sourceTree = "<group>"; };
 		321BBFAC1A544663006B125C /* DSPlaylistPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSPlaylistPlayer.m; path = Ringtones/Models/DSPlaylistPlayer.m; sourceTree = "<group>"; };
 		321BBFAE1A545EDA006B125C /* DSAddPlaylistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSAddPlaylistTableViewCell.h; path = Ringtones/Cells/DSAddPlaylistTableViewCell.h; sourceTree = "<group>"; };
@@ -316,12 +297,6 @@
 		32A6F9281A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOUMPMediaLibraryAssetLoader.h; sourceTree = "<group>"; };
 		32A6F9291A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOUMPMediaLibraryAssetLoader.m; sourceTree = "<group>"; };
 		32B90F781A702ED90025B4C0 /* button_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_settings@2x.png"; path = "Ringtones/images/navbar/button_settings@2x.png"; sourceTree = "<group>"; };
-		32B90F7A1A707F2A0025B4C0 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionSheetStringPicker.h; path = Ringtones/libs/ActionSheetStringPicker.h; sourceTree = "<group>"; };
-		32B90F7B1A707F2A0025B4C0 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = Ringtones/libs/ActionSheetStringPicker.m; sourceTree = "<group>"; };
-		32B90F7D1A70812F0025B4C0 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Ringtones/libs/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
-		32B90F7E1A70812F0025B4C0 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = Ringtones/libs/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
-		32B90F801A7085290025B4C0 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = Ringtones/libs/SWActionSheet.h; sourceTree = "<group>"; };
-		32B90F811A7085290025B4C0 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = Ringtones/libs/SWActionSheet.m; sourceTree = "<group>"; };
 		32C2F4811A6D15910094A92A /* GMDCircleLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMDCircleLoader.h; sourceTree = "<group>"; };
 		32C2F4821A6D15910094A92A /* GMDCircleLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMDCircleLoader.m; sourceTree = "<group>"; };
 		32C6A8AD1A67C50B0014651D /* DSPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlayerViewController.h; path = Ringtones/Controllers/DSPlayerViewController.h; sourceTree = "<group>"; };
@@ -415,10 +390,6 @@
 		32CE4F821A4860510022AE0F /* DSSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSong.m; path = Ringtones/Models/DSSong.m; sourceTree = "<group>"; };
 		32CE4F841A4860790022AE0F /* DSSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSSongTableViewCell.h; path = Ringtones/Cells/DSSongTableViewCell.h; sourceTree = "<group>"; };
 		32CE4F851A4860790022AE0F /* DSSongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSongTableViewCell.m; path = Ringtones/Cells/DSSongTableViewCell.m; sourceTree = "<group>"; };
-		32CEA2FB1A49691A006AD7CC /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperationLogger.h; path = Ringtones/libs/AFHTTPRequestOperationLogger.h; sourceTree = "<group>"; };
-		32CEA2FC1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationLogger.m; path = Ringtones/libs/AFHTTPRequestOperationLogger.m; sourceTree = "<group>"; };
-		32CEA2FE1A498E48006AD7CC /* DSSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSSongViewController.h; path = Ringtones/Controllers/DSSongViewController.h; sourceTree = "<group>"; };
-		32CEA2FF1A498E48006AD7CC /* DSSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSongViewController.m; path = Ringtones/Controllers/DSSongViewController.m; sourceTree = "<group>"; };
 		32CEA3031A49B8DA006AD7CC /* DSSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSSoundManager.h; path = Ringtones/Manager/DSSoundManager.h; sourceTree = "<group>"; };
 		32CEA3041A49B8DA006AD7CC /* DSSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSSoundManager.m; path = Ringtones/Manager/DSSoundManager.m; sourceTree = "<group>"; };
 		32D51AB31A58A75000973B24 /* DSPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSPlaylist.h; path = Ringtones/CoreDataModel/DSPlaylist.h; sourceTree = "<group>"; };
@@ -432,25 +403,14 @@
 		32EF409C1A6C65FE00A9E5B5 /* DaiVolume+Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiVolume+Invocation.m"; sourceTree = "<group>"; };
 		32EF409D1A6C65FE00A9E5B5 /* DaiVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiVolume.h; sourceTree = "<group>"; };
 		32EF409E1A6C65FE00A9E5B5 /* DaiVolume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiVolume.m; sourceTree = "<group>"; };
-		32FA53BB1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+STKAudioPlayer.h"; sourceTree = "<group>"; };
-		32FA53BC1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+STKAudioPlayer.m"; sourceTree = "<group>"; };
-		32FA53BD1A4B1BEC00413D1A /* STKAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAudioPlayer.h; sourceTree = "<group>"; };
-		32FA53BE1A4B1BEC00413D1A /* STKAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAudioPlayer.m; sourceTree = "<group>"; };
-		32FA53BF1A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAutoRecoveringHTTPDataSource.h; sourceTree = "<group>"; };
-		32FA53C01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAutoRecoveringHTTPDataSource.m; sourceTree = "<group>"; };
-		32FA53C11A4B1BEC00413D1A /* STKCoreFoundationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKCoreFoundationDataSource.h; sourceTree = "<group>"; };
-		32FA53C21A4B1BEC00413D1A /* STKCoreFoundationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKCoreFoundationDataSource.m; sourceTree = "<group>"; };
-		32FA53C31A4B1BEC00413D1A /* STKDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSource.h; sourceTree = "<group>"; };
-		32FA53C41A4B1BEC00413D1A /* STKDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDataSource.m; sourceTree = "<group>"; };
-		32FA53C51A4B1BEC00413D1A /* STKDataSourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSourceWrapper.h; sourceTree = "<group>"; };
-		32FA53C61A4B1BEC00413D1A /* STKDataSourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDataSourceWrapper.m; sourceTree = "<group>"; };
-		32FA53C71A4B1BEC00413D1A /* STKHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKHTTPDataSource.h; sourceTree = "<group>"; };
-		32FA53C81A4B1BEC00413D1A /* STKHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKHTTPDataSource.m; sourceTree = "<group>"; };
-		32FA53C91A4B1BEC00413D1A /* STKLocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLocalFileDataSource.h; sourceTree = "<group>"; };
-		32FA53CA1A4B1BEC00413D1A /* STKLocalFileDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLocalFileDataSource.m; sourceTree = "<group>"; };
-		32FA53CB1A4B1BEC00413D1A /* STKQueueEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKQueueEntry.h; sourceTree = "<group>"; };
-		32FA53CC1A4B1BEC00413D1A /* STKQueueEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKQueueEntry.m; sourceTree = "<group>"; };
-		32FA53CD1A4B1BEC00413D1A /* StreamingKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StreamingKit-Prefix.pch"; sourceTree = "<group>"; };
+		BFC9DAFF1A7BA7B300C5D4D6 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		BFC9DB001A7BA7B300C5D4D6 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		BFC9DB011A7BA7B300C5D4D6 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		BFC9DB021A7BA7B300C5D4D6 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		BFC9DB031A7BA7B300C5D4D6 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
+		BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
+		BFC9DB081A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperationLogger.h; path = "Ringtones/libs/UIKit+AFNetworking/AFHTTPRequestOperationLogger.h"; sourceTree = SOURCE_ROOT; };
+		BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationLogger.m; path = "Ringtones/libs/UIKit+AFNetworking/AFHTTPRequestOperationLogger.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,28 +454,6 @@
 				32A2D1AF1A676E7400C64A3F /* fonts */,
 			);
 			name = resources;
-			sourceTree = "<group>";
-		};
-		320F860A1A7B477400FD9548 /* inapppurchases */ = {
-			isa = PBXGroup;
-			children = (
-				320F860B1A7B477400FD9548 /* InAppPurches.h */,
-				320F860C1A7B477400FD9548 /* InAppPurches.m */,
-				320F860D1A7B477400FD9548 /* MKStore */,
-			);
-			name = inapppurchases;
-			path = Ringtones/libs/inapppurchases;
-			sourceTree = "<group>";
-		};
-		320F860D1A7B477400FD9548 /* MKStore */ = {
-			isa = PBXGroup;
-			children = (
-				320F860E1A7B477400FD9548 /* MKStoreManager.h */,
-				320F860F1A7B477400FD9548 /* MKStoreManager.m */,
-				320F86101A7B477400FD9548 /* MKStoreObserver.h */,
-				320F86111A7B477400FD9548 /* MKStoreObserver.m */,
-			);
-			path = MKStore;
 			sourceTree = "<group>";
 		};
 		3244D9791A72FFAC00F9B600 /* instruction */ = {
@@ -832,21 +770,12 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				320F860A1A7B477400FD9548 /* inapppurchases */,
+				BFC9DAFE1A7BA7B300C5D4D6 /* ActionSheet */,
 				3244D98C1A730ED300F9B600 /* NFXTourViewController */,
 				32059F0A1A71F90A009F2493 /* TSPopover */,
-				32B90F801A7085290025B4C0 /* SWActionSheet.h */,
-				32B90F811A7085290025B4C0 /* SWActionSheet.m */,
-				32B90F7D1A70812F0025B4C0 /* AbstractActionSheetPicker.h */,
-				32B90F7E1A70812F0025B4C0 /* AbstractActionSheetPicker.m */,
-				32B90F7A1A707F2A0025B4C0 /* ActionSheetStringPicker.h */,
-				32B90F7B1A707F2A0025B4C0 /* ActionSheetStringPicker.m */,
 				32C2F4801A6D15910094A92A /* GMDCircleLoader */,
 				32EF40981A6C65FE00A9E5B5 /* DaiVolume */,
 				32A6F8ED1A4DA364006CB6D8 /* DOUAudioStreamer */,
-				32FA53BA1A4B1BEC00413D1A /* StreamingKit */,
-				32CEA2FB1A49691A006AD7CC /* AFHTTPRequestOperationLogger.h */,
-				32CEA2FC1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m */,
 				32CE4F451A485F6A0022AE0F /* AFNetworking */,
 				32CE4F591A485F6A0022AE0F /* UIKit+AFNetworking */,
 			);
@@ -871,8 +800,6 @@
 			children = (
 				32CE4F421A485F560022AE0F /* DSMainViewController.h */,
 				32CE4F431A485F560022AE0F /* DSMainViewController.m */,
-				32CEA2FE1A498E48006AD7CC /* DSSongViewController.h */,
-				32CEA2FF1A498E48006AD7CC /* DSSongViewController.m */,
 				32C6A8AD1A67C50B0014651D /* DSPlayerViewController.h */,
 				32C6A8AE1A67C50B0014651D /* DSPlayerViewController.m */,
 			);
@@ -882,6 +809,8 @@
 		32CE4F451A485F6A0022AE0F /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				BFC9DB081A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.h */,
+				BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */,
 				32CE4F461A485F6A0022AE0F /* AFHTTPRequestOperation.h */,
 				32CE4F471A485F6A0022AE0F /* AFHTTPRequestOperation.m */,
 				32CE4F481A485F6A0022AE0F /* AFHTTPRequestOperationManager.h */,
@@ -985,31 +914,18 @@
 			name = images;
 			sourceTree = "<group>";
 		};
-		32FA53BA1A4B1BEC00413D1A /* StreamingKit */ = {
+		BFC9DAFE1A7BA7B300C5D4D6 /* ActionSheet */ = {
 			isa = PBXGroup;
 			children = (
-				32FA53BB1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.h */,
-				32FA53BC1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m */,
-				32FA53BD1A4B1BEC00413D1A /* STKAudioPlayer.h */,
-				32FA53BE1A4B1BEC00413D1A /* STKAudioPlayer.m */,
-				32FA53BF1A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.h */,
-				32FA53C01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m */,
-				32FA53C11A4B1BEC00413D1A /* STKCoreFoundationDataSource.h */,
-				32FA53C21A4B1BEC00413D1A /* STKCoreFoundationDataSource.m */,
-				32FA53C31A4B1BEC00413D1A /* STKDataSource.h */,
-				32FA53C41A4B1BEC00413D1A /* STKDataSource.m */,
-				32FA53C51A4B1BEC00413D1A /* STKDataSourceWrapper.h */,
-				32FA53C61A4B1BEC00413D1A /* STKDataSourceWrapper.m */,
-				32FA53C71A4B1BEC00413D1A /* STKHTTPDataSource.h */,
-				32FA53C81A4B1BEC00413D1A /* STKHTTPDataSource.m */,
-				32FA53C91A4B1BEC00413D1A /* STKLocalFileDataSource.h */,
-				32FA53CA1A4B1BEC00413D1A /* STKLocalFileDataSource.m */,
-				32FA53CB1A4B1BEC00413D1A /* STKQueueEntry.h */,
-				32FA53CC1A4B1BEC00413D1A /* STKQueueEntry.m */,
-				32FA53CD1A4B1BEC00413D1A /* StreamingKit-Prefix.pch */,
+				BFC9DAFF1A7BA7B300C5D4D6 /* AbstractActionSheetPicker.h */,
+				BFC9DB001A7BA7B300C5D4D6 /* AbstractActionSheetPicker.m */,
+				BFC9DB011A7BA7B300C5D4D6 /* ActionSheetStringPicker.h */,
+				BFC9DB021A7BA7B300C5D4D6 /* ActionSheetStringPicker.m */,
+				BFC9DB031A7BA7B300C5D4D6 /* SWActionSheet.h */,
+				BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */,
 			);
-			name = StreamingKit;
-			path = Ringtones/libs/StreamingKit;
+			name = ActionSheet;
+			path = Ringtones/libs/ActionSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1209,7 +1125,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				32A6F9201A4DA364006CB6D8 /* DOUAudioSpatialAnalyzer.m in Sources */,
-				32B90F7F1A70812F0025B4C0 /* AbstractActionSheetPicker.m in Sources */,
 				321BBFB01A545EDA006B125C /* DSAddPlaylistTableViewCell.m in Sources */,
 				32A6F9211A4DA364006CB6D8 /* DOUAudioStreamer+Options.m in Sources */,
 				32A6F91C1A4DA364006CB6D8 /* DOUAudioFrequencyAnalyzer.m in Sources */,
@@ -1217,15 +1132,14 @@
 				32CE4F701A485F6B0022AE0F /* AFURLConnectionOperation.m in Sources */,
 				32CEA3051A49B8DA006AD7CC /* DSSoundManager.m in Sources */,
 				32A6F91A1A4DA364006CB6D8 /* DOUAudioFilePreprocessor.m in Sources */,
-				32FA53D41A4B1BEC00413D1A /* STKHTTPDataSource.m in Sources */,
 				32CE4F6B1A485F6B0022AE0F /* AFHTTPRequestOperation.m in Sources */,
 				32A6F91B1A4DA364006CB6D8 /* DOUAudioFileProvider.m in Sources */,
 				32A6F9161A4DA364006CB6D8 /* DOUAudioAnalyzer+Default.m in Sources */,
 				32D51AB81A58B4BF00973B24 /* DSPlaylistItem.m in Sources */,
 				32A6F9231A4DA364006CB6D8 /* DOUAudioVisualizer.m in Sources */,
 				32EF40A01A6C65FE00A9E5B5 /* DaiVolume+Invocation.m in Sources */,
+				BFC9DB071A7BA7B300C5D4D6 /* SWActionSheet.m in Sources */,
 				32C6A8B61A67CF120014651D /* DSLikesSong.m in Sources */,
-				32FA53CE1A4B1BEC00413D1A /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				32EF409F1A6C65FE00A9E5B5 /* DaiVolume+AccessObject.m in Sources */,
 				32EF40A11A6C65FE00A9E5B5 /* DaiVolume.m in Sources */,
 				32CE4F771A485F6B0022AE0F /* UIButton+AFNetworking.m in Sources */,
@@ -1235,38 +1149,28 @@
 				32CE4F6E1A485F6B0022AE0F /* AFNetworkReachabilityManager.m in Sources */,
 				32D51AB51A58A75000973B24 /* DSPlaylist.m in Sources */,
 				32CE4F791A485F6B0022AE0F /* UIProgressView+AFNetworking.m in Sources */,
-				320F86121A7B477500FD9548 /* InAppPurches.m in Sources */,
 				32A6F91F1A4DA364006CB6D8 /* DOUAudioRenderer.m in Sources */,
-				32FA53D11A4B1BEC00413D1A /* STKCoreFoundationDataSource.m in Sources */,
-				32CEA3001A498E48006AD7CC /* DSSongViewController.m in Sources */,
-				32FA53D51A4B1BEC00413D1A /* STKLocalFileDataSource.m in Sources */,
 				32A6F9261A4DA364006CB6D8 /* DOUSimpleHTTPRequest.m in Sources */,
-				32FA53CF1A4B1BEC00413D1A /* STKAudioPlayer.m in Sources */,
 				32CE4F731A485F6B0022AE0F /* AFURLSessionManager.m in Sources */,
+				BFC9DB0A1A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m in Sources */,
 				3244D98F1A730ED300F9B600 /* NFXIntroViewController.m in Sources */,
 				32CE4F711A485F6B0022AE0F /* AFURLRequestSerialization.m in Sources */,
-				320F86131A7B477500FD9548 /* MKStoreManager.m in Sources */,
 				32CE4F441A485F560022AE0F /* DSMainViewController.m in Sources */,
 				32A3F26A1A4F608500FCC2A9 /* DSDataManager.m in Sources */,
 				321BBFAD1A544663006B125C /* DSPlaylistPlayer.m in Sources */,
 				32A6F9241A4DA364006CB6D8 /* DOUEAGLView.m in Sources */,
 				32CE4F7A1A485F6B0022AE0F /* UIRefreshControl+AFNetworking.m in Sources */,
 				32A6F9221A4DA364006CB6D8 /* DOUAudioStreamer.m in Sources */,
-				32FA53D31A4B1BEC00413D1A /* STKDataSourceWrapper.m in Sources */,
 				32CE4F721A485F6B0022AE0F /* AFURLResponseSerialization.m in Sources */,
 				32CE4F7E1A485F790022AE0F /* DSServerManager.m in Sources */,
-				32B90F7C1A707F2A0025B4C0 /* ActionSheetStringPicker.m in Sources */,
 				32A6F9171A4DA364006CB6D8 /* DOUAudioAnalyzer.m in Sources */,
 				32CE4EA51A483BC20022AE0F /* AppDelegate.m in Sources */,
-				320F86141A7B477500FD9548 /* MKStoreObserver.m in Sources */,
 				32CE4F861A4860790022AE0F /* DSSongTableViewCell.m in Sources */,
-				32FA53D01A4B1BEC00413D1A /* STKAutoRecoveringHTTPDataSource.m in Sources */,
 				32A6F9191A4DA364006CB6D8 /* DOUAudioEventLoop.m in Sources */,
-				32CEA2FD1A49691A006AD7CC /* AFHTTPRequestOperationLogger.m in Sources */,
 				32A6F91D1A4DA364006CB6D8 /* DOUAudioLPCM.m in Sources */,
+				BFC9DB061A7BA7B300C5D4D6 /* ActionSheetStringPicker.m in Sources */,
 				32059F171A71F90A009F2493 /* TSPopoverController.m in Sources */,
 				32CE4F781A485F6B0022AE0F /* UIImageView+AFNetworking.m in Sources */,
-				32B90F821A7085290025B4C0 /* SWActionSheet.m in Sources */,
 				32CE4EA21A483BC20022AE0F /* main.m in Sources */,
 				32CE4F761A485F6B0022AE0F /* UIAlertView+AFNetworking.m in Sources */,
 				32A6F8E61A4D6DAE006CB6D8 /* DSRateView.m in Sources */,
@@ -1280,13 +1184,12 @@
 				32CE4EA81A483BC20022AE0F /* Ringtones.xcdatamodeld in Sources */,
 				32059F161A71F90A009F2493 /* TSActionSheet.m in Sources */,
 				32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */,
-				32FA53D61A4B1BEC00413D1A /* STKQueueEntry.m in Sources */,
 				32CE4F6D1A485F6B0022AE0F /* AFHTTPSessionManager.m in Sources */,
-				32FA53D21A4B1BEC00413D1A /* STKDataSource.m in Sources */,
 				32C2F4831A6D15910094A92A /* GMDCircleLoader.m in Sources */,
 				32059F191A71F90A009F2493 /* TSPopoverTouchView.m in Sources */,
 				32CE4F751A485F6B0022AE0F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				32CE4F741A485F6B0022AE0F /* AFNetworkActivityIndicatorManager.m in Sources */,
+				BFC9DB051A7BA7B300C5D4D6 /* AbstractActionSheetPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1338,8 +1241,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1381,8 +1284,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1405,9 +1308,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ringtones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1420,9 +1322,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Ringtones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

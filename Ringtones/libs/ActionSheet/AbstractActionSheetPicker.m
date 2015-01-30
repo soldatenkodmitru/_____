@@ -114,10 +114,10 @@ CG_INLINE BOOL isIPhone4()
         else
             NSAssert(NO, @"Invalid origin provided to ActionSheetPicker ( %@ )", origin);
 
-        UIBarButtonItem *sysDoneButton = [self createButtonWithType:UIBarButtonSystemItemDone target:self
+        UIBarButtonItem *sysDoneButton = [self createButtonWithTitle:@"Готово"  target:self
                                                              action:@selector(actionPickerDone:)];
 
-        UIBarButtonItem *sysCancelButton = [self createButtonWithType:UIBarButtonSystemItemCancel target:self
+        UIBarButtonItem *sysCancelButton = [self createButtonWithTitle:@"Отмена"  target:self
                                                                action:@selector(actionPickerCancel:)];
 
         [self setCancelBarButtonItem:sysCancelButton];
@@ -497,7 +497,11 @@ CG_INLINE BOOL isIPhone4()
                                                                                action:buttonAction];
     return barButton;
 }
-
+- (UIBarButtonItem *)createButtonWithTitle:(NSString*) title target:(id)target action:(SEL)buttonAction
+{
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:title style: UIBarButtonItemStylePlain target:target action:buttonAction];
+    return barButton;
+}
 #pragma mark - Utilities and Accessors
 
 - (CGSize)viewSize

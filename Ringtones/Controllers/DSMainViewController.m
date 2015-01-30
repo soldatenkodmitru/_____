@@ -65,8 +65,7 @@ typedef enum {
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
     
-    self.navBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemEdit target:self action:@selector(editMode)];
-    
+    self.navBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Изменить" style:UIBarButtonItemStylePlain target:self action:@selector(editMode)];
     UIImage *blank = [UIImage imageNamed:@"ic_search.png"];
     [self.searchBar setImage:blank forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     self.searchBar.layer.borderWidth = 1;
@@ -306,7 +305,15 @@ typedef enum {
 
 -(void)editMode {
     
+    
     self.tableView.editing = !self.tableView.editing;
+    if (self.tableView.editing){
+        UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"Готово" style:UIBarButtonItemStylePlain target:self action:@selector(editMode)];
+        self.navigationItem.leftBarButtonItem = item;
+    }
+    else{
+        self.navigationItem.leftBarButtonItem = self.navBarItem;
+    }
 }
 
 
