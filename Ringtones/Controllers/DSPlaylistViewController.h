@@ -18,12 +18,13 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
-@interface DSPlaylistViewController : ViewController <DSRateViewDelegate>
+@interface DSPlaylistViewController : ViewController 
 
 - (IBAction)playAction:(id)sender;
-- (IBAction)stopAction:(id)sender;
-- (IBAction)downloadAction:(id)sender;
-- (IBAction)favoriteAction:(id)sender;
+- (IBAction)pauseAction:(id)sender;
+- (IBAction)forwardAction:(id)sender;
+- (IBAction)backAction:(id)sender;
+- (IBAction)recoendedAction:(id)sender;
 - (IBAction)shareAction:(id)sender;
 - (IBAction)versionAction:(id)sender;
 
@@ -31,10 +32,11 @@
 @property (strong, nonatomic) IBOutlet UIImageView* imageSong;
 @property (strong, nonatomic) IBOutlet UIButton *versionBtn;
 @property (strong, nonatomic) IBOutlet UIButton *playBtn;
-@property (strong, nonatomic) IBOutlet UIButton *favoriteBtn;
-@property (strong, nonatomic) IBOutlet UIButton *stopBtn;
+@property (strong, nonatomic) IBOutlet UIButton *backBtn;
+@property (strong, nonatomic) IBOutlet UIButton *forwardBtn;
+@property (strong, nonatomic) IBOutlet UIButton *pauseBtn;
 @property (strong, nonatomic) IBOutlet UIButton *shareBtn;
-@property (strong, nonatomic) IBOutlet UIButton *downloadBtn;
+@property (strong, nonatomic) IBOutlet UIButton *recomendBtn;
 @property (strong, nonatomic) IBOutlet UILabel *artistLbl;
 @property (strong, nonatomic) IBOutlet UILabel *titleLbl;
 @property (strong, nonatomic) IBOutlet UILabel *startLbl;

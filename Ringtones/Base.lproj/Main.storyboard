@@ -1724,7 +1724,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="stopAction:" destination="wPP-07-ech" eventType="touchUpInside" id="vKY-eG-SLe"/>
+                                    <action selector="pauseAction:" destination="wPP-07-ech" eventType="touchDown" id="eqC-fr-oTH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdS-VU-0zc">
@@ -1766,7 +1766,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="downloadAction:" destination="wPP-07-ech" eventType="touchUpInside" id="BjT-Gh-jVQ"/>
+                                    <action selector="recoendedAction:" destination="wPP-07-ech" eventType="touchDown" id="8f0-Ka-v7z"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" placeholderIntrinsicWidth="333" placeholderIntrinsicHeight="10" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Hk8-Zu-TyI">
@@ -1843,7 +1843,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="favoriteAction:" destination="wPP-07-ech" eventType="touchUpInside" id="ZBL-p8-q8T"/>
+                                    <action selector="forwardAction:" destination="wPP-07-ech" eventType="touchDown" id="Pvx-QV-JLI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwj-NV-rLW">
@@ -1878,7 +1878,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="favoriteAction:" destination="wPP-07-ech" eventType="touchUpInside" id="C1F-fa-F62"/>
+                                    <action selector="backAction:" destination="wPP-07-ech" eventType="touchDown" id="W0k-4W-TSD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Yt8-pW-7xw">
@@ -2009,8 +2009,8 @@
                                     </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Button" image="button_share@3x.png"/>
-                                <state key="highlighted" image="button_share_s@3x.png"/>
+                                <state key="normal" title="Button" image="button_share_it@3x.png"/>
+                                <state key="highlighted" image="button_share_it_s@3x.png"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="vDc-oy-0H2"/>
@@ -2349,15 +2349,16 @@
                     </view>
                     <connections>
                         <outlet property="artistLbl" destination="iA7-7d-fL3" id="AhM-1a-lXh"/>
-                        <outlet property="downloadBtn" destination="HdS-VU-0zc" id="xc1-Hc-wVJ"/>
+                        <outlet property="backBtn" destination="Xwj-NV-rLW" id="VGR-JT-1Ba"/>
                         <outlet property="endLbl" destination="0QP-aD-nDc" id="u4o-pG-7di"/>
-                        <outlet property="favoriteBtn" destination="E5E-ia-mot" id="kL2-sk-v9F"/>
+                        <outlet property="forwardBtn" destination="E5E-ia-mot" id="759-fI-qso"/>
                         <outlet property="imageSong" destination="6E8-wO-dyj" id="ebX-md-887"/>
+                        <outlet property="pauseBtn" destination="OpB-5a-EDM" id="geC-6N-IaI"/>
                         <outlet property="playBtn" destination="d9i-Wo-sXJ" id="xJj-Un-ilw"/>
                         <outlet property="playProgress" destination="Hk8-Zu-TyI" id="sLF-lC-P0T"/>
+                        <outlet property="recomendBtn" destination="HdS-VU-0zc" id="bPA-71-gGy"/>
                         <outlet property="shareBtn" destination="hbx-Vz-ADr" id="AWM-eM-NVo"/>
                         <outlet property="startLbl" destination="bwe-EF-ucF" id="8JL-d0-Xxb"/>
-                        <outlet property="stopBtn" destination="OpB-5a-EDM" id="Z7P-F7-ASl"/>
                         <outlet property="titleLbl" destination="4rx-7J-nlF" id="IfB-m8-qEh"/>
                         <outlet property="versionBtn" destination="Yt8-pW-7xw" id="VSy-gm-8qT"/>
                         <outlet property="volumeProgress" destination="O6w-vB-MAA" id="tXE-Ej-ULV"/>
@@ -2388,6 +2389,8 @@
         <image name="button_recommend_s@3x.png" width="480" height="127"/>
         <image name="button_selection@3x.png" width="867" height="126"/>
         <image name="button_share@3x.png" width="370" height="127"/>
+        <image name="button_share_it@3x.png" width="480" height="127"/>
+        <image name="button_share_it_s@3x.png" width="480" height="127"/>
         <image name="button_share_s@3x.png" width="370" height="127"/>
         <image name="button_top_en_tb@3x.png" width="75" height="75"/>
         <image name="button_top_ru_tb@3x.png" width="75" height="75"/>

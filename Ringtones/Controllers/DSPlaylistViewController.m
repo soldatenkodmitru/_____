@@ -41,10 +41,10 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.endLbl.text = @"00:00";
    
     self.shareBtn.highlighted = NO;
-    self.downloadBtn.highlighted = NO;
+   // self.downloadBtn.highlighted = NO;
     
     self.playBtn.selected = YES;
-    self.stopBtn.selected = NO;
+   // self.stopBtn.selected = NO;
    
     
     if (self.song.versionAudio == 0){
@@ -96,12 +96,12 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (void) stop {
     
-    if (self.stopBtn.selected){
+//    if (self.stopBtn.selected){
         [self.streamer stop];
         self.playBtn.selected = YES;
-        self.stopBtn.selected = NO;
+ //       self.stopBtn.selected = NO;
         [self.playProgress setProgress: 0 animated:NO];
-    }
+   // }
 }
 
 - (void) playBackground{
@@ -121,7 +121,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         [self.playProgress setProgress: 0 animated:NO];
         [self resetStreamer];
         [self.streamer play];
-        self.stopBtn.selected = YES;
+      //  self.stopBtn.selected = YES;
         self.playBtn.selected = NO;
 
     }
@@ -205,10 +205,10 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             [self.versionBtn setTitle: @"Нарезка 2     " forState:UIControlStateNormal];
             break;
     }
-    if ( [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song] >0 )
-        self.favoriteBtn.selected = YES;
-    else
-        self.favoriteBtn.selected = NO;
+   // if ( [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song] >0 )
+   //     self.favoriteBtn.selected = YES;
+ //   else
+     //   self.favoriteBtn.selected = NO;
 }
 
 #pragma mark - Timer
@@ -268,10 +268,20 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     [self playBackground];
 }
 
-- (IBAction)stopAction:(id)sender{
-   
-    [self stop];
+
+- (IBAction)pauseAction:(id)sender{
+    
 }
+- (IBAction)forwardAction:(id)sender{
+    
+}
+- (IBAction)backAction:(id)sender{
+    
+}
+- (IBAction)recoendedAction:(id)sender{
+    
+}
+
 
 - (IBAction)shareAction:(id)sender{
     UIImage *sendImage = self.pictureSong;
@@ -290,147 +300,13 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     });
 }
 
-- (IBAction)favoriteAction:(id)sender {
-  
-    self.favoriteBtn.selected = !self.favoriteBtn.selected;
-  
-    if (self.favoriteBtn.selected){
-        [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:self.self.song.versionAudio fileLink:[self download:@"Избранное"] imagelink:[self saveImage]];
-    }
-    else{
-        double idItem = [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song];
-        [[DSDataManager dataManager] deletePlaylistItemWithId:idItem];
-        
-    }
-    }
 
-- (IBAction)downloadAction:(id)sender {
-    
-    NSString* listName;
-    switch (self.song.versionAudio) {
-        case sFull:{
-            listName = @"Загрузки";
-            break;
-        }
-        case sCut:{
-            listName = @"Рингтоны";
-            break;
-        }
-        case sRignton:{
-            listName = @"Рингтоны";
-            break;
-        }
-    }
 
-    if ([[DSDataManager dataManager] findSongForPlaylistName:listName song:self.song] == 0 ) {
-            [[DSDataManager dataManager] addPlaylistItemForNameList:listName song:self.song version:self.song.versionAudio fileLink:[self download:listName] imagelink:[self saveImage]];
-    }
-    else {
-        
-        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Данный трек уже присутствует в списке загрузок" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ок",nil];
-        [alertView show];
-    }
 
-}
 
--(NSString*) saveImage{
-    
-    NSString *fullPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[self.song.albumLink lastPathComponent]];
-    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.pictureSong)];
-    [data writeToFile:fullPath atomically:YES];
-    return fullPath;
-    
-}
 
--(NSString*) download:(NSString*)folderName {
- 
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.song.audioFileURL];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    documentsDirectory =[ documentsDirectory stringByAppendingPathComponent:folderName] ;
-    
-    BOOL isDir;
-    NSFileManager *fileManager= [NSFileManager defaultManager];
-    if(![fileManager fileExistsAtPath:documentsDirectory isDirectory:&isDir])
-        if(![fileManager createDirectoryAtPath:documentsDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
-            NSLog(@"Error: Create folder failed %@", documentsDirectory);
 
-    
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[[self.song.audioFileURL lastPathComponent] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:fullPath append:NO]];
-    
-    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-        NSLog(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
-    }];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        //  NSLog(@"RES: %@", [[[operation response] allHeaderFields] description]);
-        
-        NSError *error;
-        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:&error];
-        
-        if (error) {
-            NSLog(@"ERR: %@", [error description]);
-          
-        } else {
-            NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
-            long long fileSize = [fileSizeNumber longLongValue];
-            
-            //  [[_downloadFile titleLabel] setText:[NSString stringWithFormat:@"%lld", fileSize]];
-            //return fullPath;
-          //  NSLog(@"%@, %@",fullPath,[NSString stringWithFormat:@"%lld", fileSize]);
-        }
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Загрузка прервана"
-                                                            message:@"Соединение с сервером потеряно! Попробуйте пожалуйста скачать еще раз!"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Oк"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        NSLog(@"ERR: %@", [error description]);
-    }];
-    
-    [operation start];
-    return fullPath;
-}
 
-#pragma mark - Purchaise
-
--(void)unlockFeatureForDate:(NSDate*) date {
-    
-   // [app showIndecator:NO withView:app.window];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"isPurchaise"];
-    [defaults removeObjectForKey:@"isPurchaiseTermin"];
-    [defaults removeObjectForKey:@"isPurchaiseDate"];
-    [defaults synchronize];
-    
-    NSDateFormatter *objDateFormatter = [[NSDateFormatter alloc] init];
-    [objDateFormatter setDateFormat:@"dd.MM.yyyy"];
-    NSString* dateStr = [objDateFormatter stringFromDate:date];
-    NSNumber* term = nil;
-    
-    [defaults setObject:dateStr forKey:@"isPurchaiseDate"];
-    [defaults setObject:term forKey:@"isPurchaiseTermin"];
-    [defaults setBool:YES forKey:@"isPurchaise"];
-    [defaults synchronize];
-    //app.isPurchaise = YES;
-    
-   // [self prepareView];
-    
-    //UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Сообщение" message:@"Ваши покупки успешно завершены" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    //[alert show];
-    
-}
 
 
 @end
