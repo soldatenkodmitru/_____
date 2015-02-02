@@ -1,12 +1,12 @@
 //
-//  DSPlayerViewController.m
+//  DSPlaylistViewController.m
 //  Ringtones
 //
 //  Created by Dima on 15.01.15.
 //  Copyright (c) 2015 BestAppStudio. All rights reserved.
 //
 
-#import "DSPlayerViewController.h"
+#import "DSPlaylistViewController.h"
 #import "ActionSheetStringPicker.h"
 #import "NFXIntroViewController.h"
 #import "DaiVolume.h"
@@ -16,7 +16,7 @@ static void *kStatusKVOKey = &kStatusKVOKey;
 static void *kDurationKVOKey = &kDurationKVOKey;
 static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
-@implementation DSPlayerViewController
+@implementation DSPlaylistViewController
 
 
 - (void)viewDidLoad {
@@ -32,25 +32,12 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.navigationItem.rightBarButtonItem = item;
     
 
-    self.userRate.rating = [[DSDataManager dataManager]existsLikeForSong:self.song.id_sound];
-    if (self.userRate.rating > 0)
-        self.userRate.editable = NO;
-    else
-        self.userRate.editable = YES;
-    self.userRate.delegate = self;
-    self.userRate.notSelectedImage = [UIImage imageNamed:@"ic_star_gray_empty.png"];
-    self.userRate.fullSelectedImage = [UIImage imageNamed:@"ic_star_gray_filled.png"];
-     self.userRate.maxRating = 5;
-    
-    self.serverRate.rating = self.song.rating;
-    self.serverRate.notSelectedImage = [UIImage imageNamed:@"ic_star_white.png"];
-    self.serverRate.halfSelectedImage = [UIImage imageNamed:@"ic_star_white_yellow_half.png"];
-    self.serverRate.fullSelectedImage = [UIImage imageNamed:@"ic_star_white_yellow.png"];
-    self.serverRate.maxRating = 5;
+ 
     
     self.titleLbl.text = self.song.title;
     self.artistLbl.text = self.song.artist;
-       self.startLbl.text = @"00:00";
+    self.imageSong.image = self.pictureSong;
+    self.startLbl.text = @"00:00";
     self.endLbl.text = @"00:00";
    
     self.shareBtn.highlighted = NO;
@@ -59,10 +46,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.playBtn.selected = YES;
     self.stopBtn.selected = NO;
    
-    NSLog(@"%f",self.imageSong.bounds.size.height);
-    //self.imageSong.image =[self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
-    self.imageSong.image = self.pictureSong;
-
+    
     if (self.song.versionAudio == 0){
         self.song.versionAudio = sFull;
         self.song.audioFileURL = [NSURL URLWithString:self.song.fileLink];
@@ -79,16 +63,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSLog(@"%f",self.imageSong.bounds.size.height);
-    self.imageSong.image =[self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
-
     [super viewWillAppear:animated];
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -252,19 +228,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     }
 }
 
-#pragma mark - DSRateViewDelegate
-- (void)rateView:(DSRateView *)rateView ratingDidChange:(float)rating{
-    NSLog(@"%f",rating);
-    if (rating > 0){
-        [[DSServerManager sharedManager] setSongRating:[NSString stringWithFormat:@"%.0f",rating] forSong:[NSString stringWithFormat:@"%ld", (long)self.song.id_sound ] OnSuccess:^(NSObject *result) {
-        NSLog(@"Set Rating");
-        [[DSDataManager dataManager] addLikeForSong:self.song.id_sound withRating:rating];
-        self.userRate.editable = NO;
-        } onFailure:^(NSError *error, NSInteger statusCode) {
-            NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
-        }];
-    }
-}
+
 
 #pragma mark - Implementation
 - (void)versionWasSelected:(NSNumber *)selectedIndex element:(id)element {
@@ -438,73 +402,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     return fullPath;
 }
 
-- (UIImage *)imageByScalingAndCroppingForSize:(CGSize)targetSize
-{
-    UIImage *sourceImage = self.pictureSong;
-    UIImage *newImage = nil;
-    CGSize imageSize = sourceImage.size;
-    CGFloat width = imageSize.width;
-    CGFloat height = imageSize.height;
-    CGFloat targetWidth = targetSize.width;
-    CGFloat targetHeight = targetSize.height;
-    CGFloat scaleFactor = 0.0;
-    CGFloat scaledWidth = targetWidth;
-    CGFloat scaledHeight = targetHeight;
-    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
-    
-    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
-    {
-        CGFloat widthFactor = targetWidth / width;
-        CGFloat heightFactor = targetHeight / height;
-        
-        if (widthFactor > heightFactor)
-        {
-            scaleFactor = widthFactor; // scale to fit height
-        }
-        else
-        {
-            scaleFactor = heightFactor; // scale to fit width
-        }
-        
-        scaledWidth  = width * scaleFactor;
-        scaledHeight = height * scaleFactor;
-        
-        // center the image
-        if (widthFactor > heightFactor)
-        {
-            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
-        }
-        else
-        {
-            if (widthFactor < heightFactor)
-            {
-                thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
-            }
-        }
-    }
-    
-    UIGraphicsBeginImageContext(targetSize); // this will crop
-    
-    CGRect thumbnailRect = CGRectZero;
-    thumbnailRect.origin = thumbnailPoint;
-    thumbnailRect.size.width  = scaledWidth;
-    thumbnailRect.size.height = scaledHeight;
-    
-    [sourceImage drawInRect:thumbnailRect];
-    
-    newImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    if(newImage == nil)
-    {
-        NSLog(@"could not scale image");
-    }
-    
-    //pop the context to get back to the default
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
-
 #pragma mark - Purchaise
 
 -(void)unlockFeatureForDate:(NSDate*) date {
@@ -534,7 +431,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     //[alert show];
     
 }
-
 
 
 @end

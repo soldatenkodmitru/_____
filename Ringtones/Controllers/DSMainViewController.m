@@ -8,6 +8,7 @@
 
 #import "DSMainViewController.h"
 #import "DSPlayerViewController.h"
+#import "DSPlaylistViewController.h"
 #import "DSSongTableViewCell.h"
 #import "DSAddPlaylistTableViewCell.h"
 #import "DSSegmentTableViewCell.h"
@@ -265,7 +266,8 @@ typedef enum {
         cell.titleLabel.text = song.title;
         cell.artistLabel.text =song.artist;
         cell.numberLabel.text = [NSString stringWithFormat:@"%ld.", indexPath.row+1];
-        //cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
+       
+        cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
   
 
       
@@ -542,6 +544,25 @@ typedef enum {
     
     
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    if(self.tabBar.selectedItem.tag == 5 || self.tabBar.selectedItem.tag == 4 ) {
+        DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:self.selectedSection];
+        DSPlaylistViewController *myVController = (DSPlaylistViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"Playlist"];
+        myVController.song = [playlist.songsArray objectAtIndex:self.selectedItem];
+        myVController.pictureSong = self.selectedImage;
+        [self.navigationController pushViewController:myVController animated:YES];
+    }
+    else{
+        DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:self.selectedSection];
+        DSPlayerViewController *myVController = (DSPlayerViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"Player"];
+        myVController.song = [playlist.songsArray objectAtIndex:self.selectedItem];
+        myVController.pictureSong = self.selectedImage;
+        [self.navigationController pushViewController:myVController animated:YES];
+
+    }
+}
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -644,10 +665,7 @@ typedef enum {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    DSPlayerViewController *dc = [segue destinationViewController];
-    DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:self.selectedSection];
-    dc.song = [playlist.songsArray objectAtIndex:self.selectedItem];
-    dc.pictureSong = self.selectedImage;
+    
     
 }
 #pragma mark -  UITabBarDelegate
