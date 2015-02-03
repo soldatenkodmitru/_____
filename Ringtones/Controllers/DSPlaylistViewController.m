@@ -6,15 +6,12 @@
 //  Copyright (c) 2015 BestAppStudio. All rights reserved.
 //
 
+#import "DSSoundManager.h"
 #import "DSPlaylistViewController.h"
 #import "ActionSheetStringPicker.h"
 #import "NFXIntroViewController.h"
 #import "DaiVolume.h"
 
-
-static void *kStatusKVOKey = &kStatusKVOKey;
-static void *kDurationKVOKey = &kDurationKVOKey;
-static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 @implementation DSPlaylistViewController
 
@@ -31,28 +28,13 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
     
-
- 
+    [self updateElements];
     
-    self.titleLbl.text = self.song.title;
-    self.artistLbl.text = self.song.artist;
-    self.imageSong.image = self.pictureSong;
-    self.startLbl.text = @"00:00";
-    self.endLbl.text = @"00:00";
-   
     self.shareBtn.highlighted = NO;
-   // self.downloadBtn.highlighted = NO;
+    self.recomendBtn.highlighted = NO;
     
-    self.playBtn.selected = YES;
-   // self.stopBtn.selected = NO;
    
-    
-    if (self.song.versionAudio == 0){
-        self.song.versionAudio = sFull;
-        self.song.audioFileURL = [NSURL URLWithString:self.song.fileLink];
-    }
-     [self setTitleVersion];
-      self.volumeProgress.progress = [DaiVolume volume];
+    self.volumeProgress.progress = [DaiVolume volume];
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
 }
 
@@ -70,12 +52,48 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.playTimer invalidate];
-    [self.streamer stop];
-    [self cancelStreamer];
     [super viewWillDisappear:animated];
 }
 
+#pragma mark - DSSoundManagerDelegate
+
+- (void) activeSongDidChange:(DSSong*)song{
+    
+    self.song = song;
+    [self updateElements];
+    
+}
+
+- (void) statusChanged:(BOOL)playStatus{
+    
+    if (playStatus == NO) {
+        self.playBtn.selected = YES;
+        self.pauseBtn.selected = NO;
+
+    }
+}
 #pragma mark - Self Methods
+
+- (void) updateElements {
+    
+    self.titleLbl.text = self.song.title;
+    self.artistLbl.text = self.song.artist;
+    self.imageSong.image = self.pictureSong;
+    self.startLbl.text = @"00:00";
+    self.endLbl.text = @"00:00";
+    
+    
+    if([DSSoundManager sharedManager].isPlaying == YES){
+        self.playBtn.selected = YES;
+        self.pauseBtn.selected = NO;
+    }
+    else{
+        self.pauseBtn.selected = YES;
+        self.playBtn.selected = NO;
+    }
+    [self setTitleVersion];
+    
+}
 
 - (void) showInstruction {
     
@@ -94,95 +112,15 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
 }
 
-- (void) stop {
-    
-//    if (self.stopBtn.selected){
-        [self.streamer stop];
-        self.playBtn.selected = YES;
- //       self.stopBtn.selected = NO;
-        [self.playProgress setProgress: 0 animated:NO];
-   // }
-}
-
-- (void) playBackground{
-
-    if ([self.thread isExecuting]) {
-        [self.thread cancel];
-    }
-    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(play) object:nil];
-    self.thread.name = @"play";
-    [self.thread start];
-
-}
 
 - (void) play{
     
     if (self.playBtn.selected){
         [self.playProgress setProgress: 0 animated:NO];
-        [self resetStreamer];
-        [self.streamer play];
-      //  self.stopBtn.selected = YES;
+        [[DSSoundManager sharedManager] play];
+        self.pauseBtn.selected = YES;
         self.playBtn.selected = NO;
 
-    }
-}
-
-- (void) cancelStreamer
-{
-    if (self.streamer != nil) {
-        [self.streamer pause];
-        [self.streamer removeObserver:self forKeyPath:@"status"];
-        [self.streamer removeObserver:self forKeyPath:@"duration"];
-        [self.streamer removeObserver:self forKeyPath:@"bufferingRatio"];
-        self.streamer = nil;
-    }
-}
-
-- (void) resetStreamer
-{
-    [self cancelStreamer];
-    
-    NSData* data;
-    
-    if ( self.song.saveFileLink != nil)
-         data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.song.saveFileLink]];
-
-    if (self.song.audioFileURL == nil){
-        if (data == nil)
-            self.song.audioFileURL = [NSURL URLWithString: self.song.fileLink];
-        else
-            self.song.audioFileURL = [NSURL fileURLWithPath:self.song.saveFileLink];
-    }
-   
-    self.streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
-    [self.streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
-    [self.streamer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];
-    [self.streamer addObserver:self forKeyPath:@"bufferingRatio" options:NSKeyValueObservingOptionNew context:kBufferingRatioKVOKey];
- 
-    
-}
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == kStatusKVOKey) {
-        [self performSelector:@selector(updatePlayTime)
-                     onThread:[NSThread mainThread]
-                   withObject:nil
-                waitUntilDone:NO];
-    }
-    else if (context == kDurationKVOKey) {
-        [self performSelector:@selector(updatePlayTime)
-                     onThread:[NSThread mainThread]
-                   withObject:nil
-                waitUntilDone:NO];
-    }
-    else if (context == kBufferingRatioKVOKey) {
-        [self performSelector:@selector(updatePlayTime)
-                     onThread:[NSThread mainThread]
-                   withObject:nil
-                waitUntilDone:NO];
-    }
-    else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
@@ -205,10 +143,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             [self.versionBtn setTitle: @"Нарезка 2     " forState:UIControlStateNormal];
             break;
     }
-   // if ( [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song] >0 )
-   //     self.favoriteBtn.selected = YES;
- //   else
-     //   self.favoriteBtn.selected = NO;
+ 
 }
 
 #pragma mark - Timer
@@ -219,16 +154,14 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void) updatePlayTime
 {
     self.volumeProgress.progress = [DaiVolume volume];
-    self.endLbl.text = [self timeToString:self.streamer.duration];
-    self.startLbl.text = [self timeToString:self.streamer.currentTime];
+    self.endLbl.text = [self timeToString:[DSSoundManager sharedManager].streamer.duration];
+    self.startLbl.text = [self timeToString:[DSSoundManager sharedManager].streamer.currentTime];
    // NSLog(@"%f   %f" ,self.streamer.currentTime, self.streamer.duration);
-    if (self.streamer.duration > 0)
+    if ([DSSoundManager sharedManager].streamer.duration > 0)
     {
-        [self.playProgress setProgress: (float)(self.streamer.currentTime/self.streamer.duration)  animated:YES];
+        [self.playProgress setProgress: (float)([DSSoundManager sharedManager].streamer.currentTime/[DSSoundManager sharedManager].streamer.duration)  animated:YES];
     }
 }
-
-
 
 #pragma mark - Implementation
 - (void)versionWasSelected:(NSNumber *)selectedIndex element:(id)element {
@@ -246,11 +179,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             self.song.audioFileURL = [NSURL URLWithString:self.song.ringtonLink];
         break;}
     }
-    if (!self.playBtn.selected) {
-        [self stop];
-        [self playBackground];
-        
-    }
+    [[DSSoundManager sharedManager] playSong:self.song];
     [self setTitleVersion];
 }
 - (void)actionPickerCancelled:(id)sender {
@@ -265,18 +194,24 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (IBAction)playAction:(id)sender{
    
-    [self playBackground];
+    [self play];
 }
 
 
 - (IBAction)pauseAction:(id)sender{
     
+    [[DSSoundManager sharedManager] pause];
+    if (self.pauseBtn.selected){
+        self.playBtn.selected = YES;
+        self.pauseBtn.selected = NO;
+    }
 }
 - (IBAction)forwardAction:(id)sender{
-    
+    [[DSSoundManager sharedManager] forward];
 }
 - (IBAction)backAction:(id)sender{
     
+    [[DSSoundManager sharedManager] backward];
 }
 - (IBAction)recoendedAction:(id)sender{
     

@@ -21,7 +21,7 @@
 #import "DSDataManager.h"
 #import "GMDCircleLoader.h"
 #import "TSActionSheet.h"
-
+#import "SARate.h"
 
 typedef enum {
     DSSongSearch,
@@ -72,6 +72,13 @@ typedef enum {
     self.searchBar.layer.borderWidth = 1;
     self.searchBar.layer.borderColor = self.searchBar.barTintColor.CGColor;
     self.navigationItem.rightBarButtonItem = item;
+    
+    
+    [SARate sharedInstance].applicationBundleID = @"com.bestapp-studio.chatdietolog";
+    [SARate sharedInstance].onlyPromptIfLatestVersion = NO;
+    
+    //enable preview mode
+    [SARate sharedInstance].previewMode = YES;
   //[[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                   //         [UIColor redColor], NSForegroundColorAttributeName,
                                                 

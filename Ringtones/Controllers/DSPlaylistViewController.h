@@ -12,13 +12,13 @@
 #import "DSRateView.h"
 #import "DSDataManager.h"
 #import "DSServerManager.h"
-#import "DOUAudioStreamer.h"
+#import "DSSoundManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
-@interface DSPlaylistViewController : ViewController 
+@interface DSPlaylistViewController : ViewController <DSSoundManagerDelegate>
 
 - (IBAction)playAction:(id)sender;
 - (IBAction)pauseAction:(id)sender;
@@ -46,9 +46,6 @@
 
 @property (weak, nonatomic) DSSong* song;
 @property (weak, nonatomic) UIImage* pictureSong;
-@property (strong, nonatomic) DOUAudioStreamer *streamer;
 @property (strong, nonatomic)   NSTimer* playTimer;
-@property (strong, nonatomic)   NSThread* thread;
-@property (assign, nonatomic   ) BOOL isFavorite;
-@property (assign, nonatomic   ) BOOL isPlaying;
+
 @end

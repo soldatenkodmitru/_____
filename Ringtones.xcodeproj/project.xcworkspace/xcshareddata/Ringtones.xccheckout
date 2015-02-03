@@ -12,6 +12,8 @@
 	<dict>
 		<key>AE6BBF79896E2EF4DFECF78D037F7F486DB759D1</key>
 		<string>https://github.com/gavrilak/Ringtones.git</string>
+		<key>DBACD39A769E1A835C9184FED8D0843767427D6F</key>
+		<string>https://github.com/andrei200287/SARate.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Ringtones.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>AE6BBF79896E2EF4DFECF78D037F7F486DB759D1</key>
 		<string>../..</string>
+		<key>DBACD39A769E1A835C9184FED8D0843767427D6F</key>
+		<string>../../../SARate</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/gavrilak/Ringtones.git</string>
@@ -35,6 +39,14 @@
 			<string>AE6BBF79896E2EF4DFECF78D037F7F486DB759D1</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Ringtones</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DBACD39A769E1A835C9184FED8D0843767427D6F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SARate</string>
 		</dict>
 	</array>
 </dict>

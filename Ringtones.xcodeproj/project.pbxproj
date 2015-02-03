@@ -173,6 +173,14 @@
 		BFC9DB061A7BA7B300C5D4D6 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB021A7BA7B300C5D4D6 /* ActionSheetStringPicker.m */; };
 		BFC9DB071A7BA7B300C5D4D6 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */; };
 		BFC9DB0A1A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */; };
+		BFD006BC1A81018600850562 /* star-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006B81A81018600850562 /* star-gray.png */; };
+		BFD006BD1A81018600850562 /* star-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006B91A81018600850562 /* star-gray@2x.png */; };
+		BFD006BE1A81018600850562 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006BA1A81018600850562 /* star.png */; };
+		BFD006BF1A81018600850562 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006BB1A81018600850562 /* star@2x.png */; };
+		BFD006C81A8101B500850562 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BFD006C21A8101B500850562 /* iRate.bundle */; };
+		BFD006C91A8101B500850562 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006C41A8101B500850562 /* iRate.m */; };
+		BFD006CA1A8101B500850562 /* SARate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006C61A8101B500850562 /* SARate.m */; };
+		BFD006CC1A8101C500850562 /* SARateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006CB1A8101C500850562 /* SARateViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -430,6 +438,17 @@
 		BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
 		BFC9DB081A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperationLogger.h; path = "Ringtones/libs/UIKit+AFNetworking/AFHTTPRequestOperationLogger.h"; sourceTree = SOURCE_ROOT; };
 		BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationLogger.m; path = "Ringtones/libs/UIKit+AFNetworking/AFHTTPRequestOperationLogger.m"; sourceTree = SOURCE_ROOT; };
+		BFD006B81A81018600850562 /* star-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-gray.png"; path = "Ringtones/libs/Rate/star-gray.png"; sourceTree = "<group>"; };
+		BFD006B91A81018600850562 /* star-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-gray@2x.png"; path = "Ringtones/libs/Rate/star-gray@2x.png"; sourceTree = "<group>"; };
+		BFD006BA1A81018600850562 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Ringtones/libs/Rate/star.png; sourceTree = "<group>"; };
+		BFD006BB1A81018600850562 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star@2x.png"; path = "Ringtones/libs/Rate/star@2x.png"; sourceTree = "<group>"; };
+		BFD006C21A8101B500850562 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
+		BFD006C31A8101B500850562 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		BFD006C41A8101B500850562 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
+		BFD006C51A8101B500850562 /* SARate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SARate.h; path = ../SARate/SARate/SARate.h; sourceTree = "<group>"; };
+		BFD006C61A8101B500850562 /* SARate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARate.m; path = ../SARate/SARate/SARate.m; sourceTree = "<group>"; };
+		BFD006C71A8101B500850562 /* SARateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SARateViewController.h; path = ../SARate/SARate/SARateViewController.h; sourceTree = "<group>"; };
+		BFD006CB1A8101C500850562 /* SARateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARateViewController.m; path = ../SARate/SARate/SARateViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -797,6 +816,7 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				BFD006C01A81019A00850562 /* Rate */,
 				BFC9DAFE1A7BA7B300C5D4D6 /* ActionSheet */,
 				3244D98C1A730ED300F9B600 /* NFXTourViewController */,
 				32059F0A1A71F90A009F2493 /* TSPopover */,
@@ -930,6 +950,7 @@
 		32FA53A91A4ACC2700413D1A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BFD006B71A81007100850562 /* Rate */,
 				3244D9AB1A732F2200F9B600 /* icons */,
 				3244D9901A7324F700F9B600 /* preview */,
 				3244D9791A72FFAC00F9B600 /* instruction */,
@@ -955,6 +976,40 @@
 			);
 			name = ActionSheet;
 			path = Ringtones/libs/ActionSheet;
+			sourceTree = "<group>";
+		};
+		BFD006B71A81007100850562 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				BFD006B81A81018600850562 /* star-gray.png */,
+				BFD006B91A81018600850562 /* star-gray@2x.png */,
+				BFD006BA1A81018600850562 /* star.png */,
+				BFD006BB1A81018600850562 /* star@2x.png */,
+			);
+			name = Rate;
+			sourceTree = "<group>";
+		};
+		BFD006C01A81019A00850562 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				BFD006C11A8101B500850562 /* iRate */,
+				BFD006C51A8101B500850562 /* SARate.h */,
+				BFD006C61A8101B500850562 /* SARate.m */,
+				BFD006C71A8101B500850562 /* SARateViewController.h */,
+				BFD006CB1A8101C500850562 /* SARateViewController.m */,
+			);
+			name = Rate;
+			sourceTree = "<group>";
+		};
+		BFD006C11A8101B500850562 /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				BFD006C21A8101B500850562 /* iRate.bundle */,
+				BFD006C31A8101B500850562 /* iRate.h */,
+				BFD006C41A8101B500850562 /* iRate.m */,
+			);
+			name = iRate;
+			path = ../SARate/SARate/iRate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1057,6 +1112,7 @@
 				32CB708B1A66904B00232DE3 /* button_download_s@3x.png in Resources */,
 				3244D9CE1A732F2200F9B600 /* Icon@2x.png in Resources */,
 				3244D98A1A72FFAC00F9B600 /* 8.png in Resources */,
+				BFD006BC1A81018600850562 /* star-gray.png in Resources */,
 				3244D9CF1A732F2200F9B600 /* iTunesArtwork@2x.png in Resources */,
 				3244D9CD1A732F2200F9B600 /* Icon.png in Resources */,
 				3244D9841A72FFAC00F9B600 /* 2.png in Resources */,
@@ -1076,10 +1132,12 @@
 				32CB70721A66903000232DE3 /* button_settings@3x.png in Resources */,
 				BF6A8F691A7F96A7008A6073 /* but_pause_s@3x.png in Resources */,
 				32CB70891A66904B00232DE3 /* button_back@2x.png in Resources */,
+				BFD006BD1A81018600850562 /* star-gray@2x.png in Resources */,
 				3244D9C81A732F2200F9B600 /* Icon-Small-50.png in Resources */,
 				3244D9A01A7324F700F9B600 /* 768_1024.png in Resources */,
 				3244D9C91A732F2200F9B600 /* Icon-Small-50@2x.png in Resources */,
 				327885D11A6B31D000BFF3BC /* Entitlements.plist in Resources */,
+				BFD006C81A8101B500850562 /* iRate.bundle in Resources */,
 				32CE4EAE1A483BC20022AE0F /* Main.storyboard in Resources */,
 				3244D9CC1A732F2200F9B600 /* Icon-Small@3x.png in Resources */,
 				324CF12F1A6ED55A00E3FDE6 /* button_share_s@3x.png in Resources */,
@@ -1092,6 +1150,7 @@
 				32B90F791A702ED90025B4C0 /* button_settings@2x.png in Resources */,
 				BF6A8F731A7FC850008A6073 /* button_share_it_s@3x.png in Resources */,
 				32A2D1C61A67753B00C64A3F /* button_top_ru_tb_s@3x.png in Resources */,
+				BFD006BF1A81018600850562 /* star@2x.png in Resources */,
 				BF6A8F741A7FC850008A6073 /* button_share_it@3x.png in Resources */,
 				3244D9831A72FFAC00F9B600 /* 1.png in Resources */,
 				32C6A8B81A67D4F50014651D /* justin-timberlake-20132.jpg in Resources */,
@@ -1127,6 +1186,7 @@
 				32CB706A1A66901500232DE3 /* ic_star_white@3x.png in Resources */,
 				32CB70901A66904B00232DE3 /* button_share@3x.png in Resources */,
 				32A2D1C41A67753B00C64A3F /* button_top_en_tb_s@3x.png in Resources */,
+				BFD006BE1A81018600850562 /* star.png in Resources */,
 				32A2D1C21A67753B00C64A3F /* button_playlist_tb@3x.png in Resources */,
 				32CE4EB01A483BC20022AE0F /* Images.xcassets in Resources */,
 				3244D9C31A732F2200F9B600 /* Icon-76.png in Resources */,
@@ -1163,6 +1223,7 @@
 			files = (
 				32A6F9201A4DA364006CB6D8 /* DOUAudioSpatialAnalyzer.m in Sources */,
 				321BBFB01A545EDA006B125C /* DSAddPlaylistTableViewCell.m in Sources */,
+				BFD006CA1A8101B500850562 /* SARate.m in Sources */,
 				32A6F9211A4DA364006CB6D8 /* DOUAudioStreamer+Options.m in Sources */,
 				32A6F91C1A4DA364006CB6D8 /* DOUAudioFrequencyAnalyzer.m in Sources */,
 				32CE4F831A4860510022AE0F /* DSSong.m in Sources */,
@@ -1200,11 +1261,13 @@
 				32CE4F7A1A485F6B0022AE0F /* UIRefreshControl+AFNetworking.m in Sources */,
 				32A6F9221A4DA364006CB6D8 /* DOUAudioStreamer.m in Sources */,
 				32CE4F721A485F6B0022AE0F /* AFURLResponseSerialization.m in Sources */,
+				BFD006C91A8101B500850562 /* iRate.m in Sources */,
 				32CE4F7E1A485F790022AE0F /* DSServerManager.m in Sources */,
 				32A6F9171A4DA364006CB6D8 /* DOUAudioAnalyzer.m in Sources */,
 				32CE4EA51A483BC20022AE0F /* AppDelegate.m in Sources */,
 				32CE4F861A4860790022AE0F /* DSSongTableViewCell.m in Sources */,
 				32A6F9191A4DA364006CB6D8 /* DOUAudioEventLoop.m in Sources */,
+				BFD006CC1A8101C500850562 /* SARateViewController.m in Sources */,
 				32A6F91D1A4DA364006CB6D8 /* DOUAudioLPCM.m in Sources */,
 				BFC9DB061A7BA7B300C5D4D6 /* ActionSheetStringPicker.m in Sources */,
 				32059F171A71F90A009F2493 /* TSPopoverController.m in Sources */,
