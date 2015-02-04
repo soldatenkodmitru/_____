@@ -16,7 +16,7 @@
 @implementation DSPlaylistViewController
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad { 
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -27,13 +27,13 @@
     [btn addTarget:self action:@selector(showInstruction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
-    
+     self.imageSong.image = self.pictureSong;
     [self updateElements];
     
     self.shareBtn.highlighted = NO;
     self.recomendBtn.highlighted = NO;
-    
    
+    [DSSoundManager sharedManager].delegate = self;
     self.volumeProgress.progress = [DaiVolume volume];
     self.playTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
 }
@@ -52,6 +52,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.playTimer invalidate];
+    [DSSoundManager sharedManager].delegate = nil;
     [super viewWillDisappear:animated];
 }
 
@@ -61,6 +62,7 @@
     
     self.song = song;
     [self updateElements];
+    [self loadImage];
     
 }
 
@@ -78,18 +80,18 @@
     
     self.titleLbl.text = self.song.title;
     self.artistLbl.text = self.song.artist;
-    self.imageSong.image = self.pictureSong;
+
     self.startLbl.text = @"00:00";
     self.endLbl.text = @"00:00";
-    
+    self.navigationItem.title = [NSString stringWithFormat:@"%d из %d",[DSSoundManager sharedManager].activeIndex + 1,[[DSSoundManager sharedManager].playlist.songsArray count] ];
     
     if([DSSoundManager sharedManager].isPlaying == YES){
-        self.playBtn.selected = YES;
-        self.pauseBtn.selected = NO;
+        self.playBtn.selected = NO;
+        self.pauseBtn.selected = YES;
     }
     else{
-        self.pauseBtn.selected = YES;
-        self.playBtn.selected = NO;
+        self.pauseBtn.selected = NO;
+        self.playBtn.selected = YES;
     }
     [self setTitleVersion];
     
@@ -124,6 +126,25 @@
     }
 }
 
+- (void) loadImage {
+    
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.song.saveImageLink]];
+    self.pictureSong = [UIImage imageWithData:data];
+    self.imageSong.image = self.pictureSong;
+    //[self setPicture];
+}
+
+- (void) setPicture {
+    
+    self.imageSong.image = self.pictureSong;
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:1.0]; //Animate for a duration of 1.0 seconds
+    [animation setType:kCATransitionPush]; //New image will push the old image off
+    [animation setSubtype:kCATransitionFromRight]; //Current image will slide off to the left, new image slides in from the right
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    [[self.imageSong layer] addAnimation:animation forKey:nil];
+    
+}
 - (NSString*) timeToString:(double )timeInterval {
     float min = floor(timeInterval/60);
     float sec = round(timeInterval - min * 60);

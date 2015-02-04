@@ -16,6 +16,7 @@
 @protocol DSSoundManagerDelegate
 - (void) activeSongDidChange:(DSSong*)song;
 - (void) statusChanged:(BOOL) playStatus;
+
 @end
 
 @interface DSSoundManager : NSObject
@@ -27,7 +28,9 @@
 @property (strong, nonatomic) DSPlaylistPlayer *playlist;
 @property (assign, nonatomic) int activeIndex;
 @property (assign, nonatomic) BOOL isPlaying;
+@property (assign, nonatomic) BOOL wasPlaying;
 
+@property (assign) id <DSSoundManagerDelegate> delegate;
 
 + (DSSoundManager *)sharedManager;
 

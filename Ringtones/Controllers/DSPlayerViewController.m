@@ -50,9 +50,10 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
     self.titleLbl.text = self.song.title;
     self.artistLbl.text = self.song.artist;
-       self.startLbl.text = @"00:00";
+    self.startLbl.text = @"00:00";
     self.endLbl.text = @"00:00";
-   
+    self.navigationItem.title = self.title;
+    
     self.shareBtn.highlighted = NO;
     self.downloadBtn.highlighted = NO;
     

@@ -22,6 +22,7 @@
 #import "GMDCircleLoader.h"
 #import "TSActionSheet.h"
 #import "SARate.h"
+#import "DSSoundManager.h"
 
 typedef enum {
     DSSongSearch,
@@ -79,10 +80,7 @@ typedef enum {
     
     //enable preview mode
     [SARate sharedInstance].previewMode = YES;
-  //[[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                  //         [UIColor redColor], NSForegroundColorAttributeName,
-                                                
-                                                 //          [UIFont fontWithName:@"Helv-2-ULight" size:18.0], NSFontAttributeName, nil]];
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     if (self.noFirstLoad){
@@ -557,18 +555,26 @@ typedef enum {
     if(self.tabBar.selectedItem.tag == 5 || self.tabBar.selectedItem.tag == 4 ) {
         DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:self.selectedSection];
         DSPlaylistViewController *myVController = (DSPlaylistViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"Playlist"];
+        [DSSoundManager sharedManager].playlist = playlist;
+        [DSSoundManager sharedManager].activeIndex = self.selectedItem;
         myVController.song = [playlist.songsArray objectAtIndex:self.selectedItem];
+        [DSSoundManager sharedManager].song = myVController.song;
+        [DSSoundManager sharedManager].isPlaying = NO;
+        
         myVController.pictureSong = self.selectedImage;
         [self.navigationController pushViewController:myVController animated:YES];
     }
     else{
+        
         DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:self.selectedSection];
         DSPlayerViewController *myVController = (DSPlayerViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"Player"];
+        myVController.title = [NSString stringWithFormat:@"%d из %d",self.selectedItem, [playlist.songsArray count]];
         myVController.song = [playlist.songsArray objectAtIndex:self.selectedItem];
         myVController.pictureSong = self.selectedImage;
         [self.navigationController pushViewController:myVController animated:YES];
 
     }
+    [[DSSoundManager sharedManager] stop];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{

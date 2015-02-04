@@ -48,6 +48,7 @@
 @property (strong, nonatomic) DOUAudioStreamer *streamer;
 @property (strong, nonatomic)   NSTimer* playTimer;
 @property (strong, nonatomic)   NSThread* thread;
+@property (strong, nonatomic)   NSString* title;
 @property (assign, nonatomic   ) BOOL isFavorite;
 @property (assign, nonatomic   ) BOOL isPlaying;
 @end
