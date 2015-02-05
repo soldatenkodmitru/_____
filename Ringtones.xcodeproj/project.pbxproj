@@ -182,6 +182,7 @@
 		BFD006CA1A8101B500850562 /* SARate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006C61A8101B500850562 /* SARate.m */; };
 		BFD006CC1A8101C500850562 /* SARateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006CB1A8101C500850562 /* SARateViewController.m */; };
 		BFD4F7BF1A838239000FF071 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */; };
+		BFD4F7C11A83C2EA000FF071 /* fon.PNG in Resources */ = {isa = PBXBuildFile; fileRef = BFD4F7C01A83C2EA000FF071 /* fon.PNG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -451,6 +452,7 @@
 		BFD006C71A8101B500850562 /* SARateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SARateViewController.h; path = ../SARate/SARate/SARateViewController.h; sourceTree = "<group>"; };
 		BFD006CB1A8101C500850562 /* SARateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARateViewController.m; path = ../SARate/SARate/SARateViewController.m; sourceTree = "<group>"; };
 		BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Ringtones/libs/FacebookSDK.framework; sourceTree = "<group>"; };
+		BFD4F7C01A83C2EA000FF071 /* fon.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fon.PNG; path = Ringtones/images/fon.PNG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -954,6 +956,7 @@
 		32FA53A91A4ACC2700413D1A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BFD4F7C01A83C2EA000FF071 /* fon.PNG */,
 				BFD006B71A81007100850562 /* Rate */,
 				3244D9AB1A732F2200F9B600 /* icons */,
 				3244D9901A7324F700F9B600 /* preview */,
@@ -1158,6 +1161,7 @@
 				BF6A8F741A7FC850008A6073 /* button_share_it@3x.png in Resources */,
 				3244D9831A72FFAC00F9B600 /* 1.png in Resources */,
 				32C6A8B81A67D4F50014651D /* justin-timberlake-20132.jpg in Resources */,
+				BFD4F7C11A83C2EA000FF071 /* fon.PNG in Resources */,
 				3244D9C41A732F2200F9B600 /* Icon-76@2x.png in Resources */,
 				32A2D1C11A67753B00C64A3F /* button_playlist_tb_s@3x.png in Resources */,
 				BF6A8F6F1A7FB9EB008A6073 /* button_backward@3x.png in Resources */,

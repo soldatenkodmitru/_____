@@ -62,7 +62,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
    
     NSLog(@"%f",self.imageSong.bounds.size.height);
     //self.imageSong.image =[self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
-    self.imageSong.image = self.pictureSong;
+
+    self.imageSong.image = [UIImage imageNamed:@"fon.png"];
 
     if (self.song.versionAudio == 0){
         self.song.versionAudio = sFull;
@@ -80,6 +81,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+     NSLog(@"%f",self.imageSong.bounds.size.height);
     
 }
 
