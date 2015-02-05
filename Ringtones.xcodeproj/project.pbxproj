@@ -181,6 +181,7 @@
 		BFD006C91A8101B500850562 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006C41A8101B500850562 /* iRate.m */; };
 		BFD006CA1A8101B500850562 /* SARate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006C61A8101B500850562 /* SARate.m */; };
 		BFD006CC1A8101C500850562 /* SARateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006CB1A8101C500850562 /* SARateViewController.m */; };
+		BFD4F7BF1A838239000FF071 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -449,6 +450,7 @@
 		BFD006C61A8101B500850562 /* SARate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARate.m; path = ../SARate/SARate/SARate.m; sourceTree = "<group>"; };
 		BFD006C71A8101B500850562 /* SARateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SARateViewController.h; path = ../SARate/SARate/SARateViewController.h; sourceTree = "<group>"; };
 		BFD006CB1A8101C500850562 /* SARateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARateViewController.m; path = ../SARate/SARate/SARateViewController.m; sourceTree = "<group>"; };
+		BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Ringtones/libs/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,6 +458,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD4F7BF1A838239000FF071 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +819,7 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */,
 				BFD006C01A81019A00850562 /* Rate */,
 				BFC9DAFE1A7BA7B300C5D4D6 /* ActionSheet */,
 				3244D98C1A730ED300F9B600 /* NFXTourViewController */,
@@ -1411,6 +1415,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Ringtones/libs",
+				);
 				INFOPLIST_FILE = Ringtones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1425,6 +1433,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Ringtones/libs",
+				);
 				INFOPLIST_FILE = Ringtones/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -31,7 +31,8 @@
     [self updateElements];
     
     self.shareBtn.highlighted = NO;
-    self.recomendBtn.highlighted = NO;
+    
+  
    
     [DSSoundManager sharedManager].delegate = self;
     self.volumeProgress.progress = [DaiVolume volume];

@@ -41,6 +41,7 @@ typedef enum {
     @property (strong,nonatomic)  NSThread* thread;
     @property (weak, nonatomic) UIImage* selectedImage;
     @property (assign, nonatomic) bool noFirstLoad;
+    @property (strong, nonatomic) UIBarButtonItem* appLikeItemBar;
 @end
 
 @implementation DSMainViewController
@@ -53,7 +54,16 @@ typedef enum {
     [self.tabBar setSelectedItem:[self.tabBar.items objectAtIndex:0]];
     self.selectedPeriod = 0;
     [self setDefaultPlaylists];
+    
+    
+    FBLikeControl* appLikeControl = [[FBLikeControl alloc] init];
+    appLikeControl.likeControlStyle = FBLikeControlStyleButton;
+    //appLikeControl.objectID = @"shareitexampleapp";
+    appLikeControl.objectID = @"https://www.facebook.com/pages/Top50Ringtones/431758676974661";
+    self.appLikeItemBar = [[UIBarButtonItem alloc] initWithCustomView:appLikeControl];
+    self.navigationItem.leftBarButtonItem = self.appLikeItemBar;
 
+   
     self.baseArray = [[NSMutableArray alloc] init];
 
     self.tableView.separatorInset = UIEdgeInsetsZero;
@@ -75,11 +85,11 @@ typedef enum {
     self.navigationItem.rightBarButtonItem = item;
     
     
-    [SARate sharedInstance].applicationBundleID = @"com.bestapp-studio.chatdietolog";
+  //  [SARate sharedInstance].applicationBundleID = @"com.bestapp-studio.chatdietolog";
     [SARate sharedInstance].onlyPromptIfLatestVersion = NO;
     
     //enable preview mode
-    [SARate sharedInstance].previewMode = YES;
+    [SARate sharedInstance].previewMode = NO;
 
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -568,7 +578,7 @@ typedef enum {
         
         DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:self.selectedSection];
         DSPlayerViewController *myVController = (DSPlayerViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"Player"];
-        myVController.title = [NSString stringWithFormat:@"%d из %d",self.selectedItem, [playlist.songsArray count]];
+        myVController.title = [NSString stringWithFormat:@"%d из %d",self.selectedItem+1, [playlist.songsArray count]];
         myVController.song = [playlist.songsArray objectAtIndex:self.selectedItem];
         myVController.pictureSong = self.selectedImage;
         [self.navigationController pushViewController:myVController animated:YES];
@@ -685,7 +695,7 @@ typedef enum {
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
 
-    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem = self.appLikeItemBar;
     switch (item.tag)
     {
         case 1:

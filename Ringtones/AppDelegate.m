@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [FBLikeControl class];
     return YES;
 }
 
@@ -43,6 +44,18 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [[DSDataManager dataManager] saveContext];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    if ([FBAppCall handleOpenURL:url sourceApplication:sourceApplication fallbackHandler:NULL]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 

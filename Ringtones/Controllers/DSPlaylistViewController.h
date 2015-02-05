@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface DSPlaylistViewController : ViewController <DSSoundManagerDelegate>
 
@@ -24,7 +25,6 @@
 - (IBAction)pauseAction:(id)sender;
 - (IBAction)forwardAction:(id)sender;
 - (IBAction)backAction:(id)sender;
-- (IBAction)recoendedAction:(id)sender;
 - (IBAction)shareAction:(id)sender;
 - (IBAction)versionAction:(id)sender;
 
@@ -36,7 +36,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *forwardBtn;
 @property (strong, nonatomic) IBOutlet UIButton *pauseBtn;
 @property (strong, nonatomic) IBOutlet UIButton *shareBtn;
-@property (strong, nonatomic) IBOutlet UIButton *recomendBtn;
+@property (nonatomic, strong) IBOutlet FBLikeControl *appLikeControl;
 @property (strong, nonatomic) IBOutlet UILabel *artistLbl;
 @property (strong, nonatomic) IBOutlet UILabel *titleLbl;
 @property (strong, nonatomic) IBOutlet UILabel *startLbl;
@@ -45,7 +45,7 @@
 @property (strong, nonatomic) IBOutlet UIProgressView *volumeProgress;
 
 @property (weak, nonatomic) DSSong* song;
-@property (weak, nonatomic) UIImage* pictureSong;
+@property (strong, nonatomic) UIImage* pictureSong;
 @property (strong, nonatomic)   NSTimer* playTimer;
 
 @end
