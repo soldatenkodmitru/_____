@@ -10,6 +10,7 @@
 #import "ActionSheetStringPicker.h"
 #import "NFXIntroViewController.h"
 #import "DaiVolume.h"
+#import "AppDelegate.h"
 
 
 static void *kStatusKVOKey = &kStatusKVOKey;
@@ -22,7 +23,9 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.purchaes = [[InAppPurches alloc]init];
+    self.purchaes.delegate = (id) self;
+
     UIImage *btnImg = [UIImage imageNamed:@"button_set_up.png"];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0.f, 0.f, btnImg.size.width, btnImg.size.height);
@@ -344,32 +347,32 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     }
 
 - (IBAction)downloadAction:(id)sender {
-    
-    NSString* listName;
-    switch (self.song.versionAudio) {
-        case sFull:{
-            listName = @"Загрузки";
+    if ([self checkPurchaise]){
+        NSString* listName;
+            switch (self.song.versionAudio) {
+            case sFull:{
+                listName = @"Загрузки";
             break;
-        }
-        case sCut:{
-            listName = @"Рингтоны";
+            }
+            case sCut:{
+                listName = @"Рингтоны";
             break;
-        }
-        case sRignton:{
-            listName = @"Рингтоны";
+            }
+            case sRignton:{
+                listName = @"Рингтоны";
             break;
+            }
         }
-    }
 
-    if ([[DSDataManager dataManager] findSongForPlaylistName:listName song:self.song] == 0 ) {
+        if ([[DSDataManager dataManager] findSongForPlaylistName:listName song:self.song] == 0 ) {
             [[DSDataManager dataManager] addPlaylistItemForNameList:listName song:self.song version:self.song.versionAudio fileLink:[self download:listName] imagelink:[self saveImage]];
-    }
-    else {
+        }
+        else {
         
         UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Данный трек уже присутствует в списке загрузок" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ок",nil];
         [alertView show];
+        }
     }
-
 }
 
 -(NSString*) saveImage{
@@ -508,33 +511,81 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     return newImage;
 }
 
+
+
+
 #pragma mark - Purchaise
+
+-(BOOL)checkPurchaise {
+    
+    NSString* purchaise;
+    NSString* purchaiseID;
+    bool isPurchaise;
+    CGRect rect;
+    if ([self.song.lang isEqualToString:@"eng"]){
+        purchaise = @"isPurchaiseEng";
+        purchaiseID = featureEngID;
+    }
+    else{
+        purchaise = @"isPurchaiseRus";
+        purchaiseID = featureRusID;
+    }
+    
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    isPurchaise =[defaults objectForKey:purchaise];
+     NSLog(@"%f",self.view.bounds.size.height);
+    if (isPurchaise != YES ){
+        rect = self.view.bounds;
+        rect.size.height = rect.size.height+200.f;
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+        [GMDCircleLoader setOnView:self.view withRect:rect animated:YES];
+        self.purchaes.productID = purchaiseID;
+        return NO;
+    }
+    else
+        return YES;
+    
+}
 
 -(void)unlockFeatureForDate:(NSDate*) date {
     
-   // [app showIndecator:NO withView:app.window];
+    NSString* purchaise;
+    NSString* purchaiseTermin;
+    NSString* purchaiseDate;
+    if (date != nil){
+        if ([self.song.lang isEqualToString:@"eng"]){
+            purchaise = @"isPurchaiseEng";
+            purchaiseTermin = @"isPurchaiseTerminEng";
+            purchaiseDate = @"isPurchaiseDateEng";
+        }
+        else{
+            purchaise = @"isPurchaiseRus";
+            purchaiseTermin = @"isPurchaiseTerminRus";
+            purchaiseDate = @"isPurchaiseDateRus";
+        }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"isPurchaise"];
-    [defaults removeObjectForKey:@"isPurchaiseTermin"];
-    [defaults removeObjectForKey:@"isPurchaiseDate"];
-    [defaults synchronize];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults removeObjectForKey:purchaise];
+        [defaults removeObjectForKey:purchaiseTermin];
+        [defaults removeObjectForKey:purchaiseDate];
+        [defaults synchronize];
     
-    NSDateFormatter *objDateFormatter = [[NSDateFormatter alloc] init];
-    [objDateFormatter setDateFormat:@"dd.MM.yyyy"];
-    NSString* dateStr = [objDateFormatter stringFromDate:date];
-    NSNumber* term = nil;
+        NSDateFormatter *objDateFormatter = [[NSDateFormatter alloc] init];
+        [objDateFormatter setDateFormat:@"dd.MM.yyyy"];
+        NSString* dateStr = [objDateFormatter stringFromDate:date];
+        NSNumber* term = @1;
     
-    [defaults setObject:dateStr forKey:@"isPurchaiseDate"];
-    [defaults setObject:term forKey:@"isPurchaiseTermin"];
-    [defaults setBool:YES forKey:@"isPurchaise"];
-    [defaults synchronize];
-    //app.isPurchaise = YES;
+        [defaults setObject:dateStr forKey:purchaiseDate];
+        [defaults setObject:term forKey:purchaiseTermin];
+        [defaults setBool:YES forKey:purchaise];
+        [defaults synchronize];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Сообщение" message:@"Ваши покупки успешно завершены" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        [self downloadAction:nil];
+    }
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    [GMDCircleLoader hideFromView:self.view animated:YES];
     
-   // [self prepareView];
-    
-    //UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Сообщение" message:@"Ваши покупки успешно завершены" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    //[alert show];
     
 }
 

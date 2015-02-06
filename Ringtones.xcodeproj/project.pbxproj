@@ -173,6 +173,9 @@
 		BFC9DB061A7BA7B300C5D4D6 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB021A7BA7B300C5D4D6 /* ActionSheetStringPicker.m */; };
 		BFC9DB071A7BA7B300C5D4D6 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */; };
 		BFC9DB0A1A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */; };
+		BFCDAF611A84C654000F50B2 /* InAppPurches.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF5B1A84C654000F50B2 /* InAppPurches.m */; };
+		BFCDAF621A84C654000F50B2 /* MKStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF5E1A84C654000F50B2 /* MKStoreManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BFCDAF631A84C654000F50B2 /* MKStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF601A84C654000F50B2 /* MKStoreObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BFD006BC1A81018600850562 /* star-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006B81A81018600850562 /* star-gray.png */; };
 		BFD006BD1A81018600850562 /* star-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006B91A81018600850562 /* star-gray@2x.png */; };
 		BFD006BE1A81018600850562 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006BA1A81018600850562 /* star.png */; };
@@ -440,6 +443,12 @@
 		BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
 		BFC9DB081A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperationLogger.h; path = "Ringtones/libs/UIKit+AFNetworking/AFHTTPRequestOperationLogger.h"; sourceTree = SOURCE_ROOT; };
 		BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationLogger.m; path = "Ringtones/libs/UIKit+AFNetworking/AFHTTPRequestOperationLogger.m"; sourceTree = SOURCE_ROOT; };
+		BFCDAF5A1A84C654000F50B2 /* InAppPurches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurches.h; sourceTree = "<group>"; };
+		BFCDAF5B1A84C654000F50B2 /* InAppPurches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurches.m; sourceTree = "<group>"; };
+		BFCDAF5D1A84C654000F50B2 /* MKStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreManager.h; sourceTree = "<group>"; };
+		BFCDAF5E1A84C654000F50B2 /* MKStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreManager.m; sourceTree = "<group>"; };
+		BFCDAF5F1A84C654000F50B2 /* MKStoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreObserver.h; sourceTree = "<group>"; };
+		BFCDAF601A84C654000F50B2 /* MKStoreObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreObserver.m; sourceTree = "<group>"; };
 		BFD006B81A81018600850562 /* star-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-gray.png"; path = "Ringtones/libs/Rate/star-gray.png"; sourceTree = "<group>"; };
 		BFD006B91A81018600850562 /* star-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-gray@2x.png"; path = "Ringtones/libs/Rate/star-gray@2x.png"; sourceTree = "<group>"; };
 		BFD006BA1A81018600850562 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Ringtones/libs/Rate/star.png; sourceTree = "<group>"; };
@@ -821,6 +830,7 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				BFCDAF591A84C654000F50B2 /* inapppurchases */,
 				BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */,
 				BFD006C01A81019A00850562 /* Rate */,
 				BFC9DAFE1A7BA7B300C5D4D6 /* ActionSheet */,
@@ -983,6 +993,28 @@
 			);
 			name = ActionSheet;
 			path = Ringtones/libs/ActionSheet;
+			sourceTree = "<group>";
+		};
+		BFCDAF591A84C654000F50B2 /* inapppurchases */ = {
+			isa = PBXGroup;
+			children = (
+				BFCDAF5A1A84C654000F50B2 /* InAppPurches.h */,
+				BFCDAF5B1A84C654000F50B2 /* InAppPurches.m */,
+				BFCDAF5C1A84C654000F50B2 /* MKStore */,
+			);
+			name = inapppurchases;
+			path = Ringtones/libs/inapppurchases;
+			sourceTree = "<group>";
+		};
+		BFCDAF5C1A84C654000F50B2 /* MKStore */ = {
+			isa = PBXGroup;
+			children = (
+				BFCDAF5D1A84C654000F50B2 /* MKStoreManager.h */,
+				BFCDAF5E1A84C654000F50B2 /* MKStoreManager.m */,
+				BFCDAF5F1A84C654000F50B2 /* MKStoreObserver.h */,
+				BFCDAF601A84C654000F50B2 /* MKStoreObserver.m */,
+			);
+			path = MKStore;
 			sourceTree = "<group>";
 		};
 		BFD006B71A81007100850562 /* Rate */ = {
@@ -1238,11 +1270,13 @@
 				32CE4F701A485F6B0022AE0F /* AFURLConnectionOperation.m in Sources */,
 				32CEA3051A49B8DA006AD7CC /* DSSoundManager.m in Sources */,
 				32A6F91A1A4DA364006CB6D8 /* DOUAudioFilePreprocessor.m in Sources */,
+				BFCDAF631A84C654000F50B2 /* MKStoreObserver.m in Sources */,
 				32CE4F6B1A485F6B0022AE0F /* AFHTTPRequestOperation.m in Sources */,
 				32A6F91B1A4DA364006CB6D8 /* DOUAudioFileProvider.m in Sources */,
 				32A6F9161A4DA364006CB6D8 /* DOUAudioAnalyzer+Default.m in Sources */,
 				32D51AB81A58B4BF00973B24 /* DSPlaylistItem.m in Sources */,
 				32A6F9231A4DA364006CB6D8 /* DOUAudioVisualizer.m in Sources */,
+				BFCDAF611A84C654000F50B2 /* InAppPurches.m in Sources */,
 				32EF40A01A6C65FE00A9E5B5 /* DaiVolume+Invocation.m in Sources */,
 				BFC9DB071A7BA7B300C5D4D6 /* SWActionSheet.m in Sources */,
 				32C6A8B61A67CF120014651D /* DSLikesSong.m in Sources */,
@@ -1295,6 +1329,7 @@
 				32A6F92A1A4DA693006CB6D8 /* DOUMPMediaLibraryAssetLoader.m in Sources */,
 				32CE4F6D1A485F6B0022AE0F /* AFHTTPSessionManager.m in Sources */,
 				32C2F4831A6D15910094A92A /* GMDCircleLoader.m in Sources */,
+				BFCDAF621A84C654000F50B2 /* MKStoreManager.m in Sources */,
 				32059F191A71F90A009F2493 /* TSPopoverTouchView.m in Sources */,
 				32CE4F751A485F6B0022AE0F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				32CE4F741A485F6B0022AE0F /* AFNetworkActivityIndicatorManager.m in Sources */,

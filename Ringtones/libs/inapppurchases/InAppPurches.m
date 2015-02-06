@@ -8,7 +8,7 @@
 
 #import "InAppPurches.h"
 #import "MKStoreObserver.h"
-#import "BASMainViewController.h"
+
 
 
 @interface InAppPurches()
@@ -34,11 +34,9 @@
 - (void)setProductID:(NSString *)productID{
     _productID = productID;
 
-    if([_productID isEqualToString:restorefeatureId]){
-        [[ SKPaymentQueue defaultQueue ] restoreCompletedTransactions ];
-    } else {
-        [self getProductInfo];
-    }
+    
+    [self getProductInfo];
+    
 }
 
 
@@ -47,14 +45,16 @@
     //self.payment = [SKPayment paymentWithProductIdentifier:_productID];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Данная услуга платная, желаете купить ее?" delegate:self cancelButtonTitle:@"Отменить" otherButtonTitles:@"Купить", @"Восстановить покупки", nil];
     //	alertView.tag = kInAppPurchasesAlertViewTag;
-    [alertView show];
     
+    [alertView show];
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
    
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    TheApp;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+
     if (alertView.cancelButtonIndex != buttonIndex) {
         if (buttonIndex == 1) { //purchase in app
             self.payment = [SKPayment paymentWithProduct:_product];
@@ -65,9 +65,7 @@
     }
     else{
         _productID = nil;
-        [app showIndecator:NO withView:app.window];
-        
-        [app.mainController setButtonPressedNO];
+        [_delegate unlockFeatureForDate:nil];
     }
 }
 -(void)getProductInfo
@@ -118,16 +116,14 @@
 
 }
 
-#pragma mark -
-#pragma mark SKPaymentTransactionObserverDelegate
+#pragma mark - SKPaymentTransactionObserverDelegate
     
 - (void) failedTransaction: (SKPaymentTransaction *)transaction{
-    TheApp;
+  
     NSLog(@"Error: %@",transaction.error);
     _productID = nil;
-    [app showIndecator:NO withView:app.window];
-    
-    [app.mainController setButtonPressedNO];
+    [_delegate unlockFeatureForDate:nil];
+
 }
 - (void) completeTransaction: (SKPaymentTransaction *)transaction{
      NSLog(@"Date: %@",transaction.transactionDate);

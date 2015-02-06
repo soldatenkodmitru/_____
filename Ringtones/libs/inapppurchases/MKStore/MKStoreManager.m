@@ -7,7 +7,7 @@
 //
 
 #import "MKStoreManager.h"
-
+#import "AppDelegate.h"
 
 @implementation MKStoreManager
 
@@ -125,7 +125,7 @@ static MKStoreManager* _sharedStoreManager; // self
 - (void) requestProductData
 {
 	SKProductsRequest *request= [[SKProductsRequest alloc] initWithProductIdentifiers: 
-								 [NSSet setWithObjects: feature1Id, feature2Id, feature3Id, nil]]; // add any other product here
+								 [NSSet setWithObjects: featureEngID, featureRusID,  nil]]; // add any other product here
 	request.delegate = self;
 	[request start];
 }
@@ -148,16 +148,13 @@ static MKStoreManager* _sharedStoreManager; // self
 
 - (void) buyFeature1
 {
-	[self buyFeature:feature1Id];
+	[self buyFeature:featureEngID];
 }
 - (void) buyFeature2
 {
-	[self buyFeature:feature2Id];
+	[self buyFeature:featureRusID];
 }
-- (void) buyFeature3
-{
-	[self buyFeature:feature3Id];
-}
+
 
 
 - (void) buyFeature:(NSString*) featureId
@@ -197,21 +194,16 @@ static MKStoreManager* _sharedStoreManager; // self
 
 -(void) provideContent: (NSString*) productIdentifier
 {
-	if([productIdentifier isEqualToString:feature1Id])
+	if([productIdentifier isEqualToString:featureEngID])
 	{
 		feature1Purchased = YES;
 		if([delegate respondsToSelector:@selector(product1Purchased)])
 			[delegate product1Purchased];
-	} else if([productIdentifier isEqualToString:feature2Id])
+	} else if([productIdentifier isEqualToString:featureRusID])
 	{
 		feature2Purchased = YES;
 		if([delegate respondsToSelector:@selector(product2Purchased)])
 			[delegate product2Purchased];
-	} else if([productIdentifier isEqualToString:feature3Id])
-	{
-		feature3Purchased = YES;
-		if([delegate respondsToSelector:@selector(product3Purchased)])
-			[delegate product3Purchased];
 	}
 	
 	[MKStoreManager updatePurchases];
@@ -221,9 +213,8 @@ static MKStoreManager* _sharedStoreManager; // self
 +(void) loadPurchases 
 {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];	
-	feature1Purchased = [userDefaults boolForKey:feature1Id];
-	feature2Purchased = [userDefaults boolForKey:feature2Id];
-    feature3Purchased = [userDefaults boolForKey:feature3Id];
+	feature1Purchased = [userDefaults boolForKey:featureEngID];
+	feature2Purchased = [userDefaults boolForKey:featureRusID];
 
 }
 
@@ -231,9 +222,9 @@ static MKStoreManager* _sharedStoreManager; // self
 +(void) updatePurchases
 {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults setBool:feature1Purchased forKey:feature1Id];
-	[userDefaults setBool:feature2Purchased forKey:feature2Id];
-    [userDefaults setBool:feature3Purchased forKey:feature3Id];
+    feature1Purchased = [userDefaults boolForKey:featureEngID];
+    feature2Purchased = [userDefaults boolForKey:featureRusID];
+
 
 }
 @end

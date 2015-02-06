@@ -17,6 +17,8 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
+#import "InAppPurches.h"
+#import "GMDCircleLoader.h"
 
 @interface DSPlayerViewController : ViewController <DSRateViewDelegate>
 
@@ -49,6 +51,7 @@
 @property (strong, nonatomic)   NSTimer* playTimer;
 @property (strong, nonatomic)   NSThread* thread;
 @property (strong, nonatomic)   NSString* title;
-@property (assign, nonatomic   ) BOOL isFavorite;
-@property (assign, nonatomic   ) BOOL isPlaying;
+@property (assign, nonatomic) BOOL isFavorite;
+@property (assign, nonatomic) BOOL isPlaying;
+@property (strong, nonatomic) InAppPurches* purchaes;
 @end
