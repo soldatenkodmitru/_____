@@ -119,7 +119,7 @@
 - (void) play{
     
     if (self.playBtn.selected){
-        [self.playProgress setProgress: 0 animated:NO];
+        
         [[DSSoundManager sharedManager] play];
         self.pauseBtn.selected = YES;
         self.playBtn.selected = NO;
@@ -131,19 +131,21 @@
     
     NSData * data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.song.saveImageLink]];
     self.pictureSong = [UIImage imageWithData:data];
-    self.imageSong.image = self.pictureSong;
-    //[self setPicture];
+   // self.imageSong.image = self.pictureSong;
+    [self setPicture];
 }
 
 - (void) setPicture {
     
-    self.imageSong.image = self.pictureSong;
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:1.0]; //Animate for a duration of 1.0 seconds
-    [animation setType:kCATransitionPush]; //New image will push the old image off
-    [animation setSubtype:kCATransitionFromRight]; //Current image will slide off to the left, new image slides in from the right
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-    [[self.imageSong layer] addAnimation:animation forKey:nil];
+  
+    [UIView transitionWithView:self.imageSong
+                      duration:0.50f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.imageSong.image = self.pictureSong;
+                    } completion:NULL];;
+   // self.imageSong.image = self.pictureSong;
+
     
 }
 - (NSString*) timeToString:(double )timeInterval {
@@ -178,11 +180,10 @@
     self.volumeProgress.progress = [DaiVolume volume];
     self.endLbl.text = [self timeToString:[DSSoundManager sharedManager].streamer.duration];
     self.startLbl.text = [self timeToString:[DSSoundManager sharedManager].streamer.currentTime];
-   // NSLog(@"%f   %f" ,self.streamer.currentTime, self.streamer.duration);
-    if ([DSSoundManager sharedManager].streamer.duration > 0)
-    {
+   // NSLog(@"%f %f   %f" ,self.playProgress.progress,[DSSoundManager sharedManager].streamer.currentTime, [DSSoundManager sharedManager].streamer.duration);
+    if ([DSSoundManager sharedManager].streamer.duration > 0  )
         [self.playProgress setProgress: (float)([DSSoundManager sharedManager].streamer.currentTime/[DSSoundManager sharedManager].streamer.duration)  animated:YES];
-    }
+   
 }
 
 #pragma mark - Implementation
@@ -230,14 +231,14 @@
 }
 - (IBAction)forwardAction:(id)sender{
     [[DSSoundManager sharedManager] forward];
+    [self.playProgress setProgress:0 animated:NO];
 }
 - (IBAction)backAction:(id)sender{
     
     [[DSSoundManager sharedManager] backward];
+    [self.playProgress setProgress:0 animated:NO];
 }
-- (IBAction)recoendedAction:(id)sender{
-    
-}
+
 
 
 - (IBAction)shareAction:(id)sender{

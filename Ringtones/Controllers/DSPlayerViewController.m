@@ -148,6 +148,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void) play{
     
     if (self.playBtn.selected){
+        
         [self.playProgress setProgress: 0 animated:NO];
         [self resetStreamer];
         [self.streamer play];
@@ -522,7 +523,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     NSString* purchaiseID;
     bool isPurchaise;
     CGRect rect;
-    if ([self.song.lang isEqualToString:@"eng"]){
+  /*  if ([self.song.lang isEqualToString:@"eng"]){
         purchaise = @"isPurchaiseEng";
         purchaiseID = featureEngID;
     }
@@ -543,7 +544,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         return NO;
     }
     else
-        return YES;
+        return YES;*/
+    return YES;
     
 }
 
@@ -579,8 +581,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         [defaults setObject:term forKey:purchaiseTermin];
         [defaults setBool:YES forKey:purchaise];
         [defaults synchronize];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Сообщение" message:@"Ваши покупки успешно завершены" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
+       // UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Сообщение" message:@"Ваши покупки успешно завершены" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+     //   [alert show];
         [self downloadAction:nil];
     }
     [[UIApplication sharedApplication] endIgnoringInteractionEvents];

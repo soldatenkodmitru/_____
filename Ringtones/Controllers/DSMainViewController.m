@@ -563,15 +563,16 @@ typedef enum {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     if(self.tabBar.selectedItem.tag == 5 || self.tabBar.selectedItem.tag == 4 ) {
         DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:self.selectedSection];
-        DSPlaylistViewController *myVController = (DSPlaylistViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"Playlist"];
-        [DSSoundManager sharedManager].playlist = playlist;
-        [DSSoundManager sharedManager].activeIndex = self.selectedItem;
-        myVController.song = [playlist.songsArray objectAtIndex:self.selectedItem];
-        [DSSoundManager sharedManager].song = myVController.song;
-        [DSSoundManager sharedManager].isPlaying = NO;
-        
-        myVController.pictureSong = self.selectedImage;
-        [self.navigationController pushViewController:myVController animated:YES];
+        if(!(self.tabBar.selectedItem.tag == 5 &&  indexPath.row+1 > [playlist.songsArray count] )){
+            DSPlaylistViewController *myVController = (DSPlaylistViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"Playlist"];
+            [DSSoundManager sharedManager].playlist = playlist;
+            [DSSoundManager sharedManager].activeIndex = self.selectedItem;
+            myVController.song = [playlist.songsArray objectAtIndex:self.selectedItem];
+            [DSSoundManager sharedManager].song = myVController.song;
+            [DSSoundManager sharedManager].isPlaying = NO;
+            myVController.pictureSong = self.selectedImage;
+            [self.navigationController pushViewController:myVController animated:YES];
+       }
     }
     else{
         
@@ -587,11 +588,19 @@ typedef enum {
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:indexPath.section];
+
     
-    self.selectedItem = indexPath.row;
-    self.selectedSection = indexPath.section;
-    DSSongTableViewCell *curCell = (DSSongTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-    self.selectedImage = curCell.image.image;
+    if(self.tabBar.selectedItem.tag == 5 &&  indexPath.row+1 > [playlist.songsArray count] ){
+        [ self addPlaylist:nil];
+    }
+    else
+    {
+        self.selectedItem = indexPath.row;
+        self.selectedSection = indexPath.section;
+        DSSongTableViewCell *curCell = (DSSongTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+        self.selectedImage = curCell.image.image;
+    }
     return indexPath;
 }
 

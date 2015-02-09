@@ -36,7 +36,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *forwardBtn;
 @property (strong, nonatomic) IBOutlet UIButton *pauseBtn;
 @property (strong, nonatomic) IBOutlet UIButton *shareBtn;
-@property (nonatomic, strong) IBOutlet FBLikeControl *appLikeControl;
 @property (strong, nonatomic) IBOutlet UILabel *artistLbl;
 @property (strong, nonatomic) IBOutlet UILabel *titleLbl;
 @property (strong, nonatomic) IBOutlet UILabel *startLbl;
