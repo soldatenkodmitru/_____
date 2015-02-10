@@ -91,8 +91,16 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (void)viewDidAppear:(BOOL)animated
 {
     NSLog(@"%f",self.imageSong.bounds.size.height);
-    self.imageSong.image =[self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
-
+    
+ //   [self.imageSong setBoundingBoxScheme:BoundingBoxSchemeAll];
+ //   [self.imageSong setBoundingPadding:10.0];
+  //  [self.imageSong setImage:self.pictureSong cacheName:@"cache"];
+  //  [self.imageSong fitToFeatures];
+ //  self.imageSong.image =[self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
+    self.imageSong.image = self.pictureSong;
+    [self.imageSong faceAwareFill];
+  
+        NSLog(@"%f",self.imageSong.bounds.size.height);
     [super viewWillAppear:animated];
 
 }

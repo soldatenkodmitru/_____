@@ -186,6 +186,7 @@
 		BFD006CC1A8101C500850562 /* SARateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006CB1A8101C500850562 /* SARateViewController.m */; };
 		BFD4F7BF1A838239000FF071 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */; };
 		BFD4F7C11A83C2EA000FF071 /* fon.PNG in Resources */ = {isa = PBXBuildFile; fileRef = BFD4F7C01A83C2EA000FF071 /* fon.PNG */; };
+		BFE0E2321A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE0E2311A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -462,6 +463,8 @@
 		BFD006CB1A8101C500850562 /* SARateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARateViewController.m; path = ../SARate/SARate/SARateViewController.m; sourceTree = "<group>"; };
 		BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Ringtones/libs/FacebookSDK.framework; sourceTree = "<group>"; };
 		BFD4F7C01A83C2EA000FF071 /* fon.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fon.PNG; path = Ringtones/images/fon.PNG; sourceTree = "<group>"; };
+		BFE0E2301A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIImageView_FaceAwareFill.h"; sourceTree = "<group>"; };
+		BFE0E2311A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIImageView_FaceAwareFill.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -830,6 +833,7 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				BFE0E22F1A8A37B100494F4A /* UIImageView+FaceAwareFill */,
 				BFCDAF591A84C654000F50B2 /* inapppurchases */,
 				BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */,
 				BFD006C01A81019A00850562 /* Rate */,
@@ -1049,6 +1053,16 @@
 			);
 			name = iRate;
 			path = ../SARate/SARate/iRate;
+			sourceTree = "<group>";
+		};
+		BFE0E22F1A8A37B100494F4A /* UIImageView+FaceAwareFill */ = {
+			isa = PBXGroup;
+			children = (
+				BFE0E2301A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.h */,
+				BFE0E2311A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m */,
+			);
+			name = "UIImageView+FaceAwareFill";
+			path = "Ringtones/libs/UIImageView+FaceAwareFill";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1331,6 +1345,7 @@
 				32C2F4831A6D15910094A92A /* GMDCircleLoader.m in Sources */,
 				BFCDAF621A84C654000F50B2 /* MKStoreManager.m in Sources */,
 				32059F191A71F90A009F2493 /* TSPopoverTouchView.m in Sources */,
+				BFE0E2321A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m in Sources */,
 				32CE4F751A485F6B0022AE0F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				32CE4F741A485F6B0022AE0F /* AFNetworkActivityIndicatorManager.m in Sources */,
 				BFC9DB051A7BA7B300C5D4D6 /* AbstractActionSheetPicker.m in Sources */,

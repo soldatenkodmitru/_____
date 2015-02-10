@@ -19,6 +19,7 @@
 #import "AFNetworking.h"
 #import "InAppPurches.h"
 #import "GMDCircleLoader.h"
+#import "UIImageView+UIImageView_FaceAwareFill.h"
 
 @interface DSPlayerViewController : ViewController <DSRateViewDelegate>
 

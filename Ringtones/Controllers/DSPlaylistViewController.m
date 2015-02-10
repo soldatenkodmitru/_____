@@ -32,7 +32,11 @@
     
     self.shareBtn.highlighted = NO;
     
-  
+    self.titleLbl.text = self.song.title;
+    self.artistLbl.text = self.song.artist;
+    
+    self.startLbl.text = @"00:00";
+    self.endLbl.text = @"00:00";
    
     [DSSoundManager sharedManager].delegate = self;
     self.volumeProgress.progress = [DaiVolume volume];
@@ -63,7 +67,7 @@
     
     self.song = song;
     [self updateElements];
-    [self loadImage];
+    [self animateElements];
     
 }
 
@@ -79,11 +83,7 @@
 
 - (void) updateElements {
     
-    self.titleLbl.text = self.song.title;
-    self.artistLbl.text = self.song.artist;
-
-    self.startLbl.text = @"00:00";
-    self.endLbl.text = @"00:00";
+   
     self.navigationItem.title = [NSString stringWithFormat:@"%d из %d",[DSSoundManager sharedManager].activeIndex + 1,[[DSSoundManager sharedManager].playlist.songsArray count] ];
     
     if([DSSoundManager sharedManager].isPlaying == YES){
@@ -127,14 +127,25 @@
     }
 }
 
-- (void) loadImage {
+- (void) animateElements {
     
     NSData * data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.song.saveImageLink]];
     self.pictureSong = [UIImage imageWithData:data];
-   // self.imageSong.image = self.pictureSong;
     [self setPicture];
+    [self setLabel:self.titleLbl text:self.song.title];
+    [self setLabel:self.artistLbl text:self.song.artist];
 }
 
+- (void) setLabel:(UILabel*) label  text:(NSString*)text{
+    
+    [UIView transitionWithView: label
+                      duration:0.50f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        label.text = text;
+                    } completion:NULL];
+    
+}
 - (void) setPicture {
     
   
@@ -143,10 +154,9 @@
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         self.imageSong.image = self.pictureSong;
-                    } completion:NULL];;
-   // self.imageSong.image = self.pictureSong;
+                    } completion:NULL];
 
-    
+
 }
 - (NSString*) timeToString:(double )timeInterval {
     float min = floor(timeInterval/60);
