@@ -63,10 +63,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.playBtn.selected = YES;
     self.stopBtn.selected = NO;
    
-    NSLog(@"%f",self.imageSong.bounds.size.height);
-    //self.imageSong.image =[self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
-
-    self.imageSong.image = [UIImage imageNamed:@"fon.png"];
+ 
+    self.imageSong.image = [UIImage imageNamed:@"grey_fon.png"];
 
     if (self.song.versionAudio == 0){
         self.song.versionAudio = sFull;
@@ -84,23 +82,19 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-     NSLog(@"%f",self.imageSong.bounds.size.height);
+    // NSLog(@"%f",self.imageSong.bounds.size.height);
     
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"%f",self.imageSong.bounds.size.height);
-    
- //   [self.imageSong setBoundingBoxScheme:BoundingBoxSchemeAll];
- //   [self.imageSong setBoundingPadding:10.0];
-  //  [self.imageSong setImage:self.pictureSong cacheName:@"cache"];
-  //  [self.imageSong fitToFeatures];
- //  self.imageSong.image =[self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
-    self.imageSong.image = self.pictureSong;
-    [self.imageSong faceAwareFill];
-  
-        NSLog(@"%f",self.imageSong.bounds.size.height);
+    [UIView transitionWithView:self.imageSong
+                      duration:0.3f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.imageSong.image =[self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
+                    } completion:NULL];
+    //     NSLog(@"%f , %f",self.imageSong.bounds.size.height, self.imageSong.bounds.size.width);
     [super viewWillAppear:animated];
 
 }
@@ -519,8 +513,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
     return newImage;
 }
-
-
 
 
 #pragma mark - Purchaise

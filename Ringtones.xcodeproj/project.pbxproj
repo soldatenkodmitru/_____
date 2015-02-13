@@ -173,6 +173,7 @@
 		BFC9DB061A7BA7B300C5D4D6 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB021A7BA7B300C5D4D6 /* ActionSheetStringPicker.m */; };
 		BFC9DB071A7BA7B300C5D4D6 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */; };
 		BFC9DB0A1A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */; };
+		BFCB3E421A8E4F64008C8FC5 /* grey_fon.png in Resources */ = {isa = PBXBuildFile; fileRef = BFCB3E411A8E4F64008C8FC5 /* grey_fon.png */; };
 		BFCDAF611A84C654000F50B2 /* InAppPurches.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF5B1A84C654000F50B2 /* InAppPurches.m */; };
 		BFCDAF621A84C654000F50B2 /* MKStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF5E1A84C654000F50B2 /* MKStoreManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BFCDAF631A84C654000F50B2 /* MKStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF601A84C654000F50B2 /* MKStoreObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -186,7 +187,6 @@
 		BFD006CC1A8101C500850562 /* SARateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006CB1A8101C500850562 /* SARateViewController.m */; };
 		BFD4F7BF1A838239000FF071 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */; };
 		BFD4F7C11A83C2EA000FF071 /* fon.PNG in Resources */ = {isa = PBXBuildFile; fileRef = BFD4F7C01A83C2EA000FF071 /* fon.PNG */; };
-		BFE0E2321A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE0E2311A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -444,6 +444,7 @@
 		BFC9DB041A7BA7B300C5D4D6 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
 		BFC9DB081A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperationLogger.h; path = "Ringtones/libs/UIKit+AFNetworking/AFHTTPRequestOperationLogger.h"; sourceTree = SOURCE_ROOT; };
 		BFC9DB091A7BBCA000C5D4D6 /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationLogger.m; path = "Ringtones/libs/UIKit+AFNetworking/AFHTTPRequestOperationLogger.m"; sourceTree = SOURCE_ROOT; };
+		BFCB3E411A8E4F64008C8FC5 /* grey_fon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grey_fon.png; path = Ringtones/images/grey_fon.png; sourceTree = "<group>"; };
 		BFCDAF5A1A84C654000F50B2 /* InAppPurches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurches.h; sourceTree = "<group>"; };
 		BFCDAF5B1A84C654000F50B2 /* InAppPurches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurches.m; sourceTree = "<group>"; };
 		BFCDAF5D1A84C654000F50B2 /* MKStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreManager.h; sourceTree = "<group>"; };
@@ -463,8 +464,6 @@
 		BFD006CB1A8101C500850562 /* SARateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARateViewController.m; path = ../SARate/SARate/SARateViewController.m; sourceTree = "<group>"; };
 		BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Ringtones/libs/FacebookSDK.framework; sourceTree = "<group>"; };
 		BFD4F7C01A83C2EA000FF071 /* fon.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fon.PNG; path = Ringtones/images/fon.PNG; sourceTree = "<group>"; };
-		BFE0E2301A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIImageView_FaceAwareFill.h"; sourceTree = "<group>"; };
-		BFE0E2311A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIImageView_FaceAwareFill.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -833,7 +832,6 @@
 		32CE4EC81A483BEC0022AE0F /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				BFE0E22F1A8A37B100494F4A /* UIImageView+FaceAwareFill */,
 				BFCDAF591A84C654000F50B2 /* inapppurchases */,
 				BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */,
 				BFD006C01A81019A00850562 /* Rate */,
@@ -970,6 +968,7 @@
 		32FA53A91A4ACC2700413D1A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BFCB3E411A8E4F64008C8FC5 /* grey_fon.png */,
 				BFD4F7C01A83C2EA000FF071 /* fon.PNG */,
 				BFD006B71A81007100850562 /* Rate */,
 				3244D9AB1A732F2200F9B600 /* icons */,
@@ -1053,16 +1052,6 @@
 			);
 			name = iRate;
 			path = ../SARate/SARate/iRate;
-			sourceTree = "<group>";
-		};
-		BFE0E22F1A8A37B100494F4A /* UIImageView+FaceAwareFill */ = {
-			isa = PBXGroup;
-			children = (
-				BFE0E2301A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.h */,
-				BFE0E2311A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m */,
-			);
-			name = "UIImageView+FaceAwareFill";
-			path = "Ringtones/libs/UIImageView+FaceAwareFill";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1233,6 +1222,7 @@
 				32CB70821A66904B00232DE3 /* but_add_to_favorites_s@3x.png in Resources */,
 				3244D9A91A7324F700F9B600 /* Default@2x.png in Resources */,
 				3244D9C01A732F2200F9B600 /* Icon-60@3x.png in Resources */,
+				BFCB3E421A8E4F64008C8FC5 /* grey_fon.png in Resources */,
 				3244D9CA1A732F2200F9B600 /* Icon-Small.png in Resources */,
 				BF6A8F6B1A7F96A7008A6073 /* button_recommend_s@3x.png in Resources */,
 				BF6A8F6C1A7F96A7008A6073 /* button_recommend@3x.png in Resources */,
@@ -1345,7 +1335,6 @@
 				32C2F4831A6D15910094A92A /* GMDCircleLoader.m in Sources */,
 				BFCDAF621A84C654000F50B2 /* MKStoreManager.m in Sources */,
 				32059F191A71F90A009F2493 /* TSPopoverTouchView.m in Sources */,
-				BFE0E2321A8A37B100494F4A /* UIImageView+UIImageView_FaceAwareFill.m in Sources */,
 				32CE4F751A485F6B0022AE0F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				32CE4F741A485F6B0022AE0F /* AFNetworkActivityIndicatorManager.m in Sources */,
 				BFC9DB051A7BA7B300C5D4D6 /* AbstractActionSheetPicker.m in Sources */,

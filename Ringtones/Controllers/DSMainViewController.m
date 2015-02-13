@@ -284,13 +284,16 @@ typedef enum {
         cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"but_onward.png"]];
   
 
-      
-       
+        cell.image.image = [UIImage imageNamed:@"cover_blank.png"];
+        cell.haveImage =NO;
         __weak DSSongTableViewCell* weakCell = cell;
 
         if (song.isLocal) {
           NSData * data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:song.saveImageLink]];
-          cell.image.image = [UIImage imageWithData:data];
+            if(data != nil) {
+              cell.image.image = [UIImage imageWithData:data];
+              cell.haveImage = YES;
+            }
           CALayer *imageLayer = cell.image.layer;
             [imageLayer setCornerRadius:27.5f];
             [imageLayer setMasksToBounds:YES];
@@ -304,6 +307,7 @@ typedef enum {
          placeholderImage:nil
          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
          weakCell.image.image = image;
+         weakCell.haveImage = YES;
          CALayer *imageLayer = weakCell.image.layer;
          [imageLayer setCornerRadius:27.5f];
          [imageLayer setMasksToBounds:YES];
@@ -599,7 +603,10 @@ typedef enum {
         self.selectedItem = indexPath.row;
         self.selectedSection = indexPath.section;
         DSSongTableViewCell *curCell = (DSSongTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-        self.selectedImage = curCell.image.image;
+        if (curCell.haveImage == YES)
+            self.selectedImage = curCell.image.image;
+        else
+            self.selectedImage = [UIImage imageNamed:@"fon.png"];
     }
     return indexPath;
 }

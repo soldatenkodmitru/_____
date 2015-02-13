@@ -19,7 +19,6 @@
 #import "AFNetworking.h"
 #import "InAppPurches.h"
 #import "GMDCircleLoader.h"
-#import "UIImageView+UIImageView_FaceAwareFill.h"
 
 @interface DSPlayerViewController : ViewController <DSRateViewDelegate>
 
@@ -47,7 +46,7 @@
 @property (strong, nonatomic) IBOutlet UIProgressView *volumeProgress;
 
 @property (weak, nonatomic) DSSong* song;
-@property (weak, nonatomic) UIImage* pictureSong;
+@property (strong, nonatomic) UIImage* pictureSong;
 @property (strong, nonatomic) DOUAudioStreamer *streamer;
 @property (strong, nonatomic)   NSTimer* playTimer;
 @property (strong, nonatomic)   NSThread* thread;
