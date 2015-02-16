@@ -177,6 +177,7 @@
 		BFCDAF611A84C654000F50B2 /* InAppPurches.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF5B1A84C654000F50B2 /* InAppPurches.m */; };
 		BFCDAF621A84C654000F50B2 /* MKStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF5E1A84C654000F50B2 /* MKStoreManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BFCDAF631A84C654000F50B2 /* MKStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF601A84C654000F50B2 /* MKStoreObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BFCDB6C71A9235C000E7C956 /* fon.png in Resources */ = {isa = PBXBuildFile; fileRef = BFCDB6C61A9235C000E7C956 /* fon.png */; };
 		BFD006BC1A81018600850562 /* star-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006B81A81018600850562 /* star-gray.png */; };
 		BFD006BD1A81018600850562 /* star-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006B91A81018600850562 /* star-gray@2x.png */; };
 		BFD006BE1A81018600850562 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006BA1A81018600850562 /* star.png */; };
@@ -186,7 +187,6 @@
 		BFD006CA1A8101B500850562 /* SARate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006C61A8101B500850562 /* SARate.m */; };
 		BFD006CC1A8101C500850562 /* SARateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD006CB1A8101C500850562 /* SARateViewController.m */; };
 		BFD4F7BF1A838239000FF071 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */; };
-		BFD4F7C11A83C2EA000FF071 /* fon.PNG in Resources */ = {isa = PBXBuildFile; fileRef = BFD4F7C01A83C2EA000FF071 /* fon.PNG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -451,6 +451,7 @@
 		BFCDAF5E1A84C654000F50B2 /* MKStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreManager.m; sourceTree = "<group>"; };
 		BFCDAF5F1A84C654000F50B2 /* MKStoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreObserver.h; sourceTree = "<group>"; };
 		BFCDAF601A84C654000F50B2 /* MKStoreObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreObserver.m; sourceTree = "<group>"; };
+		BFCDB6C61A9235C000E7C956 /* fon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fon.png; path = Ringtones/images/fon.png; sourceTree = "<group>"; };
 		BFD006B81A81018600850562 /* star-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-gray.png"; path = "Ringtones/libs/Rate/star-gray.png"; sourceTree = "<group>"; };
 		BFD006B91A81018600850562 /* star-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-gray@2x.png"; path = "Ringtones/libs/Rate/star-gray@2x.png"; sourceTree = "<group>"; };
 		BFD006BA1A81018600850562 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Ringtones/libs/Rate/star.png; sourceTree = "<group>"; };
@@ -463,7 +464,6 @@
 		BFD006C71A8101B500850562 /* SARateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SARateViewController.h; path = ../SARate/SARate/SARateViewController.h; sourceTree = "<group>"; };
 		BFD006CB1A8101C500850562 /* SARateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SARateViewController.m; path = ../SARate/SARate/SARateViewController.m; sourceTree = "<group>"; };
 		BFD4F7BE1A838239000FF071 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Ringtones/libs/FacebookSDK.framework; sourceTree = "<group>"; };
-		BFD4F7C01A83C2EA000FF071 /* fon.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fon.PNG; path = Ringtones/images/fon.PNG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -968,8 +968,8 @@
 		32FA53A91A4ACC2700413D1A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BFCDB6C61A9235C000E7C956 /* fon.png */,
 				BFCB3E411A8E4F64008C8FC5 /* grey_fon.png */,
-				BFD4F7C01A83C2EA000FF071 /* fon.PNG */,
 				BFD006B71A81007100850562 /* Rate */,
 				3244D9AB1A732F2200F9B600 /* icons */,
 				3244D9901A7324F700F9B600 /* preview */,
@@ -1149,6 +1149,7 @@
 				BF6A8F701A7FB9EB008A6073 /* button_forward@3x.png in Resources */,
 				32CB70871A66904B00232DE3 /* but_stop_s@3x.png in Resources */,
 				32CB706F1A66903000232DE3 /* button_set_up@2x.png in Resources */,
+				BFCDB6C71A9235C000E7C956 /* fon.png in Resources */,
 				3244D9BE1A732F2200F9B600 /* Icon-60.png in Resources */,
 				3244D9A31A7324F700F9B600 /* Default-6+@x3.png in Resources */,
 				32CB708B1A66904B00232DE3 /* button_download_s@3x.png in Resources */,
@@ -1196,7 +1197,6 @@
 				BF6A8F741A7FC850008A6073 /* button_share_it@3x.png in Resources */,
 				3244D9831A72FFAC00F9B600 /* 1.png in Resources */,
 				32C6A8B81A67D4F50014651D /* justin-timberlake-20132.jpg in Resources */,
-				BFD4F7C11A83C2EA000FF071 /* fon.PNG in Resources */,
 				3244D9C41A732F2200F9B600 /* Icon-76@2x.png in Resources */,
 				32A2D1C11A67753B00C64A3F /* button_playlist_tb_s@3x.png in Resources */,
 				BF6A8F6F1A7FB9EB008A6073 /* button_backward@3x.png in Resources */,

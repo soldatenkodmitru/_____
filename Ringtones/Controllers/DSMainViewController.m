@@ -39,7 +39,7 @@ typedef enum {
     @property (assign, nonatomic) NSInteger selectedPeriod;
     @property (assign, nonatomic) NSInteger selectedSearch;
     @property (strong,nonatomic)  NSThread* thread;
-    @property (weak, nonatomic)   UIImage* selectedImage;
+    @property (strong, nonatomic)   UIImage* selectedImage;
     @property (assign, nonatomic) bool noFirstLoad;
     @property (strong, nonatomic) UIBarButtonItem* appLikeItemBar;
 @end
@@ -285,7 +285,7 @@ typedef enum {
   
 
         cell.image.image = [UIImage imageNamed:@"cover_blank.png"];
-        cell.haveImage =NO;
+        cell.haveImage = NO;
         __weak DSSongTableViewCell* weakCell = cell;
 
         if (song.isLocal) {

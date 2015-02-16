@@ -19,6 +19,7 @@
 @dynamic image_savefile_link;
 @dynamic name;
 @dynamic savefile_link;
+@dynamic original_link;
 @dynamic version;
 @dynamic id;
 @dynamic owner;

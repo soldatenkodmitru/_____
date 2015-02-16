@@ -34,7 +34,7 @@
 
 - (NSMutableArray*) getSongsFromPalylistName:(NSString*) name;
 - (NSMutableArray*) getSongsFromPalylistID:(double) itemID;
-- (void)  addPlaylistItemForNameList:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink;
+- (void)  addPlaylistItemForNameList:(NSString*) playList song:(DSSong*)  song  version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink;
 - (double)  addPlaylistItemForIdList:(double) itemId song:(DSSong*)  song;
 - (BOOL) deletePlaylistItemWithId:(double) ItemId;
 - (DSPlaylistItem*) findPlaylistItemWithId:(double) itemId;

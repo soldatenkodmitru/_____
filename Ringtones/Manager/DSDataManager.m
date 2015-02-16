@@ -117,6 +117,7 @@
         curPlaylistItem.rate = [NSNumber numberWithFloat:song.rating];
         curPlaylistItem.artist = song.artist;
         curPlaylistItem.name = song.title;
+        curPlaylistItem.original_link = song.fileLink;
         
         [curPlaylist addItemObject:curPlaylistItem];
         if (![self.managedObjectContext save:&error]) {
@@ -128,7 +129,7 @@
     return 0;
     
 }
-- (void) addPlaylistItemForNameList:(NSString*) playList song:(DSSong*)  song version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink{
+- (void) addPlaylistItemForNameList:(NSString*) playList song:(DSSong*)  song    version:(NSInteger) version fileLink:(NSString*) savefile_link  imagelink:(NSString*) imagelink{
     NSError* error = nil;
     
     DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
@@ -148,6 +149,21 @@
         curPlaylistItem.image_savefile_link =imagelink;
         curPlaylistItem.artist = song.artist;
         curPlaylistItem.name = song.title;
+        switch (version){
+            case sFull:{
+                curPlaylistItem.original_link = song.fileLink;
+                break;
+            }
+            case sCut:{
+                curPlaylistItem.original_link = song.cutLink;
+                break;
+            }
+            case sRignton:{
+                curPlaylistItem.original_link = song.ringtonLink;
+                break;
+            }
+        }
+        
         curPlaylistItem.rate = [NSNumber numberWithFloat:song.rating];
         
         [curPlaylist addItemObject:curPlaylistItem];

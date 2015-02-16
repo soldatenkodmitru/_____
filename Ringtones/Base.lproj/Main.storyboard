@@ -2294,7 +2294,7 @@
         <image name="button_top_en_tb@3x.png" width="75" height="75"/>
         <image name="button_top_ru_tb@3x.png" width="75" height="75"/>
         <image name="cover_blank@3x.png" width="177" height="177"/>
-        <image name="fon.PNG" width="800" height="600"/>
+        <image name="fon.PNG" width="648" height="585"/>
         <image name="ic_sound@3x.png" width="106" height="118"/>
         <image name="justin-timberlake-20132.jpg" width="650" height="365"/>
         <image name="separator@3x.png" width="1054" height="4"/>

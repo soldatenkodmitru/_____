@@ -43,7 +43,7 @@
 @property (strong, nonatomic) IBOutlet UIProgressView *playProgress;
 @property (strong, nonatomic) IBOutlet UIProgressView *volumeProgress;
 
-@property (weak, nonatomic) DSSong* song;
+@property (strong, nonatomic) DSSong* song;
 @property (strong, nonatomic) UIImage* pictureSong;
 @property (strong, nonatomic)   NSTimer* playTimer;
 

@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * rate;
 @property (nonatomic, retain) NSString * savefile_link;
+@property (nonatomic, retain) NSString * original_link;
 @property (nonatomic, retain) NSNumber * version;
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) DSPlaylist *owner;
