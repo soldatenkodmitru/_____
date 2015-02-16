@@ -177,7 +177,7 @@
 		BFCDAF611A84C654000F50B2 /* InAppPurches.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF5B1A84C654000F50B2 /* InAppPurches.m */; };
 		BFCDAF621A84C654000F50B2 /* MKStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF5E1A84C654000F50B2 /* MKStoreManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BFCDAF631A84C654000F50B2 /* MKStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAF601A84C654000F50B2 /* MKStoreObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BFCDB6C71A9235C000E7C956 /* fon.png in Resources */ = {isa = PBXBuildFile; fileRef = BFCDB6C61A9235C000E7C956 /* fon.png */; };
+		BFCDB6CB1A92388A00E7C956 /* default_fon.png in Resources */ = {isa = PBXBuildFile; fileRef = BFCDB6CA1A92388A00E7C956 /* default_fon.png */; };
 		BFD006BC1A81018600850562 /* star-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006B81A81018600850562 /* star-gray.png */; };
 		BFD006BD1A81018600850562 /* star-gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006B91A81018600850562 /* star-gray@2x.png */; };
 		BFD006BE1A81018600850562 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = BFD006BA1A81018600850562 /* star.png */; };
@@ -451,7 +451,7 @@
 		BFCDAF5E1A84C654000F50B2 /* MKStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreManager.m; sourceTree = "<group>"; };
 		BFCDAF5F1A84C654000F50B2 /* MKStoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStoreObserver.h; sourceTree = "<group>"; };
 		BFCDAF601A84C654000F50B2 /* MKStoreObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStoreObserver.m; sourceTree = "<group>"; };
-		BFCDB6C61A9235C000E7C956 /* fon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fon.png; path = Ringtones/images/fon.png; sourceTree = "<group>"; };
+		BFCDB6CA1A92388A00E7C956 /* default_fon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_fon.png; path = Ringtones/images/default_fon.png; sourceTree = "<group>"; };
 		BFD006B81A81018600850562 /* star-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-gray.png"; path = "Ringtones/libs/Rate/star-gray.png"; sourceTree = "<group>"; };
 		BFD006B91A81018600850562 /* star-gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-gray@2x.png"; path = "Ringtones/libs/Rate/star-gray@2x.png"; sourceTree = "<group>"; };
 		BFD006BA1A81018600850562 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = Ringtones/libs/Rate/star.png; sourceTree = "<group>"; };
@@ -968,7 +968,7 @@
 		32FA53A91A4ACC2700413D1A /* images */ = {
 			isa = PBXGroup;
 			children = (
-				BFCDB6C61A9235C000E7C956 /* fon.png */,
+				BFCDB6CA1A92388A00E7C956 /* default_fon.png */,
 				BFCB3E411A8E4F64008C8FC5 /* grey_fon.png */,
 				BFD006B71A81007100850562 /* Rate */,
 				3244D9AB1A732F2200F9B600 /* icons */,
@@ -1149,7 +1149,6 @@
 				BF6A8F701A7FB9EB008A6073 /* button_forward@3x.png in Resources */,
 				32CB70871A66904B00232DE3 /* but_stop_s@3x.png in Resources */,
 				32CB706F1A66903000232DE3 /* button_set_up@2x.png in Resources */,
-				BFCDB6C71A9235C000E7C956 /* fon.png in Resources */,
 				3244D9BE1A732F2200F9B600 /* Icon-60.png in Resources */,
 				3244D9A31A7324F700F9B600 /* Default-6+@x3.png in Resources */,
 				32CB708B1A66904B00232DE3 /* button_download_s@3x.png in Resources */,
@@ -1246,6 +1245,7 @@
 				3244D9C71A732F2200F9B600 /* Icon-Small-40@3x.png in Resources */,
 				32A2D1C51A67753B00C64A3F /* button_top_en_tb@3x.png in Resources */,
 				3244D9A11A7324F700F9B600 /* 768_1024@2x.png in Resources */,
+				BFCDB6CB1A92388A00E7C956 /* default_fon.png in Resources */,
 				32CB708D1A66904B00232DE3 /* button_favorites_tb_s@3x.png in Resources */,
 				327F02101A76DF820010B309 /* cancel_gray@2x.png in Resources */,
 			);

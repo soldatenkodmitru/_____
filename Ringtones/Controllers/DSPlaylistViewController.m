@@ -27,7 +27,7 @@
     [btn addTarget:self action:@selector(showInstruction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
-     self.imageSong.image =  [UIImage imageNamed:@"grey_fon.png"];;
+     self.imageSong.image =  [UIImage imageNamed:@"grey_fon.png"];
     [self updateElements];
     
     self.shareBtn.highlighted = NO;
@@ -51,6 +51,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [UIView transitionWithView:self.imageSong
                       duration:0.3f
                        options:UIViewAnimationOptionTransitionCrossDissolve
@@ -148,7 +149,7 @@
         self.pictureSong = [UIImage imageWithData:data];
     }
     else{
-        self.pictureSong = [UIImage imageNamed:@"fon.png"];
+        self.pictureSong = [UIImage imageNamed:@"default_fon.png"];
     }
     self.pictureSong = [self imageByScalingAndCroppingForSize:self.imageSong.bounds.size];
     [self setPicture];

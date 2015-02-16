@@ -82,12 +82,14 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     // NSLog(@"%f",self.imageSong.bounds.size.height);
     
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [UIView transitionWithView:self.imageSong
                       duration:0.3f
                        options:UIViewAnimationOptionTransitionCrossDissolve

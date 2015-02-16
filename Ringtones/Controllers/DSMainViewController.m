@@ -92,6 +92,7 @@ typedef enum {
 
 }
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if (self.noFirstLoad){
         switch (self.tabBar.selectedItem.tag) {
         case 4:
@@ -110,6 +111,7 @@ typedef enum {
 
 }
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if (!self.noFirstLoad){
         [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
         [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
@@ -606,7 +608,7 @@ typedef enum {
         if (curCell.haveImage == YES)
             self.selectedImage = curCell.image.image;
         else
-            self.selectedImage = [UIImage imageNamed:@"fon.png"];
+            self.selectedImage = [UIImage imageNamed:@"default_fon.png"];
     }
     return indexPath;
 }
