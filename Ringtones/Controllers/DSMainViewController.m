@@ -42,6 +42,7 @@ typedef enum {
     @property (strong, nonatomic)   UIImage* selectedImage;
     @property (assign, nonatomic) bool noFirstLoad;
     @property (strong, nonatomic) UIBarButtonItem* appLikeItemBar;
+@property (strong,nonatomic ) FBLikeControl* likeControl;
 @end
 
 @implementation DSMainViewController
@@ -58,7 +59,7 @@ typedef enum {
     
     FBLikeControl* appLikeControl = [[FBLikeControl alloc] init];
     appLikeControl.likeControlStyle = FBLikeControlStyleButton;
-    appLikeControl.objectID = @"https://www.facebook.com/pages/Top50Ringtones/431758676974661";
+        appLikeControl.objectID = @"https://www.facebook.com/pages/Top50Ringtones/431758676974661";
     self.appLikeItemBar = [[UIBarButtonItem alloc] initWithCustomView:appLikeControl];
     self.navigationItem.leftBarButtonItem = self.appLikeItemBar;
 
@@ -96,13 +97,13 @@ typedef enum {
     if (self.noFirstLoad){
         switch (self.tabBar.selectedItem.tag) {
         case 4:
-            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+           [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
             [self getFavoriteSongs];
             break;
         case 5:
-            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-            [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
+           [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+           [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
             
            [self getPlaylistSongs];
             break;
@@ -117,6 +118,9 @@ typedef enum {
         [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
         self.noFirstLoad = YES;
     }
+    
+  
+
 
 }
 - (void)didReceiveMemoryWarning {
@@ -156,7 +160,7 @@ typedef enum {
      self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
     [self.tableView reloadData];
     [GMDCircleLoader hideFromView:self.view animated:YES];
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+   [[UIApplication sharedApplication] endIgnoringInteractionEvents];
    /*[[DSServerManager sharedManager] getSongWithPlaylist:@"1,2" OnSuccess:^(NSArray *songs) {
        self.songsArray = [NSArray arrayWithArray:songs];
        [self.tableView reloadData];
@@ -214,7 +218,6 @@ typedef enum {
         errorMessage = @"Проверьте интернет соединение";
     }
     [GMDCircleLoader hideFromView:self.view animated:YES];
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Ошибка"
                                                         message:errorMessage
@@ -478,6 +481,9 @@ typedef enum {
 
 - (void) touchPeriod:(UIControl *)sender {
     
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
+
     UISegmentedControl* segment = (UISegmentedControl*)sender;
     self.selectedPeriod = segment.selectedSegmentIndex;
     [self getPeriodSongs];
@@ -486,8 +492,7 @@ typedef enum {
 }
 
 -(void) getPeriodSongs{
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
+    
     switch(self.selectedPeriod) {
         case 0:
             [self getSongsFromServerWithDays: @"7"];
@@ -596,14 +601,14 @@ typedef enum {
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:indexPath.section];
 
-    
+    self.selectedItem = indexPath.row;
+    self.selectedSection = indexPath.section;
     if(self.tabBar.selectedItem.tag == 5 &&  indexPath.row+1 > [playlist.songsArray count] ){
         [ self addPlaylist:nil];
     }
     else
     {
-        self.selectedItem = indexPath.row;
-        self.selectedSection = indexPath.section;
+       
         DSSongTableViewCell *curCell = (DSSongTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
         if (curCell.haveImage == YES)
             self.selectedImage = curCell.image.image;
@@ -616,7 +621,7 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     DSPlaylistPlayer* playlist = [self.playlistArray objectAtIndex:indexPath.section];
     if(self.tabBar.selectedItem.tag == 5 &&  indexPath.row+1 > [playlist.songsArray count] )
-        return 35;
+        return 45;
     else
         return 65;
     
@@ -713,18 +718,16 @@ typedef enum {
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
 
     self.navigationItem.leftBarButtonItem = self.appLikeItemBar;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
     switch (item.tag)
     {
         case 1:
-             [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             self.navigationItem.title = @"Топ Русский";
-            [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
             [self getSongsFromServerWithFilter:@"rus"];
             break;
         case 2:
-            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             self.navigationItem.title = @"Топ Английский";
-           [GMDCircleLoader setOnView:self.view withRect:self.tableView.bounds animated:YES];
             [self getSongsFromServerWithFilter:@"eng"];
             break;
         case 3:

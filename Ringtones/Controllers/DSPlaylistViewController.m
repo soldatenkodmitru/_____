@@ -29,7 +29,7 @@
     self.navigationItem.rightBarButtonItem = item;
      self.imageSong.image =  [UIImage imageNamed:@"grey_fon.png"];
     [self updateElements];
-    
+    [self.playProgress setTransform:CGAffineTransformMakeScale(1.0, 5)];
     self.shareBtn.highlighted = NO;
     
     self.titleLbl.text = self.song.title;
@@ -109,7 +109,6 @@
         self.pauseBtn.selected = NO;
         self.playBtn.selected = YES;
     }
-    [self setTitleVersion];
     
 }
 
@@ -160,7 +159,7 @@
 - (void) setLabel:(UILabel*) label  text:(NSString*)text{
     
     [UIView transitionWithView: label
-                      duration:0.50f
+                      duration:0.30f
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         label.text = text;
@@ -171,7 +170,7 @@
     
   
     [UIView transitionWithView:self.imageSong
-                      duration:0.4f
+                      duration:0.3f
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         self.imageSong.image = self.pictureSong;
@@ -186,20 +185,7 @@
     return time;
 }
 
-- (void) setTitleVersion {
-    switch (self.song.versionAudio){
-        case sFull:
-            [self.versionBtn setTitle: @"Полная версия     " forState:UIControlStateNormal];
-             break;
-        case sCut:
-            [self.versionBtn setTitle: @"Нарезка 1     " forState:UIControlStateNormal];
-            break;
-        case sRignton:
-            [self.versionBtn setTitle: @"Нарезка 2     " forState:UIControlStateNormal];
-            break;
-    }
- 
-}
+
 
 #pragma mark - Timer
 - (void) timerAction:(id)timer{
@@ -217,34 +203,6 @@
    
 }
 
-#pragma mark - Implementation
-- (void)versionWasSelected:(NSNumber *)selectedIndex element:(id)element {
-    
-    self.song.versionAudio = [selectedIndex intValue];
-    switch(self.song.versionAudio){
-        case sFull:{
-            self.song.audioFileURL = [NSURL URLWithString:self.song.fileLink];
-        break;}
-
-        case sCut:{
-            self.song.audioFileURL = [NSURL URLWithString:self.song.cutLink];
-        break;}
-        case sRignton:{
-            self.song.audioFileURL = [NSURL URLWithString:self.song.ringtonLink];
-        break;}
-    }
-    [[DSSoundManager sharedManager] playSong:self.song];
-    [self setTitleVersion];
-}
-- (void)actionPickerCancelled:(id)sender {
-   // NSLog(@"Delegate has been informed that ActionSheetPicker was cancelled");
-}
-
-#pragma mark - Actions
-- (IBAction)versionAction:(id)sender{
-    
-    [ActionSheetStringPicker showPickerWithTitle:@"Выберите версию" rows:[NSArray arrayWithObjects: @"Полная версия", @"Нарезка1",@"Нарезка2" , nil] initialSelection:self.song.versionAudio target:self successAction:@selector(versionWasSelected:element:) cancelAction:@selector(actionPickerCancelled:) origin:sender];
-}
 
 - (IBAction)playAction:(id)sender{
    

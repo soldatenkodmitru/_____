@@ -105,6 +105,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 {
     [self.playTimer invalidate];
     [self.streamer stop];
+    [self.thread cancel];
     [self cancelStreamer];
     [super viewWillDisappear:animated];
 }
@@ -395,7 +396,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     documentsDirectory =[ documentsDirectory stringByAppendingPathComponent:folderName] ;
     
     BOOL isDir;
@@ -406,7 +407,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
     
     NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[[self.song.audioFileURL lastPathComponent] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding ]];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+  
     [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:fullPath append:NO]];
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
