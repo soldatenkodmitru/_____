@@ -9,7 +9,7 @@
 
 #import "DSDataManager.h"
 #import "DSLikesSong.h"
-
+#import  "NSManagedObjectContext+SRFetchAsync.h"
 
 
 @implementation DSDataManager
@@ -48,7 +48,8 @@
     return YES;
 }
 
-- (NSMutableArray*) allPlaylists {
+- (void) allPlaylistsOnSuccess:(void(^)(NSArray* songs, NSError* error)) success
+{
     
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     
@@ -62,23 +63,25 @@
     
     [request setEntity:description];
     [request setPredicate:predicate];
+    dispatch_async(dispatch_get_main_queue(), ^{
     
-    
-    NSError* requestError = nil;
-    NSArray* resultArray = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    [self.managedObjectContext sr_executeFetchRequest:request completion:^(NSArray *objects, NSError *error) {
+        NSMutableArray* playlists = [[NSMutableArray alloc] init];
+        for (DSPlaylist* list in objects) {
+            
+            DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] initWithDatabase:list];
+            if (playlist.name != nil)
+                [playlists addObject:playlist];
+        }
+        if (success) {
+            success(playlists, error );
+        }
 
-    if (requestError) {
-        NSLog(@"%@", [requestError localizedDescription]);
-    }
-    NSMutableArray* playlists = [[NSMutableArray alloc] init];
-    for (DSPlaylist* list in resultArray) {
-        
-        DSPlaylistPlayer* playlist = [[DSPlaylistPlayer alloc] initWithDatabase:list];
-        if (playlist.name != nil)
-            [playlists addObject:playlist];
-    }
-    return playlists;
+    }];
+     
+    });
 }
+
 - (DSPlaylist*) addPlaylistwithName:(NSString*) name{
     NSError* error = nil;
     
@@ -460,7 +463,7 @@
     if (!coordinator) {
         return nil;
     }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
 }

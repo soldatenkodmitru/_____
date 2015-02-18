@@ -26,7 +26,7 @@
 - (double) findSongForPlaylistName:(NSString*) name song:(DSSong*) song;
 
 - (DSPlaylist*) addPlaylistwithName:(NSString*) name ;
-- (NSMutableArray*) allPlaylists;
+- (void) allPlaylistsOnSuccess:(void(^)(NSArray* songs, NSError* error)) success;
 - (DSPlaylist*) findPlaylistWithName:(NSString*) name;
 - (DSPlaylist*) findPlaylistWithId:(double) listId;
 - (BOOL) ordNoWithPlaylist:(NSArray*) playlist;

@@ -143,11 +143,21 @@ typedef enum {
 
 - (void) getPlaylistSongs{
  
-    self.baseArray = [NSArray arrayWithArray:[[DSDataManager dataManager] allPlaylists]];
-    self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
-     [self.tableView reloadData];
-    [GMDCircleLoader hideFromView:self.view animated:YES];
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    [[DSDataManager dataManager] allPlaylistsOnSuccess:^(NSArray *songs, NSError *error) {
+        if (error == nil) {
+            self.baseArray = [NSArray arrayWithArray:songs];
+            self.playlistArray = [[NSArray alloc ]initWithArray:self.baseArray copyItems:YES];
+            [self.tableView reloadData];
+            
+        }
+        else {
+             NSLog(@"%@", [error localizedDescription]);
+        }
+        [GMDCircleLoader hideFromView:self.view animated:YES];
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        
+    }];
+    
 }
 
 - (void) getFavoriteSongs{
