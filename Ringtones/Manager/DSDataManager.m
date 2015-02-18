@@ -47,7 +47,21 @@
     };
     return YES;
 }
-
+-(NSMutableArray*) getSongsFromPalylistName:(NSString*) name{
+    
+    NSMutableArray* objectsArray = [NSMutableArray array];
+    
+    DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
+                                                            inManagedObjectContext:self.managedObjectContext];
+    curPlaylist = [self findPlaylistWithName:name];
+    NSArray* items = [curPlaylist.item allObjects];
+    items = [self sortingSongs:items];
+    for (DSPlaylistItem* item in items) {
+        DSSong* song = [[DSSong alloc] initWithDatabase:item];
+        [objectsArray addObject:song];
+    }
+    return objectsArray;
+}
 - (void) allPlaylistsOnSuccess:(void(^)(NSArray* songs, NSError* error)) success
 {
     
@@ -247,18 +261,19 @@
 - (BOOL) deletePlaylistItemWithId:(double) ItemId{
     NSError* error = nil;
     DSPlaylistItem* item = [self findPlaylistItemWithId:ItemId];
-    
-    [self.managedObjectContext deleteObject:item];
-    if(![self.managedObjectContext save:&error]) {
-        NSLog(@"%@", [error localizedDescription]);
+    if (item!=nil){
+        [self.managedObjectContext deleteObject:item];
+        if(![self.managedObjectContext save:&error]) {
+            NSLog(@"%@", [error localizedDescription]);
         return NO;
-    }
-    else{
+        }
+        else{
         [self removeFile: item.savefile_link];
         [self removeFile: item.image_savefile_link];
         return YES;
+        }
     }
-    
+    return NO;
 }
 
 
@@ -327,21 +342,7 @@
         return nil;
 }
 
--(NSMutableArray*) getSongsFromPalylistName:(NSString*) name{
-    
-    NSMutableArray* objectsArray = [NSMutableArray array];
-    
-    DSPlaylist* curPlaylist = [NSEntityDescription insertNewObjectForEntityForName:@"DSPlaylist"
-                                                            inManagedObjectContext:self.managedObjectContext];
-    curPlaylist = [self findPlaylistWithName:name];
-    NSArray* items = [curPlaylist.item allObjects];
-    items = [self sortingSongs:items];
-    for (DSPlaylistItem* item in items) {
-        DSSong* song = [[DSSong alloc] initWithDatabase:item];
-        [objectsArray addObject:song];
-    }
-    return objectsArray;
-}
+
 
 -(NSMutableArray*) getSongsFromPalylistID:(double) itemId{
     

@@ -80,6 +80,7 @@
 
 - (void) activeSongDidChange:(DSSong*)song{
     
+    [self.playProgress setProgress:0 animated:NO];
     self.song = song;
     [self updateElements];
     [self animateElements];
@@ -220,12 +221,12 @@
 }
 - (IBAction)forwardAction:(id)sender{
     [[DSSoundManager sharedManager] forward];
-    [self.playProgress setProgress:0 animated:NO];
+   
 }
 - (IBAction)backAction:(id)sender{
     
     [[DSSoundManager sharedManager] backward];
-    [self.playProgress setProgress:0 animated:NO];
+
 }
 
 

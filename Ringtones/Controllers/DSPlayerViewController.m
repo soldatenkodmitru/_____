@@ -323,7 +323,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (IBAction)shareAction:(id)sender{
     UIImage *sendImage = self.pictureSong;
-    self.shareBtn.highlighted = YES;
+    UIButton* but = sender;
+    [but setHighlighted:YES];
     dispatch_queue_t queue = dispatch_queue_create("openActivityIndicatorQueue", NULL);
     // send initialization of UIActivityViewController in background
     dispatch_async(queue, ^{
@@ -341,19 +342,34 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 - (IBAction)favoriteAction:(id)sender {
   
     self.favoriteBtn.selected = !self.favoriteBtn.selected;
-  
-    if (self.favoriteBtn.selected){
-        [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:self.self.song.versionAudio fileLink:[self download:@"Избранное"] imagelink:[self saveImage]];
-    }
-    else{
-        double idItem = [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song];
-        [[DSDataManager dataManager] deletePlaylistItemWithId:idItem];
+    dispatch_queue_t queue = dispatch_queue_create("favoriteQueue", NULL);
+
+    dispatch_async(queue, ^{
+
+        if (self.favoriteBtn.selected){
+            [[DSDataManager dataManager] addPlaylistItemForNameList:@"Избранное" song:self.song version:self.self.song.versionAudio fileLink:[self download:@"Избранное"] imagelink:[self saveImage]];
+        }
+        else{
+            double idItem = [[DSDataManager dataManager] findSongForPlaylistName:@"Избранное" song:self.song];
+            [ [DSDataManager dataManager] deletePlaylistItemWithId:idItem];
         
-    }
-    }
+        }
+    });
+}
 
 - (IBAction)downloadAction:(id)sender {
-    if ([self checkPurchaise]){
+ 
+    UIButton* but = sender;
+    [but setHighlighted:YES];
+    dispatch_queue_t queue = dispatch_queue_create("openDownloadQueue", NULL);
+    CGRect rect;
+    rect = self.view.bounds;
+    rect.size.height = rect.size.height+200.f;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [GMDCircleLoader setOnView:self.view withRect:rect animated:YES];
+
+    dispatch_async(queue, ^{
+        if ([self checkPurchaise]){
         NSString* listName;
             switch (self.song.versionAudio) {
             case sFull:{
@@ -374,11 +390,17 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
             [[DSDataManager dataManager] addPlaylistItemForNameList:listName song:self.song version:self.song.versionAudio fileLink:[self download:listName] imagelink:[self saveImage]];
         }
         else {
-        
-        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Данный трек уже присутствует в списке загрузок" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ок",nil];
-        [alertView show];
+          dispatch_async(dispatch_get_main_queue(), ^{
+              [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+              [GMDCircleLoader hideFromView:self.view animated:YES];
+              UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Данный трек уже присутствует в списке загрузок" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ок",nil];
+              [alertView show];
+          });
         }
     }
+
+    });
+
 }
 
 -(NSString*) saveImage{
@@ -447,6 +469,11 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     }];
     
     [operation start];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [GMDCircleLoader hideFromView:self.view animated:YES];
+      
+    });
     return fullPath;
 }
 
@@ -525,8 +552,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     NSString* purchaise;
     NSString* purchaiseID;
     bool isPurchaise;
-    CGRect rect;
-  /*  if ([self.song.lang isEqualToString:@"eng"]){
+    if ([self.song.lang isEqualToString:@"eng"]){
         purchaise = @"isPurchaiseEng";
         purchaiseID = featureEngID;
     }
@@ -539,15 +565,13 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     isPurchaise =[defaults objectForKey:purchaise];
      NSLog(@"%f",self.view.bounds.size.height);
     if (isPurchaise != YES ){
-        rect = self.view.bounds;
-        rect.size.height = rect.size.height+200.f;
-        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-        [GMDCircleLoader setOnView:self.view withRect:rect animated:YES];
+       
+   
         self.purchaes.productID = purchaiseID;
         return NO;
     }
     else
-        return YES;*/
+        return YES;
     return YES;
     
 }
@@ -584,12 +608,13 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         [defaults setObject:term forKey:purchaiseTermin];
         [defaults setBool:YES forKey:purchaise];
         [defaults synchronize];
+        
        // UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Сообщение" message:@"Ваши покупки успешно завершены" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
      //   [alert show];
         [self downloadAction:nil];
     }
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-    [GMDCircleLoader hideFromView:self.view animated:YES];
+         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [GMDCircleLoader hideFromView:self.view animated:YES];
     
     
 }

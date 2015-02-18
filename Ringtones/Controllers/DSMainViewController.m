@@ -94,7 +94,7 @@ typedef enum {
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.noFirstLoad){
+    /*   if (self.noFirstLoad){
         switch (self.tabBar.selectedItem.tag) {
         case 4:
            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -108,7 +108,7 @@ typedef enum {
            [self getPlaylistSongs];
             break;
        }
-    }
+    } */
 
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -605,7 +605,7 @@ typedef enum {
         [self.navigationController pushViewController:myVController animated:YES];
 
     }
-    [[DSSoundManager sharedManager] stop];
+    [[DSSoundManager sharedManager] resetStreamer];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{

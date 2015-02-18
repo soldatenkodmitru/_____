@@ -156,7 +156,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 }
 - (void) updateStatus{
     
-    if (self.streamer.status ==  DOUAudioStreamerPlaying && self.isPlaying == NO){
+    if ((self.streamer.status ==  DOUAudioStreamerPlaying  || self.streamer.status == DOUAudioStreamerBuffering) && self.isPlaying == NO){
         self.isPlaying = YES;
     }
     

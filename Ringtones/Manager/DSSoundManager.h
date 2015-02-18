@@ -40,5 +40,6 @@
 - (void) pause;
 - (void) backward;
 - (void) forward;
+- (void) resetStreamer;
 
 @end
