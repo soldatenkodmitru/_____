@@ -142,11 +142,13 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     [self setAudioLink:self.song];
     
     self.streamer = [DOUAudioStreamer streamerWithAudioFile:self.song];
-    
-    if ([self.playlist.songsArray count] != self.activeIndex+1){
-        self.nextSong = [self.playlist.songsArray objectAtIndex:(self.activeIndex+1)];
-        [self setAudioLink:self.nextSong];
-        [DOUAudioStreamer setHintWithAudioFile:self.nextSong];
+    if (self.playlist != nil){
+        if ([self.playlist.songsArray count] != self.activeIndex+1){
+            self.nextSong = [self.playlist.songsArray objectAtIndex:(self.activeIndex+1)];
+            [self setAudioLink:self.nextSong];
+            [DOUAudioStreamer setHintWithAudioFile:self.nextSong];
+            
+        }
     }
     [self.streamer addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:kStatusKVOKey];
     [self.streamer addObserver:self forKeyPath:@"duration" options:NSKeyValueObservingOptionNew context:kDurationKVOKey];

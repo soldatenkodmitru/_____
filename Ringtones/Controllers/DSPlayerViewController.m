@@ -325,6 +325,11 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     UIImage *sendImage = self.pictureSong;
     UIButton* but = sender;
     [but setHighlighted:YES];
+    CGRect rect;
+    rect = self.view.bounds;
+    rect.size.height = rect.size.height+200.f;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [GMDCircleLoader setOnView:self.view withRect:rect animated:YES];
     dispatch_queue_t queue = dispatch_queue_create("openActivityIndicatorQueue", NULL);
     // send initialization of UIActivityViewController in background
     dispatch_async(queue, ^{
@@ -333,6 +338,8 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     activityViewController.excludedActivityTypes=@[UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll];
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [GMDCircleLoader hideFromView:self.view animated:YES];
         [self presentViewController:activityViewController animated:YES completion:nil];
         
     });
@@ -552,7 +559,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     NSString* purchaise;
     NSString* purchaiseID;
     bool isPurchaise;
-    if ([self.song.lang isEqualToString:@"eng"]){
+    /* if ([self.song.lang isEqualToString:@"eng"]){
         purchaise = @"isPurchaiseEng";
         purchaiseID = featureEngID;
     }
@@ -571,7 +578,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         return NO;
     }
     else
-        return YES;
+        return YES;*/
     return YES;
     
 }
