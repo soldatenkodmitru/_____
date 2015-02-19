@@ -11,7 +11,7 @@
 #import "ActionSheetStringPicker.h"
 #import "NFXIntroViewController.h"
 #import "DaiVolume.h"
-
+#import "GMDCircleLoader.h"
 
 @implementation DSPlaylistViewController
 
@@ -233,7 +233,13 @@
 
 - (IBAction)shareAction:(id)sender{
     UIImage *sendImage = self.pictureSong;
-    self.shareBtn.highlighted = YES;
+    UIButton* but = sender;
+    [but setHighlighted:YES];
+    CGRect rect;
+    rect = self.view.bounds;
+    rect.size.height = rect.size.height+200.f;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    [GMDCircleLoader setOnView:self.view withRect:rect animated:YES];
     dispatch_queue_t queue = dispatch_queue_create("openActivityIndicatorQueue", NULL);
     // send initialization of UIActivityViewController in background
     dispatch_async(queue, ^{
@@ -242,6 +248,8 @@
     activityViewController.excludedActivityTypes=@[UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeSaveToCameraRoll];
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [GMDCircleLoader hideFromView:self.view animated:YES];
         [self presentViewController:activityViewController animated:YES completion:nil];
         
     });
