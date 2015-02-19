@@ -373,11 +373,12 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     rect = self.view.bounds;
     rect.size.height = rect.size.height+200.f;
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    [GMDCircleLoader setOnView:self.view withRect:rect animated:YES];
+   // [GMDCircleLoader setOnView:self.view withRect:rect animated:YES];
+  
 
-    dispatch_async(queue, ^{
+  
         if ([self checkPurchaise]){
-        NSString* listName;
+            NSString* listName;
             switch (self.song.versionAudio) {
             case sFull:{
                 listName = @"Загрузки";
@@ -391,24 +392,30 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
                 listName = @"Рингтоны";
             break;
             }
-        }
+            }
 
-        if ([[DSDataManager dataManager] findSongForPlaylistName:listName song:self.song] == 0 ) {
+            if ([[DSDataManager dataManager] findSongForPlaylistName:listName song:self.song] == 0 ) {
             [[DSDataManager dataManager] addPlaylistItemForNameList:listName song:self.song version:self.song.versionAudio fileLink:[self download:listName] imagelink:[self saveImage]];
-        }
-        else {
-          dispatch_async(dispatch_get_main_queue(), ^{
-              [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-              [GMDCircleLoader hideFromView:self.view animated:YES];
+             
+                    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                   // [GMDCircleLoader hideFromView:self.view animated:YES];
+                
+            }
+            else {
+          
+                    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                   // [GMDCircleLoader hideFromView:self.view animated:YES];
+           
               UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Данный трек уже присутствует в списке загрузок" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ок",nil];
               [alertView show];
-          });
+                
+            }
         }
-    }
-
-    });
-
+    
 }
+
+
+
 
 -(NSString*) saveImage{
     
@@ -425,9 +432,9 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+ 
     documentsDirectory =[ documentsDirectory stringByAppendingPathComponent:folderName] ;
-    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     BOOL isDir;
     NSFileManager *fileManager= [NSFileManager defaultManager];
     if(![fileManager fileExistsAtPath:documentsDirectory isDirectory:&isDir])
@@ -441,6 +448,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
         NSLog(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
+      
     }];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -448,39 +456,37 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
         //  NSLog(@"RES: %@", [[[operation response] allHeaderFields] description]);
         
         NSError *error;
-        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:&error];
+       // NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:&error];
         
         if (error) {
             NSLog(@"ERR: %@", [error description]);
           
         } else {
-            NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
-            long long fileSize = [fileSizeNumber longLongValue];
+          //  NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
+          //  long long fileSize = [fileSizeNumber longLongValue];
             
             //  [[_downloadFile titleLabel] setText:[NSString stringWithFormat:@"%lld", fileSize]];
             //return fullPath;
           //  NSLog(@"%@, %@",fullPath,[NSString stringWithFormat:@"%lld", fileSize]);
         }
+        
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Загрузка прервана"
                                                             message:@"Соединение с сервером потеряно! Попробуйте пожалуйста скачать еще раз!"
                                                            delegate:nil
                                                   cancelButtonTitle:@"Oк"
                                                   otherButtonTitles:nil];
         [alertView show];
-        
+      
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         NSLog(@"ERR: %@", [error description]);
     }];
     
     [operation start];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        [GMDCircleLoader hideFromView:self.view animated:YES];
-      
-    });
+ 
     return fullPath;
 }
 
@@ -559,6 +565,7 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     NSString* purchaise;
     NSString* purchaiseID;
     bool isPurchaise;
+    CGRect rect;
     /* if ([self.song.lang isEqualToString:@"eng"]){
         purchaise = @"isPurchaiseEng";
         purchaiseID = featureEngID;
@@ -572,9 +579,12 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     isPurchaise =[defaults objectForKey:purchaise];
      NSLog(@"%f",self.view.bounds.size.height);
     if (isPurchaise != YES ){
-       
-   
-        self.purchaes.productID = purchaiseID;
+     rect = self.view.bounds;
+     rect.size.height = rect.size.height+200.f;
+     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+     [GMDCircleLoader setOnView:self.view withRect:rect animated:YES];
+     self.purchaes.productID = purchaiseID;
+  
         return NO;
     }
     else

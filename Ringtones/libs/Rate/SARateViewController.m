@@ -204,9 +204,12 @@
         
     }
     
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:_disadvantagesAlertTitle message:_disadvantagesAlertMessage delegate:nil cancelButtonTitle:_okText otherButtonTitles:nil];
-    [alertView show];
-    [self sendMail];
+  //  UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:_disadvantagesAlertTitle message:_disadvantagesAlertMessage delegate:nil cancelButtonTitle:_okText otherButtonTitles:nil];
+  //  [alertView show];
+   // [self sendMail];
+    [iRate sharedInstance].ratedThisVersion = YES;
+    _isShowed = NO;
+    [self.view removeFromSuperview];
     
 }
 
