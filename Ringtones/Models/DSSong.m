@@ -26,10 +26,13 @@
         self.rating = [[responseObject objectForKey:@"rating"] floatValue];
         self.cutLink =[[[[responseObject objectForKey:@"files"] objectForKey:@"cut"] objectForKey:@"file_link"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.cutDuration = [[[responseObject objectForKey:@"files"] objectForKey:@"cut" ]objectForKey:@"duration"];
+        self.cutID = [[[responseObject objectForKey:@"files"] objectForKey:@"cut" ]objectForKey:@"id_file"];
         self.ringtonLink =[[[[responseObject objectForKey:@"files"] objectForKey:@"rington"] objectForKey:@"file_link"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.ringtonDuration = [[[responseObject objectForKey:@"files"] objectForKey:@"rington"] objectForKey:@"duration"];
+        self.ringtonID = [[[responseObject objectForKey:@"files"] objectForKey:@"rington"] objectForKey:@"id_file"];
         self.fileLink =[[[[responseObject objectForKey:@"files"] objectForKey:@"full"] objectForKey:@"file_link"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         self.fileDuration = [[[responseObject objectForKey:@"files"] objectForKey:@"full"] objectForKey:@"duration"];
+        self.fileID = [[[responseObject objectForKey:@"files"] objectForKey:@"full"] objectForKey:@"id_file"];
       
     }
     return self;
@@ -78,7 +81,9 @@
     [copy setIsLocal:[self isLocal]];
     [copy setVersionAudio:[self versionAudio]];
     [copy setLang:[self lang]];
- 
+    [copy setFileID:[self fileID]];
+    [copy setCutID:[self cutID]];
+    [copy setRingtonID:[self ringtonID]];
     return copy;
 }
 

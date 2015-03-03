@@ -241,6 +241,39 @@
     
 }
 
+- (void) setDownloadForFile:(NSString*) idFile OnSuccess:(void(^)(NSObject* result)) success
+             onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure{
+    
+    self.requestOperationManager.requestSerializer = [AFJSONRequestSerializer serializer ];
+    
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"SETDOWNLOAD" , @"command",
+                            [NSDictionary dictionaryWithObjectsAndKeys: idFile, @"id_file",nil],@"param", nil];
+    //id obj ;
+    
+    // success(obj);
+    
+    // [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
+    [self.requestOperationManager
+     POST:@""
+     parameters:params
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         NSLog(@"JSON: %@", responseObject);
+         if (success) {
+             success(responseObject);
+         }
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error);
+         
+         if (failure) {
+             failure(error, operation.response.statusCode);
+         }
+     }];
+    
+}
+
 
 
 

@@ -25,5 +25,8 @@
 - (void) getSongWithPlaylist:(NSString*) list OnSuccess:(void(^)(NSArray* songs)) success
                    onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
 
+- (void) setDownloadForFile:(NSString*) idFile OnSuccess:(void(^)(NSObject* result)) success
+                  onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
+
 - (BOOL) reachability;
 @end

@@ -57,9 +57,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
     self.endLbl.text = @"00:00";
     self.navigationItem.title = self.title;
     
-    self.shareBtn.highlighted = NO;
-    self.downloadBtn.highlighted = NO;
-    
     self.playBtn.selected = YES;
     self.stopBtn.selected = NO;
    
@@ -323,8 +320,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (IBAction)shareAction:(id)sender{
     UIImage *sendImage = self.pictureSong;
-    UIButton* but = sender;
-    [but setHighlighted:YES];
     CGRect rect;
     rect = self.view.bounds;
     rect.size.height = rect.size.height+200.f;
@@ -366,8 +361,6 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
 
 - (IBAction)downloadAction:(id)sender {
  
-    UIButton* but = sender;
-    [but setHighlighted:YES];
     dispatch_queue_t queue = dispatch_queue_create("openDownloadQueue", NULL);
     CGRect rect;
     rect = self.view.bounds;
@@ -379,20 +372,30 @@ static void *kBufferingRatioKVOKey = &kBufferingRatioKVOKey;
   
         if ([self checkPurchaise]){
             NSString* listName;
+            NSString* idFile;
             switch (self.song.versionAudio) {
             case sFull:{
                 listName = @"Загрузки";
+                idFile = self.song.fileID;
             break;
             }
             case sCut:{
                 listName = @"Рингтоны";
+                idFile = self.song.cutID;
             break;
             }
             case sRignton:{
                 listName = @"Рингтоны";
+                idFile = self.song.ringtonID;
             break;
             }
             }
+            
+            [[DSServerManager sharedManager] setDownloadForFile:idFile OnSuccess:^(NSObject *result) {
+                 NSLog(@"Set Download");
+            } onFailure:^(NSError *error, NSInteger statusCode) {
+                NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
+            }];
 
             if ([[DSDataManager dataManager] findSongForPlaylistName:listName song:self.song] == 0 ) {
             [[DSDataManager dataManager] addPlaylistItemForNameList:listName song:self.song version:self.song.versionAudio fileLink:[self download:listName] imagelink:[self saveImage]];

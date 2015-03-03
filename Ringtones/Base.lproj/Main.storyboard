@@ -1070,7 +1070,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTo-Ms-eLF">
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTo-Ms-eLF">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yTo-Ms-eLF" secondAttribute="height" multiplier="41:14" id="5JX-3g-RoA"/>
@@ -1083,8 +1083,8 @@
                                     </constraint>
                                     <constraint firstAttribute="height" constant="42" id="dZy-MV-FMe"/>
                                 </constraints>
-                                <state key="normal" image="button_download@3x.png"/>
-                                <state key="selected" image="button_download_s@3x.png"/>
+                                <state key="normal" image="button_download_s@3x.png"/>
+                                <state key="selected" image="button_download@3x.png"/>
                                 <state key="highlighted" image="button_download_s@3x.png"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1108,7 +1108,7 @@
                                     <action selector="downloadAction:" destination="TXZ-Bo-70P" eventType="touchUpInside" id="dSJ-Ih-zFR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpj-lW-zfZ">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpj-lW-zfZ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="JJj-Xf-44T">
@@ -1123,8 +1123,8 @@
                                     </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Button" image="button_share@3x.png"/>
-                                <state key="highlighted" image="button_share_s@3x.png"/>
+                                <state key="normal" title="Button" image="button_share_s@3x.png"/>
+                                <state key="selected" image="button_share.png"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="JJj-Xf-44T"/>
@@ -1946,7 +1946,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbx-Vz-ADr">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbx-Vz-ADr">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="0Ic-RP-nRi">
@@ -1965,7 +1965,8 @@
                                     </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" image="button_share_it@3x.png"/>
+                                <state key="normal" image="button_share_it_s@3x.png"/>
+                                <state key="selected" image="button_share_it@3x.png"/>
                                 <state key="highlighted" image="button_share_it_s@3x.png"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -2309,7 +2310,7 @@
         <image name="button_new_tb_s@3x.png" width="75" height="75"/>
         <image name="button_playlist_tb@3x.png" width="75" height="75"/>
         <image name="button_selection@3x.png" width="867" height="126"/>
-        <image name="button_share@3x.png" width="370" height="127"/>
+        <image name="button_share.png" width="140" height="48"/>
         <image name="button_share_it@3x.png" width="480" height="127"/>
         <image name="button_share_it_s@3x.png" width="480" height="127"/>
         <image name="button_share_s@3x.png" width="370" height="127"/>

@@ -28,10 +28,13 @@ typedef enum {
   @property (assign,nonatomic) float  rating;
   @property (strong,nonatomic) NSString *cutLink;
   @property (strong,nonatomic) NSString *cutDuration;
+  @property (strong,nonatomic) NSString *cutID;
   @property (strong,nonatomic) NSString *ringtonLink;
   @property (strong,nonatomic) NSString *ringtonDuration;
+  @property (strong,nonatomic) NSString *ringtonID;
   @property (strong,nonatomic) NSString *fileLink;
   @property (strong,nonatomic) NSString *fileDuration;
+  @property (strong,nonatomic) NSString *fileID;
   @property (strong,nonatomic) NSString *saveFileLink;
   @property (strong,nonatomic) NSString *saveImageLink;
   @property (strong,nonatomic) NSURL *audioFileURL;
