@@ -39,10 +39,10 @@ typedef enum {
     @property (assign, nonatomic) NSInteger selectedPeriod;
     @property (assign, nonatomic) NSInteger selectedSearch;
     @property (strong,nonatomic)  NSThread* thread;
-    @property (strong, nonatomic)   UIImage* selectedImage;
+    @property (strong, nonatomic) UIImage* selectedImage;
     @property (assign, nonatomic) bool noFirstLoad;
     @property (strong, nonatomic) UIBarButtonItem* appLikeItemBar;
-@property (strong,nonatomic ) FBLikeControl* likeControl;
+    @property (strong,nonatomic ) FBLikeControl* likeControl;
 @end
 
 @implementation DSMainViewController
@@ -59,7 +59,7 @@ typedef enum {
    
     FBLikeControl* appLikeControl = [[FBLikeControl alloc] init];
     appLikeControl.likeControlStyle = FBLikeControlStyleButton;
-        appLikeControl.objectID = @"https://www.facebook.com/pages/Top50Ringtones/431758676974661";
+    appLikeControl.objectID = @"https://www.facebook.com/pages/Top50Ringtones/431758676974661";
     self.appLikeItemBar = [[UIBarButtonItem alloc] initWithCustomView:appLikeControl];
     self.navigationItem.leftBarButtonItem = self.appLikeItemBar;
 
