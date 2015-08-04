@@ -215,21 +215,22 @@ typedef enum {
          
      } onFailure:^(NSError *error, NSInteger statusCode) {
          [self errorLoading:error];
+         
      }];
     
 }
 
 - (void) errorLoading:(NSError *)err {
- 
+    [GMDCircleLoader hideFromView:self.view animated:YES];
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+
     NSString *errorMessage ;
     if ([[DSServerManager sharedManager]reachability]){
         errorMessage = @"Невозможно установить соединение с сервером, повторите попытку через несколько минут";
     }else{
         errorMessage = @"Проверьте интернет соединение";
     }
-    [GMDCircleLoader hideFromView:self.view animated:YES];
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Ошибка"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Ошибка"
                                                         message:errorMessage
                                                        delegate:nil
                                               cancelButtonTitle:@"Oк"

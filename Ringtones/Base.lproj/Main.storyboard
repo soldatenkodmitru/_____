@@ -510,11 +510,11 @@
                                     <constraint firstAttribute="height" constant="49" id="lgh-zW-S8w"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem tag="1" title="Топ Рус" image="button_top_ru_tb@3x.png" id="zgq-cK-XTX"/>
-                                    <tabBarItem tag="2" title="Топ Англ" image="button_top_en_tb@3x.png" id="9c6-ff-n1k"/>
-                                    <tabBarItem tag="3" title="Новые" image="button_new_tb_s@3x.png" id="cSE-sl-DCi"/>
-                                    <tabBarItem tag="4" title="Избранное" image="button_favorites_tb@3x.png" id="J3H-bN-Qfv"/>
-                                    <tabBarItem tag="5" title="Плейлист" image="button_playlist_tb@3x.png" id="XUr-KT-fmd"/>
+                                    <tabBarItem tag="1" title="Топ Рус" image="button_top_ru_tb.png" id="zgq-cK-XTX"/>
+                                    <tabBarItem tag="2" title="Топ Англ" image="button_top_en_tb.png" id="9c6-ff-n1k"/>
+                                    <tabBarItem tag="3" title="Новые" image="button_new_tb_s" id="cSE-sl-DCi"/>
+                                    <tabBarItem tag="4" title="Избранное" image="button_favorites_tb" id="J3H-bN-Qfv"/>
+                                    <tabBarItem tag="5" title="Плейлист" image="button_playlist_tb" id="XUr-KT-fmd"/>
                                 </items>
                                 <color key="barTintColor" red="0.89411764705882346" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="default">
@@ -530,6 +530,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8yU-gc-UQK" secondAttribute="trailing" id="92b-G7-QnX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8yU-gc-UQK" secondAttribute="trailing" constant="-16" id="CqD-EA-mEn">
                                 <variation key="widthClass=compact" constant="-16"/>
                             </constraint>
@@ -546,6 +547,7 @@
                                 <variation key="widthClass=compact" constant="-64"/>
                             </constraint>
                             <constraint firstItem="sFv-QI-Xrv" firstAttribute="leading" secondItem="sXm-0k-hci" secondAttribute="leadingMargin" constant="-16" id="bg4-2O-3MU"/>
+                            <constraint firstItem="8yU-gc-UQK" firstAttribute="leading" secondItem="sXm-0k-hci" secondAttribute="leading" id="cj7-G9-jZn"/>
                             <constraint firstItem="8yU-gc-UQK" firstAttribute="leading" secondItem="sXm-0k-hci" secondAttribute="leadingMargin" constant="-16" id="eg2-Kt-a7C">
                                 <variation key="widthClass=compact" constant="-16"/>
                             </constraint>
@@ -553,11 +555,21 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="92b-G7-QnX"/>
+                                <exclude reference="cj7-G9-jZn"/>
                                 <exclude reference="ER4-yH-Bp7"/>
                                 <exclude reference="XMh-fB-ncG"/>
                                 <exclude reference="aSe-yY-I5S"/>
                                 <exclude reference="bg4-2O-3MU"/>
                                 <exclude reference="pgb-Rp-3yd"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="92b-G7-QnX"/>
+                                <exclude reference="CqD-EA-mEn"/>
+                                <include reference="cj7-G9-jZn"/>
+                                <exclude reference="eg2-Kt-a7C"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -2306,17 +2318,17 @@
         <image name="button_backward@3x.png" width="128" height="77"/>
         <image name="button_download@3x.png" width="370" height="127"/>
         <image name="button_download_s@3x.png" width="370" height="127"/>
-        <image name="button_favorites_tb@3x.png" width="75" height="75"/>
+        <image name="button_favorites_tb" width="25" height="25"/>
         <image name="button_forward@3x.png" width="128" height="77"/>
-        <image name="button_new_tb_s@3x.png" width="75" height="75"/>
-        <image name="button_playlist_tb@3x.png" width="75" height="75"/>
+        <image name="button_new_tb_s" width="25" height="25"/>
+        <image name="button_playlist_tb" width="25" height="25"/>
         <image name="button_selection@3x.png" width="867" height="126"/>
         <image name="button_share.png" width="140" height="48"/>
         <image name="button_share_it@3x.png" width="480" height="127"/>
         <image name="button_share_it_s@3x.png" width="480" height="127"/>
         <image name="button_share_s@3x.png" width="370" height="127"/>
-        <image name="button_top_en_tb@3x.png" width="75" height="75"/>
-        <image name="button_top_ru_tb@3x.png" width="75" height="75"/>
+        <image name="button_top_en_tb.png" width="25" height="25"/>
+        <image name="button_top_ru_tb.png" width="25" height="25"/>
         <image name="cover_blank@3x.png" width="177" height="177"/>
         <image name="grey_fon.png" width="640" height="640"/>
         <image name="ic_sound@3x.png" width="106" height="118"/>
